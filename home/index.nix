@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
 in
@@ -12,6 +12,7 @@ in
       "/etc/nixos/home/alacritty.nix"
       "/etc/nixos/home/git.nix"
       "/etc/nixos/home/i3.nix"
+      "/etc/nixos/home/vscode.nix"
       "/etc/nixos/home/zsh.nix"
     ];
   };
