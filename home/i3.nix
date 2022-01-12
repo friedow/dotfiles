@@ -68,10 +68,12 @@ in
 				"${modifier}+space" = "exec rofi -show combi";
 				"${modifier}+Return" = "exec alacritty";
 			};
+
+			bars = [];
 			
 			gaps = {
-				inner = 20;
-				outer = 10;
+				inner = 10;
+				outer = 3;
 			};
 		};
 	};
