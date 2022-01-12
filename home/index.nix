@@ -9,6 +9,7 @@ in
 
   home-manager.users.christian = {
     imports = [
+      "/etc/nixos/home/alacritty.nix"
       "/etc/nixos/home/git.nix"
       "/etc/nixos/home/i3.nix"
     ];

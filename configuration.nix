@@ -27,18 +27,8 @@
   networking.useDHCP = false;
   networking.interfaces.wlo1.useDHCP = true;
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  # };
 
-  # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
 
@@ -60,49 +50,26 @@
       package = pkgs.i3-gaps;
       extraPackages = with pkgs; [
         i3lock
-        i3blocks
         rofi
       ];
     };
   };
-
-  # Configure keymap in X11
-  # services.xserver.layout = "us";
-  # services.xserver.xkbOptions = "eurosign:e";
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.christian = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" ];
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment = {
     variables.EDITOR = "code";
     systemPackages = with pkgs; [
-      vscode
       gitkraken
       wget
-      firefox
-      alacritty
-      fish
     ];
   };
 
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
+  nixpkgs.config.allowUnfree = true;
 
   sound.enable = true;
   hardware = {
@@ -112,32 +79,33 @@
     };
   };
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  fonts = {
+  fontDir.enable = true;
+    enableGhostscriptFonts = true;
 
-  # List services that you want to enable:
+    fontconfig = {
+      enable = true;
+      antialias = true;
+      useEmbeddedBitmaps = true;
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+      defaultFonts = {
+        serif = [ "Source Serif Pro" "DejaVu Serif" ];
+        sansSerif = [ "Source Sans Pro" "DejaVu Sans" ];
+        monospace = [ "Fira Code" "Hasklig" ];
+      };
+    };
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+    fonts = with pkgs; [
+      hasklig
+      source-code-pro
+      overpass
+      nerdfonts
+      fira
+      fira-code
+      fira-mono
+    ];
+  };
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "21.11"; # Did you read the comment?
-
+  system.stateVersion = "21.11";
 }
 
