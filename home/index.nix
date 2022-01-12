@@ -12,6 +12,7 @@ in
       "/etc/nixos/home/alacritty.nix"
       "/etc/nixos/home/git.nix"
       "/etc/nixos/home/i3.nix"
+      "/etc/nixos/home/zsh.nix"
     ];
   };
 }
