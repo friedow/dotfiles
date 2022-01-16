@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
+  home-config-dir = "/etc/nixos/home";
 in
 {
   imports = [
@@ -10,11 +11,13 @@ in
   home-manager.users.christian = {
     home.stateVersion = "21.11";
     imports = [
-      "/etc/nixos/home/alacritty.nix"
-      "/etc/nixos/home/git.nix"
-      "/etc/nixos/home/i3.nix"
-      "/etc/nixos/home/vscode.nix"
-      "/etc/nixos/home/zsh.nix"
+      "${home-config-dir}/alacritty.nix"
+      "${home-config-dir}/chromium.nix"
+      "${home-config-dir}/firefox.nix"
+      "${home-config-dir}/git.nix"
+      "${home-config-dir}/i3.nix"
+      "${home-config-dir}/vscode.nix"
+      "${home-config-dir}/zsh.nix"
     ];
   };
 }
