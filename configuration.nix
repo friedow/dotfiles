@@ -106,6 +106,10 @@
     ];
   };
 
+  environment.etc = {
+        "firefox/policies/policies.json".source = "/etc/nixos/policies.json";
+    };
+
   system.stateVersion = "21.11";
 }
 
