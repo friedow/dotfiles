@@ -1,9 +1,11 @@
 { config, pkgs, ... }:
+let 
+  colors = import /etc/nixos/home/colors.nix;
+in 
 {
 	programs.alacritty = {
     enable = true;
     settings = {
-      # shell.program = "/home/christian/.nix-profile/bin/zsh";
       shell.program = "zsh";
       window.padding = {
         x = 12;
@@ -13,6 +15,7 @@
         size = 7;
         normal.family = "Fira Code";
       };
+      colors.primary.background= "${colors.primary.background}";
     };
   };
 }
