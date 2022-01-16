@@ -8,6 +8,7 @@ in
   ];
 
   home-manager.users.christian = {
+    home.stateVersion = "21.11";
     imports = [
       "/etc/nixos/home/alacritty.nix"
       "/etc/nixos/home/git.nix"
