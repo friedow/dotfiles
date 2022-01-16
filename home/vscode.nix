@@ -6,6 +6,7 @@
         extensions = with pkgs.vscode-extensions; [
             bbenoist.nix
             octref.vetur
+            editorconfig.editorconfig
         ];
         userSettings = {
             "window.menuBarVisibility" = "toggle";
