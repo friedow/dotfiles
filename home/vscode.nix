@@ -14,6 +14,7 @@
             "workbench.statusBar.visible" = false;
             "workbench.editor.showTabs" = false;
             "explorer.compactFolders" = false;
+            "editor.fontFamily" = "'Fira Code'";
         };
     };
 }
