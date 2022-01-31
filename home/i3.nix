@@ -65,7 +65,7 @@ in
 
 				"${modifier}+r" = "mode resize";
 
-				"${modifier}+space" = "exec rofi -show combi";
+				"${modifier}+space" = "exec rofi -show drun";
 				"${modifier}+Return" = "exec alacritty";
 			};
 

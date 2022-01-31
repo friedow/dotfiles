@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./home/index.nix
+      ./home
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -50,7 +50,6 @@
       package = pkgs.i3-gaps;
       extraPackages = with pkgs; [
         i3lock
-        rofi
       ];
     };
   };
@@ -107,8 +106,8 @@
   };
 
   environment.etc = {
-        "firefox/policies/policies.json".source = "/etc/nixos/policies.json";
-    };
+    "firefox/policies/policies.json".source = "/etc/nixos/policies.json";
+  };
 
   system.stateVersion = "21.11";
 }
