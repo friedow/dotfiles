@@ -1,5 +1,6 @@
 { config, pkgs, ... }:
 {
+  # TODO: comment in when NUR PR is accepted
   # packages = [
   #   pkgs.rofi-lpass
   # ];
@@ -7,7 +8,7 @@
   programs.rofi = {
     enable = true;
     extraConfig = {
-      modi = "window,drun";
+      modi = "window,drun,filebrowser";
       display-drun = "";
       display-window = "";
       sidebar-mode = true;

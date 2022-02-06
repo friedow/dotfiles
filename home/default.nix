@@ -16,7 +16,7 @@ in
       "${home-config-dir}/firefox.nix"
       "${home-config-dir}/git.nix"
       "${home-config-dir}/i3.nix"
-      "${home-config-dir}/rofi/index.nix"
+      "${home-config-dir}/rofi.nix"
       "${home-config-dir}/vscode.nix"
       "${home-config-dir}/zsh.nix"
     ];
