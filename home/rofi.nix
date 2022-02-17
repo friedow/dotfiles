@@ -1,9 +1,9 @@
 { config, pkgs, ... }:
 {
   # TODO: comment in when NUR PR is accepted
-  # packages = [
-  #   pkgs.rofi-lpass
-  #   pkgs.rofi-projects
+  # home.packages = with pkgs; [
+  #   rofi-lpass
+  #   rofi-projects
   # ];
 
   programs.rofi = {
