@@ -3,12 +3,6 @@ let
   search-engine = "about:home";
 in
 {
-    nixpkgs.config.packageOverrides = pkgs: {
-        nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-        inherit pkgs;
-        };
-    };
-
 	programs.firefox = {
         enable = true;
         package = pkgs.firefox-esr;
@@ -48,6 +42,5 @@ in
                 "browser.toolbars.bookmarks.visibility" = "never";
             };
         };
-    };
-
+  };
 }

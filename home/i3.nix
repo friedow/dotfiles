@@ -8,6 +8,10 @@ in
 
 		config = {
 			modifier = "${modifier}";
+      
+      startup = [
+        { command = "albert"; notification = false; }
+      ];
 			
 			keybindings = {
 				"${modifier}+q" = "kill";
@@ -65,7 +69,7 @@ in
 
 				"${modifier}+r" = "mode resize";
 
-				"${modifier}+space" = "exec rofi -show drun";
+				"${modifier}+space" = "exec albert toggle";
 				"${modifier}+Return" = "exec alacritty";
 			};
 

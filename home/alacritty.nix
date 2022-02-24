@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
-let 
+let
   colors = import /etc/nixos/home/colors.nix;
-in 
+in
 {
 	programs.alacritty = {
     enable = true;

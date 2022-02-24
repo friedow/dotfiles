@@ -26,6 +26,7 @@
   # replicates the default behaviour.
   networking.useDHCP = false;
   networking.interfaces.wlo1.useDHCP = true;
+  # networking.networkmanager.enable = true;
 
   i18n.defaultLocale = "en_US.UTF-8";
 
