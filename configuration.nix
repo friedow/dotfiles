@@ -15,8 +15,13 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "avalanche"; # Define your hostname.
-  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking = {
+    hostName = "avalanche";
+    hosts = {
+      "127.0.0.1" = [ "dotbase.local" ];
+    };
+  };
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
@@ -26,7 +31,8 @@
   # replicates the default behaviour.
   networking.useDHCP = false;
   networking.interfaces.wlo1.useDHCP = true;
-  # networking.networkmanager.enable = true;
+  networking.networkmanager.enable = true;
+  programs.nm-applet.enable = true;
 
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -58,7 +64,7 @@
 
   users.users.christian = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "docker" ];
   };
 
   environment = {
@@ -80,7 +86,7 @@
   };
 
   fonts = {
-  fontDir.enable = true;
+    fontDir.enable = true;
     enableGhostscriptFonts = true;
 
     fontconfig = {
@@ -111,5 +117,10 @@
   };
 
   system.stateVersion = "21.11";
+
+  virtualisation.docker = {
+    enable = true;
+    liveRestore = false;
+  };
 }
 

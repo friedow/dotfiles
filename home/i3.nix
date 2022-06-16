@@ -8,11 +8,14 @@ in
 
 		config = {
 			modifier = "${modifier}";
-      
-      startup = [
-        { command = "albert"; notification = false; }
-      ];
-			
+		
+			startup = [
+				{ command = "albert"; notification = false; }
+			];
+
+			floating.border = 0;
+			window.border = 0;
+				
 			keybindings = {
 				"${modifier}+q" = "kill";
 
@@ -69,7 +72,7 @@ in
 
 				"${modifier}+r" = "mode resize";
 
-				"${modifier}+space" = "exec albert toggle";
+				"${modifier}+space" = "exec /home/christian/Code/friedow/tucan-search/tucan-search";
 				"${modifier}+Return" = "exec alacritty";
 			};
 

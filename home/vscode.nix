@@ -8,6 +8,9 @@
         octref.vetur
         editorconfig.editorconfig
         mhutchie.git-graph
+        
+        # TODO: comment in when NUR package is build
+        # humao.rest-client
         # TODO: comment in when NUR PR is accepted
         # ryuta46.multi-command
     ];
@@ -20,6 +23,8 @@
         "editor.fontFamily" = "'Fira Code'";
         "workbench.panel.opensMaximized" = "always";
         "terminal.integrated.defaultProfile.linux" = "zsh";
+        "editor.formatOnSave" = true;
+        "files.autoSave" = "onFocusChange";
         
     };
     keybindings = [
@@ -52,26 +57,26 @@
         "key" = "ctrl+l";
         "command" = "workbench.action.gotoLine";
       }
-      {
-        "key" = "ctrl+g";
-        "command" = "extension.multiCommand.execute";
-        "args" = { 
-          "sequence" = [
-            "git-graph.view"
-            "workbench.view.scm"
-          ];
-        };
-      }
-      {
-        "key" = "ctrl+p";
-        "command" = "extension.multiCommand.execute";
-        "args" = { 
-          "sequence" = [
-            "workbench.view.explorer"
-            "workbench.action.quickOpen"
-          ];
-        };
-      }
+      # {
+      #   "key" = "ctrl+g";
+      #   "command" = "extension.multiCommand.execute";
+      #   "args" = { 
+      #     "sequence" = [
+      #       "git-graph.view"
+      #       "workbench.view.scm"
+      #     ];
+      #   };
+      # }
+      # {
+      #   "key" = "ctrl+p";
+      #   "command" = "extension.multiCommand.execute";
+      #   "args" = { 
+      #     "sequence" = [
+      #       "workbench.view.explorer"
+      #       "workbench.action.quickOpen"
+      #     ];
+      #   };
+      # }
     ];
   };
 }

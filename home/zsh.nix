@@ -8,6 +8,7 @@
             custom = "$HOME/.config/oh-my-zsh";
             theme = "typewritten";
         };
+        envExtra = "loc() { find . -name \"*.$1\" | xargs wc -l }";
     };
 
     home.file.typewritten-theme = {
