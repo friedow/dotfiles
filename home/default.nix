@@ -9,12 +9,13 @@ in
   ];
 
   home-manager.users.christian = {
-    home.stateVersion = "21.11";
+    home.stateVersion = "22.05";
     imports = [
       "${home-config-dir}/alacritty.nix"
       "${home-config-dir}/albert.nix"
       "${home-config-dir}/beekeeper-studio.nix"
       "${home-config-dir}/chromium.nix"
+      "${home-config-dir}/element.nix"
       "${home-config-dir}/firefox.nix"
       "${home-config-dir}/git.nix"
       "${home-config-dir}/i3.nix"

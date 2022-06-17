@@ -7,16 +7,12 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      ./hardware-configuration/hurricane.nix
       ./home
     ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
   networking = {
-    hostName = "avalanche";
+    hostName = "hurricane";
     hosts = {
       "127.0.0.1" = [ "dotbase.local" ];
     };
@@ -116,7 +112,7 @@
     "firefox/policies/policies.json".source = "/etc/nixos/policies.json";
   };
 
-  system.stateVersion = "21.11";
+  system.stateVersion = "22.05";
 
   virtualisation.docker = {
     enable = true;

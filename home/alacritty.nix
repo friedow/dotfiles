@@ -12,7 +12,7 @@ in
         y = 10;
       };
       font = {
-        size = 7;
+        size = 9;
         normal.family = "Fira Code";
       };
       colors.primary.background= "${colors.primary.background}";

@@ -23,7 +23,6 @@
         "editor.fontFamily" = "'Fira Code'";
         "workbench.panel.opensMaximized" = "always";
         "terminal.integrated.defaultProfile.linux" = "zsh";
-        "editor.formatOnSave" = true;
         "files.autoSave" = "onFocusChange";
         
     };
@@ -56,6 +55,10 @@
       {
         "key" = "ctrl+l";
         "command" = "workbench.action.gotoLine";
+      }
+      {
+        "key" = "ctrl+k";
+        "command" = "workbench.action.quickOpen";
       }
       # {
       #   "key" = "ctrl+g";
