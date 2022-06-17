@@ -26,7 +26,6 @@
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
-  networking.interfaces.wlo1.useDHCP = true;
   networking.networkmanager.enable = true;
   programs.nm-applet.enable = true;
 
@@ -91,16 +90,15 @@
       useEmbeddedBitmaps = true;
 
       defaultFonts = {
-        serif = [ "Source Serif Pro" "DejaVu Serif" ];
-        sansSerif = [ "Source Sans Pro" "DejaVu Sans" ];
-        monospace = [ "Fira Code" "Hasklig" ];
+        serif = [ "Source Serif Pro" ];
+        sansSerif = [ "Lato" ];
+        monospace = [ "Fira Code" ];
       };
     };
 
     fonts = with pkgs; [
-      hasklig
       source-code-pro
-      overpass
+      lato
       nerdfonts
       fira
       fira-code
