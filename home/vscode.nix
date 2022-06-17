@@ -1,44 +1,48 @@
 { config, pkgs, ... }:
 {
   nixpkgs.config.allowUnfree = true;
-	programs.vscode = {
+  programs.vscode = {
     enable = true;
+
     extensions = with pkgs.vscode-extensions; [
-        bbenoist.nix
-        octref.vetur
-        editorconfig.editorconfig
-        mhutchie.git-graph
-        
-        # TODO: comment in when NUR package is build
-        # humao.rest-client
-        # TODO: comment in when NUR PR is accepted
-        # ryuta46.multi-command
+      bbenoist.nix
+      octref.vetur
+      editorconfig.editorconfig
+      mhutchie.git-graph
+      github.github-vscode-theme
+
+      # TODO: comment in when NUR package is build
+      # humao.rest-client
+      # TODO: comment in when NUR PR is accepted
+      # ryuta46.multi-command
     ];
+
     userSettings = {
-        "window.menuBarVisibility" = "toggle";
-        "workbench.activityBar.visible" = false;
-        "workbench.statusBar.visible" = false;
-        "workbench.editor.showTabs" = false;
-        "explorer.compactFolders" = false;
-        "editor.fontFamily" = "'Fira Code'";
-        "workbench.panel.opensMaximized" = "always";
-        "terminal.integrated.defaultProfile.linux" = "zsh";
-        "files.autoSave" = "onFocusChange";
-        
+      "window.menuBarVisibility" = "toggle";
+      "workbench.activityBar.visible" = false;
+      "workbench.statusBar.visible" = false;
+      "workbench.editor.showTabs" = false;
+      "explorer.compactFolders" = false;
+      "editor.fontFamily" = "'Fira Code'";
+      "workbench.panel.opensMaximized" = "always";
+      "terminal.integrated.defaultProfile.linux" = "zsh";
+      "files.autoSave" = "onFocusChange";
+      "workbench.colorTheme" = "GitHub Light";
     };
+
     keybindings = [
       {
         "key" = "ctrl+up";
-        "command"= "cursorMove";
-        "args"= {
+        "command" = "cursorMove";
+        "args" = {
           to = "up";
           by = "line";
           value = 5;
         };
-        "when"= "editorTextFocus";
+        "when" = "editorTextFocus";
       }
       {
-        "key"= "ctrl+down";
+        "key" = "ctrl+down";
         "command" = "cursorMove";
         "args" = {
           "to" = "down";

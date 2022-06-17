@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
@@ -14,18 +15,19 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/78369ac3-8e9c-40c8-8cb0-7e3f17086381";
+    {
+      device = "/dev/disk/by-uuid/78369ac3-8e9c-40c8-8cb0-7e3f17086381";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/55BE-2CB6";
+    {
+      device = "/dev/disk/by-uuid/55BE-2CB6";
       fsType = "vfat";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/be9c6fac-7c69-4150-b302-e7d46a1f7d8f"; }
-    ];
+    [{ device = "/dev/disk/by-uuid/be9c6fac-7c69-4150-b302-e7d46a1f7d8f"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -50,7 +52,7 @@
       # `grub-install` if efiSupport is true
       # (the devices list is not used by the EFI grub install,
       # but must be set to some value in order to pass an assert in grub.nix)
-      devices = ["nodev"];
+      devices = [ "nodev" ];
       efiSupport = true;
       enable = true;
       # set $FS_UUID to the UUID of the EFI partition
