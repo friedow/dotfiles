@@ -1,6 +1,11 @@
 { 
-  background = "#ffffff";
+  background = {
+    primary = "#ffffff";
+    secondary = "#f7f6f6";
+  };
+
   text = "#24292f";
+
   highlight = {
     black = "#24292e";
     blue = "#0366d6";
@@ -10,5 +15,6 @@
     red = "#d73a49";
     yellow = "#dbab09";
     white = "#6a737d";
+    gray = "#cdc7c2";
   };
 }

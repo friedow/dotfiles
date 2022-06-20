@@ -1,4 +1,7 @@
 { config, pkgs, ... }:
+let
+  fonts = import /etc/nixos/config/fonts.nix;
+in
 {
   nixpkgs.config.allowUnfree = true;
   programs.vscode = {
@@ -23,7 +26,7 @@
       "workbench.statusBar.visible" = false;
       "workbench.editor.showTabs" = false;
       "explorer.compactFolders" = false;
-      "editor.fontFamily" = "'Fira Code'";
+      "editor.fontFamily" = "'${fonts.monospace}'";
       "workbench.panel.opensMaximized" = "always";
       "terminal.integrated.defaultProfile.linux" = "zsh";
       "files.autoSave" = "onFocusChange";

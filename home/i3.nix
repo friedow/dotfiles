@@ -1,21 +1,23 @@
 { config, pkgs, ... }:
 let
   modifier = "Mod4";
+  colors = import /etc/nixos/config/colors.nix;
+  fonts = import /etc/nixos/config/fonts.nix;
 in
 {
 	xsession.windowManager.i3 = {
 		enable = true;
 
 		config = {
+      # General
 			modifier = "${modifier}";
 		
 			startup = [
 				{ command = "albert"; notification = false; }
 			];
 
-			floating.border = 0;
-			window.border = 0;
-				
+
+      # Keybinds
 			keybindings = {
 				"${modifier}+q" = "kill";
 
@@ -74,13 +76,61 @@ in
 
 				"${modifier}+space" = "exec /home/christian/Code/friedow/tucan-search/tucan-search";
 				"${modifier}+Return" = "exec alacritty";
+        "${modifier}+Shift+s" = "exec flameshot gui";
 			};
 
-			bars = [];
-			
-			gaps = {
-				inner = 10;
-				outer = 3;
+
+      # UI
+      bars = [];
+      
+      colors = {
+        focused = {
+          background = colors.background.primary;
+          border = colors.background.primary;
+          childBorder = colors.highlight.gray;
+          indicator = colors.highlight.gray;
+          text = colors.text;
+        };
+
+        unfocused = {
+          background = colors.background.secondary;
+          border = colors.highlight.gray;
+          childBorder = colors.highlight.gray;
+          indicator = colors.highlight.gray;
+          text = colors.text;
+        };
+
+        focusedInactive = {
+          background = colors.background.secondary;
+          border = colors.background.secondary;
+          childBorder = colors.highlight.gray;
+          indicator = colors.highlight.gray;
+          text = colors.text;
+        };
+      };
+
+			floating.border = 0;
+
+			fonts = {
+				names = [ fonts.sansSerif ];
+				style = "";
+				size = 15.0;
+			};
+
+      gaps = {
+				inner = 2;
+				outer = -2;
+			};
+
+			window = {
+				border = 0;
+
+				commands = [
+					{ 
+						command = "title_format \"<span size='9pt'>    %title</span>\"";
+						criteria = { class = ".*"; }; 
+					}
+				];
 			};
 		};
 	};

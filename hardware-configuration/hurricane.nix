@@ -55,18 +55,6 @@
       devices = [ "nodev" ];
       efiSupport = true;
       enable = true;
-      # set $FS_UUID to the UUID of the EFI partition
-      # extraEntries = ''
-      # menuentry "Windows" {
-      #   insmod ntfs
-      #   insmod ntldr
-      #   insmod search_fs_uuid
-      #   insmod chain
-      #   search --no-floppy --fs-uuid --set=root AEEE7FA1EE7F610F
-      #   ntldr /bootmgr
-      #   chainloader /EFI/Microsoft/Boot/bootmgfw.efi
-      # }
-      #'';
       version = 2;
       useOSProber = true;
     };

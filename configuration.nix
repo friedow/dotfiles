@@ -3,7 +3,9 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-
+let
+  fonts = import /etc/nixos/config/fonts.nix;
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -90,9 +92,9 @@
       useEmbeddedBitmaps = true;
 
       defaultFonts = {
-        serif = [ "Source Serif Pro" ];
-        sansSerif = [ "Lato" ];
-        monospace = [ "Fira Code" ];
+        serif = [ fonts.serif ];
+        sansSerif = [ fonts.sansSerif ];
+        monospace = [ fonts.monospace ];
       };
     };
 
@@ -104,10 +106,6 @@
       fira-code
       fira-mono
     ];
-  };
-
-  environment.etc = {
-    "firefox/policies/policies.json".source = "/etc/nixos/policies.json";
   };
 
   system.stateVersion = "22.05";
