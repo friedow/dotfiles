@@ -53,7 +53,7 @@ in
       enable = true;
       package = pkgs.i3-gaps;
       extraPackages = with pkgs; [
-        i3lock
+        i3lock-color
       ];
     };
   };
@@ -107,8 +107,6 @@ in
       fira-mono
     ];
   };
-
-  system.stateVersion = "22.05";
 
   virtualisation.docker = {
     enable = true;

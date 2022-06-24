@@ -19,6 +19,7 @@ in
       "${home-config-dir}/flameshot.nix"
       "${home-config-dir}/git.nix"
       "${home-config-dir}/i3.nix"
+      "${home-config-dir}/i3lock"
       "${home-config-dir}/nur.nix"
       "${home-config-dir}/vscode.nix"
       "${home-config-dir}/xfce"

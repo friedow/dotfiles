@@ -31,6 +31,8 @@ in
       "terminal.integrated.defaultProfile.linux" = "zsh";
       "files.autoSave" = "onFocusChange";
       "workbench.colorTheme" = "GitHub Light";
+      "git-graph.dialog.createBranch.checkOut" = true;
+      "git.autofetch" = "all";
     };
 
     keybindings = [

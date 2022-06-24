@@ -31,6 +31,9 @@ in
 				"${modifier}+Shift+Up" = "move up";
 				"${modifier}+Shift+Right" = "move right";
 
+				"${modifier}+Shift+Ctrl+Left" = "move workspace to output left";
+				"${modifier}+Shift+Ctrl+Right" = "move workspace to output right`";
+
 				"${modifier}+h" = "split h";
 				"${modifier}+v" = "split v";
 				"${modifier}+f" = "fullscreen toggle";
@@ -74,9 +77,10 @@ in
 
 				"${modifier}+r" = "mode resize";
 
-				"${modifier}+space" = "exec /home/christian/Code/friedow/tucan-search/tucan-search";
+				"${modifier}+k" = "exec sudo -u christian /home/christian/Code/friedow/search/tucan-search";
 				"${modifier}+Return" = "exec alacritty";
         "${modifier}+Shift+s" = "exec flameshot gui";
+        "${modifier}+l" = "exec lock";
 			};
 
 
