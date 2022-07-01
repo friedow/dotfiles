@@ -17,7 +17,7 @@ let
         \
         --radius=150 \
         --ring-width=4.0 \
-        --color=${colors.highlight.black} \
+        --color=${colors.background.inverted} \
         \
         --inside-color=${transparent} \
         --ring-color=${colors.background.primary} \

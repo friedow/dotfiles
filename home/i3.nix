@@ -13,7 +13,7 @@ in
 			modifier = "${modifier}";
 		
 			startup = [
-				{ command = "albert"; notification = false; }
+				{ command = "lock"; notification = false; }
 			];
 
 

@@ -47,6 +47,8 @@ in
 
     displayManager = {
       defaultSession = "xfce+i3";
+      autoLogin.enable = true;
+      autoLogin.user = "christian";
     };
 
     windowManager.i3 = {

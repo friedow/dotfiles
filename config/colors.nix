@@ -2,6 +2,7 @@
   background = {
     primary = "#ffffff";
     secondary = "#f7f6f6";
+    inverted = "#000000";
   };
 
   text = "#24292f";
