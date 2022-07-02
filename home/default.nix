@@ -21,6 +21,7 @@ in
       "${home-config-dir}/i3.nix"
       "${home-config-dir}/i3lock"
       "${home-config-dir}/nur.nix"
+      "${home-config-dir}/picom.nix"
       "${home-config-dir}/vscode.nix"
       "${home-config-dir}/xfce"
       "${home-config-dir}/zsh"
