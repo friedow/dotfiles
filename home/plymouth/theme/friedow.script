@@ -1,0 +1,114 @@
+// Screen size
+screen.x = Window.GetX();
+screen.y = Window.GetY()
+screen.width = Window.GetWidth();
+screen.height = Window.GetHeight();
+screen.half.width = screen.width / 2;
+screen.half.height = screen.height / 2;
+
+// Question prompt
+question = null;
+answer = null;
+
+// Message
+message = null;
+
+// Password prompt
+bullets = null;
+prompt = null;
+bullet.image = Image.Text("*", 1, 1, 1);
+
+// Flow
+state.status = "play";
+state.time = 0.0;
+
+// Animation
+animation.frames.length = 283;
+
+for (i = 0; i <= animation.frames.length; i++)
+  // play the animation forwards on boot
+  if (Plymouth.GetMode() == "boot" || Plymouth.GetMode() == "resume")
+    frame_position = i;
+  // and backwards on shutdown
+  else
+    frame_position = animation.frames.length - i;
+
+  animation.frames[frame_position] = Image("animation-frame-" + i + ".png");
+
+animation.width = animation.frames[0].GetWidth();
+animation.height = animation.frames[0].GetHeight();
+animation.half.width = animation.width / 2;
+animation.half.height = animation.height / 2;
+
+animation.sprite = Sprite();
+animation.sprite.SetX(screen.x + (screen.half.width - animation.half.width));
+animation.sprite.SetY(screen.y + (screen.half.height - animation.half.height));
+
+animation.current_frame_index = 0;
+
+fun RefreshAnimation() {
+    if (animation.current_frame_index == animation.frames.length)
+        return;
+
+    animation.sprite.SetImage(animation.frames[animation.current_frame_index]);
+    animation.current_frame_index++;
+}
+// Calling Plymouth.SetRefreshFunction with a function will set that function to be called up to 50 times every second, e.g.
+Plymouth.SetRefreshFunction(RefreshAnimation);
+
+
+fun DisplayQuestionCallback(prompt, entry) {
+    question = null;
+    answer = null;
+
+    if (entry == "")
+        entry = "<answer>";
+
+    question.image = Image.Text(prompt, 1, 1, 1);
+    question.sprite = Sprite(question.image);
+    question.sprite.SetX(screen.half.width - question.image.GetWidth() / 2);
+    question.sprite.SetY(screen.height - 4 * question.image.GetHeight());
+
+    answer.image = Image.Text(entry, 1, 1, 1);
+    answer.sprite = Sprite(answer.image);
+    answer.sprite.SetX(screen.half.width - answer.image.GetWidth() / 2);
+    answer.sprite.SetY(screen.height - 2 * answer.image.GetHeight());
+}
+Plymouth.SetDisplayQuestionFunction(DisplayQuestionCallback);
+
+fun DisplayPasswordCallback(nil, bulletCount) {
+    state.status = "pause";
+    totalWidth = bulletCount * bullet.image.GetWidth();
+    startPos = screen.half.width - totalWidth / 2;
+
+    prompt.image = Image.Text("Enter Password", 1, 1, 1);
+    prompt.sprite = Sprite(prompt.image);
+    prompt.sprite.SetX(screen.half.width - prompt.image.GetWidth() / 2);
+    prompt.sprite.SetY(screen.height - 4 * prompt.image.GetHeight());
+
+    // Clear all bullets (user might hit backspace)
+    bullets = null;
+    for (i = 0; i < bulletCount; i++) {
+        bullets[i].sprite = Sprite(bullet.image);
+        bullets[i].sprite.SetX(startPos + i * bullet.image.GetWidth());
+        bullets[i].sprite.SetY(screen.height - 2 * bullet.image.GetHeight());
+    }
+}
+Plymouth.SetDisplayPasswordFunction(DisplayPasswordCallback);
+
+fun DisplayNormalCallback() {
+    state.status = "play";
+    bullets = null;
+    prompt = null;
+    message = null;
+    question = null;
+    answer = null;
+}
+Plymouth.SetDisplayNormalFunction(DisplayNormalCallback);
+
+fun MessageCallback(text) {
+    message.image = Image.Text(text, 1, 1, 1);
+    message.sprite = Sprite(message.image);
+    message.sprite.SetPosition(screen.half.width - message.image.GetWidth() / 2, message.image.GetHeight());
+}
+Plymouth.SetMessageFunction(MessageCallback);
