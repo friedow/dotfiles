@@ -32,7 +32,7 @@ in
 				"${modifier}+Shift+Right" = "move right";
 
 				"${modifier}+Shift+Ctrl+Left" = "move workspace to output left";
-				"${modifier}+Shift+Ctrl+Right" = "move workspace to output right`";
+				"${modifier}+Shift+Ctrl+Right" = "move workspace to output right";
 
 				"${modifier}+h" = "split h";
 				"${modifier}+v" = "split v";
