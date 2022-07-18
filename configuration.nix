@@ -29,6 +29,7 @@ in
   # replicates the default behaviour.
   networking.useDHCP = false;
   networking.networkmanager.enable = true;
+  networking.networkmanager.plugins = [ pkgs.networkmanager-openvpn ];
   programs.nm-applet.enable = true;
 
   i18n.defaultLocale = "en_US.UTF-8";
