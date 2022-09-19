@@ -8,9 +8,6 @@ in
     enable = true;
 
     extensions = with pkgs.vscode-extensions; [
-      bbenoist.nix
-      octref.vetur
-      editorconfig.editorconfig
       mhutchie.git-graph
       github.github-vscode-theme
 

@@ -1,0 +1,6 @@
+{
+    "recommendations": [
+        "bbenoist.nix",
+        "EditorConfig.EditorConfig"
+    ]
+}

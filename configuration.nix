@@ -11,6 +11,7 @@ in
     [ # Include the results of the hardware scan.
       ./hardware-configuration/hurricane.nix
       ./home
+      ./home/plymouth
     ];
 
   networking = {
