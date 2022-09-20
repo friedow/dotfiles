@@ -14,6 +14,7 @@ in
 		
 			startup = [
 				{ command = "lock"; notification = false; }
+				{ command = "/home/christian/Code/friedow/search/src-tauri/target/release/search-friedow-com"; notification = false; }
 			];
 
 
@@ -77,7 +78,6 @@ in
 
 				"${modifier}+r" = "mode resize";
 
-				"${modifier}+k" = "exec sudo -u christian /home/christian/Code/friedow/search/tucan-search";
 				"${modifier}+Return" = "exec alacritty";
         "${modifier}+Shift+s" = "exec flameshot gui";
         "${modifier}+l" = "exec lock";
