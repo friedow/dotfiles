@@ -13,7 +13,7 @@ in
     home.stateVersion = "22.05";
     imports = [
       "${home-config-dir}/alacritty.nix"
-      "${home-config-dir}/chromium.nix"
+      "${home-config-dir}/brave.nix"
       "${home-config-dir}/element.nix"
       "${home-config-dir}/firefox"
       "${home-config-dir}/flameshot.nix"
