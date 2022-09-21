@@ -113,7 +113,13 @@ in
         };
       };
 
-			floating.border = 0;
+			floating = {
+				border = 0;
+				criteria = [ 
+					{ class = "Search-friedow-com"; }
+				];
+			};
+			
 
 			fonts = {
 				names = [ fonts.sansSerif ];
