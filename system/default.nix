@@ -4,18 +4,16 @@
 
 { config, pkgs, ... }:
 let
-  fonts = import /etc/nixos/config/fonts.nix;
+  fonts = import ../config/fonts.nix;
 in
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration/hurricane.nix
-      ./home
-      ./home/plymouth
+    [
+      ../home/plymouth
     ];
 
   networking = {
-    hostName = "hurricane";
+    hostName = "avalanche";
     hosts = {
       "127.0.0.1" = [ "dotbase.local" ];
     };
@@ -60,7 +58,9 @@ in
         i3lock-color
       ];
     };
+    # videoDrivers = [ "nvidia" ];
   };
+  # hardware.opengl.enable = true;
   services.xserver.libinput.enable = true;
 
   users.users.christian = {
@@ -71,7 +71,6 @@ in
   environment = {
     variables.EDITOR = "code";
     systemPackages = with pkgs; [
-      gitkraken
       wget
     ];
   };
