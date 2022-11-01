@@ -44,6 +44,13 @@
           inherit specialArgs;
           modules = modules ++ [ ./hardware-configuration/avalanche.nix ];
         }; 
+
+        hurricane = nixpkgs.lib.nixosSystem {
+          inherit system;
+          inherit pkgs;
+          inherit specialArgs;
+          modules = modules ++ [ ./hardware-configuration/hurricane.nix ];
+        }; 
       };
     };
 }
