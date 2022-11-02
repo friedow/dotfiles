@@ -1,6 +1,3 @@
 {
-    "recommendations": [
-        "bbenoist.nix",
-        "EditorConfig.EditorConfig"
-    ]
+  "recommendations": ["bbenoist.nix", "EditorConfig.EditorConfig"]
 }

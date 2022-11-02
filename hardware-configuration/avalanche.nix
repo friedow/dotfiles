@@ -36,6 +36,12 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
+  networking = {
+    # Use dhcp for wifi interface
+    interfaces.wlo1.useDHCP = true;
+    hostName = "avalanche";
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -47,7 +53,4 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  # Use dhcp for wifi interface
-  networking.interfaces.wlo1.useDHCP = true;
 }

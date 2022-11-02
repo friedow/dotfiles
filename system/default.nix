@@ -13,7 +13,6 @@ in
     ];
 
   networking = {
-    hostName = "avalanche";
     hosts = {
       "127.0.0.1" = [ "dotbase.local" ];
     };
