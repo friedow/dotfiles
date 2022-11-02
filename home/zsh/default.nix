@@ -15,7 +15,7 @@
   };
 
   home.file.typewritten-theme = {
-    source = "/etc/nixos/home/zsh/typewritten.zsh-theme";
+    source = ./typewritten.zsh-theme;
     target = ".config/oh-my-zsh/themes/typewritten.zsh-theme";
   };
 }

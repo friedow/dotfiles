@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 let
-  colors = import /etc/nixos/config/colors.nix;
-  fonts = import /etc/nixos/config/fonts.nix;
+  colors = import ../../config/colors.nix;
+  fonts = import ../../config/fonts.nix;
 
   transparent = "#00000000";
 
@@ -62,7 +62,7 @@ in
   ];
 
   home.file.i3lock-logo-png = {
-    source = "/etc/nixos/home/i3lock/logo.png";
+    source = ./logo.png;
     target = ".config/i3lock/logo.png";
   };
 }

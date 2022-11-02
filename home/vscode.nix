@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  fonts = import /etc/nixos/config/fonts.nix;
+  fonts = import ../config/fonts.nix;
 in
 {
   nixpkgs.config.allowUnfree = true;
@@ -29,7 +29,21 @@ in
       "files.autoSave" = "onFocusChange";
       "workbench.colorTheme" = "GitHub Light";
       "git-graph.dialog.createBranch.checkOut" = true;
+      "git-graph.dialog.fetchRemote.prune" = true;
+      "git-graph.dialog.resetCurrentBranchToCommit.mode" = "Hard";
+      "git-graph.dialog.resetUncommittedChanges.mode" = "Hard";
+      "git-graph.repository.commits.fetchAvatars" = true;
+      "git-graph.repository.fetchAndPrune" = true;
+      "git-graph.repository.fetchAndPruneTags" = true;
       "git.autofetch" = "all";
+      "git.autofetchPeriod" = 120;
+      "git.pruneOnFetch" = true;
+      "[json]" = {
+        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+      };
+      "[jsonc]" = {
+        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+      };
     };
 
     keybindings = [

@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 let
   modifier = "Mod4";
-  colors = import /etc/nixos/config/colors.nix;
-  fonts = import /etc/nixos/config/fonts.nix;
+  colors = import ../config/colors.nix;
+  fonts = import ../config/fonts.nix;
 in
 {
 	xsession.windowManager.i3 = {
