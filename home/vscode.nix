@@ -3,7 +3,6 @@ let
   fonts = import ../config/fonts.nix;
 in
 {
-  nixpkgs.config.allowUnfree = true;
   programs.vscode = {
     enable = true;
 
