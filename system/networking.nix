@@ -13,4 +13,6 @@
       plugins = [ pkgs.networkmanager-openvpn ];
     };
   };
+
+  programs.nm-applet.enable = true;
 }
