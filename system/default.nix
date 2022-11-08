@@ -12,14 +12,6 @@ in {
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
 
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour.
-  networking.useDHCP = false;
-  networking.networkmanager.enable = true;
-  networking.networkmanager.plugins = [ pkgs.networkmanager-openvpn ];
-  programs.nm-applet.enable = true;
-
   i18n.defaultLocale = "en_US.UTF-8";
 
   services.xserver = {

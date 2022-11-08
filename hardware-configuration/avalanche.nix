@@ -34,11 +34,7 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
-  networking = {
-    # Use dhcp for wifi interface
-    interfaces.wlo1.useDHCP = true;
-    hostName = "avalanche";
-  };
+  networking = { hostName = "avalanche"; };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
