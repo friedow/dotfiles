@@ -3,7 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }: {
-  imports = [ ./plymouth ./networking.nix ./fonts.nix ];
+  imports = [ ./audio.nix ./plymouth ./networking.nix ./fonts.nix ];
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -45,22 +45,11 @@
     extraGroups = [ "wheel" "networkmanager" "docker" ];
   };
 
-  environment = {
-    variables.EDITOR = "code";
-    systemPackages = with pkgs; [ wget ];
-  };
+  environment = { variables.EDITOR = "code"; };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   nixpkgs.config.allowUnfree = true;
-
-  sound.enable = true;
-  hardware = {
-    pulseaudio = {
-      enable = true;
-      package = pkgs.pulseaudioFull;
-    };
-  };
 
   virtualisation.docker = {
     enable = true;
