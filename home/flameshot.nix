@@ -1,4 +1,1 @@
-{ config, pkgs, ... }:
-{
-  services.flameshot.enable = true;
-}
+{ config, pkgs, ... }: { services.flameshot.enable = true; }

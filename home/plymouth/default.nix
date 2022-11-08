@@ -12,19 +12,17 @@ let
     src = ./theme;
 
     configurePhase = ''
-mkdir -p $out/share/plymouth/themes/
+      mkdir -p $out/share/plymouth/themes/
     '';
 
-    buildPhase = ''
-    '';
+    buildPhase = "";
 
     installPhase = ''
-cp -r . $out/share/plymouth/themes/friedow
-cat friedow.plymouth | sed  "s@\/usr\/@$out\/@" > $out/share/plymouth/themes/friedow/friedow.plymouth
+      cp -r . $out/share/plymouth/themes/friedow
+      cat friedow.plymouth | sed  "s@\/usr\/@$out\/@" > $out/share/plymouth/themes/friedow/friedow.plymouth
     '';
   };
-in
-{
+in {
   boot.plymouth = {
     enable = true;
     themePackages = with pkgs; [ friedow-plymouth ];

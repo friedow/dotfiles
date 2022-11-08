@@ -1,6 +1,1 @@
-{ config, pkgs, ... }:
-{
-  home.packages = with pkgs; [
-    element-desktop
-  ];
-}
+{ config, pkgs, ... }: { home.packages = with pkgs; [ element-desktop ]; }

@@ -1,12 +1,11 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   services.picom = {
     enable = true;
     fade = true;
     fadeDelta = 5;
     # TODO: Add window animations as soon as https://github.com/yshui/picom/pull/772
     # is merged into next. (recent issue: https://github.com/yshui/picom/issues/911)
-    
+
     # picom window animations by syndrizzle
     # https://github.com/syndrizzle/hotfiles
     # extraOptions = ''

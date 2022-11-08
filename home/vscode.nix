@@ -1,8 +1,6 @@
 { config, pkgs, ... }:
-let
-  fonts = import ../config/fonts.nix;
-in
-{
+let fonts = import ../config/fonts.nix;
+in {
   programs.vscode = {
     enable = true;
 
@@ -37,12 +35,8 @@ in
       "git.autofetch" = "all";
       "git.autofetchPeriod" = 120;
       "git.pruneOnFetch" = true;
-      "[json]" = {
-        "editor.defaultFormatter" = "esbenp.prettier-vscode";
-      };
-      "[jsonc]" = {
-        "editor.defaultFormatter" = "esbenp.prettier-vscode";
-      };
+      "[json]" = { "editor.defaultFormatter" = "esbenp.prettier-vscode"; };
+      "[jsonc]" = { "editor.defaultFormatter" = "esbenp.prettier-vscode"; };
     };
 
     keybindings = [

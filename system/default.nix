@@ -3,20 +3,11 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-let
-  fonts = import ../config/fonts.nix;
-in
-{
-  imports =
-    [
-      ../home/plymouth
-    ];
+let fonts = import ../config/fonts.nix;
+in {
+  imports = [ ../home/plymouth ];
 
-  networking = {
-    hosts = {
-      "127.0.0.1" = [ "dotbase.local" ];
-    };
-  };
+  networking = { hosts = { "127.0.0.1" = [ "dotbase.local" ]; }; };
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Set your time zone.
@@ -53,9 +44,7 @@ in
     windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
-      extraPackages = with pkgs; [
-        i3lock-color
-      ];
+      extraPackages = with pkgs; [ i3lock-color ];
     };
     # videoDrivers = [ "nvidia" ];
   };
@@ -69,9 +58,7 @@ in
 
   environment = {
     variables.EDITOR = "code";
-    systemPackages = with pkgs; [
-      wget
-    ];
+    systemPackages = with pkgs; [ wget ];
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

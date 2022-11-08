@@ -1,5 +1,4 @@
-{...}:
-{
+{ ... }: {
   home.stateVersion = "21.11";
   imports = [
     ./alacritty.nix

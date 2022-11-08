@@ -2,8 +2,7 @@
 let
   colors = import ../config/colors.nix;
   fonts = import ../config/fonts.nix;
-in
-{
+in {
   programs.alacritty = {
     enable = true;
 
@@ -11,7 +10,6 @@ in
 
       # General
       shell.program = "zsh";
-
 
       # UI
       colors = {

@@ -12,7 +12,7 @@
     nur.url = "github:nix-community/NUR";
   };
 
-  outputs = { self, nixpkgs, ... } @ inputs:
+  outputs = { self, nixpkgs, ... }@inputs:
     let
       system = "x86_64-linux";
 
@@ -35,23 +35,29 @@
         home-manager-config
         ./system
       ];
-    in
-    {
+    in {
       nixosConfigurations = {
         avalanche = nixpkgs.lib.nixosSystem {
           inherit system;
           inherit pkgs;
           inherit specialArgs;
           modules = modules ++ [ ./hardware-configuration/avalanche.nix ];
-        }; 
+        };
 
         hurricane = nixpkgs.lib.nixosSystem {
           inherit system;
           inherit pkgs;
           inherit specialArgs;
           modules = modules ++ [ ./hardware-configuration/hurricane.nix ];
-        }; 
+        };
       };
+
+      devShells.x86_64-linux.default =
+        with import nixpkgs { system = "x86_64-linux"; };
+        stdenv.mkDerivation {
+          name = "dotfiles";
+          buildInputs = [ nixfmt ];
+        };
     };
 }
 
