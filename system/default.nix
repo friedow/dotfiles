@@ -2,10 +2,8 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
-let fonts = import ../config/fonts.nix;
-in {
-  imports = [ ./plymouth ./networking.nix ];
+{ config, pkgs, ... }: {
+  imports = [ ./plymouth ./networking.nix ./fonts.nix ];
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -62,32 +60,6 @@ in {
       enable = true;
       package = pkgs.pulseaudioFull;
     };
-  };
-
-  fonts = {
-    fontDir.enable = true;
-    enableGhostscriptFonts = true;
-
-    fontconfig = {
-      enable = true;
-      antialias = true;
-      useEmbeddedBitmaps = true;
-
-      defaultFonts = {
-        serif = [ fonts.serif ];
-        sansSerif = [ fonts.sansSerif ];
-        monospace = [ fonts.monospace ];
-      };
-    };
-
-    fonts = with pkgs; [
-      source-code-pro
-      lato
-      nerdfonts
-      fira
-      fira-code
-      fira-mono
-    ];
   };
 
   virtualisation.docker = {
