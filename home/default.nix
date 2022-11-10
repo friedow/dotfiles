@@ -6,11 +6,9 @@
     ./element.nix
     ./flameshot.nix
     ./git.nix
-    ./i3.nix
-    ./i3lock
-    ./picom.nix
+    ./sway.nix
+    ./swaylock
     ./vscode.nix
-    ./xfce
     ./zsh
   ];
 }

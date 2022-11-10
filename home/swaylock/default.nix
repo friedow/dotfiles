@@ -8,9 +8,9 @@ let
   lock = pkgs.writeShellScriptBin "lock" ''
     #!/bin/sh
 
-    i3lock-color \
+    swaylock \
       --indicator \
-      --image=/home/christian/.config/i3lock/logo.png \
+      --image=/home/christian/.config/swaylock/logo.png \
       --centered \
       \
       --radius=150 \
@@ -50,14 +50,13 @@ let
       --lock-text="locking" \
       --lockfailed-text="lock failed" \
       \
-      --verif-font=${fonts.sansSerif} \
-      --wrong-font=${fonts.sansSerif}
+      --font=${fonts.sansSerif}
   '';
 in {
-  home.packages = with pkgs; [ lock ];
+  home.packages = with pkgs; [ swaylock lock  ];
 
-  home.file.i3lock-logo-png = {
+  home.file.swaylock-logo-png = {
     source = ./logo.png;
-    target = ".config/i3lock/logo.png";
+    target = ".config/swaylock/logo.png";
   };
 }

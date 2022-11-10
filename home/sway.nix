@@ -1,10 +1,14 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 let
   modifier = "Mod4";
   colors = import ../config/colors.nix;
   fonts = import ../config/fonts.nix;
 in {
-  xsession.windowManager.i3 = {
+  wayland.windowManager.sway = {
+    extraSessionCommands = ''
+        export WLR_NO_HARDWARE_CURSORS=1
+      '';
+      
     enable = true;
 
     config = {
@@ -14,12 +18,10 @@ in {
       startup = [
         {
           command = "lock";
-          notification = false;
         }
         {
           command =
             "/home/christian/Code/friedow/search/src-tauri/target/release/search-friedow-com";
-          notification = false;
         }
       ];
 
@@ -52,9 +54,6 @@ in {
 
         "${modifier}+a" = "focus parent";
 
-        "${modifier}+Shift+minus" = "move scratchpad";
-        "${modifier}+minus" = "scratchpad show";
-
         "${modifier}+1" = "workspace number 1";
         "${modifier}+2" = "workspace number 2";
         "${modifier}+3" = "workspace number 3";
@@ -79,8 +78,6 @@ in {
 
         "${modifier}+Shift+c" = "reload";
         "${modifier}+Shift+r" = "restart";
-        "${modifier}+Shift+e" =
-          "exec i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'";
 
         "${modifier}+r" = "mode resize";
 

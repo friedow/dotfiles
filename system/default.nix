@@ -5,7 +5,6 @@
     ./fonts.nix
     ./networking.nix
     ./plymouth
-    ./xserver.nix
   ];
 
   time.timeZone = "Europe/Amsterdam";
@@ -19,5 +18,13 @@
   environment = { variables.EDITOR = "code"; };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  # necessary for sway to work
+  security.polkit.enable = true;
+
+  # skip tty login in favor of lockscreen
+  services.getty = {
+    autologinUser = "christian";
+  };
 }
 
