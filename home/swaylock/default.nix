@@ -9,50 +9,32 @@ let
     #!/bin/sh
 
     swaylock \
+      --color=${colors.background.inverted} \
+      \
       --image=/home/christian/.config/swaylock/logo.png \
       --scaling=center \
       \
-      --radius=150 \
-      --ring-width=4.0 \
-      --color=${colors.background.inverted} \
-      \
       --inside-color=${transparent} \
+      --inside-clear-color=${transparent} \
+      --inside-caps-lock-color=${transparent} \
+      --inside-ver-color=${transparent} \
+      --inside-wrong-color=${transparent} \
+      \
+      --text-color=${transparent} \
+      --text-clear-color=${transparent} \
+      --text-caps-lock-color=${transparent} \
+      --text-ver-color=${transparent} \
+      --text-wrong-color=${transparent} \
+      \
+      --indicator-radius=150 \
+      --indicator-thickness=5 \
       --ring-color=${colors.background.primary} \
+      --separator-color=${colors.background.primary} \
       \
-      --insidever-color=${transparent} \
-      --ringver-color=${colors.highlight.black} \
-      \
-      --insidewrong-color=${transparent} \
-      --ringwrong-color=${colors.highlight.red} \
-      \
-      --line-color=${transparent} \
-      \
-      --keyhl-color=${colors.highlight.black} \
-      --bshl-color=${colors.highlight.black} \
-      \
-      --bshl-color=${transparent} \
-      \
-      --separator-color=${transparent} \
-      \
-      --verif-color=${transparent} \
-      --wrong-color=${transparent} \
-      --modif-color=${transparent} \
-      \
-      --layout-color=${transparent} \
-      --time-color=${transparent} \
-      --date-color=${transparent} \
-      --greeter-color=${transparent} \
-      \
-      --verif-text="verifying" \
-      --wrong-text="wrong" \
-      --noinput-text="empty" \
-      --lock-text="locking" \
-      --lockfailed-text="lock failed" \
-      \
-      --font=${fonts.sansSerif}
+      --key-hl-color=${colors.background.inverted}
   '';
 in {
-  home.packages = with pkgs; [ swaylock lock  ];
+  home.packages = with pkgs; [ swaylock lock ];
 
   home.file.swaylock-logo-png = {
     source = ./logo.png;

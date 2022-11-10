@@ -26,5 +26,12 @@
   services.getty = {
     autologinUser = "christian";
   };
+
+  # include swaylock in pam for it to verify credentials
+  security.pam.services.swaylock = {
+    text = ''
+      auth include login
+    '';
+  };
 }
 
