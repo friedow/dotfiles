@@ -9,9 +9,8 @@ let
     #!/bin/sh
 
     swaylock \
-      --indicator \
       --image=/home/christian/.config/swaylock/logo.png \
-      --centered \
+      --scaling=center \
       \
       --radius=150 \
       --ring-width=4.0 \
