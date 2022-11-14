@@ -4,11 +4,38 @@ let
   colors = import ../config/colors.nix;
   fonts = import ../config/fonts.nix;
 in {
+  # Configure most applications to use the wayland interface 
+  # natively instead of using the xwayland interface
+  home.sessionVariables = {
+    XDG_CACHE_HOME = "\${HOME}/.cache";
+    XDG_CONFIG_HOME = "\${HOME}/.config";
+    XDG_BIN_HOME = "\${HOME}/.local/bin";
+    XDG_DATA_HOME = "\${HOME}/.local/share";
+
+    XDG_CURRENT_DESKTOP = "sway";
+    EDITOR = "vim";
+
+    CLUTTER_BACKEND = "wayland";
+    ECORE_EVAS_ENGINE = "wayland_egl";
+    ELM_ENGINE = "wayland_egl";
+    GDK_BACKEND = "wayland";
+    MOZ_ENABLE_WAYLAND = "1";
+    # chromium
+    # NIXOS_OZONE_WL = "1"; 
+    QT_QPA_PLATFORM = "wayland-egl";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    QT_WAYLAND_FORCE_DPI = "physical";
+    SDL_VIDEODRIVER = "wayland";
+    XDG_SESSION_TYPE = "wayland";
+    _JAVA_AWT_WM_NONREPARENTING = "1";
+  };
+
+  # Configure sway
   wayland.windowManager.sway = {
     extraSessionCommands = ''
-        export WLR_NO_HARDWARE_CURSORS=1
-      '';
-      
+      export WLR_NO_HARDWARE_CURSORS=1
+    '';
+
     enable = true;
 
     config = {
@@ -16,9 +43,7 @@ in {
       modifier = "${modifier}";
 
       startup = [
-        {
-          command = "lock";
-        }
+        { command = "lock"; }
         {
           command =
             "/home/christian/Code/friedow/search/src-tauri/target/release/search-friedow-com";

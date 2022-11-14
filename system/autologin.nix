@@ -23,13 +23,4 @@ in {
       };
     };
   };
-
-  # getty auto login
-  # services.getty.autologinUser = "rti";
-  # environment.loginShellInit = ''
-  # if [ -z $WAYLAND_DISPLAY ] && [ "''$(tty)" = "/dev/tty1" ]; then
-  # exec sway
-  # fi
-  # '';
 }
-

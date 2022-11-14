@@ -5,6 +5,7 @@
     ./docker.nix
     ./fonts.nix
     ./networking.nix
+    ./screensharing.nix
     ./plymouth
   ];
 

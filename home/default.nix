@@ -9,6 +9,7 @@
     ./sway.nix
     ./swaylock
     ./vscode.nix
+    ./wdisplays.nix
     ./zsh
   ];
 }
