@@ -30,6 +30,12 @@ in {
     _JAVA_AWT_WM_NONREPARENTING = "1";
   };
 
+  # Copt wallpaper image file
+  home.file.wallpaper = {
+    source = ./wallpaper.png;
+    target = ".config/sway/wallpaper.png";
+  };
+
   # Configure sway
   wayland.windowManager.sway = {
     extraSessionCommands = ''
@@ -155,6 +161,8 @@ in {
         inner = 2;
         outer = -2;
       };
+
+      output = { "*" = { bg = "~/.config/sway/wallpaper.png fill"; }; };
 
       window = {
         border = 0;
