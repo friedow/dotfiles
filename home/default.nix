@@ -3,6 +3,7 @@
   imports = [
     ./alacritty.nix
     ./brave.nix
+    ./displays.nix
     ./element.nix
     ./flameshot.nix
     ./git.nix

@@ -5,6 +5,7 @@
     ./docker.nix
     ./fonts.nix
     ./networking.nix
+    ./nix-cli.nix
     ./screensharing.nix
     ./plymouth
   ];
@@ -18,8 +19,6 @@
   };
 
   environment = { variables.EDITOR = "code"; };
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # necessary for sway to work
   security.polkit.enable = true;
