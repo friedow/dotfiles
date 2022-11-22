@@ -3,6 +3,7 @@ let
   modifier = "Mod4";
   colors = import ../config/colors.nix;
   fonts = import ../config/fonts.nix;
+  wob_sock = "$XDG_RUNTIME_DIR/wob.sock";
 in {
   # Configure most applications to use the wayland interface 
   # natively instead of using the xwayland interface
@@ -53,6 +54,11 @@ in {
         {
           command =
             "/home/christian/Code/friedow/search/src-tauri/target/release/search-friedow-com";
+        }
+        {
+          command =
+            "rm -f ${wob_sock} && mkfifo ${wob_sock} && tail -f ${wob_sock} | ${pkgs.wob}/bin/wob -o 0 -b 0 -p 1 -H 15 -M 20 -a top";
+          always = true;
         }
       ];
 
@@ -118,17 +124,17 @@ in {
 
         # Brightness
         "--no-repeat --no-warn --locked XF86MonBrightnessDown" =
-          "exec ${pkgs.brightnessctl}/bin/brightnessctl set 10%-";
+          "exec ${pkgs.brightnessctl}/bin/brightnessctl set 10%- | sed -En 's/.*\\(([0-9]+)%\\).*/\\1/p' > ${wob_sock}";
         "--no-repeat --no-warn --locked XF86MonBrightnessUp" =
-          "exec ${pkgs.brightnessctl}/bin/brightnessctl set +10%";
+          "exec ${pkgs.brightnessctl}/bin/brightnessctl set +10% | sed -En 's/.*\\(([0-9]+)%\\).*/\\1/p' > ${wob_sock}";
 
         # Volume
         "--no-repeat --no-warn XF86AudioRaiseVolume" =
-          "exec ${pkgs.pamixer}/bin/pamixer -i 5";
+          "exec ${pkgs.pamixer}/bin/pamixer -i 5 --get-volume > ${wob_sock}";
         "--no-repeat --no-warn XF86AudioLowerVolume" =
-          "exec ${pkgs.pamixer}/bin/pamixer -d 5";
-        "--no-repeat --no-warn XF86AudioMute" =
-          "exec ${pkgs.pamixer}/bin/pamixer -t";
+          "exec ${pkgs.pamixer}/bin/pamixer -d 5 --get-volume > ${wob_sock}";
+        "--no-repeat --no-warn XF86AudioMute" = ''
+          exec ${pkgs.pamixer}/bin/pamixer -t && ( [ "$(${pkgs.pamixer}/bin/pamixer --get-mute)" = "true" ] && echo 0 > ${wob_sock} ) || ${pkgs.pamixer}/bin/pamixer --get-volume > ${wob_sock}'';
 
       };
 

@@ -8,7 +8,7 @@ let
   lock = pkgs.writeShellScriptBin "lock" ''
     #!/bin/sh
 
-    swaylock \
+    ${pkgs.swaylock}/bin/swaylock \
       --color=${colors.background.inverted} \
       \
       --image=/home/christian/.config/swaylock/logo.png \
@@ -34,7 +34,7 @@ let
       --key-hl-color=${colors.background.inverted}
   '';
 in {
-  home.packages = with pkgs; [ swaylock lock ];
+  home.packages = with pkgs; [ lock ];
 
   home.file.swaylock-logo-png = {
     source = ./logo.png;
