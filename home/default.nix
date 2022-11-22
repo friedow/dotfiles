@@ -7,6 +7,7 @@
     ./element.nix
     ./flameshot.nix
     ./git.nix
+    ./pavucontrol.nix
     ./sway.nix
     ./swaylock
     ./vscode.nix

@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 let
   modifier = "Mod4";
   colors = import ../config/colors.nix;
@@ -115,6 +115,21 @@ in {
         "${modifier}+Return" = "exec alacritty";
         "${modifier}+Shift+s" = "exec flameshot gui";
         "${modifier}+l" = "exec lock";
+
+        # Brightness
+        "--no-repeat --no-warn --locked XF86MonBrightnessDown" =
+          "exec ${pkgs.brightnessctl}/bin/brightnessctl set 10%-";
+        "--no-repeat --no-warn --locked XF86MonBrightnessUp" =
+          "exec ${pkgs.brightnessctl}/bin/brightnessctl set +10%";
+
+        # Volume
+        "--no-repeat --no-warn XF86AudioRaiseVolume" =
+          "exec ${pkgs.pamixer}/bin/pamixer -i 5";
+        "--no-repeat --no-warn XF86AudioLowerVolume" =
+          "exec ${pkgs.pamixer}/bin/pamixer -d 5";
+        "--no-repeat --no-warn XF86AudioMute" =
+          "exec ${pkgs.pamixer}/bin/pamixer -t";
+
       };
 
       # UI

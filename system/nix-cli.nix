@@ -1,10 +1,11 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, inputs, ... }: {
+  # nix develop, nix shell, ... should use the package index
+  # which was used to build the system. This config enforces that.
 
-{
-  /* disable the global flake registry,
-   * we build our own based on the system flakes' inputs 
-   */
-  environment.etc."nix/registry-empty.json".text = ''{ "flakes": [], "version": 2 }'';
+  # disable the global flake registry,
+  # we build our own based on the system flakes' inputs
+  environment.etc."nix/registry-empty.json".text =
+    ''{ "flakes": [], "version": 2 }'';
 
   nix = {
     settings.experimental-features = [ "nix-command" "flakes" ];
@@ -21,12 +22,12 @@
     };
 
     # change nixpkgs variable from channel to flake
-    nixPath = [ 
-      "nixpkgs=${inputs.nixpkgs}" 
-      "nixpkgs-unstable=${inputs.nixpkgs-unstable}" 
+    nixPath = [
+      "nixpkgs=${inputs.nixpkgs}"
+      "nixpkgs-unstable=${inputs.nixpkgs-unstable}"
     ];
 
-    /* automatic garbage collection */
+    # automatic garbage collection
     # gc = {
     #   automatic = true;
     #   dates = "weekly";
@@ -34,10 +35,10 @@
     #   persistent = true;
     # };
 
-    /* automatic store optimise */
+    # automatic store optimise
     optimise = {
       automatic = true;
-      dates = ["weekly"];
+      dates = [ "weekly" ];
     };
   };
 }
