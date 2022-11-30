@@ -9,7 +9,13 @@
     # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
     useDHCP = lib.mkDefault true;
 
-    hosts = { "127.0.0.1" = [ "dotbase.local" ]; };
+    hosts = {
+      "127.0.0.1" = [
+        "dotbase.local"
+        "monitoring.dotbase.local"
+        "link.dotbase.local"
+      ];
+    };
 
     networkmanager = {
       enable = true;
