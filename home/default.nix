@@ -9,6 +9,7 @@
     ./git.nix
     ./nautilus.nix
     ./pavucontrol.nix
+    ./search.nix
     ./sway.nix
     ./swaylock
     ./vscode.nix
