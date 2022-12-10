@@ -122,6 +122,10 @@ in {
         "${modifier}+Shift+s" = "exec flameshot gui";
         "${modifier}+l" = "exec lock";
 
+        # exec swaymsg '[instance="search-friedow-com"] scratchpad show' || exec swaymsg '[instance="search-friedow-com"] move scratchpad'
+        "${modifier}+Space" = ''
+          exec swaymsg [instance="search-friedow-com"] scratchpad show || exec swaymsg [instance="search-friedow-com"] move scratchpad'';
+
         # Brightness
         "--no-repeat --no-warn --locked XF86MonBrightnessDown" =
           "exec ${pkgs.brightnessctl}/bin/brightnessctl set 10%- | sed -En 's/.*\\(([0-9]+)%\\).*/\\1/p' > ${wob_sock}";
@@ -188,10 +192,16 @@ in {
       window = {
         border = 0;
 
-        commands = [{
-          command = ''title_format "<span size='9pt'>    %title</span>"'';
-          criteria = { class = ".*"; };
-        }];
+        commands = [
+          {
+            command = ''title_format "<span size='9pt'>    %title</span>"'';
+            criteria = { class = ".*"; };
+          }
+          {
+            command = "move scratchpad";
+            criteria = { instance = "search-friedow-com"; };
+          }
+        ];
       };
     };
   };
