@@ -13,6 +13,7 @@
     ./swaylock
     ./vscode.nix
     ./wdisplays.nix
+    ./yubikey
     ./zsh
   ];
 }

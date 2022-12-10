@@ -8,6 +8,7 @@
     ./nix-cli.nix
     ./screensharing.nix
     ./plymouth
+    ./yubikey-pam.nix
   ];
 
   time.timeZone = "Europe/Amsterdam";
