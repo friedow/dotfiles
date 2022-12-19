@@ -124,7 +124,7 @@ in {
 
         # exec swaymsg '[instance="search-friedow-com"] scratchpad show' || exec swaymsg '[instance="search-friedow-com"] move scratchpad'
         "${modifier}+Space" = ''
-          exec swaymsg [instance="search-friedow-com"] scratchpad show || exec swaymsg [instance="search-friedow-com"] move scratchpad'';
+          exec swaymsg [app_id="search-friedow-com"] scratchpad show || exec swaymsg [app_id="search-friedow-com"] move scratchpad'';
 
         # Brightness
         "--no-repeat --no-warn --locked XF86MonBrightnessDown" =
@@ -173,7 +173,7 @@ in {
 
       floating = {
         border = 0;
-        criteria = [{ class = "Search-friedow-com"; }];
+        criteria = [{ app_id = "search-friedow-com"; }];
       };
 
       fonts = {
@@ -199,7 +199,7 @@ in {
           }
           {
             command = "move scratchpad";
-            criteria = { instance = "search-friedow-com"; };
+            criteria = { app_id = "search-friedow-com"; };
           }
         ];
       };
