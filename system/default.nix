@@ -6,6 +6,7 @@
     ./networking.nix
     ./plymouth
     ./xserver.nix
+    ./zsh.nix
   ];
 
   time.timeZone = "Europe/Amsterdam";
