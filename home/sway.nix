@@ -3,8 +3,46 @@ let
   modifier = "Mod4";
   colors = import ../config/colors.nix;
   fonts = import ../config/fonts.nix;
+  wob_sock = "$XDG_RUNTIME_DIR/wob.sock";
 in {
-  xsession.windowManager.i3 = {
+  # Configure most applications to use the wayland interface 
+  # natively instead of using the xwayland interface
+  home.sessionVariables = {
+    XDG_CACHE_HOME = "\${HOME}/.cache";
+    XDG_CONFIG_HOME = "\${HOME}/.config";
+    XDG_BIN_HOME = "\${HOME}/.local/bin";
+    XDG_DATA_HOME = "\${HOME}/.local/share";
+
+    XDG_CURRENT_DESKTOP = "sway";
+    EDITOR = "vim";
+
+    CLUTTER_BACKEND = "wayland";
+    ECORE_EVAS_ENGINE = "wayland_egl";
+    ELM_ENGINE = "wayland_egl";
+    GDK_BACKEND = "wayland";
+    MOZ_ENABLE_WAYLAND = "1";
+    # chromium
+    # NIXOS_OZONE_WL = "1"; 
+    QT_QPA_PLATFORM = "wayland-egl";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    QT_WAYLAND_FORCE_DPI = "physical";
+    SDL_VIDEODRIVER = "wayland";
+    XDG_SESSION_TYPE = "wayland";
+    _JAVA_AWT_WM_NONREPARENTING = "1";
+  };
+
+  # Copt wallpaper image file
+  home.file.wallpaper = {
+    source = ./wallpaper.png;
+    target = ".config/sway/wallpaper.png";
+  };
+
+  # Configure sway
+  wayland.windowManager.sway = {
+    extraSessionCommands = ''
+      export WLR_NO_HARDWARE_CURSORS=1
+    '';
+
     enable = true;
 
     config = {
@@ -12,14 +50,15 @@ in {
       modifier = "${modifier}";
 
       startup = [
-        {
-          command = "lock";
-          notification = false;
-        }
+        { command = "lock"; }
         {
           command =
             "/home/christian/Code/friedow/search/src-tauri/target/release/search-friedow-com";
-          notification = false;
+        }
+        {
+          command =
+            "rm -f ${wob_sock} && mkfifo ${wob_sock} && tail -f ${wob_sock} | ${pkgs.wob}/bin/wob -o 0 -b 0 -p 1 -H 15 -M 20 -a top";
+          always = true;
         }
       ];
 
@@ -52,9 +91,6 @@ in {
 
         "${modifier}+a" = "focus parent";
 
-        "${modifier}+Shift+minus" = "move scratchpad";
-        "${modifier}+minus" = "scratchpad show";
-
         "${modifier}+1" = "workspace number 1";
         "${modifier}+2" = "workspace number 2";
         "${modifier}+3" = "workspace number 3";
@@ -79,14 +115,31 @@ in {
 
         "${modifier}+Shift+c" = "reload";
         "${modifier}+Shift+r" = "restart";
-        "${modifier}+Shift+e" =
-          "exec i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'";
 
         "${modifier}+r" = "mode resize";
 
         "${modifier}+Return" = "exec alacritty";
         "${modifier}+Shift+s" = "exec flameshot gui";
         "${modifier}+l" = "exec lock";
+
+        # exec swaymsg '[instance="search-friedow-com"] scratchpad show' || exec swaymsg '[instance="search-friedow-com"] move scratchpad'
+        "${modifier}+Space" = ''
+          exec swaymsg [app_id="search-friedow-com"] scratchpad show || exec swaymsg [app_id="search-friedow-com"] move scratchpad'';
+
+        # Brightness
+        "--no-repeat --no-warn --locked XF86MonBrightnessDown" =
+          "exec ${pkgs.brightnessctl}/bin/brightnessctl set 10%- | sed -En 's/.*\\(([0-9]+)%\\).*/\\1/p' > ${wob_sock}";
+        "--no-repeat --no-warn --locked XF86MonBrightnessUp" =
+          "exec ${pkgs.brightnessctl}/bin/brightnessctl set +10% | sed -En 's/.*\\(([0-9]+)%\\).*/\\1/p' > ${wob_sock}";
+
+        # Volume
+        "--no-repeat --no-warn XF86AudioRaiseVolume" =
+          "exec ${pkgs.pamixer}/bin/pamixer -i 5 --get-volume > ${wob_sock}";
+        "--no-repeat --no-warn XF86AudioLowerVolume" =
+          "exec ${pkgs.pamixer}/bin/pamixer -d 5 --get-volume > ${wob_sock}";
+        "--no-repeat --no-warn XF86AudioMute" = ''
+          exec ${pkgs.pamixer}/bin/pamixer -t && ( [ "$(${pkgs.pamixer}/bin/pamixer --get-mute)" = "true" ] && echo 0 > ${wob_sock} ) || ${pkgs.pamixer}/bin/pamixer --get-volume > ${wob_sock}'';
+
       };
 
       # UI
@@ -120,7 +173,7 @@ in {
 
       floating = {
         border = 0;
-        criteria = [{ class = "Search-friedow-com"; }];
+        criteria = [{ app_id = "search-friedow-com"; }];
       };
 
       fonts = {
@@ -134,13 +187,21 @@ in {
         outer = -2;
       };
 
+      output = { "*" = { bg = "~/.config/sway/wallpaper.png fill"; }; };
+
       window = {
         border = 0;
 
-        commands = [{
-          command = ''title_format "<span size='9pt'>    %title</span>"'';
-          criteria = { class = ".*"; };
-        }];
+        commands = [
+          {
+            command = ''title_format "<span size='9pt'>    %title</span>"'';
+            criteria = { class = ".*"; };
+          }
+          {
+            command = "move scratchpad";
+            criteria = { app_id = "search-friedow-com"; };
+          }
+        ];
       };
     };
   };

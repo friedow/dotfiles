@@ -34,6 +34,19 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
+  # graphics card settings
+  hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    modesetting.enable = true;
+    prime = {
+      nvidiaBusId = "PCI:57:0:0";
+      intelBusId = "PCI:0:2:0";
+      offload.enable = true;
+    };
+  };
+  hardware.opengl.enable = true;
+  services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
+
   networking = { hostName = "avalanche"; };
 
   # This value determines the NixOS release from which the default

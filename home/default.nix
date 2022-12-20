@@ -3,14 +3,18 @@
   imports = [
     ./alacritty.nix
     ./brave.nix
+    ./displays.nix
     ./element.nix
     ./flameshot.nix
     ./git.nix
-    ./i3.nix
-    ./i3lock
-    ./picom.nix
+    ./nautilus.nix
+    ./pavucontrol.nix
+    ./search.nix
+    ./sway.nix
+    ./swaylock
     ./vscode.nix
-    ./xfce
+    ./wdisplays.nix
+    ./yubikey
     ./zsh
   ];
 }
