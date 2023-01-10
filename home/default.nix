@@ -9,6 +9,7 @@
     ./git.nix
     ./nautilus.nix
     ./pavucontrol.nix
+    ./polkit-ui.nix
     ./search.nix
     ./sway.nix
     ./swaylock
