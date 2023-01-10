@@ -1,14 +1,19 @@
 { config, pkgs, ... }: {
   imports = [
     ./1password.nix
+    ./alacritty.nix
     ./audio.nix
     ./autologin.nix
+    ./brave.nix
     ./docker.nix
+    ./element.nix
     ./fonts.nix
+    ./hm-alias.nix
     ./networking.nix
     ./nix-cli.nix
     ./screensharing.nix
     ./plymouth
+    ./polkit.nix
     ./zsh.nix
     ./yubikey-pam.nix
   ];
@@ -23,14 +28,13 @@
 
   environment = { variables.EDITOR = "code"; };
 
-  # necessary for sway to work
-  security.polkit.enable = true;
-  
   # include swaylock in pam for it to verify credentials
   security.pam.services.swaylock = {
     text = ''
       auth include login
     '';
   };
+
+  
 }
 
