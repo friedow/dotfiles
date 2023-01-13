@@ -6,9 +6,9 @@
     ./autologin.nix
     ./brave.nix
     ./docker.nix
-    ./element.nix
     ./fonts.nix
     ./hm-alias.nix
+    ./nautilus.nix
     ./networking.nix
     ./nix-cli.nix
     ./screensharing.nix

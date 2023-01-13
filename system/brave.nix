@@ -1,6 +1,6 @@
 { pkgs, ... }: {
-  hm.programs.chromium = {
-    enable = builtins.trace "hallo" true;
+  home-manager.users.christian.programs.chromium = {
+    enable = true;
     package = pkgs.brave;
     extensions = [
       { id = "hdokiejnpimakedhajhdlcegeplioahd"; } # lastpass

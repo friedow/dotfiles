@@ -1,7 +1,7 @@
 { pkgs, ... }: {
     security.polkit.enable = true;
 
-    hm.systemd.user.services = {
+    home-manager.users.christian.systemd.user.services = {
         polkit-gnome-authentication-agent-1 = {
             Unit = {
                 After = [ "graphical-session-pre.target" ];

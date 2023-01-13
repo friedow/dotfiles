@@ -1,7 +1,9 @@
 { config, lib, pkgs, ... }: {
-    options.hm = lib.mkOption {
-        type = lib.types.unspecified;
-        default = {};
-    };
-    config.home-manager.users.christian = config.hm;
+    # Does not work, because it has the wrong type.
+    # Needs the home manager type to work.
+    # options.hm = lib.mkOption {
+    #     type = lib.types.unspecified;
+    #     default = {};
+    # };
+    # config.home-manager.users.christian = config.hm;
 }

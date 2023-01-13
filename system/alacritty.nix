@@ -3,8 +3,8 @@ let
   colors = import ../config/colors.nix;
   fonts = import ../config/fonts.nix;
 in {
-  hm.programs.alacritty = {
-    enable = builtins.trace "hallo" true;
+  home-manager.users.christian.programs.alacritty = {
+    enable = true;
 
     settings = {
 
