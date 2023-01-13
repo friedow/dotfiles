@@ -1,6 +1,8 @@
 { pkgs, ... }:
 let fonts = import ../config/fonts.nix;
 in {
+  environment = { variables.EDITOR = "code"; };
+
   home-manager.users.christian.programs.vscode = {
     enable = true;
 

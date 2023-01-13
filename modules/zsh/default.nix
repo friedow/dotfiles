@@ -1,4 +1,8 @@
 { ... }: {
+  # Enables autocompletion for system level binaries.
+  # This is necessary because zsh is installed as a user package.
+  environment.pathsToLink = [ "/share/zsh" ];
+
   home-manager.users.christian = {
     programs.zsh = {
       enable = true;

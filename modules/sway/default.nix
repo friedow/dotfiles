@@ -1,8 +1,8 @@
 { pkgs, ... }:
 let
   modifier = "Mod4";
-  colors = import ../config/colors.nix;
-  fonts = import ../config/fonts.nix;
+  colors = import ../../config/colors.nix;
+  fonts = import ../../config/fonts.nix;
   wob_sock = "$XDG_RUNTIME_DIR/wob.sock";
 in {
   home-manager.users.christian = {
@@ -31,7 +31,7 @@ in {
       _JAVA_AWT_WM_NONREPARENTING = "1";
     };
 
-    # Copt wallpaper image file
+    # Copy wallpaper image file
     home.file.wallpaper = {
       source = ./wallpaper.png;
       target = ".config/sway/wallpaper.png";

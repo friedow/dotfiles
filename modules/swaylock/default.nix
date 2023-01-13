@@ -34,6 +34,13 @@ let
       --key-hl-color=${colors.background.inverted}
   '';
 in {
+  # include swaylock in pam for it to verify credentials
+  security.pam.services.swaylock = {
+    text = ''
+      auth include login
+    '';
+  };
+  
   home-manager.users.christian.home = {
     packages = with pkgs; [ lock ];
 

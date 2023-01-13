@@ -10,9 +10,6 @@
         xdg-desktop-portal-wlr
         xdg-desktop-portal-gtk
       ];
-      # deprecated, do we need it? 
-      # screen sharing seems to work in firefox and chromium without it
-      # gtkUsePortal = true;
     };
   };
 }
