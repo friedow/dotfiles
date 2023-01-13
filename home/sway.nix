@@ -14,15 +14,13 @@ in {
     XDG_DATA_HOME = "\${HOME}/.local/share";
 
     XDG_CURRENT_DESKTOP = "sway";
-    EDITOR = "vim";
 
     CLUTTER_BACKEND = "wayland";
     ECORE_EVAS_ENGINE = "wayland_egl";
     ELM_ENGINE = "wayland_egl";
     GDK_BACKEND = "wayland";
-    MOZ_ENABLE_WAYLAND = "1";
     # chromium
-    # NIXOS_OZONE_WL = "1"; 
+    NIXOS_OZONE_WL = "1"; 
     QT_QPA_PLATFORM = "wayland-egl";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     QT_WAYLAND_FORCE_DPI = "physical";

@@ -3,7 +3,7 @@
 let
 
   charite-lg-left = {
-    criteria = "oldstar Company Ltd BK550Y 901NTDV9Y970";
+    criteria = "Goldstar Company Ltd BK550Y 901NTDV9Y970";
     scale = 1.0;
     position = "0,450";
   };

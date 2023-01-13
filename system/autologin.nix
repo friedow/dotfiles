@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 let
   greetd-session = (pkgs.writeShellScriptBin "greetd-session" ''
     source /etc/profile
     source /etc/profiles/per-user/$(whoami)/etc/profile.d/hm-session-vars.sh
-    exec systemd-cat --identifier=sway sway --unsupported-gpu $@
+    exec systemd-cat --identifier=sway ${inputs.nixgl.packages.x86_64-linux.default}/bin/nixGL sway --unsupported-gpu $@
   '');
 
 in {
