@@ -1,7 +1,5 @@
-{ config, pkgs, ... }:
-
+{ ... }:
 let
-
   charite-lg-left = {
     criteria = "Goldstar Company Ltd BK550Y 901NTDV9Y970";
     scale = 1.0;
@@ -26,13 +24,14 @@ let
     criteria = "eDP-1";
     status = "disable";
   };
-
 in {
-  services.kanshi.enable = true;
-  services.kanshi.profiles = {
-    laptop-undocked = { outputs = [ laptop ]; };
-    charite-docked = {
-      outputs = [ laptop-off charite-lg-left charite-lg-right ];
+  home-manager.users.christian.services.kanshi = {
+    enable = true;
+    profiles = {
+      laptop-undocked = { outputs = [ laptop ]; };
+      charite-docked = {
+        outputs = [ laptop-off charite-lg-left charite-lg-right ];
+      };
     };
   };
 }

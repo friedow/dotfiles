@@ -29,13 +29,13 @@
         useGlobalPkgs = true;
         useUserPackages = true;
         extraSpecialArgs = specialArgs;
-        users.christian = import ./home;
+        users.christian.home.stateVersion = "21.11";
       };
 
       modules = [
         inputs.home-manager.nixosModules.home-manager
         home-manager-config
-        ./system
+        ./modules
       ];
     in {
       nixosConfigurations = {

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
   colors = import ../../config/colors.nix;
   fonts = import ../../config/fonts.nix;
@@ -34,10 +34,12 @@ let
       --key-hl-color=${colors.background.inverted}
   '';
 in {
-  home.packages = with pkgs; [ lock ];
+  home-manager.users.christian.home = {
+    packages = with pkgs; [ lock ];
 
-  home.file.swaylock-logo-png = {
-    source = ./logo.png;
-    target = ".config/swaylock/logo.png";
+    file.swaylock-logo-png = {
+      source = ./logo.png;
+      target = ".config/swaylock/logo.png";
+    };
   };
 }

@@ -1,7 +1,7 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let fonts = import ../config/fonts.nix;
 in {
-  programs.vscode = {
+  home-manager.users.christian.programs.vscode = {
     enable = true;
 
     extensions = with pkgs.vscode-extensions; [

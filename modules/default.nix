@@ -5,17 +5,27 @@
     ./audio.nix
     ./autologin.nix
     ./brave.nix
+    ./displays.nix
     ./docker.nix
+    ./flameshot.nix
     ./fonts.nix
+    ./git.nix
     ./hm-alias.nix
     ./nautilus.nix
     ./networking.nix
     ./nix-cli.nix
-    ./screensharing.nix
+    ./pavucontrol.nix
     ./plymouth
     ./polkit.nix
-    ./zsh.nix
+    ./screensharing.nix
+    ./sway.nix
+    ./swaylock
+    ./vscode.nix
+    ./wdisplays.nix
+    ./yubikey
     ./yubikey-pam.nix
+    ./zsh
+    ./zsh.nix
   ];
 
   time.timeZone = "Europe/Amsterdam";
