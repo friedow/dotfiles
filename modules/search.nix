@@ -1,4 +1,4 @@
 # TODO: remove when system search is packaged
-{ config, pkgs, ... }: {
-  home.packages = with pkgs; [ gtk3 ];
+{ pkgs, ... }: {
+  home-manager.users.christian.home.packages = with pkgs; [ gtk3 ];
 }
