@@ -18,6 +18,7 @@
     ./plymouth
     ./polkit.nix
     ./screensharing.nix
+    ./search.nix
     ./sway
     ./swaylock
     ./time.nix
