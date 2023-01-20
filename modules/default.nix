@@ -10,6 +10,7 @@
     ./flameshot.nix
     ./fonts.nix
     ./git.nix
+    ./gtk.nix
     ./hm-alias.nix
     ./nautilus.nix
     ./networking.nix
@@ -18,7 +19,7 @@
     ./plymouth
     ./polkit.nix
     ./screensharing.nix
-    ./search.nix
+    # ./search.nix
     ./sway
     ./swaylock
     ./time.nix

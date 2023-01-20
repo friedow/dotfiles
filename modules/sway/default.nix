@@ -16,6 +16,7 @@ in {
       XDG_DATA_HOME = "\${HOME}/.local/share";
 
       XDG_CURRENT_DESKTOP = "sway";
+      XDG_SESSION_DESKTOP = "sway";
 
       CLUTTER_BACKEND = "wayland";
       ECORE_EVAS_ENGINE = "wayland_egl";
