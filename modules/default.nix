@@ -4,7 +4,7 @@
     ./alacritty.nix
     ./audio.nix
     ./autologin.nix
-    ./brave.nix
+    ./brave
     ./displays.nix
     ./docker.nix
     ./flameshot.nix
