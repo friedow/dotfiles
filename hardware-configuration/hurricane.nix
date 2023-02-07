@@ -60,4 +60,6 @@
       useOSProber = true;
     };
   };
+
+  machine.usesNixGl = true;
 }
