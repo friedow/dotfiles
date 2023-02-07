@@ -14,6 +14,7 @@
     ./hm-alias.nix
     ./nautilus.nix
     ./networking.nix
+    ./notifications.nix
     ./nix-cli.nix
     ./pavucontrol.nix
     ./plymouth
