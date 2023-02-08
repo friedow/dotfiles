@@ -1,10 +1,10 @@
 { pkgs, ... }: {
   
   home-manager.users.christian = {
-    home.file.brave-preferences = {
-      source = ./Preferences;
-      target = ".config/BraveSoftware/Brave-Browser/Default/Preferences";
-    };
+    # home.file.brave-preferences = {
+    #   source = ./Preferences;
+    #   target = ".config/BraveSoftware/Brave-Browser/Default/Preferences";
+    # };
 
     programs.chromium = {
       enable = true;
