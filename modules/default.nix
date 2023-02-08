@@ -19,6 +19,7 @@
     ./pavucontrol.nix
     ./plymouth
     ./polkit.nix
+    ./rofi
     ./screensharing.nix
     # ./search.nix
     ./sway
