@@ -2,6 +2,7 @@
 # dependencies:
 # - jq
 # - sway
+# - xargs?
 #
 # install all dependencies
 # nix shell nixpkgs#jq nixpkgs#sway --command "zsh"

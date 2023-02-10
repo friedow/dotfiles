@@ -1,7 +1,7 @@
 { pkgs, ... }: 
 let 
     fonts = import ../../config/fonts.nix;
-    rofi-test-plugin = (pkgs.writeShellScriptBin "rofi-test-plugin" ''
+    rofi-sway = (pkgs.writeShellScriptBin "rofi-sway" ''
         #!/usr/bin/env bash
         # dependencies:
         # - jq
@@ -40,7 +40,7 @@ in {
 
         extraConfig = {
             modes = "combi";
-            combi-modes = "drun,test:${rofi-test-plugin}/bin/rofi-test-plugin";
+            combi-modes = "windows:${rofi-sway}/bin/rofi-sway,drun";
         };
     };
 }

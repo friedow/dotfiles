@@ -41,4 +41,6 @@
       dates = [ "weekly" ];
     };
   };
+
+  home-manager.users.christian.home.packages = with pkgs; [ nix-index ];
 }
