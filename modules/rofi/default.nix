@@ -30,6 +30,37 @@ let
 
         main "$@"
     '');
+
+    rofi-git-repositories = (pkgs.writeShellScriptBin "rofi-git-repositories" ''
+        #!/usr/bin/env bash
+        # dependencies:
+        # - locate (use nix-locate)
+        # - sway
+        #
+        # install all dependencies
+        # nix shell nixpkgs#jq nixpkgs#sway --command "zsh"
+
+        function listEntries() {
+            # todo: swap find for locate
+            find $HOME -name .git | sed 's/^\(.*\/\(.*\)\)\/.git$/\2 \1/' | xargs printf '%s\0info\x1f%s\n'
+        }
+
+        function executeEntryAction() {
+            coproc ( code "$ROFI_INFO"  > /dev/null  2>&1 )
+        }
+
+        function main() {
+            local selectedEntry=$1
+
+            if [[ -z $selectedEntry ]]; then
+                listEntries
+            else
+                executeEntryAction $selectedEntry
+            fi
+        }
+
+        main "$@"
+    '');
 in {
     home-manager.users.christian.programs.rofi = {
         enable = true;
@@ -40,7 +71,7 @@ in {
 
         extraConfig = {
             modes = "combi";
-            combi-modes = "windows:${rofi-sway}/bin/rofi-sway,drun";
+            combi-modes = "windows:${rofi-sway}/bin/rofi-sway,drun,repos:${rofi-git-repositories}/bin/rofi-git-repositories";
         };
     };
 }
