@@ -1,0 +1,61 @@
+// Unused Widgets
+prompt, num-filtered-rows, num-rows, case-indicator, mode-switcher {
+    enabled: false;
+}
+
+// Size & Position
+window {
+    width: 700;
+    location: north;
+    y-offset: 300px;
+}
+
+// Gaps & Dividers
+window, inputbar, message, element {
+    padding: 0.3em 0.5em;
+}
+
+inputbar, message {
+    border: 0px 0px 1px 0px;
+    margin: 0px 0px 5px 0px;
+    border-color: #525252; // Light Gray 
+}
+
+mainbox, listview {
+    spacing: 0;
+}
+
+listview {
+    fixed-height: false;
+}
+
+
+// Text
+* {
+    font: "Fira Code 10";
+}
+
+entry, textbox, element-text {
+    text-color: White;
+}
+
+textbox {
+    cursor-width: 1px;
+}
+
+// Background Color
+* {
+    background-color: transparent;
+}
+
+window {
+    background-color: #000000; // Black
+}
+
+message {
+    background-color: #ea580c; // Dark Orange
+}
+
+element selected {
+    background-color: #262626; // Dark Gray
+}

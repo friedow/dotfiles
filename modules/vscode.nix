@@ -27,6 +27,7 @@ in {
         "workbench.editor.showTabs" = false;
         "explorer.compactFolders" = false;
         "editor.fontFamily" = "'${fonts.monospace}'";
+        "editor.fontLigatures" = true;
         "workbench.panel.opensMaximized" = "always";
         "terminal.integrated.defaultProfile.linux" = "zsh";
         "files.autoSave" = "onFocusChange";
