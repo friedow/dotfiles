@@ -106,6 +106,7 @@ in {
 
         extraConfig = {
             modes = "combi";
+            combi-display-format = "{mode}  {text}";
             # continuous scolling
             scroll-method = 1;
             display-drun = "";
