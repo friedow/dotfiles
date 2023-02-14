@@ -123,9 +123,7 @@ in {
           "${modifier}+Shift+s" = "exec flameshot gui";
           "${modifier}+l" = "exec lock";
 
-          # exec swaymsg '[instance="search-friedow-com"] scratchpad show' || exec swaymsg '[instance="search-friedow-com"] move scratchpad'
-          "${modifier}+Space" = ''
-            exec swaymsg [app_id="search-friedow-com"] scratchpad show || exec swaymsg [app_id="search-friedow-com"] move scratchpad'';
+          "${modifier}+Space" = "exec rofi -show combi";
 
           # Brightness
           "--no-repeat --no-warn --locked XF86MonBrightnessDown" =
