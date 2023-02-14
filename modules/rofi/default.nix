@@ -101,7 +101,6 @@ in {
     home-manager.users.christian.programs.rofi = {
         enable = true;
         package = pkgs.rofi-wayland;
-        font = fonts.monospace;
         terminal = "${pkgs.alacritty}/bin/alacritty";
         plugins = [ ];
 
@@ -109,7 +108,8 @@ in {
             modes = "combi";
             # continuous scolling
             scroll-method = 1;
-            combi-modes = "windows:${rofi-sway}/bin/rofi-sway,drun,repos:${rofi-git-repositories}/bin/rofi-git-repositories";
+            display-drun = "";
+            combi-modes = ":${rofi-sway}/bin/rofi-sway,drun,:${rofi-git-repositories}/bin/rofi-git-repositories";
             # combi-modes = "drun";
         };
 

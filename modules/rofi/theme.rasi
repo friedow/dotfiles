@@ -29,10 +29,9 @@ listview {
     fixed-height: false;
 }
 
-
 // Text
 * {
-    font: "Fira Code 10";
+    font: "monospace 10";
 }
 
 entry, textbox, element-text {
