@@ -66,10 +66,10 @@ in {
     services.locate.enable = true;
 
     home-manager.users.christian = {
+        
         home.packages = with pkgs; [
             # rofi-sway
             jq
-            busybox
 
             # rofi-git-repositories
             # busybox #(sed, xargs)

@@ -7,7 +7,6 @@
 # nix shell nixpkgs#jq nixpkgs#sway --command "zsh"
 
 function listEntries() {
-    # todo: swap find for locate
     find $HOME -name .git | sed 's/^\(.*\/\(.*\)\)\/.git$/\2 \1/' | xargs printf '%s\0info\x1f%s\n'
 }
 

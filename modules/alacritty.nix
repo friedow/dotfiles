@@ -37,7 +37,6 @@ in {
 
       font = {
         size = 9;
-        normal.family = fonts.monospace;
       };
 
       window.padding = {

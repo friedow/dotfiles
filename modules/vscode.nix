@@ -26,7 +26,7 @@ in {
         "workbench.statusBar.visible" = false;
         "workbench.editor.showTabs" = false;
         "explorer.compactFolders" = false;
-        "editor.fontFamily" = "'${fonts.monospace}'";
+        "editor.fontFamily" = "monospace, 'Noto Color Emoji'";
         "editor.fontLigatures" = true;
         "workbench.panel.opensMaximized" = "always";
         "terminal.integrated.defaultProfile.linux" = "zsh";

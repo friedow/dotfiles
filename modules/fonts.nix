@@ -13,14 +13,18 @@ in {
       defaultFonts = {
         serif = [ fonts.serif ];
         sansSerif = [ fonts.sansSerif ];
-        monospace = [ fonts.monospace ];
+        monospace = [ "FiraCode Nerd Font" ];
+        
       };
     };
 
     fonts = with pkgs; [
+      (nerdfonts.override { fonts = [ "FiraCode" ]; })
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
       source-code-pro
       lato
-      nerdfonts
       fira
       fira-code
       fira-mono
