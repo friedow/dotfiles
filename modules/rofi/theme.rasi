@@ -11,14 +11,21 @@ window {
 }
 
 // Gaps & Dividers
-window, inputbar, message, element {
-    padding: 0.3em 0.5em;
+inputbar {
+    padding: 0.7em 1em 0.6em;
+}
+
+listview, message {
+    padding: 0.5em;
+}
+
+element {
+    padding: 0.5em 0.7em;
 }
 
 inputbar, message {
     border: 0px 0px 1px 0px;
-    margin: 0px 0px 5px 0px;
-    border-color: #525252; // Light Gray 
+    border-color: #252a3b; // Light Gray 
 }
 
 mainbox, listview {
@@ -27,18 +34,25 @@ mainbox, listview {
 
 listview {
     fixed-height: false;
+    lines: 8;
+}
+
+window, element {
+    border-radius: 10px;
 }
 
 // Text
 * {
-    font: "monospace 10";
+    font: "monospace 12";
 }
 
 entry, textbox, element-text {
     text-color: White;
 }
 
-textbox {
+entry {
+    placeholder: "Search...";
+    placeholder-color: #d1d5db;
     cursor-width: 1px;
 }
 
@@ -48,13 +62,9 @@ textbox {
 }
 
 window {
-    background-color: #000000; // Black
-}
-
-message {
-    background-color: #ea580c; // Dark Orange
+    background-color: #111827; // Gray 900
 }
 
 element selected {
-    background-color: #262626; // Dark Gray
+    background-color: #212939; // Dark Gray
 }
