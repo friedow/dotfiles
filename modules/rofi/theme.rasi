@@ -37,8 +37,12 @@ listview {
     lines: 8;
 }
 
-window, element {
+window {
     border-radius: 10px;
+}
+
+element {
+    border-radius: 7px;
 }
 
 // Text
