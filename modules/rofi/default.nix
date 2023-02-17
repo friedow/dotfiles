@@ -11,7 +11,7 @@ let
         # nix shell nixpkgs#jq nixpkgs#sway --command "zsh"
 
         function listEntries() {
-            swaymsg -t get_tree | jq -r '[recurse(.nodes[])] | map(select(.type == "con")) | map([ .name, .id ]) | map(@sh) | .[] ' | xargs printf '%s\0info\x1f%s\n'
+            swaymsg -t get_tree | jq -r '[recurse(.nodes[])] | map(select(.type == "con") | [ .name, .id ] | @sh) | .[] ' | xargs printf '%s\0info\x1f%s\n'
         }
 
         function executeEntryAction() {
