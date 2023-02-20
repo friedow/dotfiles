@@ -38,11 +38,11 @@ listview {
 }
 
 window {
-    border-radius: 10px;
+    border-radius: 4px;
 }
 
 element {
-    border-radius: 7px;
+    border-radius: 2px;
 }
 
 // Text
