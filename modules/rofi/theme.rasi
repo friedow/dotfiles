@@ -70,5 +70,14 @@ window {
 }
 
 element selected {
-    background-image: linear-gradient(70deg, white, black); // Dark Gray
+    background-color: black;
 }
+
+// TODO: reproduce rofi bug not showing textbox
+// element {
+//     children: [ textbox-foo ];
+// }
+
+// textbox-foo {
+//     content: "foo";
+// }
