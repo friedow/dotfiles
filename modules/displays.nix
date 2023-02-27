@@ -1,16 +1,9 @@
 { ... }:
 let
-  charite-lg-left = {
+  charite-lg = {
     criteria = "Goldstar Company Ltd BK550Y 901NTDV9Y970";
     scale = 1.0;
-    position = "0,450";
-  };
-
-  charite-lg-right = {
-    criteria = "Goldstar Company Ltd BK550Y 004NTVSAL231";
-    scale = 1.0;
-    transform = "270";
-    position = "1920,0";
+    position = "0,0";
   };
 
   laptop = {
@@ -30,7 +23,7 @@ in {
     profiles = {
       laptop-undocked = { outputs = [ laptop ]; };
       charite-docked = {
-        outputs = [ laptop-off charite-lg-left charite-lg-right ];
+        outputs = [ laptop-off charite-lg ];
       };
     };
   };
