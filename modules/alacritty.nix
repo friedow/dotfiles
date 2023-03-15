@@ -9,7 +9,7 @@ in {
     settings = {
 
       # General
-      shell.program = "zsh";
+      shell.program = "nu";
 
       # UI
       colors = {

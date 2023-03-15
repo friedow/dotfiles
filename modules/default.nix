@@ -15,6 +15,7 @@
     ./nautilus.nix
     ./networking.nix
     ./notifications.nix
+    ./nushell.nix
     ./nix-cli.nix
     ./pavucontrol.nix
     ./plymouth

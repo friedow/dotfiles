@@ -72,8 +72,8 @@ in {
         serviceConfig = {
             Type = "oneshot";
         };
-        
     };
+
     systemd.user.timers.rofi-git-repositories = {
         wantedBy = [ "timers.target" ];
         timerConfig.OnBootSec = "0m";

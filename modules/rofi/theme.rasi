@@ -73,6 +73,10 @@ element selected {
     background-color: black;
 }
 
+element urgent {
+    background-color: red;
+}
+
 // TODO: reproduce rofi bug not showing textbox
 // element {
 //     children: [ textbox-foo ];

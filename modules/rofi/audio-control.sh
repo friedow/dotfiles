@@ -48,16 +48,12 @@ function executeEntryAction() {
 
 function main() {
     local theme="$(echo '
-        listview {
-            fixed-height: true;
-        }
-        textbox-custom {
-            expand: true;
-            content: "My Message";
-            text-color: White;
-        }
         element {
             children: [element-text,textbox-custom];
+        }
+        textbox-custom {
+            content: "My Message";
+            text-color: White;
         }
     ' | paste -sd ' ')"
 
