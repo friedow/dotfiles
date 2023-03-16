@@ -20,6 +20,10 @@ listview, message {
 }
 
 element {
+    padding: 1px;
+}
+
+element-inner {
     padding: 0.5em 0.7em;
 }
 
@@ -41,8 +45,8 @@ window {
     border-radius: 3px;
 }
 
-element {
-    border-radius: 1px;
+element, element-inner {
+    border-radius: 2px;
 }
 
 // Text
@@ -66,22 +70,24 @@ entry {
 }
 
 window {
-    background-color: #111827; // Gray 900
+    background-color: #1a191f; // Gray 900
+}
+
+element {
+    children: [element-inner];
+}
+
+element-inner {
+    children: [ element-text ];
+    background-color: #1a191f;
+    // background-image: linear-gradient(120deg, #3d3b3f, #242229);
 }
 
 element selected {
-    background-color: black;
+    background-image: linear-gradient(120deg, #eac484, #dbaa64); // Dark Gray
+    // , 10, #f5cf84, 80, #b89d62, 90, #504b38, 95, #211814
 }
 
 element urgent {
     background-color: red;
 }
-
-// TODO: reproduce rofi bug not showing textbox
-// element {
-//     children: [ textbox-foo ];
-// }
-
-// textbox-foo {
-//     content: "foo";
-// }

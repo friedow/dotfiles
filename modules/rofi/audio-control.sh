@@ -51,9 +51,14 @@ function main() {
         element {
             children: [element-text,textbox-custom];
         }
-        textbox-custom {
-            content: "My Message";
-            text-color: White;
+        element {
+            children: [  ];
+        }
+        element-inner {
+            children: [ element-text ];
+        }
+        element selected {
+            background-image: linear-gradient(70deg, #ffe998, #57370d); // Dark Gray
         }
     ' | paste -sd ' ')"
 
