@@ -1,3 +1,16 @@
 {
-    "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "nix.enableLanguageServer": true,
+  "nix.serverPath": "nil",
+  "nix.serverSettings": {
+    // settings for 'nil' LSP
+    "nil": {
+      "diagnostics": {
+        "ignored": ["unused_binding", "unused_with"]
+      },
+      "formatting": {
+        "command": ["nixfmt"]
+      }
+    }
+  }
 }

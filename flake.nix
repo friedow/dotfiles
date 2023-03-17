@@ -21,9 +21,7 @@
       pkgs = (import nixpkgs) {
         inherit system;
         config.allowUnfree = true;
-        overlays = [
-          (import ./modules/rofi/overlay.nix)
-        ];
+        overlays = [ (import ./modules/rofi/overlay.nix) ];
       };
 
       specialArgs = { inherit inputs; };
@@ -61,7 +59,7 @@
         with import nixpkgs { system = "x86_64-linux"; };
         stdenv.mkDerivation {
           name = "dotfiles";
-          buildInputs = [ nixfmt ];
+          buildInputs = [ nixfmt nil ];
         };
     };
 }
