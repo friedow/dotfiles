@@ -12,17 +12,18 @@ def highlightDefaultSpeaker [speakers: table] {
 }
 
 def printSpeakers [speakers: table] {
-    $speakers | format '"{font-weight}" "{description}" "{name}"\n' | to text | xargs printf '<span weight="%s">%s</span>\0info\x1f%s\n'
+    $speakers | format $'<span weight="{font-weight}">{description}</span>(0x[00] | decode utf-8)info(0x[1f] | decode utf-8){name}' | to text
 }
 
 def listEntries [] {
-    let speakers = (pactl -f json list sources | from json | select name description)
+    let speakers = (pactl -f json list sources | from json | select name description | where not name ends-with ".monitor")
     let speakersWithFontWeight = (highlightDefaultSpeaker $speakers)
     printSpeakers $speakersWithFontWeight
 }
 
 def executeEntryAction [selectedEntry: string] {
     nohup pactl set-default-source $env.ROFI_INFO
+    listEntries
 }
 
 def main [selectedEntry?: string] {
