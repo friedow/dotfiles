@@ -2,38 +2,9 @@
 let
   fonts = import ../../config/fonts.nix;
 
-  rofi-sway = (pkgs.writeShellScriptBin "rofi-sway" ''
-    #!/usr/bin/env bash
-    # dependencies:
-    # - jq
-    # - sway
-    #
-    # install all dependencies
-    # nix shell nixpkgs#jq nixpkgs#sway --command "zsh"
-
-    function listEntries() {
-        swaymsg -t get_tree | jq -r '[recurse(.nodes[])] | map(select(.type == "con") | [ .name, .id ] | @sh) | .[] ' | xargs printf '%s\0info\x1f%s\n'
-    }
-
-    function executeEntryAction() {
-        coproc ( swaymsg "[con_id=$ROFI_INFO]" focus  > /dev/null  2>&1 )
-    }
-
-    function main() {
-        local selectedEntry=$1
-
-        if [[ -z $selectedEntry ]]; then
-            listEntries
-        else
-            executeEntryAction $selectedEntry
-        fi
-    }
-
-    main "$@"
-  '');
-
-  rofi-speakers = import ./rofi-speakers.nix pkgs;
-  rofi-microphones = import ./rofi-microphones.nix pkgs;
+  rofi-windows = import ./rofi-windows.nu pkgs;
+  rofi-speakers = import ./rofi-speakers.nu pkgs;
+  rofi-microphones = import ./rofi-microphones.nu pkgs;
 
   rofi-git-repositories = (pkgs.writeShellScriptBin "rofi-git-repositories" ''
     #!/usr/bin/env bash
@@ -108,7 +79,7 @@ in {
       scroll-method = 1;
       display-drun = "";
       combi-modes =
-        ":${rofi-sway}/bin/rofi-sway,drun,:${rofi-git-repositories}/bin/rofi-git-repositories,:${rofi-speakers}/bin/rofi-speakers,:${rofi-microphones}/bin/rofi-microphones";
+        ":${rofi-windows}/bin/rofi-windows,drun,:${rofi-git-repositories}/bin/rofi-git-repositories,:${rofi-speakers}/bin/rofi-speakers,:${rofi-microphones}/bin/rofi-microphones";
     };
 
     theme = "theme.rasi";

@@ -1,6 +1,7 @@
 pkgs:
 pkgs.writeScriptBin "rofi-speakers" ''
   #!${pkgs.nushell}/bin/nu
+  # TODO: preserver cursor position and prompt
 
   def highlightDefaultSpeaker [speakers: table] {
       $speakers | insert font-weight {
@@ -23,7 +24,7 @@ pkgs.writeScriptBin "rofi-speakers" ''
   }
 
   def executeEntryAction [selectedEntry: string] {
-      nohup ${pkgs.pulseaudio}/bin/pactl set-default-source $env.ROFI_INFO
+      nohup ${pkgs.pulseaudio}/bin/pactl set-default-source $env.ROFI_INFO | save /dev/null
       listEntries
   }
 

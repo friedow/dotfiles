@@ -14,7 +14,6 @@ in {
         serif = [ fonts.serif ];
         sansSerif = [ fonts.sansSerif ];
         monospace = [ "FiraCode Nerd Font" ];
-        
       };
     };
 
