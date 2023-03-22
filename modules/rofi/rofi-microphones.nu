@@ -4,7 +4,7 @@ pkgs.writeScriptBin "rofi-microphones" ''
 
   def highlightDefaultMicrophone [microphones: table] {
       $microphones | insert font-weight {
-          if $"($in.name)\n" == (${pkgs.pulseaudio}/bin/pactl get-default-sink) {
+          if $"($in.name)\n" == (${pkgs.pulseaudio}/bin/pactl get-default-source) {
               $"bold"
           } else {
               $"normal"
@@ -17,13 +17,13 @@ pkgs.writeScriptBin "rofi-microphones" ''
   }
 
   def listEntries [] {
-      let microphones = (${pkgs.pulseaudio}/bin/pactl -f json list sinks | from json | select name description | where not name ends-with ".monitor")
+      let microphones = (${pkgs.pulseaudio}/bin/pactl -f json list sources | from json | select name description | where not name ends-with ".monitor")
       let microphonesWithFontWeight = (highlightDefaultMicrophone $microphones)
       printMicrophones $microphonesWithFontWeight
   }
 
   def executeEntryAction [selectedEntry: string] {
-      nohup ${pkgs.pulseaudio}/bin/pactl set-default-sink $env.ROFI_INFO | save /dev/null
+      nohup ${pkgs.pulseaudio}/bin/pactl set-default-source $env.ROFI_INFO | save /dev/null
       listEntries
   }
 
