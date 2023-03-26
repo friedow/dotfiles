@@ -24,7 +24,6 @@ pkgs.writeScriptBin "rofi-microphones" ''
 
   def executeEntryAction [selectedEntry: string] {
       nohup ${pkgs.pulseaudio}/bin/pactl set-default-source $env.ROFI_INFO | save /dev/null
-      listEntries
   }
 
   def main [selectedEntry?: string] {
