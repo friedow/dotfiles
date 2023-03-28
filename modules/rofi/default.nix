@@ -2,9 +2,10 @@
 let
   fonts = import ../../config/fonts.nix;
 
-  rofi-windows = import ./rofi-windows.nu pkgs;
-  rofi-speakers = import ./rofi-speakers.nu pkgs;
   rofi-microphones = import ./rofi-microphones.nu pkgs;
+  rofi-speakers = import ./rofi-speakers.nu pkgs;
+  rofi-system-operations = import ./rofi-system-operations.nu pkgs;
+  rofi-windows = import ./rofi-windows.nu pkgs;
 
   rofi-git-repositories = (pkgs.writeShellScriptBin "rofi-git-repositories" ''
     #!/usr/bin/env bash
@@ -79,7 +80,7 @@ in {
       scroll-method = 1;
       display-drun = "";
       combi-modes =
-        ":${rofi-windows}/bin/rofi-windows,drun,:${rofi-git-repositories}/bin/rofi-git-repositories,:${rofi-speakers}/bin/rofi-speakers,:${rofi-microphones}/bin/rofi-microphones";
+        ":${rofi-windows}/bin/rofi-windows,drun,:${rofi-git-repositories}/bin/rofi-git-repositories,:${rofi-speakers}/bin/rofi-speakers,:${rofi-microphones}/bin/rofi-microphones,:${rofi-system-operations}/bin/rofi-system-operations";
     };
 
     theme = "theme.rasi";

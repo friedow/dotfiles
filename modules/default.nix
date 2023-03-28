@@ -11,6 +11,7 @@
     ./fonts.nix
     ./git.nix
     ./gtk.nix
+    ./hibernate.nix
     ./hm-alias.nix
     ./nautilus.nix
     ./networking.nix
