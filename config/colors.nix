@@ -1,4 +1,4 @@
-{ 
+{
   background = {
     primary = "#ffffff";
     secondary = "#f7f6f6";
