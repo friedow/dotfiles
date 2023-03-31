@@ -13,7 +13,7 @@
     ./nautilus.nix
     ./networking.nix
     ./notifications.nix
-    ./nushell.nix
+    ./shell.nix
     ./nix-cli.nix
     ./password-manager.nix
     ./plymouth

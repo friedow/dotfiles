@@ -34,7 +34,7 @@ in {
         mouse_left_click = "do_action";
       };
 
-      urgency_normal = { timeout = 10; };
+      urgency_normal.timeout = 10;
     };
   };
 }
