@@ -21,7 +21,6 @@
       pkgs = (import nixpkgs) {
         inherit system;
         config.allowUnfree = true;
-        overlays = [ (import ./modules/rofi/overlay.nix) ];
       };
 
       specialArgs = { inherit inputs; };

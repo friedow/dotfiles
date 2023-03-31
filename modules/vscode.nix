@@ -11,13 +11,15 @@ in {
       enable = true;
 
       extensions = with pkgs.vscode-extensions; [
-        mhutchie.git-graph
+        editorconfig.editorconfig
         github.github-vscode-theme
-
-        # TODO: comment in when NUR package is build
-        # humao.rest-client
-        # TODO: comment in when NUR PR is accepted
-        # ryuta46.multi-command
+        eamodio.gitlens
+        jnoortheen.nix-ide
+        esbenp.prettier-vscode
+        rust-lang.rust-analyzer
+        thenuprojectcontributors.vscode-nushell-lang
+        dbaeumer.vscode-eslint
+        bradlc.vscode-tailwindcss
       ];
 
       userSettings = {
