@@ -1,8 +1,8 @@
 { pkgs, ... }: {
   security.polkit.enable = true;
 
-  home-manager.users.christian.systemd.user.services = {
-    polkit-gnome-authentication-agent-1 = {
+  home-manager.users.christian.systemd.user.services.polkit-gnome-authentication-agent-1 =
+    {
       Unit = {
         After = [ "graphical-session-pre.target" ];
         Description = "polkit-gnome-authentication-agent-1";
@@ -20,5 +20,4 @@
 
       Install.WantedBy = [ "graphical-session.target" ];
     };
-  };
 }
