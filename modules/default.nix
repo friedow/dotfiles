@@ -4,22 +4,22 @@
     ./bootscreen
     ./browser.nix
     ./clipboard.nix
-    ./display-management.nix
+    ./display-manager.nix
     ./docker.nix
-    ./file-management.nix
+    ./file-manager.nix
     ./fonts.nix
     ./git.nix
     ./gtk.nix
     ./hibernate.nix
     ./launcher
     ./lockscreen
-    ./file-management.nix
+    ./file-manager.nix
     ./networking.nix
     ./notifications.nix
     ./shell.nix
     ./nix-cli.nix
     ./password-manager.nix
-    ./polkit.nix
+    ./privilige-manager.nix
     ./screensharing.nix
     ./screenshots.nix
     ./session.nix
