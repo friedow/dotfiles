@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 let
   charite-lg = {
     criteria = "Goldstar Company Ltd BK550Y 901NTDV9Y970";
@@ -18,11 +18,15 @@ let
     status = "disable";
   };
 in {
-  home-manager.users.christian.services.kanshi = {
-    enable = true;
-    profiles = {
-      laptop-undocked = { outputs = [ laptop ]; };
-      charite-docked = { outputs = [ laptop-off charite-lg ]; };
+  home-manager.users.christian = {
+    home.packages = with pkgs; [ wdisplays ];
+
+    services.kanshi = {
+      enable = true;
+      profiles = {
+        laptop-undocked = { outputs = [ laptop ]; };
+        charite-docked = { outputs = [ laptop-off charite-lg ]; };
+      };
     };
   };
 }

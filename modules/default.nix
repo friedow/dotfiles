@@ -2,7 +2,7 @@
   imports = [
     ./audio.nix
     ./browser.nix
-    ./displays.nix
+    ./display-management.nix
     ./docker.nix
     ./flameshot.nix
     ./fonts.nix
