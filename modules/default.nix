@@ -2,9 +2,9 @@
   imports = [
     ./audio.nix
     ./browser.nix
+    ./clipboard.nix
     ./display-management.nix
     ./docker.nix
-    ./flameshot.nix
     ./fonts.nix
     ./git.nix
     ./gtk.nix
@@ -20,6 +20,7 @@
     ./polkit.nix
     ./rofi
     ./screensharing.nix
+    ./screenshots.nix
     ./session.nix
     ./sway
     ./swaylock
@@ -27,7 +28,6 @@
     ./time.nix
     ./users.nix
     ./vscode.nix
-    ./wdisplays.nix
     ./yubikey
     ./zsh
   ];
