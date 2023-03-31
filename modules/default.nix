@@ -16,7 +16,6 @@
     ./nushell.nix
     ./nix-cli.nix
     ./password-manager.nix
-    ./pavucontrol.nix
     ./plymouth
     ./polkit.nix
     ./rofi
