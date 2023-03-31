@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }: {
+{ pkgs, inputs, ... }: {
   # nix develop, nix shell, ... should use the package index
   # which was used to build the system. This config enforces that.
 
