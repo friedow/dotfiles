@@ -29,7 +29,7 @@ in {
         "editor.fontFamily" = "monospace, 'Noto Color Emoji'";
         "editor.fontLigatures" = true;
         "workbench.panel.opensMaximized" = "always";
-        "terminal.integrated.defaultProfile.linux" = "zsh";
+        "terminal.integrated.defaultProfile.linux" = "nu";
         "files.autoSave" = "onFocusChange";
         "workbench.colorTheme" = "GitHub Light";
         "git-graph.dialog.createBranch.checkOut" = true;

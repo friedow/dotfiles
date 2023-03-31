@@ -29,6 +29,5 @@
     ./users.nix
     ./vscode.nix
     ./yubikey
-    ./zsh
   ];
 }
