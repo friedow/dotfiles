@@ -1,7 +1,6 @@
 { config, pkgs, ... }: {
   imports = [
     ./audio.nix
-    ./autologin.nix
     ./browser.nix
     ./displays.nix
     ./docker.nix
@@ -22,7 +21,7 @@
     ./polkit.nix
     ./rofi
     ./screensharing.nix
-    # ./search.nix
+    ./session.nix
     ./sway
     ./swaylock
     ./terminal.nix

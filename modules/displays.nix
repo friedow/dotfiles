@@ -22,9 +22,7 @@ in {
     enable = true;
     profiles = {
       laptop-undocked = { outputs = [ laptop ]; };
-      charite-docked = {
-        outputs = [ laptop-off charite-lg ];
-      };
+      charite-docked = { outputs = [ laptop-off charite-lg ]; };
     };
   };
 }

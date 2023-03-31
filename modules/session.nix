@@ -1,7 +1,5 @@
 { inputs, pkgs, lib, config, ... }:
-
 let
-  
   greetd-session = if config.machine.usesNixGl then
     (pkgs.writeShellScriptBin "greetd-session" ''
       source /etc/profile
