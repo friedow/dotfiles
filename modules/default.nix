@@ -1,6 +1,7 @@
 { config, pkgs, ... }: {
   imports = [
     ./audio.nix
+    ./bootscreen
     ./browser.nix
     ./clipboard.nix
     ./display-management.nix
@@ -10,24 +11,23 @@
     ./git.nix
     ./gtk.nix
     ./hibernate.nix
-    ./nautilus.nix
+    ./launcher
+    ./lockscreen
+    ./file-management.nix
     ./networking.nix
     ./notifications.nix
     ./shell.nix
     ./nix-cli.nix
     ./password-manager.nix
-    ./plymouth
     ./polkit.nix
-    ./rofi
     ./screensharing.nix
     ./screenshots.nix
     ./session.nix
-    ./sway
-    ./swaylock
     ./terminal.nix
     ./time.nix
     ./users.nix
     ./vscode.nix
     ./yubikey
+    ./window-manager
   ];
 }
