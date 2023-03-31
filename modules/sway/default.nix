@@ -23,7 +23,7 @@ in {
       ELM_ENGINE = "wayland_egl";
       GDK_BACKEND = "wayland";
       # chromium
-      NIXOS_OZONE_WL = "1"; 
+      NIXOS_OZONE_WL = "1";
       QT_QPA_PLATFORM = "wayland-egl";
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
       QT_WAYLAND_FORCE_DPI = "physical";
@@ -121,7 +121,8 @@ in {
 
           "${modifier}+Return" = "exec alacritty";
           "${modifier}+Shift+s" = "exec flameshot gui";
-          "${modifier}+Shift+p" = ''exec ${pkgs.wob}/bin/grim -g "$(${pkgs.slurp}/bin/slurp -p)" -t ppm - | ${pkgs.imagemagick}/bin/convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | ${pkgs.wl-clipboard}/bin/wl-copy'';
+          "${modifier}+Shift+p" = ''
+            exec ${pkgs.wob}/bin/grim -g "$(${pkgs.slurp}/bin/slurp -p)" -t ppm - | ${pkgs.imagemagick}/bin/convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | ${pkgs.wl-clipboard}/bin/wl-copy'';
           "${modifier}+l" = "exec lock";
 
           "${modifier}+Space" = "exec rofi -show combi";

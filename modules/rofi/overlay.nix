@@ -1,5 +1,4 @@
-self: super:
-{
+self: super: {
   rofi-custom = super.rofi.overrideAttrs (old: {
     src = super.fetchFromGitHub {
       owner = "davatorium";

@@ -55,11 +55,7 @@ in {
   };
 
   home-manager.users.christian = {
-
-    home.packages = with pkgs;
-      [
-        jq
-      ];
+    home.packages = with pkgs; [ jq ];
 
     home.file.rofi-theme = {
       source = ./theme.rasi;
