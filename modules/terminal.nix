@@ -3,6 +3,8 @@ let
   colors = import ../config/colors.nix;
   fonts = import ../config/fonts.nix;
 in {
+  environment.variables.TERM = "alacritty";
+
   home-manager.users.christian.programs.alacritty = {
     enable = true;
 

@@ -1,10 +1,8 @@
 { config, pkgs, ... }: {
   imports = [
-    ./1password.nix
-    ./alacritty.nix
     ./audio.nix
     ./autologin.nix
-    ./brave
+    ./browser.nix
     ./displays.nix
     ./docker.nix
     ./flameshot.nix
@@ -18,6 +16,7 @@
     ./notifications.nix
     ./nushell.nix
     ./nix-cli.nix
+    ./password-manager.nix
     ./pavucontrol.nix
     ./plymouth
     ./polkit.nix
@@ -26,6 +25,7 @@
     # ./search.nix
     ./sway
     ./swaylock
+    ./terminal.nix
     ./time.nix
     ./users.nix
     ./vscode.nix
