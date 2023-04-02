@@ -11,6 +11,7 @@
     ./git.nix
     ./gtk.nix
     ./hibernate.nix
+    ./kernel.nix
     ./launcher
     ./lockscreen
     ./file-manager.nix
