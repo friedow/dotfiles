@@ -30,10 +30,10 @@ pkgs.writeScriptBin "rofi-system-operations" ''
   }
 
   def main [selectedEntry?: string] {
-      if ($selectedEntry | length) > 0 {
-          executeEntryAction $selectedEntry
-      } else {
-          listEntries
-      }
+    if ($selectedEntry | length) > 0 {
+      executeEntryAction $selectedEntry
+    } else {
+      listEntries
+    }
   }
 ''

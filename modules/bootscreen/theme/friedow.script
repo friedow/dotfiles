@@ -98,7 +98,7 @@ Plymouth.SetDisplayPasswordFunction(DisplayPasswordCallback);
 
 fun DisplayNormalCallback() {
     state.status = "play";
-    bullets = null;-
+    bullets = null;
     prompt = null;
     message = null;
     question = null;

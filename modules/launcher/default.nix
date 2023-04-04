@@ -6,37 +6,8 @@ let
   rofi-speakers = import ./rofi-speakers.nu pkgs;
   rofi-system-operations = import ./rofi-system-operations.nu pkgs;
   rofi-windows = import ./rofi-windows.nu pkgs;
+  rofi-git-repositories = import ./rofi-git-repositories.nu pkgs;
 
-  rofi-git-repositories = (pkgs.writeShellScriptBin "rofi-git-repositories" ''
-    #!/usr/bin/env bash
-    # dependencies:
-    # - locate (use nix-locate)
-    # - sway
-    #
-    # install all dependencies
-    # nix shell nixpkgs#jq nixpkgs#sway --command "zsh"
-
-    function listEntries() {
-        # todo: write an index file
-        cat ~/.cache/rofi-git-repositories.txt
-    }
-
-    function executeEntryAction() {
-        coproc ( code "$ROFI_INFO"  > /dev/null  2>&1 )
-    }
-
-    function main() {
-        local selectedEntry=$1
-
-        if [[ -z $selectedEntry ]]; then
-            listEntries
-        else
-            executeEntryAction $selectedEntry
-        fi
-    }
-
-    main "$@"
-  '');
 in {
   systemd.user.services.rofi-git-repositories = {
     script = ''

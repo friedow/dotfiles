@@ -24,10 +24,11 @@ let
   };
 in {
   boot.initrd.systemd.enable = true;
-  boot.kernelParams = ["quiet" "loglevel=0"];
+  boot.consoleLogLevel = 0;
+  boot.kernelParams = ["quiet"];
   boot.plymouth = {
     enable = true;
     themePackages = with pkgs; [ friedow-plymouth ];
-    # theme = "friedow";
+    theme = "friedow";
   };
 }
