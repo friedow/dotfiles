@@ -1,5 +1,4 @@
-pkgs:
-pkgs.writeScriptBin "rofi-git-repositories" ''
+pkgs: ''
   #!${pkgs.nushell}/bin/nu
 
   def listEntries [] {

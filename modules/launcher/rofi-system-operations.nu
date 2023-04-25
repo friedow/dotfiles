@@ -1,7 +1,5 @@
-pkgs:
-pkgs.writeScriptBin "rofi-system-operations" ''
+pkgs: ''
   #!${pkgs.nushell}/bin/nu
-  # TODO: preserver cursor position and prompt
 
   def listEntries [] {
     [ "Sleep" "Hibernate" "Restart" "Shutdown" ] | to text

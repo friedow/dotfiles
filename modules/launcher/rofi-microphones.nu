@@ -1,5 +1,4 @@
-pkgs:
-pkgs.writeScriptBin "rofi-microphones" ''
+pkgs: ''
   #!${pkgs.nushell}/bin/nu
 
   def highlightDefaultMicrophone [microphones: table] {

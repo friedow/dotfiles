@@ -1,5 +1,4 @@
-pkgs:
-pkgs.writeScriptBin "rofi-speakers" ''
+pkgs: ''
   #!${pkgs.nushell}/bin/nu
   # TODO: preserver cursor position and prompt
 

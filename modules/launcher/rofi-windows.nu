@@ -1,5 +1,4 @@
-pkgs:
-pkgs.writeScriptBin "rofi-windows" ''
+pkgs: ''
   #!${pkgs.nushell}/bin/nu
 
   def listEntries [] {
