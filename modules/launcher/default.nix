@@ -1,14 +1,20 @@
-{ pkgs, ... }:
+{ pkgs, stdenv, ... }:
 let
-  fonts = import ../../config/fonts.nix;
 
+  rofi-git-repositories = import ./rofi-git-repositories.nu pkgs;
   rofi-microphones = import ./rofi-microphones.nu pkgs;
   rofi-speakers = import ./rofi-speakers.nu pkgs;
   rofi-system-operations = import ./rofi-system-operations.nu pkgs;
   rofi-windows = import ./rofi-windows.nu pkgs;
-  rofi-git-repositories = import ./rofi-git-repositories.nu pkgs;
+
+  # TODO: Continue packaging all the plugins and using them under rofi.plugins
+  texst = stdenv.mkDerivation {};
 
 in {
+  imports = [
+    ./rofi-git-repositories-service.nix
+  ];
+
   systemd.user.services.rofi-git-repositories = {
     script = ''
       #!${pkgs.stdenv.shell}
@@ -26,30 +32,28 @@ in {
   };
 
   home-manager.users.christian = {
-    home.packages = with pkgs; [ jq ];
-
     home.file.rofi-theme = {
       source = ./theme.rasi;
       target = ".config/rofi/theme.rasi";
     };
-  };
+  
+    programs.rofi = {
+      enable = true;
+      package = pkgs.rofi-wayland;
+      terminal = "${pkgs.alacritty}/bin/alacritty";
+      plugins = [ rofi-windows pkgs.rofi-calc ];
 
-  home-manager.users.christian.programs.rofi = {
-    enable = true;
-    package = pkgs.rofi-wayland;
-    terminal = "${pkgs.alacritty}/bin/alacritty";
-    plugins = [ ];
+      extraConfig = {
+        modes = "combi";
+        combi-display-format = "{mode}  {text}";
+        # continuous scolling
+        scroll-method = 1;
+        display-drun = "";
+        combi-modes =
+          ":${rofi-windows}/bin/rofi-windows,drun,:${rofi-git-repositories}/bin/rofi-git-repositories,:${rofi-speakers}/bin/rofi-speakers,:${rofi-microphones}/bin/rofi-microphones,:${rofi-system-operations}/bin/rofi-system-operations";
+      };
 
-    extraConfig = {
-      modes = "combi";
-      combi-display-format = "{mode}  {text}";
-      # continuous scolling
-      scroll-method = 1;
-      display-drun = "";
-      combi-modes =
-        ":${rofi-windows}/bin/rofi-windows,drun,:${rofi-git-repositories}/bin/rofi-git-repositories,:${rofi-speakers}/bin/rofi-speakers,:${rofi-microphones}/bin/rofi-microphones,:${rofi-system-operations}/bin/rofi-system-operations";
+      theme = "theme.rasi";
     };
-
-    theme = "theme.rasi";
   };
 }
