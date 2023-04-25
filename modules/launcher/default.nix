@@ -1,4 +1,4 @@
-{ pkgs, stdenv, ... }:
+{ pkgs, ... }:
 let
 
   importRofiPlugin = plugin-name: 
@@ -32,8 +32,14 @@ in {
         # continuous scolling
         scroll-method = 1;
         display-drun = "";
-        combi-modes =
-          ":${rofi-windows}/bin/rofi-windows,drun,:${rofi-git-repositories}/bin/rofi-git-repositories,:${rofi-speakers}/bin/rofi-speakers,:${rofi-microphones}/bin/rofi-microphones,:${rofi-system-operations}/bin/rofi-system-operations";
+        combi-modes = [
+          ":${rofi-windows}/bin/rofi-windows"
+          "drun"
+          ":${rofi-git-repositories}/bin/rofi-git-repositories"
+          ":${rofi-speakers}/bin/rofi-speakers"
+          ":${rofi-microphones}/bin/rofi-microphones"
+          ":${rofi-system-operations}/bin/rofi-system-operations"
+        ];
       };
 
       theme = "theme.rasi";
