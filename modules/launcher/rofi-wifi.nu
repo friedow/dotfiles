@@ -2,8 +2,8 @@ pkgs: ''
   #!${pkgs.nushell}/bin/nu
 
   def addFontWeightColumn [wifiNetworks: table] {
-    $wifiNetworks | insert font-weight {
-      if $in.IN-USE == "*" {
+    $wifiNetworks | insert font-weight { |it|
+      if $it.IN-USE == "*" {
         $"bold"
       } else {
         $"normal"
@@ -13,7 +13,7 @@ pkgs: ''
 
   def listEntries [] {
     let wifiNetworks = (open ~/.cache/rofi-wifi.txt | from ssv --aligned-columns | uniq-by SSID)
-    let wifiNetworks = addFontWeightColumn $wifiNetworks
+    let wifiNetworks = (addFontWeightColumn $wifiNetworks)
     
     # rofi row option separators
     let __0 = (0x[00] | decode utf-8)
@@ -26,8 +26,8 @@ pkgs: ''
   }
 
   def main [selectedEntry?: string] {
-    # printf '\0markup-rows\x1ftrue\n'
-    $"(0x[00] | decode utf-8)markup-rows(0x[1f] | decode utf-8)true"
+    printf '\0markup-rows\x1ftrue\n'
+
     if ($selectedEntry | length) > 0 {
       executeEntryAction $selectedEntry
     } else {

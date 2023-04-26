@@ -3,8 +3,8 @@ pkgs: ''
   # TODO: preserver cursor position and prompt
 
   def highlightDefaultSpeaker [speakers: table] {
-    $speakers | insert font-weight {
-      if $"($in.name)\n" == (${pkgs.pulseaudio}/bin/pactl get-default-sink) {
+    $speakers | insert font-weight { |it|
+      if $it.name == (${pkgs.pulseaudio}/bin/pactl get-default-sink) {
         $"bold"
       } else {
         $"normal"

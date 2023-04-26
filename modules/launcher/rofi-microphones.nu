@@ -2,8 +2,8 @@ pkgs: ''
   #!${pkgs.nushell}/bin/nu
 
   def highlightDefaultMicrophone [microphones: table] {
-    $microphones | insert font-weight {
-      if $"($in.name)\n" == (${pkgs.pulseaudio}/bin/pactl get-default-source) {
+    $microphones | insert font-weight { |it|
+      if $it.name == (${pkgs.pulseaudio}/bin/pactl get-default-source) {
         $"bold"
       } else {
         $"normal"
