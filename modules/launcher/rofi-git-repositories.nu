@@ -3,7 +3,12 @@ pkgs: ''
 
   def listEntries [] {
     let gitRepositoryPaths = (open ~/.cache/rofi-git-repositories.txt | each { |it| $it | str replace "/.git$" "" } | wrap "path")
-    $gitRepositoryPaths | insert name { |it| $it.path | str replace ".*/([^/]+)" "$1" }
+    let gitRepositories = ($gitRepositoryPaths | insert name { |it| $it.path | str replace ".*/([^/]+)" "$1" })
+
+    # rofi row option separators
+    let __0 = (0x[00] | decode utf-8)
+    let __1 = (0x[1f] | decode utf-8)
+    $windows | format $'{name}($__0)info($__1){path}($__1)meta($__1)git {path}' | to text
   }
 
   def executeEntryAction [selectedEntry: string] {
