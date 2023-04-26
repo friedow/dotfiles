@@ -2,7 +2,8 @@ pkgs: ''
   #!${pkgs.nushell}/bin/nu
 
   def listEntries [] {
-    cat ~/.cache/rofi-git-repositories.txt
+    let gitRepositoryPaths = (open ~/.cache/rofi-git-repositories.txt | each { |it| $it | str replace "/.git$" "" } | wrap "path")
+    $gitRepositoryPaths | insert name { |it| $it.path | str replace ".*/([^/]+)" "$1" }
   }
 
   def executeEntryAction [selectedEntry: string] {

@@ -1,10 +1,12 @@
 { pkgs, ... }: {
   systemd.user.services.rofi-git-repositories = {
     script = ''
-      #!${pkgs.stdenv.shell}
-      set -euo pipefail
+      #!${pkgs.nushell}/bin/nu
 
-      find ~ -not -path '*/.*/.git' -type d -name '.git' | sed 's/^\(.*\/\(.*\)\)\/.git$/\2 \1/' | xargs printf '%s\0info\x1f%s\n' > ~/.cache/rofi-git-repositories.txt
+      cd $env.HOME
+      glob "[!.]*/**/.git" | save ~/.cache/rofi-git-repositories.txt
+
+      # find ~ -not -path '*/.*/.git' -type d -name '.git' | sed 's/^\(.*\/\(.*\)\)\/.git$/\2 \1/' | xargs printf '%s\0info\x1f%s\n' > ~/.cache/rofi-git-repositories.txt
     '';
     serviceConfig = { Type = "oneshot"; };
   };
