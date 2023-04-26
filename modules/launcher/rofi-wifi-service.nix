@@ -1,9 +1,9 @@
 { pkgs, ... }: {
   systemd.user.services.rofi-wifi = {
     script = ''
-      #!${pkgs.nushell}/bin/nu
-      
-      ${pkgs.networkmanager}/bin/nmcli device wifi list | save ~/.cache/rofi-wifi.txt
+      ${pkgs.nushell}/bin/nu -c " \
+        ${pkgs.networkmanager}/bin/nmcli device wifi list | save ~/.cache/rofi-wifi.txt \
+      "
     '';
     serviceConfig = { Type = "oneshot"; };
   };

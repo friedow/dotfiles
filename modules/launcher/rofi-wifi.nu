@@ -12,8 +12,8 @@ pkgs: ''
   }
 
   def listEntries [] {
-    mut wifiNetworks = (open ~/.cache/rofi-wifi.txt | from ssv --aligned-columns | uniq-by SSID)
-    $wifiNetworks = addFontWeightColumn $wifiNetworks
+    let wifiNetworks = (open ~/.cache/rofi-wifi.txt | from ssv --aligned-columns | uniq-by SSID)
+    let wifiNetworks = addFontWeightColumn $wifiNetworks
     
     # rofi row option separators
     let __0 = (0x[00] | decode utf-8)
