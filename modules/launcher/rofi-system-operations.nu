@@ -2,11 +2,14 @@ pkgs: ''
   #!${pkgs.nushell}/bin/nu
 
   def listEntries [] {
-    [ "Sleep" "Hibernate" "Restart" "Shutdown" ] | to text
+    [ "Lock" "Sleep" "Hibernate" "Restart" "Shutdown" ] | to text
   }
 
   def executeEntryAction [selectedEntry: string] {
-    # TODO: add lock action
+    if $selectedEntry == "Lock" {
+      nohup lock
+      return
+    }
   
     if $selectedEntry == "Sleep" {
       nohup systemctl suspend-then-hibernate
