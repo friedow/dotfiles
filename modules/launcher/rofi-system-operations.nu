@@ -6,6 +6,8 @@ pkgs: ''
   }
 
   def executeEntryAction [selectedEntry: string] {
+    # TODO: add lock action
+  
     if $selectedEntry == "Sleep" {
       nohup systemctl suspend-then-hibernate
       return

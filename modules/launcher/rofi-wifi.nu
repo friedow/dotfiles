@@ -15,10 +15,10 @@ pkgs: ''
     mut wifiNetworks = (open ~/.cache/rofi-wifi.txt | from ssv --aligned-columns | uniq-by SSID)
     $wifiNetworks = addFontWeightColumn $wifiNetworks
     
-    # Row option separators according to rofi docs
-    let sep0 = (0x[00] | decode utf-8)
-    let sep1 = (0x[1f] | decode utf-8)
-    $wifiNetworks | format $'<span weight="{font-weight}">{SSID}</span>SPACE<span>{BARS}</span>($sep0)info($sep1){SSID}($sep1)meta($sep1)wifi networks' | to text
+    # rofi row option separators
+    let __0 = (0x[00] | decode utf-8)
+    let __1 = (0x[1f] | decode utf-8)
+    $wifiNetworks | format $'<span weight="{font-weight}">{SSID}</span>SPACE<span>{BARS}</span>($__0)info($__1){SSID}($__1)meta($__1)wifi networks' | to text
   }
 
   def executeEntryAction [selectedEntry: string] {

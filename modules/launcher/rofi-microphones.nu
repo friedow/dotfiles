@@ -12,7 +12,10 @@ pkgs: ''
   }
 
   def printMicrophones [microphones: table] {
-    $microphones | format $'<span weight="{font-weight}">{description}</span>(0x[00] | decode utf-8)info(0x[1f] | decode utf-8){name}(0x[1f] | decode utf-8)meta(0x[1f] | decode utf-8)audio microphones' | to text
+    # rofi row option separators
+    let __0 = (0x[00] | decode utf-8)
+    let __1 = (0x[1f] | decode utf-8)
+    $microphones | format $'<span weight="{font-weight}">{description}</span>($__0)info($__1){name}($__1)meta($__1)audio microphones' | to text
   }
 
   def listEntries [] {

@@ -4,7 +4,11 @@ pkgs: ''
   def listEntries [] {
     let swayNodes = (${pkgs.sway}/bin/swaymsg -t get_tree | ${pkgs.jq}/bin/jq -r '[recurse(.nodes[])]' | from json)
     let windows = ($swayNodes | where type == "con" | select name id)
-    $windows | format $'{name}(0x[00] | decode utf-8)info(0x[1f] | decode utf-8){id}(0x[1f] | decode utf-8)meta(0x[1f] | decode utf-8)windows sway' | to text
+
+    # rofi row option separators
+    let __0 = (0x[00] | decode utf-8)
+    let __1 = (0x[1f] | decode utf-8)
+    $windows | format $'{name}($__0)info($__1){id}($__1)meta($__1)windows sway' | to text
   }
 
   def executeEntryAction [selectedEntry: string] {
