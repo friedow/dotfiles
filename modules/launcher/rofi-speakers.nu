@@ -2,6 +2,13 @@ pkgs: ''
   #!${pkgs.nushell}/bin/nu
   # TODO: preserver cursor position and prompt
 
+  def spawn [command: block] {
+    let config_path = $nu.config-path
+    let env_path = $nu.env-path
+    let source_code = (view source $command | str trim -l -c '{' | str trim -r -c '}')
+    ${pkgs.pueue}/bin/pueue add -p $"nu --config \"($config_path)\" --env-config \"($env_path)\" -c '($source_code)'" | save /dev/null
+  }
+
   def highlightDefaultSpeaker [speakers: table] {
     $speakers | insert font-weight { |it|
       if $it.name == (${pkgs.pulseaudio}/bin/pactl get-default-sink) {
@@ -26,7 +33,7 @@ pkgs: ''
   }
 
   def executeEntryAction [selectedEntry: string] {
-    nohup ${pkgs.pulseaudio}/bin/pactl set-default-sink $env.ROFI_INFO | save /dev/null
+    spawn { ${pkgs.pulseaudio}/bin/pactl set-default-sink $env.ROFI_INFO }
   }
 
   def main [selectedEntry?: string] {

@@ -1,6 +1,13 @@
 pkgs: ''
   #!${pkgs.nushell}/bin/nu
 
+  def spawn [command: block] {
+    let config_path = $nu.config-path
+    let env_path = $nu.env-path
+    let source_code = (view source $command | str trim -l -c '{' | str trim -r -c '}')
+    ${pkgs.pueue}/bin/pueue add -p $"nu --config \"($config_path)\" --env-config \"($env_path)\" -c '($source_code)'" | save /dev/null
+  }
+
   def listEntries [] {
     let swayNodes = (${pkgs.sway}/bin/swaymsg -t get_tree | ${pkgs.jq}/bin/jq -r '[recurse(.nodes[])]' | from json)
     let windows = ($swayNodes | where type == "con" | select name id)
@@ -12,7 +19,7 @@ pkgs: ''
   }
 
   def executeEntryAction [selectedEntry: string] {
-    nohup ${pkgs.sway}/bin/swaymsg $"[con_id=($env.ROFI_INFO)]" focus | save /dev/null
+    spawn { ${pkgs.sway}/bin/swaymsg $"[con_id=($env.ROFI_INFO)]" focus }
   }
 
   def main [selectedEntry?: string] {

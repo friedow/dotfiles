@@ -1,6 +1,13 @@
 pkgs: ''
   #!${pkgs.nushell}/bin/nu
 
+  def spawn [command: block] {
+    let config_path = $nu.config-path
+    let env_path = $nu.env-path
+    let source_code = (view source $command | str trim -l -c '{' | str trim -r -c '}')
+    ${pkgs.pueue}/bin/pueue add -p $"nu --config \"($config_path)\" --env-config \"($env_path)\" -c '($source_code)'" | save /dev/null
+  }
+
   def listEntries [] {
     let gitRepositoryPaths = (open ~/.cache/rofi-git-repositories.txt | lines | each { |it| $it | str replace "/.git$" "" } | wrap "path")
     let gitRepositories = ($gitRepositoryPaths | insert name { |it| $it.path | str replace ".*/([^/]+)" "$1" })
@@ -12,7 +19,7 @@ pkgs: ''
   }
 
   def executeEntryAction [selectedEntry: string] {
-    nohup code $env.ROFI_INFO | save /dev/null
+    spawn { code $env.ROFI_INFO }
   }
 
   def main [selectedEntry?: string] {
