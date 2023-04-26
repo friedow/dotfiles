@@ -1,0 +1,35 @@
+pkgs: ''
+  #!${pkgs.nushell}/bin/nu
+
+  def addFontWeightColumn [wifiNetworks: table] {
+    $wifiNetworks | insert font-weight {
+      if $in.IN-USE == "*" {
+        $"bold"
+      } else {
+        $"normal"
+      }
+    }
+  }
+
+  def listEntries [] {
+    mut wifiNetworks = (open ~/.cache/rofi-wifi.txt | from ssv --aligned-columns | uniq-by SSID)
+    $wifiNetworks = addFontWeightColumn $wifiNetworks
+    
+    # Row option separators according to rofi docs
+    let sep0 = (0x[00] | decode utf-8)
+    let sep1 = (0x[1f] | decode utf-8)
+    $wifiNetworks | format $'<span weight="{font-weight}">{SSID}</span>SPACE<span>{BARS}</span>($sep0)info($sep1){SSID}($sep1)meta($sep1)wifi networks' | to text
+  }
+
+  def executeEntryAction [selectedEntry: string] {
+    nohup ${pkgs.networkmanager}/bin/nmcli device wifi connect $env.ROFI_INFO | save /dev/null
+  }
+
+  def main [selectedEntry?: string] {
+    if ($selectedEntry | length) > 0 {
+      executeEntryAction $selectedEntry
+    } else {
+      listEntries
+    }
+  }
+''
