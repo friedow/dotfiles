@@ -18,7 +18,7 @@ pkgs: ''
     # rofi row option separators
     let __0 = (0x[00] | decode utf-8)
     let __1 = (0x[1f] | decode utf-8)
-    $wifiNetworks | format $'<span weight="{font-weight}">{SSID}</span>SPACE<span>{BARS}</span>($__0)info($__1){SSID}($__1)meta($__1)wifi networks' | to text
+    $wifiNetworks | format $'<span weight="{font-weight}">{BARS}  {SSID}</span>($__0)info($__1){SSID}($__1)meta($__1)wifi networks' | to text
   }
 
   def executeEntryAction [selectedEntry: string] {
@@ -26,6 +26,8 @@ pkgs: ''
   }
 
   def main [selectedEntry?: string] {
+    # printf '\0markup-rows\x1ftrue\n'
+    $"(0x[00] | decode utf-8)markup-rows(0x[1f] | decode utf-8)true"
     if ($selectedEntry | length) > 0 {
       executeEntryAction $selectedEntry
     } else {

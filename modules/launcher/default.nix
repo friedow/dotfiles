@@ -1,8 +1,14 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 let
 
+  # TODO: import unstable packages globally
+  pkgs-unstable = (import inputs.nixpkgs-unstable) {
+    system = "x86_64-linux";
+    config.allowUnfree = true;
+  };
+
   importRofiPlugin = plugin-name: 
-    let plugin-script = import (./. + "/${plugin-name}.nu") pkgs;
+    let plugin-script = import (./. + "/${plugin-name}.nu") pkgs-unstable;
     in pkgs.writeScriptBin "${plugin-name}" plugin-script;
   
   rofi-git-repositories = importRofiPlugin "rofi-git-repositories";
