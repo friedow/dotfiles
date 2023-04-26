@@ -10,11 +10,11 @@ let
   rofi-speakers = importRofiPlugin "rofi-speakers";
   rofi-system-operations = importRofiPlugin "rofi-system-operations";
   rofi-windows = importRofiPlugin "rofi-windows";
-  rofi-wifi = importRofiPlugin "rofi-wifi";
+  # rofi-wifi = importRofiPlugin "rofi-wifi";
 in {
   imports = [
     ./rofi-git-repositories-service.nix
-    ./rofi-wifi-service.nix
+    # ./rofi-wifi-service.nix
   ];
 
   home-manager.users.christian = {
@@ -42,7 +42,7 @@ in {
           ":${rofi-microphones}/bin/rofi-microphones"
           ":${rofi-system-operations}/bin/rofi-system-operations"
           # TODO: add icon
-          ":${rofi-wifi}/bin/rofi-wifi"
+          # ":${rofi-wifi}/bin/rofi-wifi"
         ];
       };
 
