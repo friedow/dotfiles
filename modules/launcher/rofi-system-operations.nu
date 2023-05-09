@@ -1,40 +1,33 @@
 pkgs: ''
   #!${pkgs.nushell}/bin/nu
 
-  def spawn [command: block] {
-    let config_path = $nu.config-path
-    let env_path = $nu.env-path
-    let source_code = (view source $command | str trim -l -c '{' | str trim -r -c '}')
-    ${pkgs.pueue}/bin/pueue add -p $"nu --config \"($config_path)\" --env-config \"($env_path)\" -c '($source_code)'" | save /dev/null
-  }
-
   def listEntries [] {
     [ "Lock" "Sleep" "Hibernate" "Restart" "Shutdown" ] | to text
   }
 
   def executeEntryAction [selectedEntry: string] {
     if $selectedEntry == "Lock" {
-      spawn { lock }
+      bash -c 'lock >&/dev/null'
       return
     }
   
     if $selectedEntry == "Sleep" {
-      spawn { systemctl suspend-then-hibernate }
+      bash -c 'systemctl suspend-then-hibernate >&/dev/null'
       return
     }
     
     if $selectedEntry == "Hibernate" {
-      spawn { systemctl hibernate }
+      bash -c 'systemctl hibernate >&/dev/null'
       return
     }
 
     if $selectedEntry == "Restart" {
-      spawn { reboot }
+      bash -c 'reboot >&/dev/null'
       return
     }
 
     if $selectedEntry == "Shutdown" {
-      spawn { shutdown -h now }
+      bash -c 'shutdown -h now >&/dev/null'
       return
     }
   }

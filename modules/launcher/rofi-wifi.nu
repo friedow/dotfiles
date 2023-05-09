@@ -1,13 +1,6 @@
 pkgs: ''
   #!${pkgs.nushell}/bin/nu
 
-  def spawn [command: block] {
-    let config_path = $nu.config-path
-    let env_path = $nu.env-path
-    let source_code = (view source $command | str trim -l -c '{' | str trim -r -c '}')
-    ${pkgs.pueue}/bin/pueue add -p $"nu --config \"($config_path)\" --env-config \"($env_path)\" -c '($source_code)'" | save /dev/null
-  }
-
   def addFontWeightColumn [wifiNetworks: table] {
     $wifiNetworks | insert font-weight { |it|
       if $it.IN-USE == "*" {
@@ -29,7 +22,7 @@ pkgs: ''
   }
 
   def executeEntryAction [selectedEntry: string] {
-    spawn { ${pkgs.networkmanager}/bin/nmcli device wifi connect $env.ROFI_INFO }
+    bash -c $'${pkgs.networkmanager}/bin/nmcli device wifi connect ($env.ROFI_INFO) >&/dev/null'
   }
 
   def main [selectedEntry?: string] {
