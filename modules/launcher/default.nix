@@ -11,6 +11,7 @@ let
     let plugin-script = import (./. + "/${plugin-name}.nu") pkgs-unstable;
     in pkgs.writeScriptBin "${plugin-name}" plugin-script;
   
+  rofi-brave-bookmarks = importRofiPlugin "rofi-brave-bookmarks";
   rofi-git-repositories = importRofiPlugin "rofi-git-repositories";
   rofi-microphones = importRofiPlugin "rofi-microphones";
   rofi-speakers = importRofiPlugin "rofi-speakers";
@@ -45,6 +46,7 @@ in {
         combi-modes = [
           ":${rofi-windows}/bin/rofi-windows"
           "drun"
+          ":${rofi-brave-bookmarks}/bin/rofi-brave-bookmarks"
           ":${rofi-git-repositories}/bin/rofi-git-repositories"
           ":${rofi-speakers}/bin/rofi-speakers"
           ":${rofi-microphones}/bin/rofi-microphones"
