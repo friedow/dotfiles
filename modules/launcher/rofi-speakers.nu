@@ -1,6 +1,10 @@
 pkgs: ''
   #!${pkgs.nushell}/bin/nu
 
+  def spawn [command: string] {
+    bash -c $"coproc \( ($command) >&/dev/null )"
+  }
+
   def highlightDefaultSpeaker [speakers: table] {
     $speakers | insert font-weight { |it|
       if $it.name == (${pkgs.pulseaudio}/bin/pactl get-default-sink) {
@@ -25,7 +29,7 @@ pkgs: ''
   }
 
   def executeEntryAction [selectedEntry: string] {
-    bash -c $'${pkgs.pulseaudio}/bin/pactl set-default-sink ($env.ROFI_INFO) >&/dev/null'
+    spawn $"${pkgs.pulseaudio}/bin/pactl set-default-sink ($env.ROFI_INFO)"
   }
 
   def main [selectedEntry?: string] {

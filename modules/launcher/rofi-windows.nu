@@ -1,6 +1,10 @@
 pkgs: ''
   #!${pkgs.nushell}/bin/nu
 
+  def spawn [command: string] {
+    bash -c $"coproc \( ($command) >&/dev/null )"
+  }
+
   def listEntries [] {
     let swayNodes = (${pkgs.sway}/bin/swaymsg -t get_tree | ${pkgs.jq}/bin/jq -r '[recurse(.nodes[])]' | from json)
     let windows = ($swayNodes | where type == "con" | select name id)
@@ -12,7 +16,7 @@ pkgs: ''
   }
 
   def executeEntryAction [selectedEntry: string] {
-    bash -c $'${pkgs.sway}/bin/swaymsg [con_id=($env.ROFI_INFO)] focus >&/dev/null'
+    spawn $"${pkgs.sway}/bin/swaymsg [con_id=($env.ROFI_INFO)] focus"
   }
 
   def main [selectedEntry?: string] {

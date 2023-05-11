@@ -1,6 +1,10 @@
 pkgs: ''
   #!${pkgs.nushell}/bin/nu
 
+  def spawn [command: string] {
+    bash -c $"coproc \( ($command) >&/dev/null )"
+  }
+
   def get_bookmarks_recursive [bookmark: table] {
     if $bookmark.name == 'Progressive Web Apps' {
       return []
@@ -27,7 +31,7 @@ pkgs: ''
   }
 
   def executeEntryAction [selectedEntry: string] {
-    bash -c $'brave ($env.ROFI_INFO) >&/dev/null'
+    spawn $"brave \"($env.ROFI_INFO)\""
   }
 
   def main [selectedEntry?: string] {

@@ -1,6 +1,10 @@
 pkgs: ''
   #!${pkgs.nushell}/bin/nu
 
+  def spawn [command: string] {
+    bash -c $"coproc \( ($command) >&/dev/null )"
+  }
+
   def addFontWeightColumn [wifiNetworks: table] {
     $wifiNetworks | insert font-weight { |it|
       if $it.IN-USE == "*" {
@@ -22,7 +26,7 @@ pkgs: ''
   }
 
   def executeEntryAction [selectedEntry: string] {
-    bash -c $'${pkgs.networkmanager}/bin/nmcli device wifi connect ($env.ROFI_INFO) >&/dev/null'
+    spawn $"${pkgs.networkmanager}/bin/nmcli device wifi connect ($env.ROFI_INFO)"
   }
 
   def main [selectedEntry?: string] {

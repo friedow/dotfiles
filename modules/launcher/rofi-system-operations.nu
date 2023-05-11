@@ -1,33 +1,38 @@
 pkgs: ''
   #!${pkgs.nushell}/bin/nu
 
+  def spawn [command: string] {
+    bash -c $"coproc \( ($command) >&/dev/null )"
+  }
+
   def listEntries [] {
     [ "Lock" "Sleep" "Hibernate" "Restart" "Shutdown" ] | to text
   }
 
   def executeEntryAction [selectedEntry: string] {
     if $selectedEntry == "Lock" {
-      bash -c 'lock >&/dev/null'
+      spawn "lock"
       return
     }
   
     if $selectedEntry == "Sleep" {
-      bash -c 'systemctl suspend-then-hibernate >&/dev/null'
+      spawn "systemctl suspend-then-hibernate"
       return
     }
     
     if $selectedEntry == "Hibernate" {
-      bash -c 'systemctl hibernate >&/dev/null'
+      spawn "systemctl hibernate"
       return
     }
 
     if $selectedEntry == "Restart" {
+      spawn "reboot"
       bash -c 'reboot >&/dev/null'
       return
     }
 
     if $selectedEntry == "Shutdown" {
-      bash -c 'shutdown -h now >&/dev/null'
+      spawn "shutdown -h now"
       return
     }
   }

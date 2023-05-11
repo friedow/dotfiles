@@ -1,6 +1,10 @@
 pkgs: ''
   #!${pkgs.nushell}/bin/nu
 
+  def spawn [command: string] {
+    bash -c $"coproc \( ($command) >&/dev/null )"
+  }
+
   def listEntries [] {
     let gitRepositoryPaths = (open ~/.cache/rofi-git-repositories.txt | lines | each { |it| $it | str replace "/.git$" "" } | wrap "path")
     let gitRepositories = ($gitRepositoryPaths | insert name { |it| $it.path | str replace ".*/([^/]+)" "$1" })
@@ -12,7 +16,7 @@ pkgs: ''
   }
 
   def executeEntryAction [selectedEntry: string] {
-    bash -c $'code ($env.ROFI_INFO) >&/dev/null'
+    spawn $"code \"($env.ROFI_INFO)\""
   }
 
   def main [selectedEntry?: string] {
