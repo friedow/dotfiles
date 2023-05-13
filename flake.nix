@@ -72,9 +72,9 @@
         ./modules/arion.nix
         ./modules/docker.nix
         ./modules/nightscout.nix
+        ./modules/reverse-proxy.nix
         ./modules/ssh-server.nix
         ./modules/time.nix
-        ./modules/traefik.nix
         ./modules/users.nix
       ];
     in {
