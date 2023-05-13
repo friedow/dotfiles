@@ -11,7 +11,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs:
+  outputs = { nixpkgs, ... }@inputs:
     let
       specialArgs = { inherit inputs; };
 
@@ -21,7 +21,6 @@
         config.allowUnfree = true;
       };
       desktop-modules = [
-        home-manager.nixosModules.home-manager
         ./modules/audio.nix
         ./modules/bootscreen
         ./modules/browser.nix
@@ -37,7 +36,6 @@
         ./modules/kernel.nix
         ./modules/launcher
         ./modules/lockscreen
-        ./modules/file-manager.nix
         ./modules/networking.nix
         ./modules/notifications.nix
         ./modules/shell.nix
@@ -54,6 +52,17 @@
         ./modules/yubikey
         ./modules/window-manager
       ];
+
+      # server-system = "arm64-linux";
+      # server-pkgs = (import nixpkgs) {
+      #   system = server-system;
+      # };
+      # server-modules = [
+      #   arion.nixosModules.arion
+      #   ./modules/time.nix
+      #   ./modules/users.nix
+      #   ./modules/ssh-server.nix
+      # ];
     in {
       nixosConfigurations = {
         avalanche = nixpkgs.lib.nixosSystem {
