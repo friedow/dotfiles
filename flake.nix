@@ -5,10 +5,16 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # opengl wrapper for nvidia
-    nixgl.url = "github:guibou/nixGL";
+    nixgl = {
+      url = "github:guibou/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    home-manager.url = "github:nix-community/home-manager/release-22.11";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    home-manager = {
+      url = "github:nix-community/home-manager/release-22.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, ... }@inputs:
@@ -81,7 +87,7 @@
       };
 
       devShells.x86_64-linux.default =
-        with import nixpkgs { system = "x86_64-linux"; };
+        with desktop-pkgs;
         stdenv.mkDerivation {
           name = "dotfiles";
           buildInputs = [ nixfmt nil ];
