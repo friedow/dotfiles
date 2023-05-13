@@ -10,6 +10,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    arion = {
+      url = "github:hercules-ci/arion";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager/release-22.11";
@@ -59,16 +63,20 @@
         ./modules/window-manager
       ];
 
-      # server-system = "arm64-linux";
-      # server-pkgs = (import nixpkgs) {
-      #   system = server-system;
-      # };
-      # server-modules = [
-      #   arion.nixosModules.arion
-      #   ./modules/time.nix
-      #   ./modules/users.nix
-      #   ./modules/ssh-server.nix
-      # ];
+      server-system = "arm64-linux";
+      server-pkgs = (import nixpkgs) {
+        system = server-system;
+      };
+      server-modules = [
+        arion.nixosModules.arion
+        ./modules/arion.nix
+        ./modules/docker.nix
+        ./modules/nightscout.nix
+        ./modules/ssh-server.nix
+        ./modules/time.nix
+        ./modules/traefik.nix
+        ./modules/users.nix
+      ];
     in {
       nixosConfigurations = {
         avalanche = nixpkgs.lib.nixosSystem {
@@ -83,6 +91,14 @@
           system = desktop-system;
           pkgs = desktop-pkgs;
           modules = desktop-modules ++ [ ./hardware-configuration/hurricane.nix ];
+        };
+
+        landslide = nixpkgs.lib.nixosSystem {
+          inherit specialArgs;
+          system = server-system;
+          pkgs = server-pkgs;
+          # TODO: add hetzner hardware config
+          modules = server-modules ++ [ ./hardware-configuration/landslide.nix ];
         };
       };
 
