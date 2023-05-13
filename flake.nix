@@ -11,40 +11,62 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixgl, ... }@inputs:
+  outputs = { nixpkgs, ... }@inputs:
     let
-      pkgs = (import nixpkgs) {
-        inherit system;
-        config.allowUnfree = true;
-      };
-
       specialArgs = { inherit inputs; };
 
-      home-manager-config.home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        extraSpecialArgs = specialArgs;
-        users.christian.home.stateVersion = "21.11";
+      desktop-system = "x86_64-linux";
+      desktop-pkgs = (import nixpkgs) {
+        system = desktop-system;
+        config.allowUnfree = true;
       };
-
       desktop-modules = [
         inputs.home-manager.nixosModules.home-manager
-        home-manager-config
-        ./modules
+        ./modules/audio.nix
+        ./modules/bootscreen
+        ./modules/browser.nix
+        ./modules/clipboard.nix
+        ./modules/display-manager.nix
+        ./modules/docker.nix
+        ./modules/file-manager.nix
+        ./modules/fonts.nix
+        ./modules/git.nix
+        ./modules/gtk.nix
+        ./modules/hibernate.nix
+        ./modules/home-manager.nix
+        ./modules/kernel.nix
+        ./modules/launcher
+        ./modules/lockscreen
+        ./modules/file-manager.nix
+        ./modules/networking.nix
+        ./modules/notifications.nix
+        ./modules/shell.nix
+        ./modules/nix-cli.nix
+        ./modules/password-manager.nix
+        ./modules/privilige-manager.nix
+        ./modules/screensharing.nix
+        ./modules/screenshots.nix
+        ./modules/session.nix
+        ./modules/terminal.nix
+        ./modules/time.nix
+        ./modules/users.nix
+        ./modules/vscode.nix
+        ./modules/yubikey
+        ./modules/window-manager
       ];
     in {
       nixosConfigurations = {
         avalanche = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          inherit pkgs;
           inherit specialArgs;
+          system = desktop-system;
+          pkgs = desktop-pkgs;
           modules = desktop-modules ++ [ ./hardware-configuration/avalanche.nix ];
         };
 
         hurricane = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          inherit pkgs;
           inherit specialArgs;
+          system = desktop-system;
+          pkgs = desktop-pkgs;
           modules = desktop-modules ++ [ ./hardware-configuration/hurricane.nix ];
         };
       };
