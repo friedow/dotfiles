@@ -27,7 +27,7 @@
         users.christian.home.stateVersion = "21.11";
       };
 
-      modules = [
+      desktop-modules = [
         inputs.home-manager.nixosModules.home-manager
         home-manager-config
         ./modules
@@ -38,14 +38,14 @@
           system = "x86_64-linux";
           inherit pkgs;
           inherit specialArgs;
-          modules = modules ++ [ ./hardware-configuration/avalanche.nix ];
+          modules = desktop-modules ++ [ ./hardware-configuration/avalanche.nix ];
         };
 
         hurricane = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           inherit pkgs;
           inherit specialArgs;
-          modules = modules ++ [ ./hardware-configuration/hurricane.nix ];
+          modules = desktop-modules ++ [ ./hardware-configuration/hurricane.nix ];
         };
       };
 
