@@ -11,7 +11,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, ... }@inputs:
+  outputs = { nixpkgs, home-manager, ... }@inputs:
     let
       specialArgs = { inherit inputs; };
 
@@ -21,7 +21,7 @@
         config.allowUnfree = true;
       };
       desktop-modules = [
-        inputs.home-manager.nixosModules.home-manager
+        home-manager.nixosModules.home-manager
         ./modules/audio.nix
         ./modules/bootscreen
         ./modules/browser.nix
