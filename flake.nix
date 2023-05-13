@@ -68,7 +68,6 @@
         system = server-system;
       };
       server-modules = [
-        arion.nixosModules.arion
         ./modules/arion.nix
         ./modules/docker.nix
         ./modules/nightscout.nix
