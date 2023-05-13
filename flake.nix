@@ -96,7 +96,6 @@
           inherit specialArgs;
           system = server-system;
           pkgs = server-pkgs;
-          # TODO: add hetzner hardware config
           modules = server-modules ++ [ ./hardware-configuration/landslide.nix ];
         };
       };
