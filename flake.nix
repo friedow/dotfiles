@@ -36,6 +36,7 @@
         ./modules/bootscreen
         ./modules/browser.nix
         ./modules/clipboard.nix
+        ./modules/cross-compile.nix
         ./modules/display-manager.nix
         ./modules/docker.nix
         ./modules/file-manager.nix
@@ -64,18 +65,15 @@
         ./modules/window-manager
       ];
 
-      # server-system = "x86_64-linux";
       server-system = "aarch64-linux";
-      # TODO: add nixpkgs.crossSystem to this to enable nixos-rebuild --flake .#landslide --target-host christian@ip
       server-pkgs = (import nixpkgs) {
         system = server-system;
-        # crossSystem.system = server-system;
       };
       server-modules = [
         ./modules/arion.nix
-        ./modules/nightscout.nix
+        # ./modules/nightscout.nix
         ./modules/podman.nix
-        ./modules/reverse-proxy.nix
+        # ./modules/reverse-proxy.nix
         ./modules/ssh-server.nix
         ./modules/time.nix
         ./modules/users.nix

@@ -7,7 +7,23 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
-  boot.loader.grub.device = lib.mkDefault "/dev/sda";
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      # assuming /boot is the mount point of the  EFI partition in NixOS (as the installation section recommends).
+      efiSysMountPoint = "/boot";
+    };
+    grub = {
+      # despite what the configuration.nix manpage seems to indicate,
+      # as of release 17.09, setting device to "nodev" will still call
+      # `grub-install` if efiSupport is true
+      # (the devices list is not used by the EFI grub install,
+      # but must be set to some value in order to pass an assert in grub.nix)
+      devices = [ "nodev" ];
+      efiSupport = true;
+      enable = true;
+    };
+  };
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/ROOT";
@@ -29,8 +45,7 @@
   # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp1s0.useDHCP = lib.mkDefault true;
 
-  nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
-  nixpkgs.buildPlatform = lib.mkDefault "x86_64-linux";
+  nixpkgs.hostPlatform.system = "aarch64-linux";
 
   networking.hostName = "landslide";
   system.stateVersion = "22.11";
