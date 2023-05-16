@@ -26,6 +26,7 @@
       specialArgs = { inherit inputs; };
 
       desktop-system = "x86_64-linux";
+      # desktop-system = "aarch64-linux";
       desktop-pkgs = (import nixpkgs) {
         system = desktop-system;
         config.allowUnfree = true;
@@ -63,8 +64,8 @@
         ./modules/window-manager
       ];
 
-      server-system = "x86_64-linux";
-      # server-system = "aarch64-linux";
+      # server-system = "x86_64-linux";
+      server-system = "aarch64-linux";
       # TODO: add nixpkgs.crossSystem to this to enable nixos-rebuild --flake .#landslide --target-host christian@ip
       server-pkgs = (import nixpkgs) {
         system = server-system;
