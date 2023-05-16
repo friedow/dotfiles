@@ -63,10 +63,12 @@
         ./modules/window-manager
       ];
 
-      server-system = "aarch64-linux";
+      server-system = "x86_64-linux";
+      # server-system = "aarch64-linux";
       # TODO: add nixpkgs.crossSystem to this to enable nixos-rebuild --flake .#landslide --target-host christian@ip
       server-pkgs = (import nixpkgs) {
         system = server-system;
+        # crossSystem.system = server-system;
       };
       server-modules = [
         ./modules/arion.nix
