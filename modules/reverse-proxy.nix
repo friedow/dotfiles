@@ -1,5 +1,10 @@
 { ... }: {
+  systemd.services.arion-reverse-proxy = {
+    wants = [ "network-online.target" ];
+    after = [ "network-online.target" ];
+  };
   virtualisation.arion.projects.reverse-proxy.settings = {
+    # TODO: name rseolution for https://registry-1.docker.io/v2/ fails inside vm
     project.name = "reverse-proxy";
     services = {
       reverse-proxy.service = {
