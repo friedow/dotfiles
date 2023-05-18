@@ -12,6 +12,7 @@ pkgs: ''
     # rofi row option separators
     let __0 = (0x[00] | decode utf-8)
     let __1 = (0x[1f] | decode utf-8)
+    # TODO: use gedankenstrich instead of minus
     return ($history | format $'{title} - {url}($__0)info($__1){url}($__1)meta($__1)history' | to text)
   }
 
