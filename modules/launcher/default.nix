@@ -19,6 +19,7 @@ let
   rofi-system-operations = importRofiPlugin "rofi-system-operations";
   rofi-windows = importRofiPlugin "rofi-windows";
   rofi-wifi = importRofiPlugin "rofi-wifi";
+  rofi-brave-history = importRofiPlugin "rofi-brave-history";
 in {
   imports = [
     ./rofi-git-repositories-service.nix
@@ -54,6 +55,8 @@ in {
           ":${rofi-microphones}/bin/rofi-microphones"
           ":${rofi-system-operations}/bin/rofi-system-operations"
           ":${rofi-wifi}/bin/rofi-wifi"
+          # TODO: find a better icon for the history
+          ":${rofi-brave-history}/bin/rofi-brave-history"
         ];
       };
 
