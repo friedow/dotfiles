@@ -22,7 +22,7 @@ pkgs: ''
   }
 
   def listEntries [] {
-    let bookmarks = (open ~/.config/BraveSoftware/Brave-Browser/Default/Bookmarks | from json | get roots | values | each {|it| get_bookmarks_recursive $it} | flatten | inspect)
+    let bookmarks = (open ~/.config/BraveSoftware/Brave-Browser/Default/Bookmarks | from json | get roots | values | each {|it| get_bookmarks_recursive $it} | flatten)
     
     # rofi row option separators
     let __0 = (0x[00] | decode utf-8)
