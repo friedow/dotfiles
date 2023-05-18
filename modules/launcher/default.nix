@@ -14,7 +14,7 @@ let
   rofi-brave-bookmarks = importRofiPlugin "rofi-brave-bookmarks";
   rofi-git-repositories = importRofiPlugin "rofi-git-repositories";
   rofi-microphones = importRofiPlugin "rofi-microphones";
-  rofi-progressive-web-apps = importRofiPlugin "rofi-progressive-web-apps";
+  rofi-brave-pwas = importRofiPlugin "rofi-brave-pwas";
   rofi-speakers = importRofiPlugin "rofi-speakers";
   rofi-system-operations = importRofiPlugin "rofi-system-operations";
   rofi-windows = importRofiPlugin "rofi-windows";
@@ -47,7 +47,7 @@ in {
         combi-modes = [
           ":${rofi-windows}/bin/rofi-windows"
           "drun"
-          ":${rofi-progressive-web-apps}/bin/rofi-progressive-web-apps"
+          ":${rofi-brave-pwas}/bin/rofi-brave-pwas"
           ":${rofi-brave-bookmarks}/bin/rofi-brave-bookmarks"
           ":${rofi-git-repositories}/bin/rofi-git-repositories"
           ":${rofi-speakers}/bin/rofi-speakers"
