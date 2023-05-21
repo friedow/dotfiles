@@ -7,7 +7,7 @@
   virtualisation.arion.projects.reverse-proxy.settings = {
     project.name = "reverse-proxy";
 
-    docker-compose.raw.volumes = {
+    docker-compose.volumes = {
       letsencrypt-data = null;
     };
 
@@ -34,7 +34,7 @@
         ];
         volumes = [
           "letsencrypt-data:/letsencrypt"
-          "/var/run/podman/podman.sock:/var/run/docker.sock:ro"
+          "/var/run/docker.sock:/var/run/docker.sock:ro"
         ];
         networks = [
           "dmz"

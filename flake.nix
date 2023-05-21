@@ -72,7 +72,7 @@
       server-modules = [
         ./modules/arion.nix
         # ./modules/nightscout.nix
-        ./modules/podman.nix
+        ./modules/docker.nix
         ./modules/reverse-proxy.nix
         ./modules/ssh-server.nix
         ./modules/time.nix
