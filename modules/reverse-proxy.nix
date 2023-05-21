@@ -15,7 +15,7 @@
 
     services = {
       reverse-proxy.service = {
-        image = "traefik:latest";
+        image = "traefik:v2.10.1";
         
         command = [
           "--providers.docker=true"

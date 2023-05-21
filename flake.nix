@@ -71,7 +71,7 @@
       };
       server-modules = [
         ./modules/arion.nix
-        # ./modules/nightscout.nix
+        ./modules/nightscout.nix
         ./modules/docker.nix
         ./modules/reverse-proxy.nix
         ./modules/ssh-server.nix

@@ -1,9 +1,25 @@
 { ... }: {
   virtualisation.arion.projects.nightscout.settings = {
     project.name = "nightscout";
+
+    docker-compose.volumes = {
+      nightscout-data = null;
+    };
+
+    networks = {
+      dmz = {
+        name = "dmz";
+        external = true;
+      };
+
+      nightscout = {
+        name = "nightscout";
+      };
+    };
+
     services = {
       nightscout.service = {
-        image = "nightscout/cgm-remote-monitor:latest";
+        image = "nightscout/cgm-remote-monitor:14.2.6";
         restart = "always";
         depends_on = [
           "nightscout-db"
@@ -11,7 +27,7 @@
         labels = {
           "traefik.enable" = "true";
           # TODO: Change the below Host from `localhost` to be the web address where Nightscout is running.
-          "traefik.http.routers.nightscout.rule" = "Host(`localhost`)";
+          "traefik.http.routers.nightscout.rule" = "Host(`nightscout.friedow.com`)";
           "traefik.http.routers.nightscout.entrypoints" = "websecure";
           "traefik.http.routers.nightscout.tls.certresolver" = "le";
         };
@@ -19,6 +35,9 @@
           ### Variables for the container
           NODE_ENV = "production";
           TZ = "Etc/UTC";
+          LANGUAGE = "de";
+          TIME_FORMAT = "24";
+          EDIT_MODE = "off";
 
           ### Overridden variables for Docker Compose setup
           # The `nightscout` service can use HTTP, because we use `traefik` to serve the HTTPS
@@ -37,26 +56,28 @@
           # API_SECRET - A secret passphrase that must be at least 12 characters long.
           API_SECRET = "change_me";
 
-          ### Features
-          # ENABLE - Used to enable optional features, expects a space delimited list, such as: careportal rawbg iob
-          # See https://github.com/nightscout/cgm-remote-monitor#plugins for details
-          ENABLE = "careportal rawbg iob";
-
           # AUTH_DEFAULT_ROLES (readable) - possible values readable, denied, or any valid role name.
           # When readable, anyone can view Nightscout without a token. Setting it to denied will require
           # a token from every visit, using status-only will enable api-secret based login.
-          AUTH_DEFAULT_ROLES = "denied";
+          AUTH_DEFAULT_ROLES = "readable";
 
           # For all other settings, please refer to the Environment section of the README
           # https://github.com/nightscout/cgm-remote-monitor#environment
         };
+        networks = [
+          "dmz"
+          "nightscout"
+        ];
       };
 
       nightscout-db.service = {
-        image = "mongo:4.4";
+        image = "mongo:4.4.21";
         restart = "always";
+        networks = [
+          "nightscout"
+        ];
         volumes = [
-          "./nightscout-data:/data/db:cached"
+          "nightscout-data:/data/db:cached"
         ];
       };
     };
