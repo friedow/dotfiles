@@ -3,13 +3,20 @@
     wants = [ "network-online.target" ];
     after = [ "network-online.target" ];
   };
+
   virtualisation.arion.projects.reverse-proxy.settings = {
-    # TODO: name rseolution for https://registry-1.docker.io/v2/ fails inside vm
     project.name = "reverse-proxy";
+
+    docker-compose.raw.volumes = {
+      letsencrypt-data = null;
+    };
+
+    networks.dmz.name = "dmz";
+
     services = {
       reverse-proxy.service = {
         image = "traefik:latest";
-        restart = "always";
+        
         command = [
           "--providers.docker=true"
           "--providers.docker.exposedbydefault=false"
@@ -19,17 +26,20 @@
           "--certificatesresolvers.le.acme.httpchallenge=true"
           "--certificatesresolvers.le.acme.httpchallenge.entrypoint=web"
           "--certificatesresolvers.le.acme.storage=/letsencrypt/acme.json"
-          # Change the below to match your email address
-          "--certificatesresolvers.le.acme.email=example@example.com"
+          "--certificatesresolvers.le.acme.email=webmaster@friedow.com"
         ];
         ports = [
           "443:443"
           "80:80"
         ];
         volumes = [
-          "./letsencrypt:/letsencrypt"
-          "/var/run/docker.sock:/var/run/docker.sock:ro"
+          "letsencrypt-data:/letsencrypt"
+          "/var/run/podman/podman.sock:/var/run/docker.sock:ro"
         ];
+        networks = [
+          "dmz"
+        ];
+        restart = "always";
       };
     };
   };
