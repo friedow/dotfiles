@@ -4,6 +4,7 @@
 
     docker-compose.volumes = {
       nightscout-data = null;
+      mongo-configdb = null;
     };
 
     networks = {
@@ -26,7 +27,6 @@
         ];
         labels = {
           "traefik.enable" = "true";
-          # TODO: Change the below Host from `localhost` to be the web address where Nightscout is running.
           "traefik.http.routers.nightscout.rule" = "Host(`nightscout.friedow.com`)";
           "traefik.http.routers.nightscout.entrypoints" = "websecure";
           "traefik.http.routers.nightscout.tls.certresolver" = "le";
@@ -73,11 +73,12 @@
       nightscout-db.service = {
         image = "mongo:4.4.21";
         restart = "always";
-        networks = [
-          "nightscout"
-        ];
         volumes = [
           "nightscout-data:/data/db:cached"
+          "mongo-configdb:/data/configdb:cached"
+        ];
+        networks = [
+          "nightscout"
         ];
       };
     };

@@ -16,7 +16,6 @@
     services = {
       reverse-proxy.service = {
         image = "traefik:v2.10.1";
-        
         command = [
           "--providers.docker=true"
           "--providers.docker.exposedbydefault=false"
@@ -36,10 +35,10 @@
           "letsencrypt-data:/letsencrypt"
           "/var/run/docker.sock:/var/run/docker.sock:ro"
         ];
+        restart = "always";
         networks = [
           "dmz"
         ];
-        restart = "always";
       };
     };
   };
