@@ -50,6 +50,7 @@
         ./modules/lockscreen
         ./modules/networking.nix
         ./modules/notifications.nix
+        ./modules/office.nix
         ./modules/shell.nix
         ./modules/nix-cli.nix
         ./modules/password-manager.nix
