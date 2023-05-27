@@ -1,4 +1,6 @@
-{ ... }: {
+{ config, ... }: {
+  age.secrets.nightscout-api-secret.file = ../secrets/nightscout-api-secret.age;
+
   virtualisation.arion.projects.nightscout.settings = {
     project.name = "nightscout";
 
@@ -27,6 +29,7 @@
         ];
         labels = {
           "traefik.enable" = "true";
+          "traefik.docker.network" = "dmz";
           "traefik.http.routers.nightscout.rule" = "Host(`nightscout.friedow.com`)";
           "traefik.http.routers.nightscout.entrypoints" = "websecure";
           "traefik.http.routers.nightscout.tls.certresolver" = "le";
@@ -53,9 +56,6 @@
           # and `depends_on` block above.
           MONGO_CONNECTION = "mongodb://nightscout-db:27017/nightscout";
 
-          # API_SECRET - A secret passphrase that must be at least 12 characters long.
-          API_SECRET = "change_me";
-
           # AUTH_DEFAULT_ROLES (readable) - possible values readable, denied, or any valid role name.
           # When readable, anyone can view Nightscout without a token. Setting it to denied will require
           # a token from every visit, using status-only will enable api-secret based login.
@@ -64,6 +64,9 @@
           # For all other settings, please refer to the Environment section of the README
           # https://github.com/nightscout/cgm-remote-monitor#environment
         };
+        env_file = [
+          config.age.secrets.nightscout-api-secret.path
+        ];
         networks = [
           "dmz"
           "nightscout"

@@ -10,6 +10,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    agenix.url = "github:ryantm/agenix";
+
     arion = {
       url = "github:hercules-ci/arion";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -75,6 +77,7 @@
         ./modules/nightscout.nix
         ./modules/docker.nix
         ./modules/reverse-proxy.nix
+        ./modules/secret-management.nix
         ./modules/ssh-server.nix
         ./modules/time.nix
         ./modules/users.nix
