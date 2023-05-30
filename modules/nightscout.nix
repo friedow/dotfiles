@@ -1,11 +1,15 @@
 { config, ... }: {
-  age.secrets.nightscout-api-secret.file = ../secrets/nightscout-api-secret.age;
+  age.secrets.cgm-nightscout-api_secret.file = ../secrets/cgm-nightscout-api_secret.age;
+  age.secrets.cgm-nightscout-mongo_connection.file = ../secrets/cgm-nightscout-mongo_connection.age;
+  age.secrets.cgm-mongo-mongo_initdb_root_username.file = ../secrets/cgm-mongo-mongo_initdb_root_username.age;
+  age.secrets.cgm-mongo-mongo_initdb_root_password.file = ../secrets/cgm-mongo-mongo_initdb_root_password.age;
 
-  virtualisation.arion.projects.nightscout.settings = {
-    project.name = "nightscout";
+  # based on: https://github.com/nightscout/cgm-remote-monitor/blob/master/docker-compose.yml
+  virtualisation.arion.projects.cgm.settings = {
+    project.name = "cgm";
 
     docker-compose.volumes = {
-      nightscout-data = null;
+      mongo-db = null;
       mongo-configdb = null;
     };
 
@@ -15,8 +19,8 @@
         external = true;
       };
 
-      nightscout = {
-        name = "nightscout";
+      cgm = {
+        name = "cgm";
       };
     };
 
@@ -25,7 +29,7 @@
         image = "nightscout/cgm-remote-monitor:14.2.6";
         restart = "always";
         depends_on = [
-          "nightscout-db"
+          "mongo"
         ];
         labels = {
           "traefik.enable" = "true";
@@ -47,15 +51,6 @@
           # and manage TLS certificates
           INSECURE_USE_HTTP = "true";
 
-          # For all other settings, please refer to the Environment section of the README
-          ### Required variables
-          # MONGO_CONNECTION - The connection string for your Mongo database.
-          # Something like mongodb://sally:sallypass@ds099999.mongolab.com:99999/nightscout
-          # The default connects to the `mongo` included in this docker-compose file.
-          # If you change it, you probably also want to comment out the entire `mongo` service block
-          # and `depends_on` block above.
-          MONGO_CONNECTION = "mongodb://nightscout-db:27017/nightscout";
-
           # AUTH_DEFAULT_ROLES (readable) - possible values readable, denied, or any valid role name.
           # When readable, anyone can view Nightscout without a token. Setting it to denied will require
           # a token from every visit, using status-only will enable api-secret based login.
@@ -65,23 +60,28 @@
           # https://github.com/nightscout/cgm-remote-monitor#environment
         };
         env_file = [
-          config.age.secrets.nightscout-api-secret.path
+          config.age.secrets.cgm-nightscout-api_secret.path
+          config.age.secrets.cgm-nightscout-mongo_connection.path
         ];
         networks = [
           "dmz"
-          "nightscout"
+          "cgm"
         ];
       };
 
-      nightscout-db.service = {
+      mongo.service = {
         image = "mongo:4.4.21";
         restart = "always";
         volumes = [
-          "nightscout-data:/data/db:cached"
+          "mongo-db:/data/db:cached"
           "mongo-configdb:/data/configdb:cached"
         ];
+        env_file = [
+          config.age.secrets.cgm-mongo-mongo_initdb_root_username.path
+          config.age.secrets.cgm-mongo-mongo_initdb_root_password.path
+        ];
         networks = [
-          "nightscout"
+          "cgm"
         ];
       };
     };
