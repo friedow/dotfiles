@@ -8,13 +8,13 @@
     project.name = "reverse-proxy";
 
     docker-compose.volumes = {
-      letsencrypt-data = null;
+      traefik-letsencrypt = null;
     };
 
     networks.dmz.name = "dmz";
 
     services = {
-      reverse-proxy.service = {
+      traefik.service = {
         image = "traefik:v2.10.1";
         command = [
           "--providers.docker=true"
@@ -32,10 +32,10 @@
           "80:80"
         ];
         volumes = [
-          "letsencrypt-data:/letsencrypt"
+          "traefik-letsencrypt:/letsencrypt"
           "/var/run/docker.sock:/var/run/docker.sock:ro"
         ];
-        restart = "always";
+        restart = "unless-stopped";
         networks = [
           "dmz"
         ];

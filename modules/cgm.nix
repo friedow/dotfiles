@@ -1,8 +1,10 @@
 { config, ... }: {
   age.secrets.cgm-nightscout-api_secret.file = ../secrets/cgm-nightscout-api_secret.age;
-  age.secrets.cgm-nightscout-mongo_connection.file = ../secrets/cgm-nightscout-mongo_connection.age;
-  age.secrets.cgm-mongo-mongo_initdb_root_username.file = ../secrets/cgm-mongo-mongo_initdb_root_username.age;
-  age.secrets.cgm-mongo-mongo_initdb_root_password.file = ../secrets/cgm-mongo-mongo_initdb_root_password.age;
+
+  systemd.services.arion-cgm = {
+    wants = [ "network-online.target" "arion-reverse-proxy.service" ];
+    after = [ "network-online.target" "arion-reverse-proxy.service" ];
+  };
 
   # based on: https://github.com/nightscout/cgm-remote-monitor/blob/master/docker-compose.yml
   virtualisation.arion.projects.cgm.settings = {
@@ -27,7 +29,7 @@
     services = {
       nightscout.service = {
         image = "nightscout/cgm-remote-monitor:14.2.6";
-        restart = "always";
+        restart = "unless-stopped";
         depends_on = [
           "mongo"
         ];
@@ -56,12 +58,13 @@
           # a token from every visit, using status-only will enable api-secret based login.
           AUTH_DEFAULT_ROLES = "readable";
 
+          MONGO_CONNECTION = "mongodb://mongo:27017/nightscout";
+
           # For all other settings, please refer to the Environment section of the README
           # https://github.com/nightscout/cgm-remote-monitor#environment
         };
         env_file = [
           config.age.secrets.cgm-nightscout-api_secret.path
-          config.age.secrets.cgm-nightscout-mongo_connection.path
         ];
         networks = [
           "dmz"
@@ -71,14 +74,10 @@
 
       mongo.service = {
         image = "mongo:4.4.21";
-        restart = "always";
+        restart = "unless-stopped";
         volumes = [
           "mongo-db:/data/db:cached"
           "mongo-configdb:/data/configdb:cached"
-        ];
-        env_file = [
-          config.age.secrets.cgm-mongo-mongo_initdb_root_username.path
-          config.age.secrets.cgm-mongo-mongo_initdb_root_password.path
         ];
         networks = [
           "cgm"
