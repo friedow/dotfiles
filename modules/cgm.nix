@@ -1,5 +1,5 @@
 { config, ... }: {
-  age.secrets.cgm-nightscout-api_secret.file = ../secrets/cgm-nightscout-api_secret.age;
+  age.secrets.env-cgm-nightscout-api_secret.file = ../secrets/env-cgm-nightscout-api_secret.age;
 
   systemd.services.arion-cgm = {
     wants = [ "network-online.target" "arion-reverse-proxy.service" ];
@@ -64,7 +64,7 @@
           # https://github.com/nightscout/cgm-remote-monitor#environment
         };
         env_file = [
-          config.age.secrets.cgm-nightscout-api_secret.path
+          config.age.secrets.env-cgm-nightscout-api_secret.path
         ];
         networks = [
           "dmz"
