@@ -26,6 +26,7 @@
           "--certificatesresolvers.le.acme.httpchallenge.entrypoint=web"
           "--certificatesresolvers.le.acme.storage=/letsencrypt/acme.json"
           "--certificatesresolvers.le.acme.email=webmaster@friedow.com"
+          "--providers.docker.network=dmz"
         ];
         ports = [
           "443:443"

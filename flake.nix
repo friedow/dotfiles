@@ -76,6 +76,7 @@
         ./modules/arion.nix
         ./modules/cgm.nix
         ./modules/docker.nix
+        ./modules/matrix
         ./modules/reverse-proxy.nix
         ./modules/secret-management.nix
         ./modules/ssh-server.nix

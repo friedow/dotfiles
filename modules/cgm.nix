@@ -35,7 +35,6 @@
         ];
         labels = {
           "traefik.enable" = "true";
-          "traefik.docker.network" = "dmz";
           "traefik.http.routers.nightscout.rule" = "Host(`nightscout.friedow.com`)";
           "traefik.http.routers.nightscout.entrypoints" = "websecure";
           "traefik.http.routers.nightscout.tls.certresolver" = "le";

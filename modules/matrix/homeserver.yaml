@@ -30,13 +30,13 @@ database:
     port: 5432
     cp_min: 5
     cp_max: 10
-log_config: "/data/friedow.com.log.config"
+log_config: "/config/friedow.com.log.config"
 media_store_path: /data/media_store
 registration_shared_secret: "@matrix-synapse-registration_shared_secret@"
 report_stats: false
 macaroon_secret_key: "@matrix-synapse-macaroon_secret_key@"
 form_secret: "@matrix-synapse-form_secret@"
-signing_key_path: "/data/friedow.com.signing.key"
+signing_key_path: "/config/friedow.com.signing.key"
 trusted_key_servers:
   - server_name: "matrix.org"
 # vim:ft=yaml
