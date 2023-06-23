@@ -28,7 +28,6 @@
       specialArgs = { inherit inputs; };
 
       desktop-system = "x86_64-linux";
-      # desktop-system = "aarch64-linux";
       desktop-pkgs = (import nixpkgs) {
         system = desktop-system;
         config.allowUnfree = true;
@@ -60,6 +59,7 @@
         ./modules/screensharing.nix
         ./modules/screenshots.nix
         ./modules/session.nix
+        ./modules/sublime-text.nix
         ./modules/terminal.nix
         ./modules/time.nix
         ./modules/users.nix

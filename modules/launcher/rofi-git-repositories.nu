@@ -16,7 +16,7 @@ pkgs: ''
   }
 
   def executeEntryAction [selectedEntry: string] {
-    spawn $"code \"($env.ROFI_INFO)\""
+    spawn $"sublime -n \"($env.ROFI_INFO)\""
   }
 
   def main [selectedEntry?: string] {
