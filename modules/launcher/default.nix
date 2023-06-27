@@ -12,14 +12,15 @@ let
     in pkgs.writeScriptBin "${plugin-name}" plugin-script;
   
   rofi-brave-bookmarks = importRofiPlugin "rofi-brave-bookmarks";
+  rofi-brave-history = importRofiPlugin "rofi-brave-history";
+  rofi-brave-pwas = importRofiPlugin "rofi-brave-pwas";
+  rofi-brave-tabs = importRofiPlugin "rofi-brave-tabs";
   rofi-git-repositories = importRofiPlugin "rofi-git-repositories";
   rofi-microphones = importRofiPlugin "rofi-microphones";
-  rofi-brave-pwas = importRofiPlugin "rofi-brave-pwas";
   rofi-speakers = importRofiPlugin "rofi-speakers";
   rofi-system-operations = importRofiPlugin "rofi-system-operations";
-  rofi-windows = importRofiPlugin "rofi-windows";
   rofi-wifi = importRofiPlugin "rofi-wifi";
-  rofi-brave-history = importRofiPlugin "rofi-brave-history";
+  rofi-windows = importRofiPlugin "rofi-windows";
 in {
   imports = [
     ./rofi-git-repositories-service.nix
@@ -27,7 +28,7 @@ in {
   ];
 
   home-manager.users.christian = {
-    home.packages = [ rofi-wifi ];
+    home.packages = [ pkgs.nodejs ];
 
     home.file.rofi-theme = {
       source = ./theme.rasi;
@@ -47,16 +48,16 @@ in {
         display-drun = "";
         combi-modes = [
           ":${rofi-windows}/bin/rofi-windows"
+          ":${rofi-brave-tabs}/bin/rofi-brave-tabs"
           "drun"
           ":${rofi-brave-pwas}/bin/rofi-brave-pwas"
           ":${rofi-brave-bookmarks}/bin/rofi-brave-bookmarks"
           ":${rofi-git-repositories}/bin/rofi-git-repositories"
-          ":${rofi-speakers}/bin/rofi-speakers"
+          ":${rofi-speakers}/bin/rofi-speakers"
           ":${rofi-microphones}/bin/rofi-microphones"
           ":${rofi-system-operations}/bin/rofi-system-operations"
           ":${rofi-wifi}/bin/rofi-wifi"
-          # TODO: find a better icon for the history
-          ":${rofi-brave-history}/bin/rofi-brave-history"
+          ":${rofi-brave-history}/bin/rofi-brave-history"
         ];
       };
 
