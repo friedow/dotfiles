@@ -3,7 +3,7 @@ homeserver:
   # The address that this appservice can use to connect to the homeserver.
   address: http://synapse:8008
   # The domain of the homeserver (for MXIDs, etc).
-  domain: example.com
+  domain: friedow.com
   # Whether or not to verify the SSL certificate of the homeserver.
   # Only applies if address starts with https://
   verify_ssl: false
@@ -133,7 +133,6 @@ bridge:
   # Remove avatars from Telegram ghost users when removed on Telegram. This is disabled by default
   # as there's no way to determine whether an avatar is removed or just hidden from some users. If
   # you're on a single-user instance, this should be safe to enable.
-  # TODO: ?
   allow_avatar_remove: false
   # Should contact names and profile pictures be allowed?
   # This is only safe to enable on single-user instances.

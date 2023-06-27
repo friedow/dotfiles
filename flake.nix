@@ -60,6 +60,7 @@
         ./modules/screenshots.nix
         ./modules/session.nix
         ./modules/sublime-text.nix
+        ./modules/sublime-merge.nix
         ./modules/terminal.nix
         ./modules/time.nix
         ./modules/users.nix

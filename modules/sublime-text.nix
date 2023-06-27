@@ -21,6 +21,7 @@ let
       # theme
       "A File Icon"
       "ayu"
+      "Sync Merge Scheme"
 
       # language server
       "LSP"
