@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let
   environment = { variables.EDITOR = "sublime"; };
 
@@ -33,7 +33,17 @@ let
   };
 
 in {
+  age.secrets.sublime-text-license = {
+    file = ../secrets/sublime-license.age;
+    path = "/home/christian/.config/sublime-text/Local/License.sublime_license";
+    owner = "christian";
+    group = "users";
+    mode = "600";
+  };
+
   home-manager.users.christian.home = {
+    packages = with pkgs; [ sublime4 ];
+
     file.sublime-preferences = {
       target = ".config/sublime-text/Packages/User/Preferences.sublime-settings";
       text = builtins.toJSON preferences;
@@ -43,7 +53,5 @@ in {
       target = ".config/sublime-text/Packages/User/Package Control.sublime-settings";
       text = builtins.toJSON package-control-preferences;
     };
-
-    packages = with pkgs; [ sublime4 ];
   };
 }

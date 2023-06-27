@@ -58,6 +58,7 @@
         ./modules/privilige-manager.nix
         ./modules/screensharing.nix
         ./modules/screenshots.nix
+        ./modules/secret-management.nix
         ./modules/session.nix
         ./modules/sublime-text.nix
         ./modules/sublime-merge.nix
