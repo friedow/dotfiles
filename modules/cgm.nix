@@ -20,10 +20,6 @@
         name = "dmz";
         external = true;
       };
-
-      cgm = {
-        name = "cgm";
-      };
     };
 
     services = {
@@ -38,6 +34,7 @@
           "traefik.http.routers.nightscout.rule" = "Host(`nightscout.friedow.com`)";
           "traefik.http.routers.nightscout.entrypoints" = "websecure";
           "traefik.http.routers.nightscout.tls.certresolver" = "le";
+          "traefik.docker.network" = "dmz";
         };
         environment = {
           ### Variables for the container
@@ -67,7 +64,6 @@
         ];
         networks = [
           "dmz"
-          "cgm"
         ];
       };
 
@@ -79,7 +75,7 @@
           "mongo-configdb:/data/configdb:cached"
         ];
         networks = [
-          "cgm"
+          "dmz"
         ];
       };
     };

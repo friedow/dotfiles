@@ -1,5 +1,6 @@
 #!/usr/bin/env nu
 
+# TODO: add hurricane ssh host key
 # sudo ssh-keygen -t ed25519 -C "email@example.com" -f /etc/ssh/ssh_host_ed25519_key
 let landslide_ssh = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDtfzUTRW/R5n9bDK0gGLRF8+rgam3lvbqinPnvRpLxb"
 let avalanche_ssh = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILL471jTxGCPhgfYxi2MHMlg3MUSgEROwo/1d7rZniHp"
