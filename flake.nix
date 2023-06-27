@@ -2,7 +2,7 @@
   description = "friedow system config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # opengl wrapper for nvidia
     nixgl = {
@@ -18,7 +18,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-22.11";
+      url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -30,7 +30,12 @@
       desktop-system = "x86_64-linux";
       desktop-pkgs = (import nixpkgs) {
         system = desktop-system;
-        config.allowUnfree = true;
+        config = {
+          allowUnfree = true;
+          permittedInsecurePackages = [
+            "openssl-1.1.1u"
+          ];
+        };
       };
       desktop-modules = [
         ./modules/audio.nix

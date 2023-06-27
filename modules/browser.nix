@@ -15,7 +15,7 @@ in {
       { id = "nhdogjmejiglipccpnnnanhbledajbpd"; } # vue.js devtools
     ];
     # This option only works for chromium
-    # TODO: fix this in https://github.com/nix-community/home-manager/blob/master/modules/programs/chromium.nix#L173g
+    # TODO: fix this in https://github.com/nix-community/home-manager/blob/master/modules/programs/chromium.nix#L173
     commandLineArgs = [
       "--remote-debugging-port=9222"
     ];
