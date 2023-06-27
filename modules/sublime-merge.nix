@@ -1,46 +1,31 @@
-{ pkgs, ... }:
-let
-  # preferences = {
-  #   "theme" = "ayu-light.sublime-theme";
-  #   "color_scheme" = "Packages/ayu/ayu-light.sublime-color-scheme";
-  #   "save_on_focus_lost" = true;
-  #   "trim_trailing_white_space_on_save" = "all";
-  #   "shift_tab_unindent" = true;
-  #   "tab_size" = 2;
-  #   "translate_tabs_to_spaces" = true;
-  #   "hot_exit" = "disabled";
-  # };
-
-  # package-control-preferences = {
-  #   "bootstrapped" = true;
-  #   "in_process_packages" = [];
-  #   "installed_packages" = [
-  #     # package control
-  #     "Package Control"
-
-  #     # theme
-  #     "A File Icon"
-  #     "ayu"
-
-  #     # language server
-  #     "LSP"
-  #     "Nix"
-  #     "Nushell"
-  #   ];
-  # };
-
-in {
+{ pkgs, lib, ... }: {
   home-manager.users.christian.home = {
-    # file.sublime-preferences = {
-    #   target = ".config/sublime-text/Packages/User/Preferences.sublime-settings";
-    #   text = builtins.toJSON preferences;
-    # };
-
-    # file.sublime-package-control-preferences = {
-    #   target = ".config/sublime-text/Packages/User/Package Control.sublime-settings";
-    #   text = builtins.toJSON package-control-preferences;
-    # };
-
     packages = with pkgs; [ sublime-merge ];
+
+    file.".config/sublime-merge/Packages/Meetio Theme".source = pkgs.fetchFromGitHub {
+      owner = "meetio-theme";
+      repo = "merge-meetio-theme";
+      rev = "3c732210d1d14fee0b094beeec062efd16e24c22";
+      sha256 = "sha256-EQU4/ZkiHKYJVXPcHmUYqOXchchv3NBpJGkIzDSpUww=";
+    };
+
+    file.".config/sublime-merge/Packages/User/Preferences.sublime-settings" = {
+      text = builtins.toJSON {
+        "always_show_command_status" = false;
+        "diff_style" = "inline";
+        "expand_merge_commits_by_default" = true;
+        "hardware_acceleration" = "opengl";
+        "hide_menu" = true;
+        "ignore_diff_white_space" = false;
+        "image_diff_style" = "side-by-side";
+        "render_commit_dialog_message_at_top" = false;
+        "side_bar_layout" = "tabs";
+        "time_format" = "system";
+        "translate_tabs_to_spaces" = true;
+        "trim_trailing_white_space_on_save" = true;
+        "theme" = "Merge Lighter.sublime-theme";
+        "color_scheme" = "Meetio Lighter.sublime-color-scheme";
+      };
+    };
   };
 }
