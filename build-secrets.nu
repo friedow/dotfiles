@@ -13,9 +13,10 @@ for vault in $vaults {
   
   for item in $items {
     let itemDetails = (op item get $item.id --format json | from json)
+
     
-    let name = ($itemDetails.fields | find --predicate {|field| $field.label == "secret name" } | first | get value)
-    let value = ($itemDetails.fields | find --predicate {|field| $field.label == "secret value" } | first | get value)
+    let name = ($itemDetails.fields | filter {|field| $field.label == "secret name" } | first | get value)
+    let value = ($itemDetails.fields | filter {|field| $field.label == "secret value" } | first | get value)
 
     $value | nix run "nixpkgs#age" -- --encrypt --recipient $landslide_ssh --recipient $avalanche_ssh | save $"secrets/($item.title).age"
     $"($name)=($value)" | nix run "nixpkgs#age" -- --encrypt --recipient $landslide_ssh --recipient $avalanche_ssh | save $"secrets/env-($item.title).age"
