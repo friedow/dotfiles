@@ -195,6 +195,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-onagre-fix": {
+      "locked": {
+        "lastModified": 1685480092,
+        "narHash": "sha256-kjitqdudiXGyMEwNixDac8tJf8cxpGzQXfesNN0fLok=",
+        "owner": "a-kenji",
+        "repo": "nixpkgs",
+        "rev": "4107568ccb9b76d0005078d137f84b56adf8df9c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "a-kenji",
+        "ref": "fix-onagre-runtime",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1687807295,
@@ -234,6 +250,7 @@
         "home-manager": "home-manager_2",
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs_2",
+        "nixpkgs-onagre-fix": "nixpkgs-onagre-fix",
         "nixpkgs-unstable": "nixpkgs-unstable"
       }
     }

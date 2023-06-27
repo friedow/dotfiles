@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-onagre-fix.url = "github:a-kenji/nixpkgs/fix-onagre-runtime";
     # opengl wrapper for nvidia
     nixgl = {
       url = "github:guibou/nixGL";
@@ -57,6 +58,7 @@
         ./modules/networking.nix
         ./modules/notifications.nix
         ./modules/office.nix
+        ./modules/onagre.nix
         ./modules/shell.nix
         ./modules/nix-cli.nix
         ./modules/password-manager.nix
