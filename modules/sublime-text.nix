@@ -1,5 +1,7 @@
 { pkgs, ... }:
 let
+  environment = { variables.EDITOR = "sublime"; };
+
   preferences = {
     "theme" = "ayu-light.sublime-theme";
     "color_scheme" = "Packages/ayu/ayu-light.sublime-color-scheme";

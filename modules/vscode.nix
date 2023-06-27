@@ -1,8 +1,6 @@
 { pkgs, ... }:
 let fonts = import ../config/fonts.nix;
 in {
-  environment = { variables.EDITOR = "code"; };
-
   home-manager.users.christian = {
     # needed to store sign in information in gitlens
     services.gnome-keyring.enable = true;
