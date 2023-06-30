@@ -1,5 +1,5 @@
 { ... }: {
-  home-manager.users.christian.btop = {
+  home-manager.users.christian.programs.btop = {
     enable = true;
 
     settings = {

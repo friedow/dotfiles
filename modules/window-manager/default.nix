@@ -180,7 +180,7 @@ in {
         fonts = {
           names = [ fonts.sansSerif ];
           style = "";
-          size = 15.0;
+          size = 10.0;
         };
 
         gaps = {
@@ -195,12 +195,8 @@ in {
 
           commands = [
             {
-              command = ''title_format "<span size='9pt'>    %title</span>"'';
+              command = ''titlebar_padding 7 7'';
               criteria = { class = ".*"; };
-            }
-            {
-              command = "move scratchpad";
-              criteria = { app_id = "search-friedow-com"; };
             }
           ];
         };
