@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-onagre-fix.url = "github:a-kenji/nixpkgs/fix-onagre-runtime";
+    akenji-dotfiles.url = "github:a-kenji/dotfiles";
     # opengl wrapper for nvidia
     nixgl = {
       url = "github:guibou/nixGL";

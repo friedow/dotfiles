@@ -48,7 +48,7 @@ in {
         display-drun = "";
         combi-modes = [
           ":${rofi-windows}/bin/rofi-windows"
-          ":${rofi-brave-tabs}/bin/rofi-brave-tabs"
+          # ":${rofi-brave-tabs}/bin/rofi-brave-tabs"
           "drun"
           ":${rofi-brave-pwas}/bin/rofi-brave-pwas"
           ":${rofi-brave-bookmarks}/bin/rofi-brave-bookmarks"

@@ -1,4 +1,5 @@
 { pkgs, ... }: {
+  users.users.christian.shell = pkgs.nushell;
   home-manager.users.christian.programs.nushell = {
     enable = true;
 
