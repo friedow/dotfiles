@@ -59,6 +59,7 @@
         ./modules/notifications.nix
         ./modules/office.nix
         ./modules/onagre.nix
+        ./modules/resource-monitor.nix
         ./modules/shell.nix
         ./modules/nix-cli.nix
         ./modules/password-manager.nix
