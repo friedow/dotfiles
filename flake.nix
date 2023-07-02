@@ -50,7 +50,6 @@
         ./modules/fonts.nix
         ./modules/git.nix
         ./modules/gtk.nix
-        ./modules/hibernate.nix
         ./modules/home-manager.nix
         ./modules/kernel.nix
         ./modules/launcher
