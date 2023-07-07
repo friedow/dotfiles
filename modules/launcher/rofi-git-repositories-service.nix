@@ -3,7 +3,7 @@
     script = ''
       ${pkgs.nushell}/bin/nu -c " \
         cd ~; \
-        glob '[!.]*/**/.git' | save ~/.cache/rofi-git-repositories.txt \
+        glob '[!.]*/**/.git' | save --force ~/.cache/rofi-git-repositories.txt \
       "
     '';
     serviceConfig = { Type = "oneshot"; };
