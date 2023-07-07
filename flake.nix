@@ -79,13 +79,13 @@
       ];
 
       personal-modules = [
+        ./modules/git-config-personal.nix
         ./modules/password-manager-ssh.nix
-        ./modules/user-email-personal.nix
       ];
 
       work-modules = [
+        ./modules/git-config-work.nix
         ./modules/user-bender.nix
-        ./modules/user-email-work.nix
         ./modules/vagrant.nix
       ];
 

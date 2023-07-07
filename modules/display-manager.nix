@@ -6,6 +6,7 @@ let
     position = "0,0";
   };
 
+  # TODO: restrict this to avalanche's display
   laptop = {
     criteria = "eDP-1";
     status = "enable";

@@ -1,14 +1,9 @@
 { config, pkgs, ... }: {
-  system.activationScripts."git-user-email" = ''
-    secret=$(cat "${config.age.secrets.user-email.path}")
-    configFile=/home/christian/.config/git/config
-    ${pkgs.gnused}/bin/sed -i "s#@user-email@#$secret#" "$configFile"
-  '';
-
   home-manager.users.christian.programs.git = {
     enable = true;
-    userEmail = "@user-email@";
-    userName = "Christian Friedow";
+    includes = [
+      { path = "~/.config/git/user"; }
+    ];
     # TODO: enable git commit signing by fixing 1password package to include /opt/1Password/op-ssh-sign
     # extraConfig = {
     #   user = {
