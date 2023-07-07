@@ -11,6 +11,8 @@
   home-manager.users.christian.home = {
     packages = with pkgs; [ sublime4 ];
 
+    # TODO: for some reason a chown on .config/sublime-text and merge is necessary for this to work.
+    # TODO: You have to call "Install Package Control" from the command palette in sublime before this works
     file.".config/sublime-text/Packages/User/Preferences.sublime-settings" = {
       text = builtins.toJSON {
         "theme" = "ayu-light.sublime-theme";
@@ -41,6 +43,8 @@
           "LSP"
           "Nix"
           "Nushell"
+          "Vue Syntax Highlight"
+          "LSP-volar"
         ];
       };
     };
