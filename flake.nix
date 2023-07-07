@@ -71,10 +71,20 @@
         ./modules/sublime-merge.nix
         ./modules/terminal.nix
         ./modules/time.nix
-        ./modules/users.nix
+        ./modules/user-christian.nix
         ./modules/vscode.nix
         ./modules/yubikey
         ./modules/window-manager
+      ];
+
+      personal-modules = [
+        ./modules/user-email-personal.nix
+      ];
+
+      work-modules = [
+        ./modules/user-bender.nix
+        ./modules/user-email-work.nix
+        ./modules/vagrant.nix
       ];
 
       server-system = "aarch64-linux";
@@ -97,14 +107,21 @@
           inherit specialArgs;
           system = desktop-system;
           pkgs = desktop-pkgs;
-          modules = desktop-modules ++ [ ./hardware-configuration/avalanche.nix ];
+          modules = desktop-modules ++ personal-modules ++ [ ./hardware-configuration/avalanche.nix ];
         };
 
         hurricane = nixpkgs.lib.nixosSystem {
           inherit specialArgs;
           system = desktop-system;
           pkgs = desktop-pkgs;
-          modules = desktop-modules ++ [ ./hardware-configuration/hurricane.nix ];
+          modules = desktop-modules ++ personal-modules ++ [ ./hardware-configuration/hurricane.nix ];
+        };
+
+        tsunami = nixpkgs.lib.nixosSystem {
+          inherit specialArgs;
+          system = desktop-system;
+          pkgs = desktop-pkgs;
+          modules = desktop-modules ++ work-modules ++ [ ./hardware-configuration/tsunami.nix ];
         };
 
         landslide = nixpkgs.lib.nixosSystem {
