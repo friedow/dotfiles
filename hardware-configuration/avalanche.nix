@@ -42,7 +42,6 @@
       offload.enable = true;
     };
   };
-  hardware.opengl.enable = true;
   services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
 
   networking = { hostName = "avalanche"; };

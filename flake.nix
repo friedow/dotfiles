@@ -6,6 +6,7 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     akenji-dotfiles.url = "github:a-kenji/dotfiles";
     # opengl wrapper for nvidia
+    # TODO: this can probably be removed if "hardware.opengl.enable = true;" works on hurricane
     nixgl = {
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";

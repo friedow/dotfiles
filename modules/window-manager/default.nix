@@ -5,6 +5,7 @@ let
   fonts = import ../../config/fonts.nix;
   wob_sock = "$XDG_RUNTIME_DIR/wob.sock";
 in {
+  hardware.opengl.enable = true;
   home-manager.users.christian = {
 
     # Configure most applications to use the wayland interface 
