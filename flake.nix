@@ -79,6 +79,7 @@
       ];
 
       personal-modules = [
+        ./modules/password-manager-ssh.nix
         ./modules/user-email-personal.nix
       ];
 
