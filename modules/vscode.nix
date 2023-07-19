@@ -21,6 +21,7 @@ in {
       ];
 
       userSettings = {
+        "editor.formatOnSave" = true;
         "window.menuBarVisibility" = "toggle";
         "workbench.activityBar.visible" = false;
         "workbench.statusBar.visible" = false;
@@ -44,6 +45,7 @@ in {
         "git.pruneOnFetch" = true;
         "[json]" = { "editor.defaultFormatter" = "esbenp.prettier-vscode"; };
         "[jsonc]" = { "editor.defaultFormatter" = "esbenp.prettier-vscode"; };
+        "[vue]" = { "editor.defaultFormatter" = "esbenp.prettier-vscode"; };
       };
 
       keybindings = [
