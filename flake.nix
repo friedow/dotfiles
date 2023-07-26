@@ -46,9 +46,7 @@
         system = desktop-system;
         config = {
           allowUnfree = true;
-          permittedInsecurePackages = [
-            "openssl-1.1.1u"
-          ];
+          permittedInsecurePackages = [ "openssl-1.1.1u" ];
         };
       };
       desktop-modules = [
@@ -80,7 +78,7 @@
         ./modules/screenshots.nix
         ./modules/secret-management.nix
         ./modules/session.nix
-        ./modules/sublime-text.nix
+        ./modules/sublime-text
         ./modules/sublime-merge.nix
         ./modules/terminal.nix
         ./modules/time.nix
@@ -96,15 +94,14 @@
       ];
 
       work-modules = [
+        ./modules/gcloud.nix
         ./modules/git-config-work.nix
         ./modules/user-bender.nix
         ./modules/vagrant.nix
       ];
 
       server-system = "aarch64-linux";
-      server-pkgs = (import nixpkgs) {
-        system = server-system;
-      };
+      server-pkgs = (import nixpkgs) { system = server-system; };
       server-modules = [
         ./modules/arion.nix
         ./modules/cgm.nix
@@ -121,33 +118,36 @@
           inherit specialArgs;
           system = desktop-system;
           pkgs = desktop-pkgs;
-          modules = desktop-modules ++ personal-modules ++ [ ./hardware-configuration/avalanche.nix ];
+          modules = desktop-modules ++ personal-modules
+            ++ [ ./hardware-configuration/avalanche.nix ];
         };
 
         hurricane = nixpkgs.lib.nixosSystem {
           inherit specialArgs;
           system = desktop-system;
           pkgs = desktop-pkgs;
-          modules = desktop-modules ++ personal-modules ++ [ ./hardware-configuration/hurricane.nix ];
+          modules = desktop-modules ++ personal-modules
+            ++ [ ./hardware-configuration/hurricane.nix ];
         };
 
         tsunami = nixpkgs.lib.nixosSystem {
           inherit specialArgs;
           system = desktop-system;
           pkgs = desktop-pkgs;
-          modules = desktop-modules ++ work-modules ++ [ ./hardware-configuration/tsunami.nix ];
+          modules = desktop-modules ++ work-modules
+            ++ [ ./hardware-configuration/tsunami.nix ];
         };
 
         landslide = nixpkgs.lib.nixosSystem {
           inherit specialArgs;
           system = server-system;
           pkgs = server-pkgs;
-          modules = server-modules ++ [ ./hardware-configuration/landslide.nix ];
+          modules = server-modules
+            ++ [ ./hardware-configuration/landslide.nix ];
         };
       };
 
-      devShells.x86_64-linux.default =
-        with desktop-pkgs;
+      devShells.x86_64-linux.default = with desktop-pkgs;
         stdenv.mkDerivation {
           name = "dotfiles";
           buildInputs = [ nixfmt nil ];
