@@ -1,8 +1,0 @@
-{
-  "recommendations": [
-    "bbenoist.nix",
-    "editorconfig.editorconfig",
-    "brettm12345.nixfmt-vscode",
-    "EditorConfig.EditorConfig"
-  ]
-}
