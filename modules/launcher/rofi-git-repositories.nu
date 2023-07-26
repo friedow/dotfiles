@@ -16,10 +16,10 @@ pkgs: ''
   }
 
   def executeEntryAction [selectedEntry: string] {
-    spawn $"swaymsg layout tabbed"
+    # spawn $"swaymsg layout tabbed"
+    spawn $"alacritty --working-directory \"($env.ROFI_INFO)\""
     spawn $"sublime -n \"($env.ROFI_INFO)\""
     spawn $"sublime_merge -n \"($env.ROFI_INFO)\""
-    spawn $"alacritty --working-directory \"($env.ROFI_INFO)\""
   }
 
   def main [selectedEntry?: string] {

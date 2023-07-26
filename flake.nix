@@ -98,6 +98,7 @@
         ./modules/git-config-work.nix
         ./modules/user-bender.nix
         ./modules/vagrant.nix
+        ./modules/xdg-utils.nix
       ];
 
       server-system = "aarch64-linux";
