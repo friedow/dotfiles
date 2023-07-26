@@ -68,7 +68,7 @@
         ./modules/networking.nix
         ./modules/notifications.nix
         ./modules/office.nix
-        ./modules/onagre.nix
+        ./modules/onagre
         ./modules/resource-monitor.nix
         ./modules/shell.nix
         ./modules/nix-cli.nix

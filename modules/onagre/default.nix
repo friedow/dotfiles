@@ -1,7 +1,14 @@
 { inputs, pkgs, ... }: {
   home-manager.users.christian.home = {
-    # packages = [ (pkgs.hiPrio inputs.pop-launcher) inputs.onagre ];
-    packages = [ (pkgs.hiPrio inputs.pop-launcher.packages."x86_64-linux".default) inputs.onagre.packages."x86_64-linux".default ];
+    packages = [
+      (pkgs.hiPrio inputs.pop-launcher.packages."x86_64-linux".default)
+      inputs.onagre.packages."x86_64-linux".default
+    ];
+
+    # Plugins
+    file.".local/share/pop-launcher/plugins/clock".source = ./clock;
+
+    # Theme
     # file.".config/onagre/theme.scss" = {
     #   text = ''
     #     .onagre {

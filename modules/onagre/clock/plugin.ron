@@ -1,0 +1,6 @@
+(
+    name: "Clock",
+    description: "Shows the current time",
+    bin: (path: "clock.nu"),
+    icon: Name("utilities-terminal"),
+)
