@@ -5,10 +5,7 @@
   networking = {
     useDHCP = lib.mkDefault true;
 
-    networkmanager = {
-      enable = true;
-      plugins = [ pkgs.networkmanager-openvpn ];
-    };
+    networkmanager = { enable = true; };
   };
 
   programs.nm-applet.enable = true;
