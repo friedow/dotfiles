@@ -1,6 +1,7 @@
 { inputs, pkgs, ... }: {
   home-manager.users.christian.home = {
-    packages = [ inputs.akenji-dotfiles.nixosModules.home.onagre pkgs.papirus-icon-theme ];
+    # packages = [ (pkgs.hiPrio inputs.pop-launcher) inputs.onagre ];
+    packages = [ (pkgs.hiPrio inputs.pop-launcher.packages."x86_64-linux".default) inputs.onagre.packages."x86_64-linux".default ];
     # file.".config/onagre/theme.scss" = {
     #   text = ''
     #     .onagre {

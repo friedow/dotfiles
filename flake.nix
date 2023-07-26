@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    akenji-dotfiles.url = "github:a-kenji/dotfiles";
     # opengl wrapper for nvidia
     # TODO: this can probably be removed if "hardware.opengl.enable = true;" works on hurricane
     nixgl = {
@@ -12,7 +11,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    agenix.url = "github:ryantm/agenix";
+    pop-launcher = {
+      url = "github:friedow/launcher/feat/flake-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    onagre = {
+      url = "github:friedow/onagre/fix/row-theming";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     arion = {
       url = "github:hercules-ci/arion";
