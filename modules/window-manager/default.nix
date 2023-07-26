@@ -55,10 +55,6 @@ in {
           { command = "lock"; }
           {
             command =
-              "/home/christian/Code/friedow/search/src-tauri/target/release/search-friedow-com";
-          }
-          {
-            command =
               "rm -f ${wob_sock} && mkfifo ${wob_sock} && tail -f ${wob_sock} | ${pkgs.wob}/bin/wob -o 0 -b 0 -p 1 -H 15 -M 20 -a top";
             always = true;
           }
@@ -189,7 +185,7 @@ in {
           outer = -2;
         };
 
-        output = { "*" = { bg = "~/.config/sway/wallpaper.png fill"; }; };
+        output."*".bg = "~/.config/sway/wallpaper.png fill";
 
         window = {
           border = 0;
