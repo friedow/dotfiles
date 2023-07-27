@@ -2,7 +2,7 @@
 
 def main [] {
   while true {
-    let command = (bash -c "read -t 1 line; echo $line" | from json)
+    let command = (bash -c "read -t 1 input; inputOrTimeout=${input:="Timeout"}; echo $inputOrTimeout" | from json)
 
     if $command == "Exit" {
       break
@@ -13,12 +13,13 @@ def main [] {
     }
 
     mut entries = (getEntries)
-    print $entries
-
-    if $command.Search? != null {
+    if ($command | describe) starts-with "record" and  $command.Search? != null {
       $entries = ($entries | filter {|entry| entryMatchesSearch $entry $command.Search })
     }
 
+    if $command == "Timeout" {
+      print '"Clear"'
+    }
     printEntries $entries
   }
 }
@@ -32,7 +33,7 @@ def getEntries [] {
     Append:
       id: 0
       name: ($currentTime)
-      description: Time lorem ipsum
+      description: Time
       icon:
         Name: accessories-clock
   ' | from yml)
@@ -41,7 +42,7 @@ def getEntries [] {
     Append:
       id: 1
       name: ($currentDate)
-      description: Date dolor met
+      description: Date
       icon:
         Name: date
   ' | from yml)
@@ -71,7 +72,6 @@ def entryMatchesSearch [entry: record, searchString: string] {
 }
 
 def printEntries [entries: list] {
-  print '"Clear"'
   for entry in $entries {
     print ($entry | to json -r)
   }
