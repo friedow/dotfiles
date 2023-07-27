@@ -1,4 +1,6 @@
 { inputs, pkgs, ... }: {
+  imports = [ ./git-repositories-service.nix ];
+
   home-manager.users.christian.home = {
     packages = [
       (pkgs.hiPrio inputs.pop-launcher.packages."x86_64-linux".default)
