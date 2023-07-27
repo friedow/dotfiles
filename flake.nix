@@ -17,7 +17,7 @@
     };
 
     onagre = {
-      url = "github:friedow/onagre/fix/row-theming";
+      url = "github:friedow/onagre/feat/flake-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

@@ -361,16 +361,16 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1688897236,
-        "narHash": "sha256-oMWGI3VPUuElRqCUriXfzLggIxYSP4OZ/omPCPDZFxs=",
+        "lastModified": 1690468785,
+        "narHash": "sha256-WGIXEUiM/pW7UsBo1VoP7mPSBY2kHWzR3o6WOZtKvs4=",
         "owner": "friedow",
         "repo": "onagre",
-        "rev": "c92d3fb30309584be8a37577c96fc40b35a1bc9c",
+        "rev": "5885ef15d4d874973770398ec60deeed4a5dadc0",
         "type": "github"
       },
       "original": {
         "owner": "friedow",
-        "ref": "fix/row-theming",
+        "ref": "feat/flake-nix",
         "repo": "onagre",
         "type": "github"
       }
