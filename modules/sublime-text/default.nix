@@ -23,6 +23,7 @@
         "tab_size" = 2;
         "translate_tabs_to_spaces" = true;
         "hot_exit" = "disabled";
+        "goto_anything_exclude_gitignore" = true;
       };
     };
 
