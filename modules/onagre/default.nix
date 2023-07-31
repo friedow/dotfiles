@@ -5,10 +5,13 @@
     packages = [
       (pkgs.hiPrio inputs.pop-launcher.packages."x86_64-linux".default)
       inputs.onagre.packages."x86_64-linux".default
+      pkgs.papirus-icon-theme
     ];
 
     # Plugins
     file.".local/share/pop-launcher/plugins/clock".source = ./clock;
+    file.".local/share/pop-launcher/plugins/git-repositories".source =
+      ./git-repositories;
 
     # Theme
     # file.".config/onagre/theme.scss" = {

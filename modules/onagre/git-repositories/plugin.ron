@@ -1,0 +1,7 @@
+(
+    name: "Git Repositories",
+    description: "Lists local git repositories and opens a development environment.",
+    bin: (path: "git-repositories.nu"),
+    icon: Name("folder-black-git"),
+    query: (history: true),
+)
