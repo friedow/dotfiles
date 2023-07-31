@@ -13,7 +13,7 @@ class FormatOnSave(sublime_plugin.EventListener):
       process = call(["nix", "run", "nixpkgs#rustfmt", "--", view.file_name()])
       return
 
-    elif syntax in ["JavaScript", "TypeScript", "JSON", "Vue", "HTML", "CSS", "Markdown", "JSX", "YAML"]:
+    elif syntax in ["JavaScript", "TypeScript", "UnitTest (TypeScript)", "JSON", "Vue Component", "HTML", "CSS", "Markdown", "JSX", "YAML"]:
       process = call(["nix", "run", "nixpkgs#nodePackages.prettier", "--", "-w", view.file_name()])
       return
 
