@@ -1,6 +1,8 @@
 #!/usr/bin/env nu
 
 def main [] {
+  mut lastSearch = ""
+
   while true {
     let command = (bash -c "read -t 1 input; inputOrTimeout=${input:="Timeout"}; echo $inputOrTimeout" | from json)
 
@@ -12,9 +14,14 @@ def main [] {
       continue
     }
 
-    mut entries = (getEntries)
     if ($command | describe) starts-with "record" and  $command.Search? != null {
-      $entries = ($entries | filter {|entry| entryMatchesSearch $entry $command.Search })
+      $lastSearch = $command.Search
+    }
+    let searchString = $lastSearch
+
+    mut entries = (getEntries)
+    if ($searchString | str length ) > 0  {
+      $entries = ($entries | filter {|entry| entryMatchesSearch $entry $searchString })
     }
 
     if $command == "Timeout" {
