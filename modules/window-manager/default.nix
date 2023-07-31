@@ -117,7 +117,7 @@ in {
           "${modifier}+r" = "mode resize";
 
           "${modifier}+Return" = "exec alacritty";
-          "${modifier}+Shift+s" = "exec flameshot gui";
+          "${modifier}+Shift+s" = "exec flameshot gui --raw | wl-copy";
           "${modifier}+Shift+p" = ''
             exec ${pkgs.wob}/bin/grim -g "$(${pkgs.slurp}/bin/slurp -p)" -t ppm - | ${pkgs.imagemagick}/bin/convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | ${pkgs.wl-clipboard}/bin/wl-copy'';
           "${modifier}+l" = "exec lock";
@@ -190,12 +190,10 @@ in {
         window = {
           border = 0;
 
-          commands = [
-            {
-              command = ''titlebar_padding 7 7'';
-              criteria = { class = ".*"; };
-            }
-          ];
+          commands = [{
+            command = "titlebar_padding 7 7";
+            criteria = { class = ".*"; };
+          }];
         };
       };
     };
