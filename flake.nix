@@ -91,6 +91,7 @@
       personal-modules = [
         ./modules/git-config-personal.nix
         ./modules/password-manager-ssh.nix
+        ./modules/beeper.nix
       ];
 
       work-modules = [
