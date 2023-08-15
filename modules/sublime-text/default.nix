@@ -82,70 +82,103 @@
 
     # LSP dependency
     file.".config/sublime-text/Packages/backrefs".source =
-      pkgs.fetchFromGitHub {
+      let version = "1.9.0";
+      in pkgs.fetchFromGitHub {
         owner = "facelessuser";
         repo = "sublime-backrefs";
-        rev = "1.9.0";
-        sha256 = "sha256-7WegP/per6eQuGDnFReKB8h/gOBNKgDtnQK6LJMNILs=";
+        rev = version;
+        sha256 = "sha256-Fb5rdrwzl6ftWk16glgSlTQxiWhNYkNKz1SfSwvzSW4=";
+        postFetch = ''
+          echo '{"version": "${version}", "sublime_text": ">=3000", "platforms": ["*"]}' > $out/dependency-metadata.json
+        '';
       };
 
     # LSP dependency
-    file.".config/sublime-text/Packages/bracex".source = pkgs.fetchFromGitHub {
+    file.".config/sublime-text/Packages/bracex".source = let version = "2.1.1";
+    in pkgs.fetchFromGitHub {
       owner = "facelessuser";
       repo = "sublime-bracex";
-      rev = "2.1.1";
-      sha256 = "sha256-1/498PkLzNz7RQZHwMg6xWrnc8BnC2OxbbvYCoQejOk=";
+      rev = version;
+      sha256 = "sha256-ShAVoAJeGqj+IOLLkEAI28tC5cj/Pb9hlTDlEkZYW3A=";
+      postFetch = ''
+        echo '{"version": "${version}", "sublime_text": ">=3000", "platforms": ["*"]}' > $out/dependency-metadata.json
+      '';
     };
 
     # LSP dependency
     file.".config/sublime-text/Packages/mdpopups".source =
-      pkgs.fetchFromGitHub {
+      let version = "4.2.2";
+      in pkgs.fetchFromGitHub {
         owner = "facelessuser";
         repo = "sublime-markdown-popups";
-        rev = "4.2.2";
-        sha256 = "sha256-pHAHfirPP4OBaGdDhp4LsuHaXqhIm0gwEpDiYVis0I4=";
+        rev = version;
+        sha256 = "sha256-BqVfTXP8gd9YPvaIQmB2ZY/VwGIbcJ5l3U/5uEeyrZw=";
+        postFetch = ''
+          echo '{"version": "${version}", "sublime_text": ">=3000", "platforms": ["*"]}' > $out/dependency-metadata.json
+        '';
       };
 
     # LSP dependency
-    file.".config/sublime-text/Packages/pathlib".source = pkgs.fetchFromGitHub {
-      owner = "packagecontrol";
-      repo = "pathlib";
-      rev = "v1.0.1";
-      sha256 = "sha256-XsT++oBu1ALDwUKmYEs1MEEcU92+CW77JEa7C5WKvsw=";
-    };
+    file.".config/sublime-text/Packages/pathlib".source =
+      let version = "v1.0.1";
+      in pkgs.fetchFromGitHub {
+        owner = "packagecontrol";
+        repo = "pathlib";
+        rev = version;
+        sha256 = "sha256-oFEhxnDNXLZ51NIKR3zf7keLB5UUjanrGNrmQIYh0v0=";
+        postFetch = ''
+          echo '{"version": "${version}", "sublime_text": ">=3000", "platforms": ["*"]}' > $out/dependency-metadata.json
+        '';
+      };
 
     # LSP dependency
-    file.".config/sublime-text/Packages/pyyaml".source = pkgs.fetchFromGitHub {
+    file.".config/sublime-text/Packages/pyyaml".source = let version = "v5.1.1";
+    in pkgs.fetchFromGitHub {
       owner = "packagecontrol";
       repo = "pyyaml";
-      rev = "v5.1.1";
-      sha256 = "sha256-NAkpwmYGU6IVo++vHdVJ7BSRGq1zvb2oixXdD8NW6Io=";
+      rev = version;
+      sha256 = "sha256-rarzAcHnaCTHbseL1l4XK1toC/IEUqNG5IksnHT7qxM=";
+      postFetch = ''
+        echo '{"version": "${version}", "sublime_text": ">=3000", "platforms": ["*"]}' > $out/dependency-metadata.json
+      '';
     };
 
     # LSP dependency
-    file.".config/sublime-text/Packages/wcmatch".source = pkgs.fetchFromGitHub {
+    file.".config/sublime-text/Packages/wcmatch".source = let version = "1.2.1";
+    in pkgs.fetchFromGitHub {
       owner = "facelessuser";
       repo = "sublime-wcmatch";
-      rev = "1.2.1";
-      sha256 = "sha256-i/4kqV5BzpmTPpUeTVqHsGkBe+g/Wpjd+eyB4iXphFI=";
+      rev = version;
+      sha256 = "sha256-bPUqLHq3orpPsDsKy8YcIqlkZKRzqkVGAXl4xXRGlqQ=";
+      postFetch = ''
+        echo '{"version": "${version}", "sublime_text": ">=3000", "platforms": ["*"]}' > $out/dependency-metadata.json
+      '';
     };
 
     # LSP-* dependency
     file.".config/sublime-text/Packages/lsp_utils".source =
-      pkgs.fetchFromGitHub {
+      let version = "v2.2.1";
+      in pkgs.fetchFromGitHub {
         owner = "sublimelsp";
         repo = "lsp_utils";
-        rev = "v2.2.1";
-        sha256 = "sha256-2Pxtatj9G4q1ITaqnM60PHsgTIu1R4bzQCIdD5H8Pd0=";
+        rev = version;
+        sha256 = "sha256-eNG7SxD8McrJyIMjG0kpfeNdqzcRKDLpvrzPZd2ux/c=";
+        postFetch = ''
+          echo '{"version": "${version}", "sublime_text": ">=3000", "platforms": ["*"]}' > $out/dependency-metadata.json
+        '';
       };
 
     # LSP-* dependency
     file.".config/sublime-text/Packages/sublime_lib".source =
-      pkgs.fetchFromGitHub {
+      let version = "v1.5.2";
+      in pkgs.fetchFromGitHub {
         owner = "SublimeText";
         repo = "sublime_lib";
-        rev = "v1.5.2";
-        sha256 = "sha256-tI5EPi2ixskJ1PYnGjHG4e8h7xyHvVgJZYqCogM0D4E=";
+        rev = version;
+        sha256 = "sha256-3/mrRo78v4jgBaqQCrTdxpq/IP+oc1oyDyjGCwKovOk=";
+        postFetch = ''
+          echo '{"version": "${version}", "sublime_text": ">=3000", "platforms": ["*"]}' > $out/dependency-metadata.json
+        '';
       };
 
     # LSP typescript
@@ -252,7 +285,7 @@
         owner = "sublimelsp";
         repo = "LSP-rust-analyzer";
         rev = "v1.5.0";
-        sha256 = "sha256-L9IDB7llI9grTY7kweNVPoiK0uVtlisc+iGpr2b0uls=";
+        sha256 = "sha256-wkuFQ4F33BBVyBAIZl3XGaTZZjBN23RZ1AMIHyELkGI=";
       };
 
     file.".config/sublime-text/Packages/User/LSP-rust-analyzer.sublime-settings" =
