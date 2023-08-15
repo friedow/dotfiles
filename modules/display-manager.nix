@@ -10,7 +10,7 @@ let
   laptop = {
     criteria = "eDP-1";
     status = "enable";
-    scale = 2.0;
+    scale = 3.0;
     position = "0,0";
   };
 
