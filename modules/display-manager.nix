@@ -7,10 +7,10 @@ let
   };
 
   # TODO: restrict this to avalanche's display
-  laptop = {
-    criteria = "eDP-1";
+  razer-laptop = {
+    criteria = "AU Optronics 0x202B Unknown";
     status = "enable";
-    scale = 3.0;
+    scale = 2.5;
     position = "0,0";
   };
 
@@ -25,7 +25,7 @@ in {
     services.kanshi = {
       enable = true;
       profiles = {
-        laptop-undocked = { outputs = [ laptop ]; };
+        razer-laptop-undocked = { outputs = [ razer-laptop ]; };
         charite-docked = { outputs = [ laptop-off charite-lg ]; };
       };
     };
