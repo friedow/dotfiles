@@ -55,6 +55,7 @@
         ./modules/browser.nix
         ./modules/clipboard.nix
         ./modules/cross-compile.nix
+        ./modules/cursor.nix
         ./modules/display-manager.nix
         ./modules/docker.nix
         ./modules/file-manager.nix
