@@ -46,7 +46,7 @@
         system = desktop-system;
         config = {
           allowUnfree = true;
-          permittedInsecurePackages = [ "openssl-1.1.1u" ];
+          permittedInsecurePackages = [ "openssl-1.1.1v" ];
         };
       };
       desktop-modules = [
@@ -63,7 +63,6 @@
         ./modules/git.nix
         ./modules/gtk.nix
         ./modules/home-manager.nix
-        ./modules/kernel.nix
         ./modules/launcher
         ./modules/lockscreen
         ./modules/networking.nix
