@@ -68,7 +68,6 @@
         ./modules/networking.nix
         ./modules/notifications.nix
         ./modules/office.nix
-        ./modules/onagre
         ./modules/resource-monitor.nix
         ./modules/shell.nix
         ./modules/nix-cli.nix
@@ -92,6 +91,7 @@
         ./modules/git-config-personal.nix
         ./modules/password-manager-ssh.nix
         ./modules/beeper.nix
+        ./modules/onagre
       ];
 
       work-modules = [
