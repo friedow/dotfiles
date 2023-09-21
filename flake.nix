@@ -97,6 +97,7 @@
       work-modules = [
         ./modules/gcloud.nix
         ./modules/git-config-work.nix
+        ./modules/google-chrome-dev.nix
         ./modules/user-bender.nix
         ./modules/vagrant.nix
         ./modules/xdg-utils.nix
