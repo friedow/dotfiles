@@ -4,6 +4,23 @@ let
   colors = import ../../config/colors.nix;
   fonts = import ../../config/fonts.nix;
   wob_sock = "$XDG_RUNTIME_DIR/wob.sock";
+
+  sed-brightnessctl = "sed -En 's/.*\\(([0-9]+)%\\).*/\\1/p'";
+
+  brightnessctl-inc = pkgs.writeShellScript "brightnessctl-inc" ''
+    current_brightness=$(${pkgs.brightnessctl}/bin/brightnessctl | ${sed-brightnessctl})
+    new_brightness=$(echo "(sqrt($current_brightness)+1)^2"|${pkgs.bc}/bin/bc)
+    ${pkgs.brightnessctl}/bin/brightnessctl set ''${new_brightness}%
+    ${pkgs.libnotify}/bin/notify-send -h int:value:$new_brightness "Display brightness"
+  '';
+
+  brightnessctl-dec = pkgs.writeShellScript "brightnessctl-dec" ''
+    current_brightness=$(${pkgs.brightnessctl}/bin/brightnessctl | ${sed-brightnessctl})
+    new_brightness=$(echo "(sqrt($current_brightness)-1)^2"|${pkgs.bc}/bin/bc)
+    ${pkgs.brightnessctl}/bin/brightnessctl set ''${new_brightness}%
+    ${pkgs.libnotify}/bin/notify-send -h int:value:$new_brightness "Display brightness"
+  '';
+
 in {
   hardware.opengl.enable = true;
   home-manager.users.christian = {
@@ -126,9 +143,9 @@ in {
 
           # Brightness
           "--no-repeat --no-warn --locked XF86MonBrightnessDown" =
-            "exec ${pkgs.brightnessctl}/bin/brightnessctl set 10%- | sed -En 's/.*\\(([0-9]+)%\\).*/\\1/p' > ${wob_sock}";
+            "exec ${brightnessctl-dec}";
           "--no-repeat --no-warn --locked XF86MonBrightnessUp" =
-            "exec ${pkgs.brightnessctl}/bin/brightnessctl set +10% | sed -En 's/.*\\(([0-9]+)%\\).*/\\1/p' > ${wob_sock}";
+            "exec ${brightnessctl-inc}";
 
           # Volume
           "--no-repeat --no-warn XF86AudioRaiseVolume" =
