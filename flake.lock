@@ -44,6 +44,26 @@
         "type": "github"
       }
     },
+    "centerpiece": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1695481080,
+        "narHash": "sha256-zXzetIY91XXzkd95QDc01h/96bjpb+yeOLgkEHEJhjc=",
+        "owner": "friedow",
+        "repo": "centerpiece",
+        "rev": "0c0ece77ce53db1489d9d47308d54b32422a1455",
+        "type": "github"
+      },
+      "original": {
+        "owner": "friedow",
+        "repo": "centerpiece",
+        "type": "github"
+      }
+    },
     "crane": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -401,6 +421,7 @@
       "inputs": {
         "agenix": "agenix",
         "arion": "arion",
+        "centerpiece": "centerpiece",
         "home-manager": "home-manager_2",
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs",
