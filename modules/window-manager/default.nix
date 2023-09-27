@@ -6,21 +6,42 @@ let
   wob_sock = "$XDG_RUNTIME_DIR/wob.sock";
 
   sed-brightnessctl = "sed -En 's/.*\\(([0-9]+)%\\).*/\\1/p'";
+  brightness-notification-id = "1";
 
-  brightnessctl-inc = pkgs.writeShellScript "brightnessctl-inc" ''
+  brightness-increase = pkgs.writeShellScript "brightnessctl-inc" ''
     current_brightness=$(${pkgs.brightnessctl}/bin/brightnessctl | ${sed-brightnessctl})
     new_brightness=$(echo "(sqrt($current_brightness)+1)^2"|${pkgs.bc}/bin/bc)
     ${pkgs.brightnessctl}/bin/brightnessctl set ''${new_brightness}%
-    ${pkgs.libnotify}/bin/notify-send -h int:value:$new_brightness "Display brightness"
+    ${pkgs.libnotify}/bin/notify-send --hint int:value:$new_brightness --replace-id ${brightness-notification-id} "Brightness"
   '';
 
-  brightnessctl-dec = pkgs.writeShellScript "brightnessctl-dec" ''
+  brightness-decrease = pkgs.writeShellScript "brightnessctl-dec" ''
     current_brightness=$(${pkgs.brightnessctl}/bin/brightnessctl | ${sed-brightnessctl})
     new_brightness=$(echo "(sqrt($current_brightness)-1)^2"|${pkgs.bc}/bin/bc)
     ${pkgs.brightnessctl}/bin/brightnessctl set ''${new_brightness}%
-    ${pkgs.libnotify}/bin/notify-send -h int:value:$new_brightness "Display brightness"
+    ${pkgs.libnotify}/bin/notify-send --hint int:value:$new_brightness --replace-id ${brightness-notification-id} "Brightness"
   '';
 
+  volume-notification-id = "2";
+
+  volume-increase = pkgs.writeShellScript "volume-increase" ''
+    new_volume=$(${pkgs.pamixer}/bin/pamixer -i 5 --get-volume)
+    ${pkgs.libnotify}/bin/notify-send --hint int:value:$new_volume --replace-id ${volume-notification-id} "Volume"
+  '';
+
+  volume-decrease = pkgs.writeShellScript "volume-decrease" ''
+    new_volume=$(${pkgs.pamixer}/bin/pamixer -d 5 --get-volume)
+    ${pkgs.libnotify}/bin/notify-send --hint int:value:$new_volume --replace-id ${volume-notification-id} "Volume"
+  '';
+
+  volume-toggle = pkgs.writeShellScript "volume-toggle" ''
+    ${pkgs.pamixer}/bin/pamixer -t
+    if [ "$(${pkgs.pamixer}/bin/pamixer --get-mute)" = "true" ]; then
+      ${pkgs.libnotify}/bin/notify-send --hint int:value:0 --replace-id ${volume-notification-id} "Volume"
+    else
+      ${pkgs.libnotify}/bin/notify-send --hint int:value:100 --replace-id ${volume-notification-id} "Volume"
+    fi
+  '';
 in {
   hardware.opengl.enable = true;
   home-manager.users.christian = {
@@ -143,17 +164,16 @@ in {
 
           # Brightness
           "--no-repeat --no-warn --locked XF86MonBrightnessDown" =
-            "exec ${brightnessctl-dec}";
+            "exec ${brightness-decrease}";
           "--no-repeat --no-warn --locked XF86MonBrightnessUp" =
-            "exec ${brightnessctl-inc}";
+            "exec ${brightness-increase}";
 
           # Volume
           "--no-repeat --no-warn XF86AudioRaiseVolume" =
-            "exec ${pkgs.pamixer}/bin/pamixer -i 5 --get-volume > ${wob_sock}";
+            "exec ${volume-increase}";
           "--no-repeat --no-warn XF86AudioLowerVolume" =
-            "exec ${pkgs.pamixer}/bin/pamixer -d 5 --get-volume > ${wob_sock}";
-          "--no-repeat --no-warn XF86AudioMute" = ''
-            exec ${pkgs.pamixer}/bin/pamixer -t && ( [ "$(${pkgs.pamixer}/bin/pamixer --get-mute)" = "true" ] && echo 0 > ${wob_sock} ) || ${pkgs.pamixer}/bin/pamixer --get-volume > ${wob_sock}'';
+            "exec ${volume-decrease}";
+          "--no-repeat --no-warn XF86AudioMute" = "exec ${volume-toggle}";
 
         };
 
