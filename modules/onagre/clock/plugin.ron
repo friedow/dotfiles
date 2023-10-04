@@ -1,7 +1,0 @@
-(
-    name: "Clock",
-    description: "Shows the current time and date.",
-    bin: (path: "clock.nu"),
-    icon: Name("clock"),
-    query: (history: false),
-)

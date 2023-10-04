@@ -11,16 +11,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    pop-launcher = {
-      url = "github:friedow/launcher/feat/flake-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    onagre = {
-      url = "github:friedow/onagre/feat/flake-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -97,7 +87,6 @@
         ./modules/git-config-personal.nix
         ./modules/password-manager-ssh.nix
         ./modules/beeper.nix
-        ./modules/onagre
       ];
 
       work-modules = [
