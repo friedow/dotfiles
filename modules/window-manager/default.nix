@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 let
   modifier = "Mod4";
   colors = import ../../config/colors.nix;
@@ -161,6 +161,8 @@ in {
           "${modifier}+l" = "exec lock";
 
           "${modifier}+Space" = "exec rofi -show combi";
+          "${modifier}+k" =
+            "exec ${inputs.centerpiece.packages.x86_64-linux.default}/bin/centerpiece";
 
           # Brightness
           "--no-repeat --no-warn --locked XF86MonBrightnessDown" =

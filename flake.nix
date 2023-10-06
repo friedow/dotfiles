@@ -28,7 +28,7 @@
 
     centerpiece = {
       url = "github:friedow/centerpiece";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs"; TODO: resolve rustc mismatch
     };
   };
 
@@ -41,7 +41,7 @@
         system = desktop-system;
         config = {
           allowUnfree = true;
-          permittedInsecurePackages = [ "openssl-1.1.1v" ];
+          permittedInsecurePackages = [ "openssl-1.1.1w" ];
         };
       };
       desktop-modules = [
