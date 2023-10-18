@@ -160,7 +160,6 @@ in {
             exec ${pkgs.wob}/bin/grim -g "$(${pkgs.slurp}/bin/slurp -p)" -t ppm - | ${pkgs.imagemagick}/bin/convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | ${pkgs.wl-clipboard}/bin/wl-copy'';
           "${modifier}+l" = "exec lock";
 
-          "${modifier}+Space" = "exec rofi -show combi";
           "${modifier}+k" =
             "exec ${inputs.centerpiece.packages.x86_64-linux.default}/bin/centerpiece";
 
