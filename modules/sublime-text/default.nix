@@ -342,5 +342,14 @@
       sha256 = "sha256-1FfqlhPF5X+qwPxsw7ktyHKgH6VMKk0PV+LIXrGtbt4=";
     };
 
+    # LSP python
+    file.".config/sublime-text/Packages/LSP-pyright".source =
+      pkgs.fetchFromGitHub {
+        owner = "sublimelsp";
+        repo = "LSP-pyright";
+        rev = "1.2.51";
+        sha256 = "sha256-4UXfPr+5mjxctg/V/GLi2NFm7g7jX3wW8AemqIKXtbQ=";
+      };
+
   };
 }
