@@ -9,10 +9,14 @@
   };
 
   home-manager.users.christian.home = {
+    # TODO: continue
+    sessionVariables = {
+      VISUAL = "sublime-text --wait";
+      EDITOR = "sublime-text --wait";
+    };
+
     packages = with pkgs; [ sublime4 ];
 
-    # TODO: for some reason a chown on .config/sublime-text and merge is necessary for this to work.
-    # TODO: You have to call "Install Package Control" from the command palette in sublime before this works
     file.".config/sublime-text/Packages/User/Preferences.sublime-settings" = {
       text = builtins.toJSON {
         "theme" = "ayu-light.sublime-theme";
@@ -25,6 +29,24 @@
         "hot_exit" = "disabled";
         "goto_anything_exclude_gitignore" = true;
       };
+    };
+
+    file.".config/sublime-text/Packages/User/Default (Linux).sublime-keymap" = {
+      text = builtins.toJSON [
+        {
+          "keys" = [ "ctrl+k" ];
+          "command" = "show_overlay";
+          "args" = {
+            "overlay" = "goto";
+            "show_files" = true;
+          };
+        }
+        {
+          "keys" = [ "ctrl+shift+k" ];
+          "command" = "show_overlay";
+          "args" = { "overlay" = "command_palette"; };
+        }
+      ];
     };
 
     ### PLUGINS
