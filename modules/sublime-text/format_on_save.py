@@ -17,4 +17,8 @@ class FormatOnSave(sublime_plugin.EventListener):
       process = call(["nix", "run", "nixpkgs#nodePackages.prettier", "--", "-w", view.file_name()])
       return
 
+    elif syntax in ["Python"]:
+      process = call(["nix", "run", "nixpkgs#black", "--", view.file_name()])
+      return
+
     print("unhandled syntax: " + syntax)
