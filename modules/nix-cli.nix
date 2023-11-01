@@ -24,6 +24,7 @@
       self.flake = inputs.self;
       nixpkgs.flake = inputs.nixpkgs;
       nixpkgs-unstable.flake = inputs.nixpkgs-unstable;
+      n.flake = inputs.nixpkgs;
     };
 
     # change nixpkgs variable from channel to flake
