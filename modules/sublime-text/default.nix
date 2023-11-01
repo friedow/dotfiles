@@ -1,5 +1,5 @@
 { pkgs, config, ... }: {
-  # TODO: resolve the creation, stage and deletion problem for secrets!
+  # TODO: resolve the creation, stage and deletion problem for secrets
   age.secrets.sublime-text-license = {
     file = ../../secrets/sublime-license.age;
     path = "/home/christian/.config/sublime-text/Local/License.sublime_license";
@@ -28,6 +28,10 @@
         "translate_tabs_to_spaces" = true;
         "hot_exit" = "disabled";
         "goto_anything_exclude_gitignore" = true;
+        "ignored_packages" = [ ];
+        "vintage_start_in_command_mode" = true;
+        "vintage_use_clipboard" = true;
+        "relative_line_numbers" = true;
       };
     };
 
