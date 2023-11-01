@@ -8,7 +8,12 @@
     ''{ "flakes": [], "version": 2 }'';
 
   nix = {
-    settings.experimental-features = [ "nix-command" "flakes" ];
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      trusted-substituters = [ "https://friedow.cachix.org/" ];
+      trusted-public-keys =
+        [ "friedow.cachix.org-1:JDEaYMqNgGu+bVPOca7Zu4Cp8QDMkvQpArKuwPKa29A=" ];
+    };
     extraOptions = ''
       flake-registry = /etc/nix/registry-empty.json
     '';
