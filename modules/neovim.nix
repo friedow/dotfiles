@@ -85,6 +85,12 @@
         lspconfig.marksman.setup {
           capabilities = capabilities
         }
+
+        --autosave
+        vim.api.nvim_create_autocmd({'FocusLost', 'BufLeave'}, {
+          command = 'silent! wa'
+        })
+
       '';
       plugins = with pkgs.vimPlugins; [
         telescope-nvim
