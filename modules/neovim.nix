@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, ... }: {
   home-manager.users.christian = {
     home.packages = with pkgs; [
       # telescope dependencies
@@ -17,30 +17,74 @@
       enable = true;
       defaultEditor = false;
       viAlias = true;
-      vimAlias = true;
-      extraConfig = ''
-        set number relativenumber
-        set mouse=
-        set clipboard+=unnamedplus
-        set fillchars=eob:\
-        set scrolloff=8
-
-        let mapleader = " "
-        nnoremap <leader>ff <cmd>Telescope find_files<cr>
-        nnoremap <leader>fm <cmd>Telescope marks<cr>
-        nnoremap <leader>fe <cmd>Telescope live_grep<cr>
-        nnoremap <leader>fg <cmd>Telescope git_files<cr>
-        nnoremap <leader>u <cmd>lua require("telescope").extensions.undo.undo()<cr>
-      '';
+      vimAlias = true;  
       extraLuaConfig = ''
+        -- general
+        vim.opt.clipboard = 'unnamedplus'
+        vim.opt.fillchars='eob: '
+        vim.opt.mouse = nil;
+        vim.opt.number = true
+        vim.opt.relativenumber = true
+        vim.opt.scrolloff = 8
+        
+        -- keybindings
+        vim.g.mapleader = ' '
+        vim.keymap.set('n', '<Leader>f', ':Telescope find_files<CR>')
+        vim.keymap.set('n', '<Leader>m', ':Telescope marks<CR>')
+        vim.keymap.set('n', '<Leader>/', ':Telescope live_grep<CR>')
+        vim.keymap.set('n', '<Leader>g', ':Telescope git_files<CR>')
+        vim.keymap.set('n', '<Leader>u', ':Telescope undo<CR>')
 
+        -- fuzzy finder
+        require("telescope").setup({
+          extensions = {
+            undo = {},
+          },
+        })
+        require("telescope").load_extension("undo")
+
+        -- completion menu
+        local cmp = require'cmp'
+        cmp.setup({
+          window = {
+            -- completion = cmp.config.window.bordered(),
+            -- documentation = cmp.config.window.bordered(),
+          },
+          mapping = cmp.mapping.preset.insert({
+            ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+            ['<C-f>'] = cmp.mapping.scroll_docs(4),
+            ['<C-Space>'] = cmp.mapping.complete(),
+            ['<C-e>'] = cmp.mapping.abort(),
+            ['<CR>'] = cmp.mapping.confirm({ select = true }), 
+            ['<Tab>'] = cmp.mapping.confirm({ select = true }), 
+          }),
+          sources = cmp.config.sources(
+            {{ name = 'nvim_lsp' }},
+            {{ name = 'rg' }}
+          )
+        })
+
+        -- lsp client
+        local capabilities = require('cmp_nvim_lsp').default_capabilities()
         local lspconfig = require('lspconfig')
-        lspconfig.nil_ls.setup {}
-        lspconfig.tsserver.setup {}
-        lspconfig.pyright.setup {}
-        lspconfig.rust_analyzer.setup {}
-        lspconfig.volar.setup {}
-        lspconfig.marksman.setup {}
+        lspconfig.nil_ls.setup {
+          capabilities = capabilities
+        }
+        lspconfig.tsserver.setup {
+          capabilities = capabilities
+        }
+        lspconfig.pyright.setup {
+          capabilities = capabilities
+        }
+        lspconfig.rust_analyzer.setup {
+          capabilities = capabilities
+        }
+        lspconfig.volar.setup {
+          capabilities = capabilities
+        }
+        lspconfig.marksman.setup {
+          capabilities = capabilities
+        }
       '';
       plugins = with pkgs.vimPlugins; [
         telescope-nvim
@@ -65,6 +109,11 @@
         ]))
 
         nvim-lspconfig
+
+        nvim-cmp
+        cmp-treesitter
+        cmp-rg
+        cmp-nvim-lsp
       ];
     };
   };
