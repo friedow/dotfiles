@@ -26,7 +26,11 @@
         vim.opt.number = true
         vim.opt.relativenumber = true
         vim.opt.scrolloff = 8
-        
+
+        vim.opt.tabstop = 2
+        vim.opt.shiftwidth = 0 -- uses tabstop if 0
+        vim.opt.expandtab = true
+
         -- keybindings
         vim.g.mapleader = ' '
         vim.keymap.set('n', '<Leader>f', ':Telescope find_files<CR>')
