@@ -26,7 +26,8 @@
         vim.opt.number = true
         vim.opt.relativenumber = true
         vim.opt.scrolloff = 8
-
+        -- vim.opt.cmdheight = 0
+        
         vim.opt.tabstop = 2
         vim.opt.shiftwidth = 0 -- uses tabstop if 0
         vim.opt.expandtab = true
@@ -65,7 +66,10 @@
           sources = cmp.config.sources(
             {{ name = 'nvim_lsp' }},
             {{ name = 'rg' }}
-          )
+          ),
+          completion = {
+            completeopt = 'menu,menuone,noinsert'
+          }
         })
 
         -- lsp client
@@ -128,12 +132,25 @@
           end,
         })
 
-        --autosave
+        -- autosave
         vim.api.nvim_create_autocmd({'FocusLost', 'BufLeave'}, {
           command = 'silent! wa'
         })
 
+        -- lsp details and errors on hover
+        -- 100ms of no cursor movement to trigger CursorHold
+        vim.opt.updatetime = 100
+        -- show diagnostic popup on cursor hover
+        local diag_float_grp = vim.api.nvim_create_augroup("DiagnosticFloat", { clear = true })
+        vim.api.nvim_create_autocmd("CursorHold", {
+          callback = function()
+            vim.lsp.buf.hover()
+            vim.diagnostic.open_float(nil, { focusable = false })
+          end,
+          group = diag_float_grp,
+        })
       '';
+
       plugins = with pkgs.vimPlugins; [
         telescope-nvim
         telescope-fzf-native-nvim
