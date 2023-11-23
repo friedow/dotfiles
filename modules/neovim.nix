@@ -40,6 +40,11 @@
         vim.keymap.set('n', '<Leader>g', ':Telescope git_files<CR>')
         vim.keymap.set('n', '<Leader>u', ':Telescope undo<CR>')
 
+        -- netrw
+        vim.g.netrw_banner = 0
+        vim.g.netrw_bufsettings = "noma nomod nonu nobl nowrap ro rnu"
+        vim.g.netrw_liststyle = 3
+
         -- fuzzy finder
         require("telescope").setup({
           extensions = {
