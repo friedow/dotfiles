@@ -78,7 +78,6 @@
         ./modules/screenshots.nix
         ./modules/secret-management.nix
         ./modules/session.nix
-        ./modules/sublime-text
         ./modules/sublime-merge.nix
         ./modules/terminal.nix
         ./modules/time.nix
