@@ -64,7 +64,6 @@
         ./modules/git.nix
         ./modules/gtk.nix
         ./modules/home-manager.nix
-        ./modules/launcher
         ./modules/lockscreen
         ./modules/neovim.nix
         ./modules/networking.nix
