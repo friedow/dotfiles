@@ -30,6 +30,11 @@
       url = "github:friedow/centerpiece";
       # inputs.nixpkgs.follows = "nixpkgs"; TODO: resolve rustc mismatch
     };
+
+    dotfiles-secrets = {
+      url = "git+ssh://git@github.com/friedow/dotfiles-secrets.git";
+      flake = false;
+    };
   };
 
   outputs = { nixpkgs, ... }@inputs:

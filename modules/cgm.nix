@@ -1,5 +1,5 @@
-{ config, ... }: {
-  age.secrets.env-cgm-nightscout-api_secret.file = ../secrets/env-cgm-nightscout-api_secret.age;
+{ config, inputs, ... }: {
+  age.secrets.env-cgm-nightscout-api_secret.file = "${inputs.dotfiles-secrets}/env-cgm-nightscout-api_secret.age";
 
   systemd.services.arion-cgm = {
     wants = [ "network-online.target" "arion-reverse-proxy.service" ];

@@ -1,6 +1,6 @@
-{ pkgs, lib, ... }: {
+{ pkgs, inputs, ... }: {
   age.secrets.sublime-merge-license = {
-    file = ../secrets/sublime-license.age;
+    file = "${inputs.dotfiles-secrets}/sublime-license.age";
     path =
       "/home/christian/.config/sublime-merge/Local/License.sublime_license";
     owner = "christian";

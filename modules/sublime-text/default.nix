@@ -1,7 +1,7 @@
-{ pkgs, config, ... }: {
+{ pkgs, inputs, ... }: {
   # TODO: resolve the creation, stage and deletion problem for secrets
   age.secrets.sublime-text-license = {
-    file = ../../secrets/sublime-license.age;
+    file = "${inputs.dotfiles-secrets}/sublime-license.age";
     path = "/home/christian/.config/sublime-text/Local/License.sublime_license";
     owner = "christian";
     group = "users";
