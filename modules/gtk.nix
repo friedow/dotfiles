@@ -6,6 +6,8 @@
   home-manager.users.christian = {
     home.packages = with pkgs; [ gtk3 ];
 
+    services.gnome-keyring.enable = true;
+
     gtk = {
       enable = true;
       iconTheme = {

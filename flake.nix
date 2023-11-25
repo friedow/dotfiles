@@ -82,7 +82,6 @@
         ./modules/terminal.nix
         ./modules/time.nix
         ./modules/user-christian.nix
-        ./modules/vscode.nix
         ./modules/yubikey
         ./modules/window-manager
       ];
