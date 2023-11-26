@@ -38,6 +38,7 @@ in {
         vim.opt.number = true
         vim.opt.relativenumber = true
         vim.opt.scrolloff = 8
+        vim.opt.cursorline = true
         -- vim.opt.cmdheight = 0
 
         vim.opt.tabstop = 2
@@ -51,6 +52,7 @@ in {
         vim.keymap.set('n', '<Leader>/', ':Telescope live_grep<CR>')
         vim.keymap.set('n', '<Leader>g', ':Telescope git_files<CR>')
         vim.keymap.set('n', '<Leader>u', ':Telescope undo<CR>')
+        vim.keymap.set('n', '<Leader>e', ':Explore<CR>')
 
         -- netrw
         vim.g.netrw_banner = 0
@@ -113,10 +115,9 @@ in {
 
         -- Global mappings.
         -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-        vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
         vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
         vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-        vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+        vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
         -- Use LspAttach autocommand to only map the following keys
         -- after the language server attaches to the current buffer
@@ -134,17 +135,14 @@ in {
             vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
             vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
             vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-            vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
-            vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
-            vim.keymap.set('n', '<space>wl', function()
+            vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
+            vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
+            vim.keymap.set('n', '<leader>wl', function()
               print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
             end, opts)
-            vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-            vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-            vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-            vim.keymap.set('n', '<space>f', function()
-              vim.lsp.buf.format { async = true }
-            end, opts)
+            vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
+            vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+            vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
           end,
         })
 
