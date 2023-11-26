@@ -154,6 +154,8 @@
           end,
           group = diag_float_grp,
         })
+
+        require("autoclose").setup()
       '';
 
       plugins = with pkgs.vimPlugins; [
@@ -184,6 +186,9 @@
         cmp-treesitter
         cmp-rg
         cmp-nvim-lsp
+
+        vim-surround
+        autoclose-nvim
       ];
     };
   };
