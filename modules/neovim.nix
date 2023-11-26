@@ -201,6 +201,20 @@ in {
         vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
         vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
         vim.keymap.set("n", "gr", function() require("trouble").toggle("lsp_references") end)
+
+        require("catppuccin").setup {
+          color_overrides = {
+            latte = {
+              base = "#ffffff",
+              mantle = "#f5f5f5",
+              crust = "#ebebeb",
+              surface0 = "#e0e0e0",
+              surface1 = "#d6d6d6",
+              surface2 = "#cccccc",
+            },
+          }
+        }
+        vim.cmd.colorscheme("catppuccin-latte")
       '';
 
       plugins = with pkgs.vimPlugins; [
@@ -236,6 +250,8 @@ in {
         autoclose-nvim
 
         trouble-nvim
+
+        catppuccin-nvim
       ];
     };
   };
