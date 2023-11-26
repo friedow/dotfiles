@@ -1,23 +1,35 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }:
+let
+  # TODO: import unstable packages globally
+  pkgs-unstable = (import inputs.nixpkgs-unstable) {
+    system = "x86_64-linux";
+    config.allowUnfree = true;
+  };
+in {
   home-manager.users.christian = {
-    home.packages = with pkgs; [
+    home.packages = [
       # telescope dependencies
-      ripgrep
-      fd
+      pkgs.ripgrep
+      pkgs.fd
 
       # lsp dependencies
-      nil
-      nodePackages.typescript-language-server
-      nodePackages.pyright
-      rust-analyzer
-      nodePackages.volar
-      marksman
+      pkgs.nil
+      pkgs.nodePackages.typescript-language-server
+      pkgs.nodePackages.pyright
+      pkgs.rust-analyzer
+      pkgs.nodePackages.volar
+      pkgs.marksman
+
+      # formatter dependencies
+      pkgs-unstable.prettierd
+      pkgs.black
     ];
+
     programs.neovim = {
       enable = true;
       defaultEditor = false;
       viAlias = true;
-      vimAlias = true;  
+      vimAlias = true;
       extraLuaConfig = ''
         -- general
         vim.opt.clipboard = 'unnamedplus'
@@ -27,7 +39,7 @@
         vim.opt.relativenumber = true
         vim.opt.scrolloff = 8
         -- vim.opt.cmdheight = 0
-        
+
         vim.opt.tabstop = 2
         vim.opt.shiftwidth = 0 -- uses tabstop if 0
         vim.opt.expandtab = true
@@ -105,7 +117,7 @@
         vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
         vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
         vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
-        
+
         -- Use LspAttach autocommand to only map the following keys
         -- after the language server attaches to the current buffer
         vim.api.nvim_create_autocmd('LspAttach', {
@@ -113,7 +125,7 @@
           callback = function(ev)
             -- Enable completion triggered by <c-x><c-o>
             vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
-        
+
             -- Buffer local mappings.
             -- See `:help vim.lsp.*` for documentation on any of the below functions
             local opts = { buffer = ev.buf }
@@ -156,6 +168,32 @@
         })
 
         require("autoclose").setup()
+
+
+        package.path = package.path .. ";${inputs.format-on-save-nvim}/lua/?.lua" 
+        local format_on_save = dofile("${inputs.format-on-save-nvim}/lua/format-on-save/init.lua")
+        local formatters = dofile("${inputs.format-on-save-nvim}/lua/format-on-save/formatters/init.lua")
+        format_on_save.setup({
+          exclude_path_patterns = {
+            "/node_modules/",
+          },
+          formatter_by_ft = {
+            css = formatters.prettierd,
+            html = formatters.prettierd,
+            javascript = formatters.prettierd,
+            json = formatters.prettierd,
+            lua = formatters.lsp,
+            markdown = formatters.prettierd,
+            nix = formatters.shell({ cmd = { "${pkgs.nixfmt}/bin/nixfmt" } }),
+            python = formatters.black,
+            rust = formatters.lsp,
+            scss = formatters.prettierd,
+            toml = formatters.prettierd,
+            typescript = formatters.prettierd,
+            vue = formatters.prettierd,
+            yaml = formatters.prettierd,
+          },
+        })
       '';
 
       plugins = with pkgs.vimPlugins; [
