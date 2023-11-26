@@ -5,6 +5,16 @@ let
     system = "x86_64-linux";
     config.allowUnfree = true;
   };
+
+  improvedft = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    name = "improvedft";
+    src = pkgs.fetchFromGitHub {
+      owner = "chrisbra";
+      repo = "improvedft";
+      rev = "1f0b78b55ba5fca70db0f584d8b5e56a35fd26f6";
+      hash = "sha256-Db1NkRdNNjZoKHpKErNFYI8BBfdX2wCmfohV2uAwVtA=";
+    };
+  };
 in {
   home-manager.users.christian = {
     home.packages = [
@@ -250,6 +260,8 @@ in {
         trouble-nvim
 
         catppuccin-nvim
+
+        improvedft
       ];
     };
   };
