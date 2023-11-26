@@ -11,7 +11,7 @@ in {
     settings = {
 
       # General
-      shell.program = "nu";
+      shell.program = "fish";
 
       # UI
       colors = {
@@ -34,7 +34,6 @@ in {
 
       cursor.style = {
         shape = "Beam";
-        blinking = "On";
       };
 
       font = { size = 9; };
