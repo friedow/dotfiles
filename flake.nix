@@ -35,12 +35,7 @@
       url = "git+ssh://git@github.com/friedow/dotfiles-secrets.git";
       flake = false;
     };
-
-    format-on-save-nvim = {
-      url = "github:elentok/format-on-save.nvim";
-      flake = false;
-    };    
-  };
+ };
 
   outputs = { nixpkgs, ... }@inputs:
     let

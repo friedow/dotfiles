@@ -15,6 +15,16 @@ let
       hash = "sha256-Db1NkRdNNjZoKHpKErNFYI8BBfdX2wCmfohV2uAwVtA=";
     };
   };
+
+  format-on-save-nvim = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    name = "format-on-save-nvim";
+    src = pkgs.fetchFromGitHub {
+      owner = "elentok";
+      repo = "format-on-save.nvim";
+      rev = "b7ea8d72391281d14ea1fa10324606c1684180da";
+      hash = "sha256-y5zAZRuRIQEh6pEj/Aq5+ah2Qd+iNzbZgC5Z5tN1MXw=";
+    };
+  };
 in {
   home-manager.users.christian = {
     home.packages = [
@@ -177,9 +187,8 @@ in {
         require("autoclose").setup()
 
 
-        package.path = package.path .. ";${inputs.format-on-save-nvim}/lua/?.lua" 
-        local format_on_save = dofile("${inputs.format-on-save-nvim}/lua/format-on-save/init.lua")
-        local formatters = dofile("${inputs.format-on-save-nvim}/lua/format-on-save/formatters/init.lua")
+        local format_on_save = require("format-on-save")
+        local formatters = require("format-on-save.formatters")
         format_on_save.setup({
           exclude_path_patterns = {
             "/node_modules/",
@@ -262,6 +271,8 @@ in {
         catppuccin-nvim
 
         improvedft
+
+        format-on-save-nvim
       ];
     };
   };

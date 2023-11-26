@@ -236,22 +236,6 @@
         "type": "github"
       }
     },
-    "format-on-save-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1699126033,
-        "narHash": "sha256-y5zAZRuRIQEh6pEj/Aq5+ah2Qd+iNzbZgC5Z5tN1MXw=",
-        "owner": "elentok",
-        "repo": "format-on-save.nvim",
-        "rev": "b7ea8d72391281d14ea1fa10324606c1684180da",
-        "type": "github"
-      },
-      "original": {
-        "owner": "elentok",
-        "repo": "format-on-save.nvim",
-        "type": "github"
-      }
-    },
     "haskell-flake": {
       "locked": {
         "lastModified": 1675296942,
@@ -476,7 +460,6 @@
         "arion": "arion",
         "centerpiece": "centerpiece",
         "dotfiles-secrets": "dotfiles-secrets",
-        "format-on-save-nvim": "format-on-save-nvim",
         "home-manager": "home-manager_2",
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs_3",
