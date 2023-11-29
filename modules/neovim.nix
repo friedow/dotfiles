@@ -1,5 +1,7 @@
 { pkgs, inputs, ... }:
 let
+  color = import ../config/colors.nix;
+
   # TODO: import unstable packages globally
   pkgs-unstable = (import inputs.nixpkgs-unstable) {
     system = "x86_64-linux";
@@ -69,6 +71,7 @@ in {
         vim.g.mapleader = ' '
         vim.keymap.set('n', '<Leader>f', ':Telescope find_files<CR>')
         vim.keymap.set('n', '<Leader>m', ':Telescope marks<CR>')
+        vim.keymap.set('n', '<Leader>k', ':Telescope keymaps<CR>')
         vim.keymap.set('n', '<Leader>/', ':Telescope live_grep<CR>')
         vim.keymap.set('n', '<Leader>g', ':Telescope git_files<CR>')
         vim.keymap.set('n', '<Leader>u', ':Telescope undo<CR>')
@@ -222,12 +225,36 @@ in {
         require("catppuccin").setup {
           color_overrides = {
             latte = {
-              base = "#ffffff",
-              mantle = "#f5f5f5",
-              crust = "#ebebeb",
-              surface0 = "#e0e0e0",
-              surface1 = "#d6d6d6",
-              surface2 = "#cccccc",
+              rosewater = "${color.rosewater}",
+              flamingo = "${color.flamingo}",
+              pink = "${color.pink}",
+              mauve = "${color.mauve}",
+              red = "${color.red}",
+              maroon = "${color.maroon}",
+              peach = "${color.peach}",
+              yellow = "${color.yellow}",
+              green = "${color.green}",
+              teal = "${color.teal}",
+              sky = "${color.sky}",
+              sapphire = "${color.sapphire}",
+              blue = "${color.blue}",
+              lavender = "${color.lavender}",
+
+              text = "${color.text}",
+              subtext1 = "${color.subtext1}",
+              subtext0 = "${color.subtext0}",
+
+              overlay2 = "${color.overlay2}",
+              overlay1 = "${color.overlay1}",
+              overlay0 = "${color.overlay0}",
+
+              surface2 = "${color.surface2}",
+              surface1 = "${color.surface1}",
+              surface0 = "${color.surface0}",
+
+              crust = "${color.crust}",
+              mantle = "${color.mantle}",
+              base = "${color.base}",
             },
           }
         }
