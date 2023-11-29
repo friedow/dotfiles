@@ -3,9 +3,20 @@
   programs.fish.enable = true;
 
   home-manager.users.christian = {
-    home.packages = [ pkgs.grc ];
+    home.packages = [ pkgs.lsd pkgs.bat ];
     programs.fish = {
       enable = true;
+      shellAliases = {
+        l = "lsd -l";
+        nd = "nix develop -c $SHELL";
+        nrs = "sudo nixos-rebuild switch";
+        b = "bat --theme OneHalfLight --paging=never";
+      };
+
+      functions = {
+        n.body = "nix run nixpkgs#$argv[1] -- $argv[2..]";
+        nu.body = "nix run nixpkgs-unstable#$argv[1] -- $argv[2..]";
+      };
 
       interactiveShellInit = ''
         set fish_greeting # Disable greeting
@@ -19,16 +30,10 @@
         end
       '';
 
-      plugins = [
-        {
-          name = "z";
-          src = pkgs.fishPlugins.z.src;
-        }
-        {
-          name = "grc";
-          src = pkgs.fishPlugins.grc.src;
-        }
-      ];
+      plugins = [{
+        name = "z";
+        src = pkgs.fishPlugins.z.src;
+      }];
     };
   };
 }
