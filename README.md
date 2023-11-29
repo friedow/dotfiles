@@ -5,13 +5,23 @@ This repository contains my personal NixOS and home-manager configuration.
 ## Usage
 
 ```
+# ensure home directory is set up
+mkdir -p /home/christian/Code
+mkdir -p /home/christian/.ssh
+
+# plug in yubikey & get ssh keys from yubikey
+cd /home/christian/.ssh && ssh-keygen -K
+
+# clone dotfiles
 sudo mv /etc/nixos /etc/nixos.backup
-git clone https://github.com/friedow/dotfiles.git /etc/nixos
-sudo ln -s $PWD/dotfiles /etc/nixos
+git clone https://github.com/friedow/dotfiles.git /home/christian/Code/friedow/dotfiles
+sudo ln -s /home/christian/Code/friedow/dotfiles /etc/nixos
+
+# rebuild system
 sudo nixos-rebuild switch
 ```
 
-Server setup
+## Server setup
 
 ```
 xargs -L1 parted --script /dev/sda -- <<EOF
@@ -36,4 +46,26 @@ mkdir /mnt/boot
 mount /dev/sda1 /mnt/boot
 
 nixos-install --no-root-password
+```
+
+## SSH Setup
+
+Guide: https://developers.yubico.com/SSH/Securing_SSH_with_FIDO2.html
+
+Generating new SSH Keys stored on a yubikey:
+
+```
+ssh-keygen -t ed25519-sk -O resident -O application=ssh:yubikey -O verify-required
+```
+
+Copying SSH keys stored on a yubikey to the local system:
+
+```
+cd /home/christian/.ssh && ssh-keygen -K
+```
+
+Manage credentials with the yubikey manager:
+
+```
+nix run nixpkgs#yubikey-manager fido credentials list
 ```
