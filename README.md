@@ -10,7 +10,7 @@ mkdir -p /home/christian/Code
 mkdir -p /home/christian/.ssh
 
 # plug in yubikey & get ssh keys from yubikey
-cd /home/christian/.ssh && ssh-keygen -K
+ssh-keygen -K -f /home/christian/.ssh/id_ed25519_sk
 
 # clone dotfiles
 sudo mv /etc/nixos /etc/nixos.backup
@@ -19,6 +19,9 @@ sudo ln -s /home/christian/Code/friedow/dotfiles /etc/nixos
 
 # rebuild system
 sudo nixos-rebuild switch
+
+# generate u2f_keys file from yubikey
+mkdir -p /home/christian/.config/Yubico && nix run nixpkgs#pam_u2f > /home/christian/.config/Yubico/u2f_keys
 ```
 
 ## Server setup
@@ -68,4 +71,12 @@ Manage credentials with the yubikey manager:
 
 ```
 nix run nixpkgs#yubikey-manager fido credentials list
+```
+
+## Yubikey PAM setup
+
+Generate u2f_keys file using `pamu2fcfg` from yubikey
+
+```
+nix run nixpkgs#pam_u2f > /home/christian/.config/Yubico/u2f_keys
 ```
