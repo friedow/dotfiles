@@ -1,8 +1,4 @@
-{ pkgs, ... }:
-let
-  colors = import ../config/colors.nix;
-  fonts = import ../config/fonts.nix;
-in {
+{ pkgs, ... }: {
   home-manager.users.christian.services.dunst = {
     enable = true;
     settings = {
@@ -20,11 +16,7 @@ in {
 
         gap_size = "15";
 
-        background = colors.background.inverted;
-        foreground = colors.background.secondary;
-
         timeout = 10;
-        font = "JetBrainsMono Nerd Font 10";
 
         show_indicators = "no";
         min_icon_size = 100;

@@ -1,8 +1,6 @@
 { pkgs, ... }:
 let
   colors = import ../../config/colors.nix;
-  fonts = import ../../config/fonts.nix;
-
   transparent = "#00000000";
 
   lock = pkgs.writeShellScriptBin "lock" ''

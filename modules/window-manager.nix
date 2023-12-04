@@ -1,9 +1,6 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, config, lib, ... }:
 let
   modifier = "Mod4";
-  colors = import ../../config/colors.nix;
-  fonts = import ../../config/fonts.nix;
-  wob_sock = "$XDG_RUNTIME_DIR/wob.sock";
 
   sed-brightnessctl = "sed -En 's/.*\\(([0-9]+)%\\).*/\\1/p'";
   brightness-notification-id = "1";
@@ -71,12 +68,6 @@ in {
       _JAVA_AWT_WM_NONREPARENTING = "1";
     };
 
-    # Copy wallpaper image file
-    home.file.wallpaper = {
-      source = ./wallpaper.png;
-      target = ".config/sway/wallpaper.png";
-    };
-
     # Configure sway
     wayland.windowManager.sway = {
       extraSessionCommands = ''
@@ -89,14 +80,7 @@ in {
         # General
         modifier = "${modifier}";
 
-        startup = [
-          { command = "lock"; }
-          {
-            command =
-              "rm -f ${wob_sock} && mkfifo ${wob_sock} && tail -f ${wob_sock} | ${pkgs.wob}/bin/wob -o 0 -b 0 -p 1 -H 15 -M 20 -a top";
-            always = true;
-          }
-        ];
+        startup = [{ command = "lock"; }];
 
         # Keybinds
         keybindings = {
@@ -157,7 +141,7 @@ in {
           "${modifier}+Return" = "exec alacritty";
           "${modifier}+Shift+s" = "exec flameshot gui --raw | wl-copy";
           "${modifier}+Shift+p" = ''
-            exec ${pkgs.wob}/bin/grim -g "$(${pkgs.slurp}/bin/slurp -p)" -t ppm - | ${pkgs.imagemagick}/bin/convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | ${pkgs.wl-clipboard}/bin/wl-copy'';
+            exec ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp -p)" -t ppm - | ${pkgs.imagemagick}/bin/convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | ${pkgs.wl-clipboard}/bin/wl-copy'';
           "${modifier}+l" = "exec lock";
 
           "${modifier}+k" =
@@ -183,27 +167,15 @@ in {
 
         colors = {
           focused = {
-            background = colors.background.primary;
-            border = colors.background.primary;
-            childBorder = colors.highlight.gray;
-            indicator = colors.highlight.gray;
-            text = colors.text;
+            border = lib.mkForce config.stylix.base16Scheme.base00;
           };
 
           unfocused = {
-            background = colors.background.secondary;
-            border = colors.highlight.gray;
-            childBorder = colors.highlight.gray;
-            indicator = colors.highlight.gray;
-            text = colors.text;
+            background = lib.mkForce config.stylix.base16Scheme.base02;
           };
 
           focusedInactive = {
-            background = colors.background.secondary;
-            border = colors.background.secondary;
-            childBorder = colors.highlight.gray;
-            indicator = colors.highlight.gray;
-            text = colors.text;
+            background = lib.mkForce config.stylix.base16Scheme.base00;
           };
         };
 
@@ -213,7 +185,6 @@ in {
         };
 
         fonts = {
-          names = [ fonts.sansSerif ];
           style = "";
           size = 10.0;
         };
@@ -222,8 +193,6 @@ in {
           inner = 2;
           outer = -2;
         };
-
-        output."*".bg = "~/.config/sway/wallpaper.png fill";
 
         window = {
           border = 0;

@@ -3,11 +3,12 @@
   programs.fish.enable = true;
 
   home-manager.users.christian = {
-    home.packages = [ pkgs.lsd pkgs.bat ];
+    # TODO: swap exa for eza on 32.11
+    home.packages = [ pkgs.exa pkgs.bat ];
     programs.fish = {
       enable = true;
       shellAliases = {
-        l = "lsd -l";
+        l = "exa -l";
         nd = "nix develop -c $SHELL";
         nrs = "sudo nixos-rebuild switch";
         b = "bat --theme OneHalfLight --paging=never";

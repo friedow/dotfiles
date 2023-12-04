@@ -35,7 +35,12 @@
       url = "git+ssh://git@github.com/friedow/dotfiles-secrets.git";
       flake = false;
     };
- };
+
+    stylix = {
+      url = "github:danth/stylix/release-23.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
 
   outputs = { nixpkgs, ... }@inputs:
     let
@@ -60,7 +65,6 @@
         ./modules/display-manager.nix
         ./modules/docker.nix
         ./modules/file-manager.nix
-        ./modules/fonts.nix
         ./modules/git.nix
         ./modules/gtk.nix
         ./modules/home-manager.nix
@@ -80,10 +84,11 @@
         ./modules/session.nix
         ./modules/sublime-merge.nix
         ./modules/terminal.nix
+        ./modules/theme
         ./modules/time.nix
         ./modules/user-christian.nix
         ./modules/yubikey
-        ./modules/window-manager
+        ./modules/window-manager.nix
       ];
 
       personal-modules = [
