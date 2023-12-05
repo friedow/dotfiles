@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   colors = import ../../config/colors.nix;
   transparent = "#00000000";
@@ -32,17 +32,23 @@ let
       --key-hl-color=${colors.background.inverted}
   '';
 in {
-  # include swaylock in pam for it to verify credentials
-  security.pam.services.swaylock.text = ''
-    auth include login
-  '';
+  options.lockPackage = lib.mkPackageOption pkgs "swaylock" { };
 
-  home-manager.users.christian.home = {
-    packages = with pkgs; [ lock ];
+  config = {
+    # include swaylock in pam for it to verify credentials
+    security.pam.services.swaylock.text = ''
+      auth include login
+    '';
 
-    file.swaylock-logo-png = {
-      source = ./logo.png;
-      target = ".config/swaylock/logo.png";
+    lockPackage = lock;
+
+    home-manager.users.christian.home = {
+      packages = with pkgs; [ lock ];
+
+      file.swaylock-logo-png = {
+        source = ./logo.png;
+        target = ".config/swaylock/logo.png";
+      };
     };
   };
 }
