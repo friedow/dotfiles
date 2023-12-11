@@ -87,7 +87,7 @@
         ./modules/theme
         ./modules/time.nix
         ./modules/user-christian.nix
-        ./modules/yubikey
+        ./modules/yubikey.nix
         ./modules/window-manager.nix
       ];
 
