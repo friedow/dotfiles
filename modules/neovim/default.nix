@@ -1,12 +1,6 @@
-{ pkgs, inputs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 let
   color = import ../../config/colors.nix;
-
-  # TODO: import unstable packages globally
-  pkgs-unstable = (import inputs.nixpkgs-unstable) {
-    system = "x86_64-linux";
-    config.allowUnfree = true;
-  };
 
   improvedft = pkgs.vimUtils.buildVimPluginFrom2Nix {
     name = "improvedft";

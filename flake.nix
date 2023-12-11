@@ -44,7 +44,11 @@
 
   outputs = { nixpkgs, ... }@inputs:
     let
-      specialArgs = { inherit inputs; };
+      pkgs-unstable = (import inputs.nixpkgs-unstable) {
+        system = "x86_64-linux";
+        config.allowUnfree = true;
+      };
+      specialArgs = { inherit inputs pkgs-unstable; };
 
       desktop-system = "x86_64-linux";
       desktop-pkgs = (import nixpkgs) {
