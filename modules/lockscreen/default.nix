@@ -29,26 +29,22 @@ let
       --ring-color=${colors.background.primary} \
       --separator-color=${colors.background.primary} \
       \
-      --key-hl-color=${colors.background.inverted}
+      --key-hl-color=${colors.background.inverted} \
+      \
+      --daemonize
   '';
 in {
-  options.lockPackage = lib.mkPackageOption pkgs "swaylock" { };
+  # include swaylock in pam for it to verify credentials
+  security.pam.services.swaylock.text = ''
+    auth include login
+  '';
 
-  config = {
-    # include swaylock in pam for it to verify credentials
-    security.pam.services.swaylock.text = ''
-      auth include login
-    '';
+  home-manager.users.christian.home = {
+    packages = [ lock ];
 
-    lockPackage = lock;
-
-    home-manager.users.christian.home = {
-      packages = with pkgs; [ lock ];
-
-      file.swaylock-logo-png = {
-        source = ./logo.png;
-        target = ".config/swaylock/logo.png";
-      };
+    file.swaylock-logo-png = {
+      source = ./logo.png;
+      target = ".config/swaylock/logo.png";
     };
   };
 }

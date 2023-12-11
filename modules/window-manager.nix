@@ -80,7 +80,18 @@ in {
         # General
         modifier = "${modifier}";
 
-        startup = [{ command = "lock"; }];
+        startup = [
+          { command = "lock"; }
+          {
+            command = ''
+              ${pkgs.swayidle}/bin/swayidle \
+                -w \
+                lock 'lock' \
+                before-sleep 'lock' \
+                timeout 300 'lock'
+            '';
+          }
+        ];
 
         # Keybinds
         keybindings = {
@@ -166,9 +177,7 @@ in {
         bars = [ ];
 
         colors = {
-          focused = {
-            border = lib.mkForce config.stylix.base16Scheme.base00;
-          };
+          focused = { border = lib.mkForce config.stylix.base16Scheme.base00; };
 
           unfocused = {
             background = lib.mkForce config.stylix.base16Scheme.base02;
