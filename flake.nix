@@ -69,7 +69,7 @@
         ./modules/gtk.nix
         ./modules/home-manager.nix
         ./modules/lockscreen
-        ./modules/neovim.nix
+        ./modules/neovim
         ./modules/networking.nix
         ./modules/notifications.nix
         ./modules/office.nix
