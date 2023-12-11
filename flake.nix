@@ -56,7 +56,7 @@
       };
       desktop-modules = [
         ./modules/audio.nix
-        ./modules/bootscreen
+        ./modules/bootscreen.nix
         ./modules/blue-light-filter.nix
         ./modules/browser.nix
         ./modules/clipboard.nix

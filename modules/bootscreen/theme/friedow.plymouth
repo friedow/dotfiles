@@ -1,8 +1,0 @@
-[Plymouth Theme]
-Name=friedow
-Description=A plymouth theme displaying an animated version of the friedow logo.
-ModuleName=script
-
-[script]
-ImageDir=/usr/share/plymouth/themes/friedow
-ScriptFile=/usr/share/plymouth/themes/friedow/friedow.script
