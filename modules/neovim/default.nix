@@ -29,7 +29,7 @@ let
   };
 in {
   home-manager.users.christian = {
-  
+
     home.packages = [
       # telescope dependencies
       pkgs.ripgrep
@@ -46,6 +46,7 @@ in {
       # formatter dependencies
       pkgs-unstable.prettierd
       pkgs.black
+      pkgs.nixfmt
     ];
 
     programs.neovim = {
@@ -72,19 +73,19 @@ in {
               sapphire = "${color.sapphire}",
               blue = "${color.blue}",
               lavender = "${color.lavender}",
-        
+
               text = "${color.text}",
               subtext1 = "${color.subtext1}",
               subtext0 = "${color.subtext0}",
-        
+
               overlay2 = "${color.overlay2}",
               overlay1 = "${color.overlay1}",
               overlay0 = "${color.overlay0}",
-        
+
               surface2 = "${color.surface2}",
               surface1 = "${color.surface1}",
               surface0 = "${color.surface0}",
-        
+
               crust = "${color.crust}",
               mantle = "${color.mantle}",
               base = "${color.base}",

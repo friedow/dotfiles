@@ -160,7 +160,7 @@ format_on_save.setup({
     json = formatters.prettierd,
     lua = formatters.lsp,
     markdown = formatters.prettierd,
-    nix = formatters.shell({ cmd = { "${pkgs.nixfmt}/bin/nixfmt" } }),
+    nix = formatters.shell({ cmd = { "nixfmt" } }),
     python = formatters.black,
     rust = formatters.lsp,
     scss = formatters.prettierd,
