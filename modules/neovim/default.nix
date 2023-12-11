@@ -29,6 +29,7 @@ let
   };
 in {
   home-manager.users.christian = {
+  
     home.packages = [
       # telescope dependencies
       pkgs.ripgrep
@@ -94,6 +95,8 @@ in {
       '';
 
       plugins = with pkgs.vimPlugins; [
+        neo-tree-nvim
+
         telescope-nvim
         telescope-fzf-native-nvim
         nvim-web-devicons

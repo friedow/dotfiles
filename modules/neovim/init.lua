@@ -20,12 +20,17 @@ vim.keymap.set('n', '<Leader>k', ':Telescope keymaps<CR>')
 vim.keymap.set('n', '<Leader>/', ':Telescope live_grep<CR>')
 vim.keymap.set('n', '<Leader>g', ':Telescope git_files<CR>')
 vim.keymap.set('n', '<Leader>u', ':Telescope undo<CR>')
-vim.keymap.set('n', '<Leader>e', ':Explore<CR>')
+vim.keymap.set('n', '<Leader>e', ':Neotree position=current<CR>')
 
--- netrw
-vim.g.netrw_banner = 0
-vim.g.netrw_bufsettings = "noma nomod nonu nobl nowrap ro rnu"
-vim.g.netrw_liststyle = 3
+-- setup nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+require("neo-tree").setup({
+  filesystem = {
+    hijack_netrw_behavior = "open_current",
+  },
+})
 
 -- fuzzy finder
 require("telescope").setup({
