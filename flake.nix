@@ -102,6 +102,7 @@
       ];
 
       work-modules = [
+        ./modules/clamav.nix
         ./modules/gcloud.nix
         ./modules/git-config-work.nix
         ./modules/user-bender.nix
