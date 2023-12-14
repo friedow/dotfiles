@@ -22,7 +22,7 @@ vim.opt.expandtab = true
 
 -- keybindings
 vim.g.mapleader = ' '
-vim.keymap.set('n', '<Leader>f', ':Telescope find_files<CR>')
+vim.keymap.set('n', '<Leader>f', ':Telescope find_files hidden=true<CR>')
 vim.keymap.set('n', '<Leader>m', ':Telescope marks<CR>')
 vim.keymap.set('n', '<Leader>k', ':Telescope keymaps<CR>')
 vim.keymap.set('n', '<Leader>/', ':Telescope live_grep<CR>')
