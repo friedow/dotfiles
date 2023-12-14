@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   # Enable pipewire sound.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -9,4 +9,5 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+  home-manager.users.christian.home.packages = with pkgs; [ pavucontrol ];
 }
