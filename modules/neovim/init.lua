@@ -28,7 +28,7 @@ vim.keymap.set('n', '<Leader>k', ':Telescope keymaps<CR>')
 vim.keymap.set('n', '<Leader>/', ':Telescope live_grep<CR>')
 vim.keymap.set('n', '<Leader>g', ':Telescope git_files<CR>')
 vim.keymap.set('n', '<Leader>u', ':Telescope undo<CR>')
-vim.keymap.set('n', '<Leader>e', ':Neotree position=current<CR>')
+vim.keymap.set('n', '<Leader>e', ':Neotree position=current reveal<CR>')
 
 -- setup nvim-tree
 vim.g.loaded_netrw = 1
@@ -37,6 +37,23 @@ vim.g.loaded_netrwPlugin = 1
 require("neo-tree").setup({
   filesystem = {
     hijack_netrw_behavior = "open_current",
+  },
+  buffers = {
+    follow_current_file = {
+      enabled = true,
+      leave_dirs_open = true,
+    },
+    group_empty_dirs = true,
+  },
+  event_handlers = {
+    {
+      event = "neo_tree_buffer_enter",
+      handler = function(arg)
+        vim.cmd [[
+          setlocal relativenumber
+        ]]
+      end,
+    }
   },
 })
 
