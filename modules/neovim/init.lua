@@ -68,6 +68,11 @@ require("telescope").load_extension("undo")
 -- completion menu
 local cmp = require'cmp'
 cmp.setup({
+  snippet = {
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
   window = {
     -- completion = cmp.config.window.bordered(),
     -- documentation = cmp.config.window.bordered(),
@@ -81,7 +86,10 @@ cmp.setup({
     ['<Tab>'] = cmp.mapping.confirm({ select = true }), 
   }),
   sources = cmp.config.sources(
-    {{ name = 'nvim_lsp' }},
+    {
+      { name = 'nvim_lsp' },
+      { name = 'vsnip' },
+    },
     {{ name = 'rg' }}
   ),
   completion = {
