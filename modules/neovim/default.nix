@@ -119,9 +119,9 @@ in {
         cmp-treesitter
         cmp-rg
         cmp-nvim-lsp
-        cmp-vsnip
-        vim-vsnip
-        vim-vsnip-integ
+        luasnip
+        cmp_luasnip
+        friendly-snippets
 
         vim-surround
         autoclose-nvim
