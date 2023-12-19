@@ -5,6 +5,14 @@
   home-manager.users.christian = {
     # TODO: swap exa for eza on 32.11
     home.packages = [ pkgs.exa pkgs.bat ];
+
+    programs = {
+      direnv = {
+        enable = true;
+        nix-direnv.enable = true;
+      };
+    };
+
     programs.fish = {
       enable = true;
       shellAliases = {
