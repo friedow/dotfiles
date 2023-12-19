@@ -122,6 +122,7 @@ in {
         luasnip
         cmp_luasnip
         friendly-snippets
+        cmp-nvim-lsp-signature-help
 
         vim-surround
         autoclose-nvim
