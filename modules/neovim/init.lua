@@ -22,7 +22,7 @@ vim.opt.expandtab = true
 
 -- keybindings
 vim.g.mapleader = ' '
-vim.keymap.set('n', '<Leader>f', ':Telescope find_files hidden=true<CR>')
+vim.keymap.set('n', '<Leader>f', ':Telescope find_files find_command=rg,--files,--hidden,-g,!.git<CR>')
 vim.keymap.set('n', '<Leader>m', ':Telescope marks<CR>')
 vim.keymap.set('n', '<Leader>k', ':Telescope keymaps<CR>')
 vim.keymap.set('n', '<Leader>/', ':Telescope live_grep<CR>')
@@ -141,14 +141,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local opts = { buffer = ev.buf }
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', '<tab>', vim.lsp.buf.hover, opts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
     vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-    vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
-    vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
-    vim.keymap.set('n', '<leader>wl', function()
-      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, opts)
     vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
     vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
