@@ -88,6 +88,7 @@
         ./modules/secret-management.nix
         ./modules/session.nix
         ./modules/sublime-merge.nix
+        ./modules/ssh-server.nix
         ./modules/terminal.nix
         ./modules/theme
         ./modules/time.nix
