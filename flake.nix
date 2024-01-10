@@ -63,6 +63,7 @@
         ./modules/bootscreen.nix
         ./modules/blue-light-filter.nix
         ./modules/browser.nix
+        ./modules/centerpiece.nix
         ./modules/clipboard.nix
         ./modules/cross-compile.nix
         ./modules/cursor.nix
