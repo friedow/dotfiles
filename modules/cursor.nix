@@ -11,7 +11,7 @@ in {
     };
     # fix sway cursor size
     wayland.windowManager.sway.config.seat."*" = {
-      xcursor_theme = "${cursor-theme} ${toString cursor-size}";
+      #  xcursor_theme = "${cursor-theme} ${toString cursor-size}";
       hide_cursor = "when-typing disable";
     };
 

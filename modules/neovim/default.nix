@@ -2,7 +2,7 @@
 let
   color = import ../../config/colors.nix;
 
-  improvedft = pkgs.vimUtils.buildVimPluginFrom2Nix {
+  improvedft = pkgs.vimUtils.buildVimPlugin {
     name = "improvedft";
     src = pkgs.fetchFromGitHub {
       owner = "chrisbra";
@@ -12,7 +12,7 @@ let
     };
   };
 
-  format-on-save-nvim = pkgs.vimUtils.buildVimPluginFrom2Nix {
+  format-on-save-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "format-on-save-nvim";
     src = pkgs.fetchFromGitHub {
       owner = "elentok";

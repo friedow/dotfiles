@@ -3,8 +3,7 @@
   programs.fish.enable = true;
 
   home-manager.users.christian = {
-    # TODO: swap exa for eza on 32.11
-    home.packages = [ pkgs.exa pkgs.bat ];
+    home.packages = [ pkgs.eza pkgs.bat ];
 
     programs = {
       direnv = {
