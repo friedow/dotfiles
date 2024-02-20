@@ -19,6 +19,8 @@
         nd = "nix develop -c $SHELL";
         nrs = "sudo nixos-rebuild switch";
         b = "bat --theme OneHalfLight --paging=never";
+        yubikey-unlock =
+          "${pkgs.yubikey-manager}/bin/ykman fido fingerprints list";
       };
 
       functions = {
