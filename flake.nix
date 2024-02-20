@@ -73,6 +73,7 @@
         ./modules/git.nix
         ./modules/gtk.nix
         ./modules/home-manager.nix
+        ./modules/hyprland.nix
         ./modules/lockscreen
         ./modules/neovim
         ./modules/networking.nix

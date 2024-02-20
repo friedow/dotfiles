@@ -1,20 +1,13 @@
-{ inputs, pkgs, lib, config, ... }:
+{ pkgs, lib, ... }:
 let
-  greetd-session = if config.machine.usesNixGl then
-    (pkgs.writeShellScriptBin "greetd-session" ''
-      source /etc/profile
-      source /etc/profiles/per-user/$(whoami)/etc/profile.d/hm-session-vars.sh
-      exec systemd-cat --identifier=sway ${inputs.nixgl.packages.x86_64-linux.default}/bin/nixGL sway --unsupported-gpu $@
-    '')
-  else
-    (pkgs.writeShellScriptBin "greetd-session" ''
-      source /etc/profile
-      source /etc/profiles/per-user/$(whoami)/etc/profile.d/hm-session-vars.sh
-      exec systemd-cat --identifier=sway sway --unsupported-gpu $@
-    '');
+  greetd-session = pkgs.writeShellScriptBin "greetd-session" ''
+    source /etc/profile
+    source /etc/profiles/per-user/$(whoami)/etc/profile.d/hm-session-vars.sh
+    exec systemd-cat --identifier=Hyprland Hyprland
+  '';
 in {
   options.machine = {
-    usesNixGl = lib.mkEnableOption "Wheter the mache uses nixGl on startup.";
+    usesNixGl = lib.mkEnableOption "Whether the mache uses nixGl on startup.";
   };
 
   config = {
