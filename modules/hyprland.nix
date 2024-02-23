@@ -6,6 +6,7 @@
       exec-once = lock
       exec-once = ${pkgs.swayidle}/bin/swayidle -w lock 'lock' before-sleep 'lock' timeout 300 'lock'
 
+      animation=global,1,2,default
       animation=windowsIn,0
 
       general:border_size=0
