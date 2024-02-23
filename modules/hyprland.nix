@@ -5,12 +5,26 @@
     extraConfig = ''
       exec-once = lock
       exec-once = ${pkgs.swayidle}/bin/swayidle -w lock 'lock' before-sleep 'lock' timeout 300 'lock'
+
+      animation=windowsIn,0
+
+      general:border_size=0
+      general:gaps_in=3
+      general:gaps_out=3
+
+      decoration:rounding=5
+      decoration:dim_inactive=true
+      decoration:dim_strength=0.2
+      decoration:blur:enabled=false
+      decoration:drop_shadow=false
+
+      misc:force_default_wallpaper=0
     '';
     settings = {
       "$mod" = "SUPER";
       bind = [
         "$mod, q, killactive"
-        "$mod, Return, exec, alacritty"
+        "$mod, Return, exec, kitty"
         "$mod, k, exec, ${inputs.centerpiece.packages.x86_64-linux.default}/bin/centerpiece"
 
         "$mod, f, fullscreen"
