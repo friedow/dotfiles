@@ -1,20 +1,15 @@
 { ... }: {
-  environment.variables.TERM = "alacritty";
-
-  home-manager.users.christian.programs.alacritty = {
+  home-manager.users.christian.programs.kitty = {
     enable = true;
 
+    shellIntegration.enableFishIntegration = true;
+
     settings = {
-      # General
-      shell.program = "fish";
+      cursor_blink_interval = 0;
+      cursor_shape = "beam";
+      window_padding_width = 10;
 
-      # UI
-      cursor.style = { shape = "Beam"; };
-
-      window.padding = {
-        x = 12;
-        y = 10;
-      };
+      "map ctrl+c" = "copy_or_interrupt";
     };
   };
 }
