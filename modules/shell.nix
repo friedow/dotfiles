@@ -16,6 +16,7 @@
       enable = true;
       shellAliases = {
         l = "exa -l";
+        ll = "exa -l";
         nd = "nix develop -c $SHELL";
         nrs = "sudo nixos-rebuild switch";
         b = "bat --theme OneHalfLight --paging=never";
