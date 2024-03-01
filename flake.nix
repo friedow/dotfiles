@@ -106,6 +106,7 @@
       work-modules = [
         ./modules/clamav.nix
         ./modules/gcloud.nix
+        ./modules/glab.nix
         ./modules/git-config-work.nix
         ./modules/mongodb-compass.nix
         ./modules/user-bender.nix
