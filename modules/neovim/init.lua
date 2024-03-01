@@ -57,6 +57,11 @@ require("neo-tree").setup({
   },
 })
 
+require('nvim-treesitter.configs').setup {
+  highlight = { enable = true },
+  indent = { enable = true },
+}
+
 -- fuzzy finder
 require("telescope").setup({
   extensions = {
@@ -106,9 +111,6 @@ local lspconfig = require('lspconfig')
 lspconfig.nil_ls.setup {
   capabilities = capabilities
 }
-lspconfig.tsserver.setup {
-  capabilities = capabilities
-}
 lspconfig.pyright.setup {
   capabilities = capabilities
 }
@@ -116,7 +118,8 @@ lspconfig.rust_analyzer.setup {
   capabilities = capabilities
 }
 lspconfig.volar.setup {
-  capabilities = capabilities
+  capabilities = capabilities,
+  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
 }
 lspconfig.marksman.setup {
   capabilities = capabilities

@@ -31,10 +31,9 @@ in {
 
       # lsp dependencies
       pkgs.nil
-      pkgs.nodePackages.typescript-language-server
       pkgs.nodePackages.pyright
       pkgs.rust-analyzer
-      pkgs.nodePackages.volar
+      pkgs.nodePackages."@volar/vue-language-server"
       pkgs.marksman
 
       # formatter dependencies
