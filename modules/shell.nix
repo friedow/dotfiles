@@ -35,10 +35,6 @@
         function fish_prompt -d "Write out the prompt"
           printf '> '
         end
-
-        function fish_right_prompt -d "Write out the right prompt"
-          printf '%s%s%s' (set_color $fish_color_cwd) (prompt_pwd) (set_color normal)
-        end
       '';
 
       plugins = [{

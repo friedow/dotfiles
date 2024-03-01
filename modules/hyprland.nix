@@ -12,6 +12,10 @@
       general:border_size=0
       general:gaps_in=3
       general:gaps_out=3
+      general:layout=master
+
+      master:orientation=center
+      master:mfact=0.8
 
       decoration:rounding=5
       decoration:dim_inactive=true
@@ -29,6 +33,7 @@
         "$mod, k, exec, ${inputs.centerpiece.packages.x86_64-linux.default}/bin/centerpiece"
 
         "$mod, f, fullscreen"
+        "$mod, m, layoutmsg, swapwithmaster master"
 
         "$mod, 1, workspace, 1"
         "$mod, 2, workspace, 2"
