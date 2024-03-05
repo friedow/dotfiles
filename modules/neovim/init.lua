@@ -117,6 +117,9 @@ lspconfig.pyright.setup {
 lspconfig.rust_analyzer.setup {
   capabilities = capabilities
 }
+lspconfig.tsserver.setup {
+  capabilities = capabilities
+}
 lspconfig.volar.setup {
   capabilities = capabilities,
   filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}

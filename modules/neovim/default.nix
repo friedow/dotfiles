@@ -33,6 +33,7 @@ in {
       pkgs.nil
       pkgs.nodePackages.pyright
       pkgs.rust-analyzer
+      pkgs.nodePackages.typescript-language-server
       pkgs.nodePackages."@volar/vue-language-server"
       pkgs.marksman
 
