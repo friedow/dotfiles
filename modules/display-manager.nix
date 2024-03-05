@@ -31,6 +31,7 @@ in {
 
     services.kanshi = {
       enable = true;
+      systemdTarget = "hyprland-session.target";
       profiles = {
         work-laptop-undocked = { outputs = [ work-laptop ]; };
         personal-laptop-undocked = { outputs = [ personal-laptop ]; };
