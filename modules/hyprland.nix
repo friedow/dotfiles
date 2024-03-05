@@ -12,10 +12,10 @@
       general:border_size=0
       general:gaps_in=3
       general:gaps_out=3
-      general:layout=master
 
+      general:layout=master
       master:orientation=center
-      master:mfact=0.8
+      master:mfact=0.5
 
       decoration:rounding=5
       decoration:dim_inactive=true
