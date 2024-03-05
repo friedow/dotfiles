@@ -60,6 +60,7 @@
       };
       desktop-modules = [
         ./modules/audio.nix
+        ./modules/beeper.nix
         ./modules/bootscreen.nix
         ./modules/blue-light-filter.nix
         ./modules/browser.nix
@@ -100,7 +101,6 @@
       personal-modules = [
         ./modules/git-config-personal.nix
         ./modules/password-manager-ssh.nix
-        ./modules/beeper.nix
       ];
 
       work-modules = [
