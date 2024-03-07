@@ -30,7 +30,7 @@
       bind = [
         "$mod, q, killactive"
         "$mod, Return, exec, kitty"
-        "$mod, k, exec, ${inputs.centerpiece.packages.x86_64-linux.default}/bin/centerpiece"
+        "$mod, k, exec, centerpiece"
 
         "$mod, f, fullscreen"
         "$mod, m, layoutmsg, swapwithmaster master"
