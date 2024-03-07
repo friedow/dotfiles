@@ -35,7 +35,7 @@ in {
       profiles = {
         work-laptop-undocked = { outputs = [ work-laptop ]; };
         personal-laptop-undocked = { outputs = [ personal-laptop ]; };
-        home-docked = { outputs = [ laptop-off home-ultrawide ]; };
+        home-docked = { outputs = [ work-laptop home-ultrawide ]; };
       };
     };
   };
