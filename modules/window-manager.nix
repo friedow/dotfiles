@@ -19,9 +19,12 @@ let
     ${pkgs.libnotify}/bin/notify-send --hint int:value:$new_brightness --replace-id ${brightness-notification-id} "Brightness"
   '';
 
+  sed-ddccontrol = "sed -En 's/^Control.*\\+\\/([0-9]+)\\/.*/\\1/p'";
+
   external-brightness-increase =
     pkgs.writeShellScript "external-brightness-increase" ''
-      ddccontrol -r 0x10 -W +10 dev:/dev/i2c-14
+      new_brightness=$(${pkgs.ddccontrol}/bin/ddccontrol -r 0x10 -W 10 dev:${i2c-screen1} | ${sed-ddccontrol})
+      ${pkgs.libnotify}/bin/notify-send -h int:value:$new_brightness "External Display 1 brightness"
     '';
 
   volume-notification-id = "2";
