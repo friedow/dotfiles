@@ -16,11 +16,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    arion = {
-      url = "github:hercules-ci/arion";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -66,7 +61,6 @@
         ./modules/browser.nix
         ./modules/centerpiece.nix
         ./modules/clipboard.nix
-        ./modules/cross-compile.nix
         ./modules/cursor.nix
         ./modules/display-manager.nix
         ./modules/docker.nix
@@ -89,7 +83,6 @@
         ./modules/secret-management.nix
         ./modules/session.nix
         ./modules/sublime-merge.nix
-        ./modules/ssh-server.nix
         ./modules/terminal.nix
         ./modules/theme
         ./modules/time.nix
@@ -112,19 +105,6 @@
         ./modules/user-bender.nix
         ./modules/vagrant.nix
         ./modules/xdg-utils.nix
-      ];
-
-      server-system = "aarch64-linux";
-      server-pkgs = (import nixpkgs) { system = server-system; };
-      server-modules = [
-        ./modules/arion.nix
-        ./modules/cgm.nix
-        ./modules/docker.nix
-        ./modules/reverse-proxy.nix
-        ./modules/secret-management.nix
-        ./modules/ssh-server.nix
-        ./modules/time.nix
-        ./modules/users.nix
       ];
     in {
       nixosConfigurations = {
@@ -150,14 +130,6 @@
           pkgs = desktop-pkgs;
           modules = desktop-modules ++ work-modules
             ++ [ ./hardware-configuration/tsunami.nix ];
-        };
-
-        landslide = nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
-          system = server-system;
-          pkgs = server-pkgs;
-          modules = server-modules
-            ++ [ ./hardware-configuration/landslide.nix ];
         };
       };
 
