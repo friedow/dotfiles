@@ -23,13 +23,13 @@ let
 
   external-brightness-increase =
     pkgs.writeShellScript "external-brightness-increase" ''
-      new_brightness=$(${pkgs.ddccontrol}/bin/ddccontrol -r 0x10 -W 10 dev:/dev/i2c-14 | ${sed-ddccontrol})
+      new_brightness=$(${pkgs.ddccontrol}/bin/ddccontrol -r 0x10 -W +10 dev:/dev/i2c-14 | ${sed-ddccontrol})
       ${pkgs.libnotify}/bin/notify-send --hint int:value:$new_brightness --replace-id ${brightness-notification-id} "Brightness"
     '';
 
   external-brightness-decrease =
     pkgs.writeShellScript "external-brightness-decrease" ''
-      new_brightness=$(${pkgs.ddccontrol}/bin/ddccontrol -r 0x10 -W 10 dev:/dev/i2c-14 | ${sed-ddccontrol})
+      new_brightness=$(${pkgs.ddccontrol}/bin/ddccontrol -r 0x10 -W -10 dev:/dev/i2c-14 | ${sed-ddccontrol})
       ${pkgs.libnotify}/bin/notify-send --hint int:value:$new_brightness --replace-id ${brightness-notification-id} "Brightness"
     '';
 
