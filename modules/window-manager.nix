@@ -1,4 +1,4 @@
-{ pkgs, inputs, config, lib, ... }:
+{ pkgs, pkgs-unstable, inputs, config, lib, ... }:
 let
   modifier = "Mod4";
 
@@ -41,6 +41,7 @@ let
   '';
 in {
   hardware.opengl.enable = true;
+  programs.hyprland.enable = true;
   home-manager.users.christian = {
 
     # Configure most applications to use the wayland interface 
@@ -68,149 +69,92 @@ in {
       _JAVA_AWT_WM_NONREPARENTING = "1";
     };
 
-    # Configure sway
-    wayland.windowManager.sway = {
-      extraSessionCommands = ''
-        export WLR_NO_HARDWARE_CURSORS=1
-      '';
-
+    wayland.windowManager.hyprland = {
       enable = true;
+      extraConfig = ''
+        exec-once = loginctl lock-session
+        exec-once = ${pkgs.swayidle}/bin/swayidle -w lock 'lock' before-sleep 'lock' timeout 300 'lock'
 
-      config = {
-        # General
-        modifier = "${modifier}";
+        animation=global,1,2,default
+        animation=windowsIn,0
 
-        startup = [
-          { command = "lock"; }
-          {
-            command = ''
-              ${pkgs.swayidle}/bin/swayidle \
-                -w \
-                lock 'lock' \
-                before-sleep 'lock' \
-                timeout 300 'lock'
-            '';
-          }
+        general:border_size=0
+        general:gaps_in=3
+        general:gaps_out=3
+
+        general:layout=master
+        master:orientation=center
+        master:mfact=0.5
+
+        decoration:rounding=5
+        decoration:dim_inactive=true
+        decoration:dim_strength=0.2
+        decoration:blur:enabled=false
+        decoration:drop_shadow=false
+
+        misc:force_default_wallpaper=0
+
+        monitor=,preferred,auto,1
+
+        # trigger when the switch is turning off
+        bindl = , switch:off:Lid Switch,exec,hyprctl keyword monitor "eDP-1,preferred, auto, 1"
+        # trigger when the switch is turning on
+        bindl = , switch:on:Lid Switch,exec,hyprctl keyword monitor "eDP-1, disable"
+      '';
+      settings = {
+        "$mod" = "SUPER";
+        bind = [
+          ", XF86MonBrightnessDown, exec, ${brightness-decrease}"
+          ", XF86MonBrightnessUp, exec, ${brightness-increase}"
+          ", XF86AudioRaiseVolume, exec, ${volume-increase}"
+          ", XF86AudioLowerVolume, exec, ${volume-decrease}"
+          ", XF86AudioMute, exec, ${volume-toggle}"
+
+          "$mod, Return, exec, kitty"
+          "$mod, Space, exec, centerpiece"
+          "$mod, s, exec, ${pkgs-unstable.hyprshot}/bin/hyprshot --mode region --clipboard-only"
+
+          "$mod, q, killactive"
+          "$mod, f, fullscreen"
+          "$mod, m, layoutmsg, swapwithmaster master"
+
+          "$mod, 1, workspace, 1"
+          "$mod, 2, workspace, 2"
+          "$mod, 3, workspace, 3"
+          "$mod, 4, workspace, 4"
+          "$mod, 5, workspace, 5"
+          "$mod, 6, workspace, 6"
+          "$mod, 7, workspace, 7"
+          "$mod, 8, workspace, 8"
+          "$mod, 9, workspace, 9"
+          "$mod, 0, workspace, 10"
+
+          "$mod SHIFT, 1, movetoworkspace, 1"
+          "$mod SHIFT, 2, movetoworkspace, 2"
+          "$mod SHIFT, 3, movetoworkspace, 3"
+          "$mod SHIFT, 4, movetoworkspace, 4"
+          "$mod SHIFT, 5, movetoworkspace, 5"
+          "$mod SHIFT, 6, movetoworkspace, 6"
+          "$mod SHIFT, 7, movetoworkspace, 7"
+          "$mod SHIFT, 8, movetoworkspace, 8"
+          "$mod SHIFT, 9, movetoworkspace, 9"
+          "$mod SHIFT, 0, movetoworkspace, 10"
+
+          "$mod, h, movefocus, l"
+          "$mod, j, movefocus, d"
+          "$mod, k, movefocus, u"
+          "$mod, l, movefocus, r"
+
+          "$mod SHIFT, h, movewindow, l"
+          "$mod SHIFT, j, movewindow, d"
+          "$mod SHIFT, k, movewindow, u"
+          "$mod SHIFT, l, movewindow, r"
+
+          "$mod CTRL, h, movecurrentworkspacetomonitor, l"
+          "$mod CTRL, j, movecurrentworkspacetomonitor, d"
+          "$mod CTRL, k, movecurrentworkspacetomonitor, u"
+          "$mod CTRL, l, movecurrentworkspacetomonitor, r"
         ];
-
-        # Keybinds
-        keybindings = {
-          "${modifier}+q" = "kill";
-
-          "${modifier}+Left" = "focus left";
-          "${modifier}+Down" = "focus down";
-          "${modifier}+Up" = "focus up";
-          "${modifier}+Right" = "focus right";
-
-          "${modifier}+Shift+Left" = "move left";
-          "${modifier}+Shift+Down" = "move down";
-          "${modifier}+Shift+Up" = "move up";
-          "${modifier}+Shift+Right" = "move right";
-
-          "${modifier}+Shift+Ctrl+Left" = "move workspace to output left";
-          "${modifier}+Shift+Ctrl+Right" = "move workspace to output right";
-
-          "${modifier}+h" = "split h";
-          "${modifier}+v" = "split v";
-          "${modifier}+f" = "fullscreen toggle";
-
-          "${modifier}+s" = "layout stacking";
-          "${modifier}+w" = "layout tabbed";
-          "${modifier}+e" = "layout toggle split";
-
-          "${modifier}+Shift+space" = "floating toggle";
-
-          "${modifier}+a" = "focus parent";
-
-          "${modifier}+1" = "workspace number 1";
-          "${modifier}+2" = "workspace number 2";
-          "${modifier}+3" = "workspace number 3";
-          "${modifier}+4" = "workspace number 4";
-          "${modifier}+5" = "workspace number 5";
-          "${modifier}+6" = "workspace number 6";
-          "${modifier}+7" = "workspace number 7";
-          "${modifier}+8" = "workspace number 8";
-          "${modifier}+9" = "workspace number 9";
-          "${modifier}+0" = "workspace number 10";
-
-          "${modifier}+Shift+1" = "move container to workspace number 1";
-          "${modifier}+Shift+2" = "move container to workspace number 2";
-          "${modifier}+Shift+3" = "move container to workspace number 3";
-          "${modifier}+Shift+4" = "move container to workspace number 4";
-          "${modifier}+Shift+5" = "move container to workspace number 5";
-          "${modifier}+Shift+6" = "move container to workspace number 6";
-          "${modifier}+Shift+7" = "move container to workspace number 7";
-          "${modifier}+Shift+8" = "move container to workspace number 8";
-          "${modifier}+Shift+9" = "move container to workspace number 9";
-          "${modifier}+Shift+0" = "move container to workspace number 10";
-
-          "${modifier}+Shift+c" = "reload";
-          "${modifier}+Shift+r" = "restart";
-
-          "${modifier}+r" = "mode resize";
-
-          "${modifier}+Return" = "exec alacritty";
-          "${modifier}+Shift+s" = "exec flameshot gui --raw | wl-copy";
-          "${modifier}+Shift+p" = ''
-            exec ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp -p)" -t ppm - | ${pkgs.imagemagick}/bin/convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | ${pkgs.wl-clipboard}/bin/wl-copy'';
-          "${modifier}+l" = "exec lock";
-
-          "${modifier}+k" =
-            "exec ${inputs.centerpiece.packages.x86_64-linux.default}/bin/centerpiece";
-
-          # Brightness
-          "--no-repeat --no-warn --locked XF86MonBrightnessDown" =
-            "exec ${brightness-decrease}";
-          "--no-repeat --no-warn --locked XF86MonBrightnessUp" =
-            "exec ${brightness-increase}";
-
-          # Volume
-          "--no-repeat --no-warn XF86AudioRaiseVolume" =
-            "exec ${volume-increase}";
-          "--no-repeat --no-warn XF86AudioLowerVolume" =
-            "exec ${volume-decrease}";
-          "--no-repeat --no-warn XF86AudioMute" = "exec ${volume-toggle}";
-
-        };
-
-        # UI
-        bars = [ ];
-
-        colors = {
-          focused = { border = lib.mkForce config.stylix.base16Scheme.base00; };
-
-          unfocused = {
-            background = lib.mkForce config.stylix.base16Scheme.base02;
-          };
-
-          focusedInactive = {
-            background = lib.mkForce config.stylix.base16Scheme.base00;
-          };
-        };
-
-        floating = {
-          border = 0;
-          criteria = [{ app_id = "search-friedow-com"; }];
-        };
-
-        fonts = {
-          style = "";
-          size = 10.0;
-        };
-
-        gaps = {
-          inner = 2;
-          outer = -2;
-        };
-
-        window = {
-          border = 0;
-
-          commands = [{
-            command = "titlebar_padding 7 7";
-            criteria = { class = ".*"; };
-          }];
-        };
       };
     };
   };

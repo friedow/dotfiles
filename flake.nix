@@ -73,7 +73,6 @@
         ./modules/nix-cli.nix
         ./modules/password-manager.nix
         ./modules/privilige-manager.nix
-        ./modules/screenshots.nix
         ./modules/secret-management.nix
         ./modules/session.nix
         ./modules/sublime-merge.nix
