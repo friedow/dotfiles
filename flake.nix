@@ -85,10 +85,7 @@
         ./modules/window-manager.nix
       ];
 
-      personal-modules = [
-        ./modules/git-config-personal.nix
-        ./modules/password-manager-ssh.nix
-      ];
+      personal-modules = [ ./modules/git-config-personal.nix ];
 
       work-modules = [
         ./modules/clamav.nix
