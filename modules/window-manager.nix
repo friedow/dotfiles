@@ -23,8 +23,14 @@ let
 
   external-brightness-increase =
     pkgs.writeShellScript "external-brightness-increase" ''
-      new_brightness=$(${pkgs.ddccontrol}/bin/ddccontrol -r 0x10 -W 10 dev:${i2c-screen1} | ${sed-ddccontrol})
-      ${pkgs.libnotify}/bin/notify-send -h int:value:$new_brightness "External Display 1 brightness"
+      new_brightness=$(${pkgs.ddccontrol}/bin/ddccontrol -r 0x10 -W 10 dev:/dev/i2c-14 | ${sed-ddccontrol})
+      ${pkgs.libnotify}/bin/notify-send --hint int:value:$new_brightness --replace-id ${brightness-notification-id} "Brightness"
+    '';
+
+  external-brightness-decrease =
+    pkgs.writeShellScript "external-brightness-decrease" ''
+      new_brightness=$(${pkgs.ddccontrol}/bin/ddccontrol -r 0x10 -W 10 dev:/dev/i2c-14 | ${sed-ddccontrol})
+      ${pkgs.libnotify}/bin/notify-send --hint int:value:$new_brightness --replace-id ${brightness-notification-id} "Brightness"
     '';
 
   volume-notification-id = "2";
@@ -115,6 +121,8 @@ in {
         bind = [
           ", XF86MonBrightnessDown, exec, ${brightness-decrease}"
           ", XF86MonBrightnessUp, exec, ${brightness-increase}"
+          "$mod, XF86MonBrightnessDown, exec, ${external-brightness-decrease}"
+          "$mod, XF86MonBrightnessUp, exec, ${external-brightness-increase}"
           ", XF86AudioRaiseVolume, exec, ${volume-increase}"
           ", XF86AudioLowerVolume, exec, ${volume-decrease}"
           ", XF86AudioMute, exec, ${volume-toggle}"
