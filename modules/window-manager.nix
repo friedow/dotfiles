@@ -19,6 +19,11 @@ let
     ${pkgs.libnotify}/bin/notify-send --hint int:value:$new_brightness --replace-id ${brightness-notification-id} "Brightness"
   '';
 
+  external-brightness-increase =
+    pkgs.writeShellScript "external-brightness-increase" ''
+      ddccontrol -r 0x10 -W +10 dev:/dev/i2c-14
+    '';
+
   volume-notification-id = "2";
 
   volume-increase = pkgs.writeShellScript "volume-increase" ''
@@ -40,6 +45,7 @@ let
     fi
   '';
 in {
+  services.ddccontrol.enable = true;
   hardware.opengl.enable = true;
   programs.hyprland.enable = true;
   home-manager.users.christian = {
