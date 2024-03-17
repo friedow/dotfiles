@@ -87,7 +87,7 @@ in {
     wayland.windowManager.hyprland = {
       enable = true;
       extraConfig = ''
-        exec-once = loginctl lock-session
+        exec-once = lock
         exec-once = ${pkgs.swayidle}/bin/swayidle -w lock 'lock' before-sleep 'lock' timeout 300 'lock'
         exec-once = ${pkgs.swaybg}/bin/swaybg --image ${./theme/wallpaper.png}
 
