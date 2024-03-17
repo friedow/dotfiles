@@ -89,6 +89,7 @@ in {
       extraConfig = ''
         exec-once = loginctl lock-session
         exec-once = ${pkgs.swayidle}/bin/swayidle -w lock 'lock' before-sleep 'lock' timeout 300 'lock'
+        exec-once = ${pkgs.swaybg}/bin/swaybg --image ${./theme/wallpaper.png}
 
         animation=global,1,2,default
         animation=windowsIn,0
