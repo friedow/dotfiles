@@ -109,6 +109,8 @@ in {
 
         misc:force_default_wallpaper=0
 
+        # avalanche display
+        monitor=desc:AU Optronics 0x202B,preferred,auto,2
         monitor=,preferred,auto,1
 
         # trigger when the switch is turning off
