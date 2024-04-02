@@ -10,6 +10,8 @@
   nix = {
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
+
+      substituters = [ "https://friedow.cachix.org/" ];
       trusted-substituters = [ "https://friedow.cachix.org/" ];
       trusted-public-keys =
         [ "friedow.cachix.org-1:JDEaYMqNgGu+bVPOca7Zu4Cp8QDMkvQpArKuwPKa29A=" ];
