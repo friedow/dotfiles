@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 let
   color = import ../../config/colors.nix;
   custom-plugins = import ./custom-plugins.nix pkgs;
@@ -11,7 +11,7 @@ in {
       fd
 
       # lsp dependencies
-      pkgs.nil
+      inputs.nixd.packages."x86_64-linux".default
       pkgs.nodePackages.pyright
       pkgs.rust-analyzer
       pkgs.nodePackages.typescript-language-server
@@ -68,6 +68,20 @@ in {
           }
         }
         vim.cmd.colorscheme("catppuccin-latte")
+
+        lspconfig.nixd.setup {
+          capabilities = capabilities,
+          settings = {
+            nixd = {
+              options = {
+                home_manager = {
+                  expr = '(builtins.getFlake "git+file://${./../..}").homeConfigurations.christian.options',
+                },
+              },
+            },
+          },  
+        }
+
       '';
 
       plugins = with pkgs.vimPlugins; [

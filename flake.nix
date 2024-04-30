@@ -29,6 +29,8 @@
       url = "github:danth/stylix/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixd = { url = "github:nix-community/nixd"; };
   };
 
   outputs = { nixpkgs, ... }@inputs:
@@ -47,6 +49,7 @@
           permittedInsecurePackages = [ "openssl-1.1.1w" ];
         };
       };
+
       desktop-modules = [
         ./modules/audio.nix
         ./modules/beeper.nix
@@ -121,5 +124,17 @@
             ++ [ ./hardware-configuration/tsunami.nix ];
         };
       };
+
+      homeConfigurations.christian =
+        inputs.home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${desktop-system};
+          modules = [{
+            home = {
+              stateVersion = "21.11";
+              username = "christian";
+              homeDirectory = "/home/christian";
+            };
+          }];
+        };
     };
 }
