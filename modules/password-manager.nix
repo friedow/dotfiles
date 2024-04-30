@@ -1,8 +1,8 @@
-{ pkgs-unstable, ... }: {
+{ pkgs, ... }: {
   programs._1password.enable = true;
   programs._1password-gui = {
     enable = true;
-    package = pkgs-unstable._1password-gui;
+    package = pkgs._1password-gui;
     polkitPolicyOwners = [ "christian" ];
   };
 
