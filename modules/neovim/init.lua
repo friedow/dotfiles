@@ -22,15 +22,8 @@ vim.opt.expandtab = true
 
 -- keybindings
 vim.g.mapleader = ' '
-vim.keymap.set('n', '<Leader>f', ':Telescope find_files find_command=rg,--files,--hidden,-g,!.git<CR>')
-vim.keymap.set('n', '<Leader>m', ':Telescope marks<CR>')
-vim.keymap.set('n', '<Leader>k', ':Telescope keymaps<CR>')
-vim.keymap.set('n', '<Leader>/', ':Telescope live_grep<CR>')
-vim.keymap.set('n', '<Leader>g', ':Telescope git_files<CR>')
-vim.keymap.set('n', '<Leader>u', ':Telescope undo<CR>')
-vim.keymap.set('n', '<Leader>e', ':Neotree position=current reveal<CR>')
 
--- setup nvim-tree
+-- setup neo-tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -56,6 +49,7 @@ require("neo-tree").setup({
     }
   },
 })
+vim.keymap.set('n', '<Leader>e', ':Neotree position=current reveal<CR>')
 
 require('nvim-treesitter.configs').setup {
   highlight = { enable = true },
@@ -69,6 +63,15 @@ require("telescope").setup({
   },
 })
 require("telescope").load_extension("undo")
+
+vim.keymap.set('n', '<Leader>f', ':Telescope find_files find_command=rg,--files,--hidden,-g,!.git<CR>')
+vim.keymap.set('n', '<Leader>m', ':Telescope marks<CR>')
+vim.keymap.set('n', '<Leader>k', ':Telescope keymaps<CR>')
+vim.keymap.set('n', '<Leader>/', ':Telescope live_grep<CR>')
+vim.keymap.set('n', '<Leader>u', ':Telescope undo<CR>')
+vim.keymap.set('n', '<leader>q', ':Telescope quickfix<CR>')
+vim.keymap.set('n', '<leader>qh', ':Telescope quickfixhistory<CR>')
+vim.keymap.set('n', '<leader>ca', require("actions-preview").code_actions)
 
 -- completion menu
 require("luasnip.loaders.from_vscode").lazy_load()
@@ -129,45 +132,24 @@ lspconfig.marksman.setup {
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
   callback = function(ev)
-    -- Enable completion triggered by <c-x><c-o>
-    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
-
-    -- Buffer local mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
     local opts = { buffer = ev.buf }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', '<tab>', vim.lsp.buf.hover, opts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-    vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
+    vim.keymap.set('n', '<tab>', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', '<leader><tab>', vim.diagnostic.open_float, opts)
     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-    vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
   end,
 })
 
 -- autosave
 vim.api.nvim_create_autocmd({'FocusLost', 'BufLeave'}, {
   command = 'silent! wa'
-})
-
--- lsp details and errors on hover
--- 100ms of no cursor movement to trigger CursorHold
-vim.opt.updatetime = 100
--- show diagnostic popup on cursor hover
-local diag_float_grp = vim.api.nvim_create_augroup("DiagnosticFloat", { clear = true })
-vim.api.nvim_create_autocmd("CursorHold", {
-  callback = function()
-    vim.diagnostic.open_float(nil, { focusable = false })
-  end,
-  group = diag_float_grp,
 })
 
 require("autoclose").setup()
@@ -198,11 +180,17 @@ format_on_save.setup({
 })
 
 -- Lua
-vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
-vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
-vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
-vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
-vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
-vim.keymap.set("n", "gr", function() require("trouble").toggle("lsp_references") end)
+vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle("workspace_diagnostics") end)
 
 require('kitty-scrollback').setup()
+
+local harpoon = require("harpoon")
+harpoon:setup()
+vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
+vim.keymap.set("n", "<leader>h", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+vim.keymap.set("n", "<C-1>", function() harpoon:list():select(1) end)
+vim.keymap.set("n", "<C-2>", function() harpoon:list():select(2) end)
+vim.keymap.set("n", "<C-3>", function() harpoon:list():select(3) end)
+vim.keymap.set("n", "<C-4>", function() harpoon:list():select(4) end)
+vim.keymap.set("n", "<C-J>", function() harpoon:list():prev() end)
+vim.keymap.set("n", "<C-K>", function() harpoon:list():next() end)

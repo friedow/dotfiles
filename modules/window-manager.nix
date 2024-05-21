@@ -1,7 +1,5 @@
-{ pkgs, pkgs-unstable, inputs, config, lib, ... }:
+{ pkgs, pkgs-unstable, ... }:
 let
-  modifier = "Mod4";
-
   sed-brightnessctl = "sed -En 's/.*\\(([0-9]+)%\\).*/\\1/p'";
   brightness-notification-id = "1";
 
