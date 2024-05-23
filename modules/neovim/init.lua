@@ -194,3 +194,18 @@ vim.keymap.set("n", "<C-3>", function() harpoon:list():select(3) end)
 vim.keymap.set("n", "<C-4>", function() harpoon:list():select(4) end)
 vim.keymap.set("n", "<C-J>", function() harpoon:list():prev() end)
 vim.keymap.set("n", "<C-K>", function() harpoon:list():next() end)
+
+require("scrollbar").setup()
+
+require('gitsigns').setup()
+require("scrollbar.handlers.gitsigns").setup()
+
+require("scrollbar.handlers.search").setup({})
+local kopts = {noremap = true, silent = true}
+vim.api.nvim_set_keymap('n', 'n', [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]], kopts)
+vim.api.nvim_set_keymap('n', 'N', [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]], kopts)
+vim.api.nvim_set_keymap('n', '*', [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
+vim.api.nvim_set_keymap('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+vim.api.nvim_set_keymap('n', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
+vim.api.nvim_set_keymap('n', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+vim.api.nvim_set_keymap('n', '<Leader>l', '<Cmd>noh<CR>', kopts)

@@ -137,6 +137,9 @@ in {
         ] ++ [
           pkgs-unstable.vimPlugins.harpoon2
           pkgs-unstable.vimPlugins.actions-preview-nvim
+          pkgs-unstable.vimPlugins.gitsigns-nvim
+          pkgs-unstable.vimPlugins.nvim-hlslens
+          pkgs-unstable.vimPlugins.nvim-scrollbar
         ];
     };
   };
