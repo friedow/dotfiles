@@ -5,18 +5,18 @@ let
 in {
   home-manager.users.christian = {
 
-    home.packages = with pkgs; [
+    home.packages = with pkgs-unstable; [
       # telescope dependencies
       ripgrep
       fd
 
       # lsp dependencies
       inputs.nixd.packages."x86_64-linux".default
-      pkgs.nodePackages.pyright
-      pkgs.rust-analyzer
-      pkgs.nodePackages.typescript-language-server
-      pkgs.nodePackages."@volar/vue-language-server"
-      pkgs.marksman
+      pyright
+      rust-analyzer
+      nodePackages.typescript-language-server
+      nodePackages."@volar/vue-language-server"
+      marksman
 
       # formatter dependencies
       prettierd
@@ -26,6 +26,7 @@ in {
 
     programs.neovim = {
       enable = true;
+      package = pkgs-unstable.neovim-unwrapped;
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
@@ -86,61 +87,63 @@ in {
 
       '';
 
-      plugins = with pkgs.vimPlugins;
-        [
-          neo-tree-nvim
+      plugins = with pkgs-unstable.vimPlugins; [
+        neo-tree-nvim
 
-          telescope-nvim
-          telescope-fzf-native-nvim
-          nvim-web-devicons
-          telescope-undo-nvim
+        telescope-nvim
+        telescope-fzf-native-nvim
+        nvim-web-devicons
+        telescope-undo-nvim
 
-          (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
-            p.nix
-            p.typescript
-            p.rust
-            p.javascript
-            p.python
-            p.markdown
-            p.html
-            p.vue
-            p.css
-            p.scss
-            p.yaml
-            p.toml
-            p.json
-          ]))
+        (nvim-treesitter.withPlugins (p: [
+          p.nix
+          p.typescript
+          p.rust
+          p.javascript
+          p.python
+          p.markdown
+          p.html
+          p.vue
+          p.css
+          p.scss
+          p.yaml
+          p.toml
+          p.json
+        ]))
 
-          nvim-lspconfig
+        nvim-lspconfig
 
-          nvim-cmp
-          cmp-treesitter
-          cmp-rg
-          cmp-nvim-lsp
-          luasnip
-          cmp_luasnip
-          friendly-snippets
-          cmp-nvim-lsp-signature-help
+        # cmp
+        nvim-cmp
+        cmp-treesitter
+        cmp-rg
+        cmp-nvim-lsp
+        luasnip
+        cmp_luasnip
+        friendly-snippets
+        cmp-nvim-lsp-signature-help
 
-          vim-surround
-          autoclose-nvim
+        vim-surround
+        autoclose-nvim
 
-          trouble-nvim
+        trouble-nvim
 
-          catppuccin-nvim
+        catppuccin-nvim
 
-          custom-plugins.improvedft
+        custom-plugins.improvedft
 
-          custom-plugins.format-on-save-nvim
+        custom-plugins.format-on-save-nvim
 
-          custom-plugins.kitty-scrollback-nvim
-        ] ++ [
-          pkgs-unstable.vimPlugins.harpoon2
-          pkgs-unstable.vimPlugins.actions-preview-nvim
-          pkgs-unstable.vimPlugins.gitsigns-nvim
-          pkgs-unstable.vimPlugins.nvim-hlslens
-          pkgs-unstable.vimPlugins.nvim-scrollbar
-        ];
+        custom-plugins.kitty-scrollback-nvim
+
+        harpoon2
+
+        actions-preview-nvim
+
+        gitsigns-nvim
+
+        nvim-hlslens
+      ];
     };
   };
 }
