@@ -210,3 +210,17 @@ vim.api.nvim_set_keymap('n', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]]
 vim.api.nvim_set_keymap('n', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
 vim.api.nvim_set_keymap('n', '<Leader>l', '<Cmd>noh<CR>', kopts)
 
+require('neogit').setup({
+
+  graph_style = "unicode",
+  integrations = {
+    -- If enabled, use telescope for menu selection rather than vim.ui.select.
+    -- Allows multi-select and some things that vim.ui.select doesn't.
+    telescope = true,
+  },
+})
+
+vim.keymap.set("n", "<leader>gc", function()
+    local commit_message = vim.fn.input("Commit Message: ")
+    os.execute(string.format('git commit -m "%s"', commit_message))
+end)

@@ -143,6 +143,8 @@ in {
         gitsigns-nvim
 
         nvim-hlslens
+
+        neogit
       ];
     };
   };
