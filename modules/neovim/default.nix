@@ -11,7 +11,7 @@ in {
       fd
 
       # lsp dependencies
-      inputs.nixd.packages."x86_64-linux".default
+      nixd
       pyright
       rust-analyzer
       nodePackages.typescript-language-server

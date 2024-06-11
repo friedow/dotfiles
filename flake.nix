@@ -29,8 +29,6 @@
       url = "github:danth/stylix/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nixd = { url = "github:nix-community/nixd"; };
   };
 
   outputs = { nixpkgs, ... }@inputs:
