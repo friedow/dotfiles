@@ -1,1 +1,3 @@
-{ pkgs, ... }: { home-manager.users.christian.home.packages = [ pkgs.beeper ]; }
+{ pkgs-unstable, ... }: {
+  home-manager.users.christian.home.packages = [ pkgs-unstable.beeper ];
+}
