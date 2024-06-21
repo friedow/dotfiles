@@ -1,7 +1,9 @@
-{ inputs, pkgs, ... }: {
+{ inputs, pkgs, ... }:
+let customFont = pkgs.callPackage ./custom-font/custom-font.nix { };
+in {
   imports = [ inputs.stylix.nixosModules.stylix ];
 
-  fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "FiraCode" ]; }) ];
+  fonts.packages = with pkgs; [ customFont ];
 
   stylix = {
     image = ./wallpaper.png;
