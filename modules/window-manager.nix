@@ -51,6 +51,10 @@ let
       ${pkgs.libnotify}/bin/notify-send --hint int:value:100 --replace-id ${volume-notification-id} "Volume"
     fi
   '';
+
+  create-screenshot = pkgs.writeShellScript "create-screenshot" ''
+    ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.swappy}/bin/swappy -f -
+  '';
 in {
   services.ddccontrol.enable = true;
   hardware.opengl.enable = true;
@@ -130,7 +134,7 @@ in {
 
           "$mod, Return, exec, kitty"
           "$mod, Space, exec, centerpiece"
-          "$mod, s, exec, ${pkgs-unstable.hyprshot}/bin/hyprshot --mode region --clipboard-only"
+          "$mod, s, exec, ${create-screenshot}"
 
           "$mod, q, killactive"
           "$mod, f, fullscreen"
