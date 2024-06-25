@@ -63,6 +63,7 @@
         ./modules/git.nix
         ./modules/gtk.nix
         ./modules/home-manager.nix
+        ./modules/inkscape
         ./modules/lockscreen
         ./modules/neovim
         ./modules/networking.nix
