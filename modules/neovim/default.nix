@@ -93,7 +93,6 @@ in {
         telescope-nvim
         telescope-fzf-native-nvim
         nvim-web-devicons
-        telescope-undo-nvim
 
         (nvim-treesitter.withPlugins (p: [
           p.nix
@@ -126,8 +125,6 @@ in {
         vim-surround
         autoclose-nvim
 
-        trouble-nvim
-
         catppuccin-nvim
 
         custom-plugins.improvedft
@@ -145,6 +142,8 @@ in {
         nvim-hlslens
 
         neogit
+
+        nvim-spectre
       ];
     };
   };
