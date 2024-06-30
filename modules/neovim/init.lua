@@ -182,18 +182,7 @@ require('neogit').setup({
   },
 })
 
-
-
-
 vim.keymap.set('n', '<C-i>', '<C-I>')
-vim.keymap.set('n', 'd', '"xd')
-vim.keymap.set('n', 'c', '"xc')
-vim.keymap.set('n', 'p', '"xp')
-vim.keymap.set('n', 'x', '"xx')
-vim.keymap.set('v', 'd', '"xd')
-vim.keymap.set('v', 'c', '"xc')
-vim.keymap.set('v', 'p', '"xp')
-vim.keymap.set('v', 'x', '"xx')
 
 vim.keymap.set("n", "<leader>gc", function()
     local commit_message = vim.fn.input("Commit Message: ")
