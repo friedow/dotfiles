@@ -115,6 +115,9 @@ lspconfig.volar.setup {
 lspconfig.marksman.setup {
   capabilities = capabilities
 }
+lspconfig.lua_ls.setup {
+  capabilities = capabilities
+}
 
 
 -- Use LspAttach autocommand to only map the following keys

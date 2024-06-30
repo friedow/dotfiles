@@ -17,6 +17,7 @@ in {
       nodePackages.typescript-language-server
       nodePackages."@volar/vue-language-server"
       marksman
+      lua-language-server
 
       # formatter dependencies
       prettierd
