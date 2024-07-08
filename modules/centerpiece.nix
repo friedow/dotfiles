@@ -6,6 +6,7 @@
       services.index-git-repositories.enable = true;
       config.plugin = {
         sway_windows.enable = false;
+        gitmoji.enable = true;
         git_repositories.commands = [
           [ "kitty" "--directory" "$GIT_DIRECTORY" ]
           [ "sublime_merge" "--new-window" "$GIT_DIRECTORY" ]
