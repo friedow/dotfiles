@@ -3,7 +3,7 @@
 
 <svg
    height="1000"
-   width="1000"
+   width="500"
    sodipodi:docname="custom-glyphs.svg"
    version="1.1"
    id="svg1"
@@ -22,11 +22,11 @@
      borderopacity="0.3"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.79223568"
-     inkscape:cx="332.60305"
-     inkscape:cy="409.60034"
+     inkscape:zoom="1.1203904"
+     inkscape:cx="257.94579"
+     inkscape:cy="346.75412"
      inkscape:document-units="px"
-     inkscape:current-layer="layer6"
+     inkscape:current-layer="layer11"
      showgrid="true"
      showguides="true"
      inkscape:window-width="1920"
@@ -41,37 +41,37 @@
     <sodipodi:guide
        id="guide_baseline"
        inkscape:label="baseline"
-       position="0,253"
+       position="-250,253"
        orientation="0,1"
        inkscape:locked="false" />
     <sodipodi:guide
        id="guide_ascender"
        inkscape:label="ascender"
-       position="0,945"
+       position="-250,945"
        orientation="0,1"
        inkscape:locked="false" />
     <sodipodi:guide
        id="guide_caps"
        inkscape:label="caps"
-       position="0,896"
+       position="-250,896"
        orientation="0,1"
        inkscape:locked="false" />
     <sodipodi:guide
        id="guide_xheight"
        inkscape:label="xheight"
-       position="0,729"
+       position="-250,729"
        orientation="0,1"
        inkscape:locked="false" />
     <sodipodi:guide
        id="guide_descender"
        inkscape:label="descender"
-       position="0,28"
+       position="-250,28"
        orientation="0,1"
        inkscape:locked="false" />
     <inkscape:grid
        id="grid3"
        units="px"
-       originx="0"
+       originx="-250"
        originy="0"
        spacingx="1"
        spacingy="1"
@@ -90,7 +90,12 @@
     <font
        horiz-adv-x="1000"
        id="font3"
-       inkscape:label="Git Symbols">
+       inkscape:label="Git Symbols"
+       horiz-origin-x="0"
+       horiz-origin-y="0"
+       vert-origin-x="512"
+       vert-origin-y="768"
+       vert-adv-y="1024">
       <font-face
          units-per-em="1000"
          ascent="750"
@@ -100,13 +105,53 @@
          id="font-face3"
          font-family="Git Symbols" />
       <missing-glyph
-         d="M0,0h1000v1000h-1000z"
+         d="m 250,450 v 100 a 200,200 0 0 1 200,200 v 250 H 550 V 750 A 300,300 0 0 0 250,450 Z"
          id="missing-glyph3" />
       <glyph
          glyph-name="commit"
          unicode="󿼀"
          id="glyph4"
-         d="M 450,1000 V 750 C 324.41046,744.65121 250.26852,625.7031 250,500 250.26852,374.2969 324.41046,255.34879 450,250 V 0 h 100 v 250 c 125.58954,5.34879 199.73148,124.2969 200,250 -0.0178,125.88463 -74.2294,244.64321 -200,250 v 250 z m 50,-350 c 118.74122,0 150,-31.25878 150,-150 0,-118.74122 -31.25878,-150 -150,-150 -118.74122,0 -150,31.25878 -150,150 0,118.74122 31.25878,150 150,150 z" />
+         d="M 450,1000 V 744.31836 A 250,250 0 0 1 250,500 250,250 0 0 1 450,255.68164 V 0 H 550 V 255.68164 A 250,250 0 0 1 750,500 250,250 0 0 1 550,744.92188 V 1000 Z M 500,650 A 150,150 0 0 0 650,500 150,150 0 0 0 500,350 150,150 0 0 0 350,500 150,150 0 0 0 500,650 Z" />
+      <glyph
+         glyph-name="vertical_line"
+         unicode="󿼁"
+         id="glyph3"
+         d="M 450,1000 H 550 V 0 H 450 Z" />
+      <glyph
+         glyph-name="crossing"
+         unicode="󿼂"
+         id="glyph5"
+         d="M 650,550 H 750 V 450 H 650 Z m -400,0 H 350 V 450 H 250 Z m 200,450 H 550 V 0 H 450 Z" />
+      <glyph
+         glyph-name="horizontal_line"
+         unicode="󿼃"
+         id="glyph6"
+         d="m 250,550 c 166.66667,0 333.33333,0 500,0 0,-33.33333 0,-66.66667 0,-100 -166.66667,0 -333.33333,0 -500,0 0,33.33333 0,66.66667 0,100 z" />
+      <glyph
+         glyph-name="merge_left"
+         unicode="󿼄"
+         id="glyph7"
+         d="M 250,550 V 450 A 200,200 0 0 0 450,250 V 0 H 550 V 250 A 300,300 0 0 1 250,550 Z" />
+      <glyph
+         glyph-name="merge_right"
+         unicode="󿼅"
+         id="glyph8"
+         d="M 750,550 V 450 C 639.54305,450 550,360.45695 550,250 V 0 H 450 v 250 c 0,165.68542 134.31458,300 300,300 z" />
+      <glyph
+         glyph-name="merge_left_continue"
+         unicode="󿼆"
+         id="glyph9"
+         d="M 585.86924,1000 V 473.55078 C 532.79002,521.07086 462.71923,550 385.86924,550 V 450 c 110.45684,0 200,-89.54316 200,-200 V 200 0 h 100 v 200 50 750 z" />
+      <glyph
+         glyph-name="merge_right_continue"
+         unicode="󿼇"
+         id="glyph10"
+         d="M 550,1000 V 473.55078 C 603.07922,521.07086 673.15001,550 750,550 V 450 C 639.54316,450 550,360.45684 550,250 V 200 0 H 450 v 200 50 750 z" />
+      <glyph
+         glyph-name="base_left"
+         unicode="󿼈"
+         id="glyph11"
+         d="m 250,450 v 100 a 200,200 0 0 1 200,200 v 250 H 550 V 750 A 300,300 0 0 0 250,450 Z" />
     </font>
   </defs>
   <metadata
@@ -121,29 +166,114 @@
     </rdf:RDF>
   </metadata>
   <g
-     id="layer1"
-     inkscape:groupmode="layer"
-     inkscape:label="commit"
-     style="display:none"
-     sodipodi:insensitive="true">
-    <path
-       id="path9"
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-dasharray:none;stroke-opacity:1"
-       d="M 490,0 V 265.71484 A 235,235 0 0 0 265,500 235,235 0 0 0 490,734.28516 V 1000 h 20 V 734.28516 A 235,235 0 0 0 735,500 235,235 0 0 0 510,265.24609 V 0 Z m 10,285 A 215,215 0 0 1 715,500 215,215 0 0 1 500,715 215,215 0 0 1 285,500 215,215 0 0 1 500,285 Z" />
-  </g>
-  <g
      inkscape:groupmode="layer"
      id="layer5"
-     inkscape:label="Git Symbols">
+     inkscape:label="Git Symbols"
+     transform="translate(-250)">
+    <g
+       inkscape:groupmode="layer"
+       id="layer11"
+       inkscape:label="U+0FFF08 󿼈 base_left">
+      <path
+         id="path8-5"
+         style="display:inline;fill:#000000;fill-opacity:1;stroke-width:2.25527"
+         d="M 250,550 V 450 A 200,200 0 0 0 450,250 V 0 H 550 V 250 A 300,300 0 0 1 250,550 Z"
+         inkscape:label="base_left" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer10"
+       inkscape:label="U+0FFF07 󿼇 merge_right_continue"
+       style="display:none"
+       sodipodi:insensitive="true">
+      <path
+         id="path9-2-6"
+         style="display:inline"
+         inkscape:label="merge_right_continue"
+         d="M 550,0 V 526.44922 C 603.07922,478.92914 673.15001,450 750,450 v 100 c -110.45684,0 -200,89.54316 -200,200 v 50 200 H 450 V 800 750 0 Z" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer9"
+       inkscape:label="U+0FFF06 󿼆 merge_left_continue"
+       transform="translate(-135.86924)"
+       style="display:none"
+       sodipodi:insensitive="true">
+      <path
+         id="path9-2"
+         style="display:inline"
+         inkscape:label="merge_left_continue"
+         d="M 585.86924,0 V 526.44922 C 532.79002,478.92914 462.71923,450 385.86924,450 v 100 c 110.45684,0 200,89.54316 200,200 v 50 200 h 100 V 800 750 0 Z" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer8"
+       inkscape:label="U+0FFF05 󿼅 merge_right"
+       style="display:none"
+       sodipodi:insensitive="true">
+      <path
+         d="m 750,450 v 100 c -110.45695,0 -200,89.54305 -200,200 v 250 H 450 V 750 C 450,584.31458 584.31458,450 750,450 Z"
+         id="path9"
+         sodipodi:nodetypes="ccsccsc"
+         inkscape:label="merge_right" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer7"
+       inkscape:label="U+0FFF04 󿼄 merge_left"
+       style="display:none"
+       sodipodi:insensitive="true">
+      <path
+         id="path8"
+         style="fill:#000000;fill-opacity:1;stroke-width:2.25527"
+         d="m 250,450 v 100 a 200,200 0 0 1 200,200 v 250 H 550 V 750 A 300,300 0 0 0 250,450 Z"
+         inkscape:label="merge_left" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer4"
+       inkscape:label="U+0FFF03 󿼃 horizontal_line"
+       style="display:none"
+       sodipodi:insensitive="true">
+      <path
+         id="rect6"
+         d="m 250,450 c 166.66667,0 333.33333,0 500,0 0,33.33333 0,66.66667 0,100 -166.66667,0 -333.33333,0 -500,0 0,-33.33333 0,-66.66667 0,-100 z"
+         inkscape:label="horizontal_line" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer3"
+       inkscape:label="U+0FFF02 󿼂 crossing"
+       style="display:none"
+       sodipodi:insensitive="true">
+      <path
+         id="rect5-4"
+         style="stroke-width:0.903167"
+         d="M 650,450 H 750 V 550 H 650 Z m -400,0 H 350 V 550 H 250 Z M 450,0 H 550 V 1000 H 450 Z"
+         inkscape:label="crossing" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer2"
+       inkscape:label="U+0FFF01 󿼁 vertical_line"
+       style="display:none"
+       sodipodi:insensitive="true">
+      <path
+         id="rect3"
+         d="M 450,0 H 550 V 1000 H 450 Z"
+         inkscape:label="vertical_line" />
+    </g>
     <g
        inkscape:groupmode="layer"
        id="layer6"
-       inkscape:label="U+0FFF00 󿼀 commit">
+       inkscape:label="U+0FFF00 󿼀 commit"
+       style="display:none"
+       sodipodi:insensitive="true">
       <path
-         d="m 450,0 v 250 c -125.58954,5.34879 -199.73148,124.2969 -200,250 0.26852,125.7031 74.41046,244.65121 200,250 v 250 H 550 V 750 C 675.58954,744.65121 749.73148,625.7031 750,500 749.9822,374.11537 675.7706,255.35679 550,250 V 0 Z m 50,350 c 118.74122,0 150,31.25878 150,150 0,118.74122 -31.25878,150 -150,150 -118.74122,0 -150,-31.25878 -150,-150 0,-118.74122 31.25878,-150 150,-150 z"
-         id="path11"
-         style="fill:#000000;fill-opacity:1"
-         sodipodi:nodetypes="cccccccccccsssss" />
+         id="path1"
+         style="fill:#000000;fill-opacity:1;stroke-width:1.08576"
+         d="M 450,0 V 255.68164 A 250,250 0 0 0 250,500 250,250 0 0 0 450,744.31836 V 1000 H 550 V 744.31836 A 250,250 0 0 0 750,500 250,250 0 0 0 550,255.07812 V 0 Z m 50,350 A 150,150 0 0 1 650,500 150,150 0 0 1 500,650 150,150 0 0 1 350,500 150,150 0 0 1 500,350 Z"
+         inkscape:label="commit" />
     </g>
   </g>
 </svg>
