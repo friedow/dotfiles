@@ -6,6 +6,8 @@ in {
   fonts.packages = with pkgs; [ customFont ];
 
   stylix = {
+    enable = true;
+
     image = ./wallpaper.png;
 
     fonts = {
