@@ -80,3 +80,5 @@ Generate u2f_keys file using `pamu2fcfg` from yubikey
 ```
 nix run nixpkgs#pam_u2f > /home/christian/.config/Yubico/u2f_keys
 ```
+
+

@@ -21,6 +21,8 @@
         nd = "nix develop -c $SHELL";
         nrs = "sudo nixos-rebuild switch";
         cat = "bat --theme OneHalfLight --paging never --style plain";
+        record-screen = ''
+          mkdir -p $HOME/Videos/recordings && ${pkgs.wf-recorder}/bin/wf-recorder -a -g "$(${pkgs.slurp}/bin/slurp)" -f "$HOME/Videos/recordings/$(date).mp4"'';
         yubikey-unlock =
           "${pkgs.yubikey-manager}/bin/ykman fido fingerprints list";
       };
