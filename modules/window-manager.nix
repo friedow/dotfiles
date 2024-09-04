@@ -117,9 +117,10 @@ in {
         monitor=,preferred,auto,1
 
         # trigger when the switch is turning off
-        bindl = , switch:off:Lid Switch,exec,hyprctl keyword monitor "eDP-1,preferred, auto, 1"
+        # TODO: replace with a script that counts monitors
+        # bindl = , switch:off:Lid Switch,exec,hyprctl keyword monitor "eDP-1,preferred, auto, 1"
         # trigger when the switch is turning on
-        bindl = , switch:on:Lid Switch,exec,hyprctl keyword monitor "eDP-1, disable"
+        # bindl = , switch:on:Lid Switch,exec,hyprctl keyword monitor "eDP-1, disable"
       '';
       settings = {
         "$mod" = "SUPER";
