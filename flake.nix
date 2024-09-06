@@ -106,9 +106,12 @@
         ./modules/xdg-utils.nix
       ];
 
-      treefmtEval = treefmt-nix.lib.evalModule desktop-pkgs (pkgs: {
+      treefmtEval = treefmt-nix.lib.evalModule pkgs-unstable (pkgs: {
         projectRootFile = "flake.nix";
-        programs.nixfmt.enable = true;
+        programs = {
+          nixfmt.enable = true;
+          stylua.enable = true;
+        };
       });
     in
     {

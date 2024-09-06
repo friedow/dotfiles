@@ -28,7 +28,8 @@ in
       # formatter dependencies
       prettierd
       black
-      nixfmt
+      nixfmt-rfc-style
+      stylua
     ];
 
     programs.neovim = {
