@@ -122,17 +122,5 @@
             ++ [ ./hardware-configuration/tsunami.nix ];
         };
       };
-
-      homeConfigurations.christian =
-        inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${desktop-system};
-          modules = [{
-            home = {
-              stateVersion = "21.11";
-              username = "christian";
-              homeDirectory = "/home/christian";
-            };
-          }];
-        };
     };
 }
