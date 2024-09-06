@@ -1,3 +1,6 @@
-{ pkgs, ... }: {
-  home-manager.users.christian = { home.packages = with pkgs; [ wdisplays ]; };
+{ pkgs, ... }:
+{
+  home-manager.users.christian = {
+    home.packages = with pkgs; [ wdisplays ];
+  };
 }

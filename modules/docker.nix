@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   users.users.christian.extraGroups = [ "docker" ];
 
   virtualisation.docker = {

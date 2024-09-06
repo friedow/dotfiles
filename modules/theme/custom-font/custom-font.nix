@@ -1,10 +1,16 @@
-{ stdenv, lib, fira-code, nerd-font-patcher }:
+{
+  stdenv,
+  lib,
+  fira-code,
+  nerd-font-patcher,
+}:
 let
   custom-nerd-font-patcher = nerd-font-patcher.overrideAttrs {
     patches = [ ./nerd-font-patcher-custom-glyph-size.patch ];
   };
 
-in stdenv.mkDerivation {
+in
+stdenv.mkDerivation {
   pname = "nerdfonts";
   version = "0.1.0";
   src = ./.;

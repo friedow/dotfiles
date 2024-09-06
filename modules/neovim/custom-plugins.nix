@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   improvedft = pkgs.vimUtils.buildVimPlugin {
     name = "improvedft";
     src = pkgs.fetchFromGitHub {

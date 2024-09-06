@@ -1,20 +1,22 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, ... }:
+{
   # nix develop, nix shell, ... should use the package index
   # which was used to build the system. This config enforces that.
 
   # disable the global flake registry,
   # we build our own based on the system flakes' inputs
-  environment.etc."nix/registry-empty.json".text =
-    ''{ "flakes": [], "version": 2 }'';
+  environment.etc."nix/registry-empty.json".text = ''{ "flakes": [], "version": 2 }'';
 
   nix = {
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
 
       substituters = [ "https://friedow.cachix.org/" ];
       trusted-substituters = [ "https://friedow.cachix.org/" ];
-      trusted-public-keys =
-        [ "friedow.cachix.org-1:JDEaYMqNgGu+bVPOca7Zu4Cp8QDMkvQpArKuwPKa29A=" ];
+      trusted-public-keys = [ "friedow.cachix.org-1:JDEaYMqNgGu+bVPOca7Zu4Cp8QDMkvQpArKuwPKa29A=" ];
     };
     extraOptions = ''
       flake-registry = /etc/nix/registry-empty.json

@@ -19,17 +19,15 @@ let
 
   sed-ddccontrol = "sed -En 's/^Control.*\\+\\/([0-9]+)\\/.*/\\1/p'";
 
-  external-brightness-increase =
-    pkgs.writeShellScript "external-brightness-increase" ''
-      new_brightness=$(${pkgs.ddccontrol}/bin/ddccontrol -r 0x10 -W +10 dev:/dev/i2c-14 | ${sed-ddccontrol})
-      ${pkgs.libnotify}/bin/notify-send --hint int:value:$new_brightness --replace-id ${brightness-notification-id} "Brightness"
-    '';
+  external-brightness-increase = pkgs.writeShellScript "external-brightness-increase" ''
+    new_brightness=$(${pkgs.ddccontrol}/bin/ddccontrol -r 0x10 -W +10 dev:/dev/i2c-14 | ${sed-ddccontrol})
+    ${pkgs.libnotify}/bin/notify-send --hint int:value:$new_brightness --replace-id ${brightness-notification-id} "Brightness"
+  '';
 
-  external-brightness-decrease =
-    pkgs.writeShellScript "external-brightness-decrease" ''
-      new_brightness=$(${pkgs.ddccontrol}/bin/ddccontrol -r 0x10 -W -10 dev:/dev/i2c-14 | ${sed-ddccontrol})
-      ${pkgs.libnotify}/bin/notify-send --hint int:value:$new_brightness --replace-id ${brightness-notification-id} "Brightness"
-    '';
+  external-brightness-decrease = pkgs.writeShellScript "external-brightness-decrease" ''
+    new_brightness=$(${pkgs.ddccontrol}/bin/ddccontrol -r 0x10 -W -10 dev:/dev/i2c-14 | ${sed-ddccontrol})
+    ${pkgs.libnotify}/bin/notify-send --hint int:value:$new_brightness --replace-id ${brightness-notification-id} "Brightness"
+  '';
 
   volume-notification-id = "2";
 
@@ -55,7 +53,8 @@ let
   create-screenshot = pkgs.writeShellScript "create-screenshot" ''
     ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.swappy}/bin/swappy -f -
   '';
-in {
+in
+{
   services.ddccontrol.enable = true;
   hardware.opengl.enable = true;
   programs.hyprland.enable = true;

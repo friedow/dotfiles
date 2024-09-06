@@ -1,9 +1,14 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   users.users.christian.shell = pkgs.fish;
   programs.fish.enable = true;
 
   home-manager.users.christian = {
-    home.packages = with pkgs; [ eza bat libwebp ];
+    home.packages = with pkgs; [
+      eza
+      bat
+      libwebp
+    ];
 
     programs = {
       direnv = {
@@ -21,18 +26,15 @@
         nd = "nix develop -c $SHELL";
         nrs = "sudo nixos-rebuild switch";
         cat = "bat --theme OneHalfLight --paging never --style plain";
-        record-screen = ''
-          mkdir -p $HOME/Videos/recordings && ${pkgs.wf-recorder}/bin/wf-recorder -a -g "$(${pkgs.slurp}/bin/slurp)" -f "$HOME/Videos/recordings/$(date).mp4"'';
-        yubikey-unlock =
-          "${pkgs.yubikey-manager}/bin/ykman fido fingerprints list";
+        record-screen = ''mkdir -p $HOME/Videos/recordings && ${pkgs.wf-recorder}/bin/wf-recorder -a -g "$(${pkgs.slurp}/bin/slurp)" -f "$HOME/Videos/recordings/$(date).mp4"'';
+        yubikey-unlock = "${pkgs.yubikey-manager}/bin/ykman fido fingerprints list";
       };
 
       functions = {
         n.body = "nix run nixpkgs#$argv[1] -- $argv[2..]";
         nu.body = "nix run nixpkgs-unstable#$argv[1] -- $argv[2..]";
         ns.body = "nix shell nixpkgs#$argv[1]";
-        bearer-inspect.body =
-          "echo $argv[1] | cut -d. -f2  | base64 --decode --ignore-garbage";
+        bearer-inspect.body = "echo $argv[1] | cut -d. -f2  | base64 --decode --ignore-garbage";
       };
 
       interactiveShellInit = ''
@@ -43,10 +45,12 @@
         end
       '';
 
-      plugins = [{
-        name = "z";
-        src = pkgs.fishPlugins.z.src;
-      }];
+      plugins = [
+        {
+          name = "z";
+          src = pkgs.fishPlugins.z.src;
+        }
+      ];
     };
   };
 }

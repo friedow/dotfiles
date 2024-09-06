@@ -33,7 +33,8 @@ let
       \
       --daemonize
   '';
-in {
+in
+{
   # include swaylock in pam for it to verify credentials
   security.pam.services.swaylock.text = ''
     auth include login

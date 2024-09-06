@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home-manager.users.christian.services.dunst = {
     enable = true;
     settings = {

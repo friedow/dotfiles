@@ -2,7 +2,8 @@
 let
   cursor-theme = "Nordzy-cursors";
   cursor-size = 32;
-in {
+in
+{
   home-manager.users.christian = {
     home.packages = with pkgs; [ nordzy-cursor-theme ];
     home.sessionVariables = {

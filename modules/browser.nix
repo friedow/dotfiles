@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home-manager.users.christian.programs.chromium = {
     enable = true;
     package = pkgs.brave;

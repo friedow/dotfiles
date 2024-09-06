@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # enable dbus
   programs.dconf.enable = true;
 

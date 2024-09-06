@@ -1,4 +1,5 @@
-{ inputs, ... }: {
+{ inputs, ... }:
+{
   home-manager.users.christian = {
     imports = [ inputs.centerpiece.hmModules."x86_64-linux".default ];
     programs.centerpiece = {
@@ -8,8 +9,16 @@
         sway_windows.enable = false;
         gitmoji.enable = true;
         git_repositories.commands = [
-          [ "kitty" "--directory" "$GIT_DIRECTORY" ]
-          [ "sublime_merge" "--new-window" "$GIT_DIRECTORY" ]
+          [
+            "kitty"
+            "--directory"
+            "$GIT_DIRECTORY"
+          ]
+          [
+            "sublime_merge"
+            "--new-window"
+            "$GIT_DIRECTORY"
+          ]
           [
             "kitty"
             "--directory"

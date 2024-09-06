@@ -29,15 +29,24 @@
       url = "github:danth/stylix/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
-  outputs = { nixpkgs, ... }@inputs:
+  outputs =
+    { nixpkgs, treefmt-nix, ... }@inputs:
     let
       pkgs-unstable = (import inputs.nixpkgs-unstable) {
         system = "x86_64-linux";
         config.allowUnfree = true;
       };
-      specialArgs = { inherit inputs pkgs-unstable; };
+      specialArgs = {
+        inherit inputs pkgs-unstable;
+      };
 
       desktop-system = "x86_64-linux";
       desktop-pkgs = (import nixpkgs) {
@@ -96,31 +105,36 @@
         ./modules/vagrant.nix
         ./modules/xdg-utils.nix
       ];
-    in {
+
+      treefmtEval = treefmt-nix.lib.evalModule desktop-pkgs (pkgs: {
+        projectRootFile = "flake.nix";
+        programs.nixfmt.enable = true;
+      });
+    in
+    {
       nixosConfigurations = {
         avalanche = nixpkgs.lib.nixosSystem {
           inherit specialArgs;
           system = desktop-system;
           pkgs = desktop-pkgs;
-          modules = desktop-modules ++ personal-modules
-            ++ [ ./hardware-configuration/avalanche.nix ];
+          modules = desktop-modules ++ personal-modules ++ [ ./hardware-configuration/avalanche.nix ];
         };
 
         hurricane = nixpkgs.lib.nixosSystem {
           inherit specialArgs;
           system = desktop-system;
           pkgs = desktop-pkgs;
-          modules = desktop-modules ++ personal-modules
-            ++ [ ./hardware-configuration/hurricane.nix ];
+          modules = desktop-modules ++ personal-modules ++ [ ./hardware-configuration/hurricane.nix ];
         };
 
         tsunami = nixpkgs.lib.nixosSystem {
           inherit specialArgs;
           system = desktop-system;
           pkgs = desktop-pkgs;
-          modules = desktop-modules ++ work-modules
-            ++ [ ./hardware-configuration/tsunami.nix ];
+          modules = desktop-modules ++ work-modules ++ [ ./hardware-configuration/tsunami.nix ];
         };
       };
+
+      formatter.${desktop-system} = treefmtEval.config.build.wrapper;
     };
 }

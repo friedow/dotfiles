@@ -1,1 +1,4 @@
-{ ... }: { home-manager.users.christian.programs.btop.enable = true; }
+{ ... }:
+{
+  home-manager.users.christian.programs.btop.enable = true;
+}

@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   home-manager.users.christian.services.wlsunset = {
     enable = true;
 
@@ -7,4 +8,3 @@
     longitude = "13.5";
   };
 }
-
