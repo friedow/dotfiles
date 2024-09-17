@@ -17,11 +17,12 @@ in
       fd
 
       # lsp dependencies
-      nixd
+      nil
       pyright
       rust-analyzer
       nodePackages.typescript-language-server
-      nodePackages."@volar/vue-language-server"
+      vue-language-server
+      vscode-langservers-extracted
       marksman
       lua-language-server
 
@@ -42,57 +43,62 @@ in
         (builtins.readFile ./init.lua)
         + ''
 
-          require("catppuccin").setup {
-            color_overrides = {
-              latte = {
-                rosewater = "${color.rosewater}",
-                flamingo = "${color.flamingo}",
-                pink = "${color.pink}",
-                mauve = "${color.mauve}",
-                red = "${color.red}",
-                maroon = "${color.maroon}",
-                peach = "${color.peach}",
-                yellow = "${color.yellow}",
-                green = "${color.green}",
-                teal = "${color.teal}",
-                sky = "${color.sky}",
-                sapphire = "${color.sapphire}",
-                blue = "${color.blue}",
-                lavender = "${color.lavender}",
+            require("catppuccin").setup {
+              color_overrides = {
+                latte = {
+                  rosewater = "${color.rosewater}",
+                  flamingo = "${color.flamingo}",
+                  pink = "${color.pink}",
+                  mauve = "${color.mauve}",
+                  red = "${color.red}",
+                  maroon = "${color.maroon}",
+                  peach = "${color.peach}",
+                  yellow = "${color.yellow}",
+                  green = "${color.green}",
+                  teal = "${color.teal}",
+                  sky = "${color.sky}",
+                  sapphire = "${color.sapphire}",
+                  blue = "${color.blue}",
+                  lavender = "${color.lavender}",
 
-                text = "${color.text}",
-                subtext1 = "${color.subtext1}",
-                subtext0 = "${color.subtext0}",
+                  text = "${color.text}",
+                  subtext1 = "${color.subtext1}",
+                  subtext0 = "${color.subtext0}",
 
-                overlay2 = "${color.overlay2}",
-                overlay1 = "${color.overlay1}",
-                overlay0 = "${color.overlay0}",
+                  overlay2 = "${color.overlay2}",
+                  overlay1 = "${color.overlay1}",
+                  overlay0 = "${color.overlay0}",
 
-                surface2 = "${color.surface2}",
-                surface1 = "${color.surface1}",
-                surface0 = "${color.surface0}",
+                  surface2 = "${color.surface2}",
+                  surface1 = "${color.surface1}",
+                  surface0 = "${color.surface0}",
 
-                crust = "${color.crust}",
-                mantle = "${color.mantle}",
-                base = "${color.base}",
-              },
+                  crust = "${color.crust}",
+                  mantle = "${color.mantle}",
+                  base = "${color.base}",
+                },
+              }
             }
           }
           vim.cmd.colorscheme("catppuccin-latte")
 
-          lspconfig.nixd.setup {
+          lspconfig.tsserver.setup {
             capabilities = capabilities,
-            settings = {
-              nixd = {
-                options = {
-                  home_manager = {
-                    expr = '(builtins.getFlake "git+file://${./../..}").homeConfigurations.christian.options',
-                  },
+            init_options = {
+              plugins = {
+                {
+                  name = '@vue/typescript-plugin',
+                  location = '${pkgs-unstable.vue-language-server}/lib/node_modules/@vue/language-server',
+                  languages = { 'vue' },
                 },
               },
-            },  
+            },
+            filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
           }
 
+          lspconfig.volar.setup {
+            capabilities = capabilities,
+          }
         '';
 
       plugins = with pkgs-unstable.vimPlugins; [

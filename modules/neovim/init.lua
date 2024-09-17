@@ -100,19 +100,8 @@ lspconfig.pyright.setup({
 lspconfig.rust_analyzer.setup({
 	capabilities = capabilities,
 })
-lspconfig.tsserver.setup({
+lspconfig.nil_ls.setup({
 	capabilities = capabilities,
-})
-lspconfig.volar.setup({
-	capabilities = capabilities,
-	filetypes = {
-		"typescript",
-		"javascript",
-		"javascriptreact",
-		"typescriptreact",
-		"vue",
-		"json",
-	},
 })
 lspconfig.marksman.setup({
 	capabilities = capabilities,
@@ -147,6 +136,9 @@ lspconfig.lua_ls.setup({
 	settings = {
 		Lua = {},
 	},
+})
+lspconfig.eslint.setup({
+	capabilities = capabilities,
 })
 
 -- Use LspAttach autocommand to only map the following keys
@@ -217,6 +209,25 @@ vim.keymap.set("n", "<C-i>", "<C-I>")
 vim.keymap.set("n", "<leader>gc", function()
 	local commit_message = vim.fn.input("Commit Message: ")
 	os.execute(string.format('git commit -m "%s"', commit_message))
+end)
+
+vim.keymap.set("n", "<leader>a", function()
+	harpoon:list():add()
+end)
+vim.keymap.set("n", "<leader>h", function()
+	harpoon.ui:toggle_quick_menu(harpoon:list())
+end)
+vim.keymap.set("n", "<C-1>", function()
+	harpoon:list():select(1)
+end)
+vim.keymap.set("n", "<C-2>", function()
+	harpoon:list():select(2)
+end)
+vim.keymap.set("n", "<C-3>", function()
+	harpoon:list():select(3)
+end)
+vim.keymap.set("n", "<C-4>", function()
+	harpoon:list():select(4)
 end)
 
 vim.keymap.set("n", "<leader>a", function()
