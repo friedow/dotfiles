@@ -58,6 +58,7 @@ in
   services.ddccontrol.enable = true;
   hardware.opengl.enable = true;
   programs.hyprland.enable = true;
+  programs.hyprland.portalPackage = pkgs-unstable.xdg-desktop-portal-hyprland;
   home-manager.users.christian = {
 
     # Configure most applications to use the wayland interface 
@@ -102,6 +103,7 @@ in
         general:layout=master
         master:orientation=center
         master:mfact=0.5
+        master:always_center_master=true
 
         decoration:rounding=5
         decoration:dim_inactive=true
