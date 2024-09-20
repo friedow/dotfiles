@@ -88,6 +88,8 @@ in
 
     wayland.windowManager.hyprland = {
       enable = true;
+      package = pkgs-unstable.hyprland;
+      plugins = [ pkgs-unstable.hyprlandPlugins.hyprscroller ];
       extraConfig = ''
         exec-once = lock
         exec-once = ${pkgs.swayidle}/bin/swayidle -w lock 'lock' before-sleep 'lock' timeout 300 'lock'
@@ -100,10 +102,8 @@ in
         general:gaps_in=3
         general:gaps_out=3
 
-        general:layout=master
-        master:orientation=center
-        master:mfact=0.5
-        master:always_center_master=true
+        general:layout=scroller
+        plugin:scroller:column_widths = onefourth onethird onehalf one
 
         decoration:rounding=5
         decoration:dim_inactive=true
@@ -139,8 +139,10 @@ in
           "$mod, s, exec, ${create-screenshot}"
 
           "$mod, q, killactive"
-          "$mod, f, fullscreen"
-          "$mod, m, layoutmsg, swapwithmaster master"
+          "$mod, f, scroller:fitsize, active"
+          "$mod, left, scroller:cyclesize, previous"
+          "$mod, right, scroller:cyclesize, next"
+          "$mod, o, scroller:toggleoverview"
 
           "$mod, 1, workspace, 1"
           "$mod, 2, workspace, 2"
@@ -164,15 +166,15 @@ in
           "$mod SHIFT, 9, movetoworkspace, 9"
           "$mod SHIFT, 0, movetoworkspace, 10"
 
-          "$mod, h, movefocus, l"
-          "$mod, j, movefocus, d"
-          "$mod, k, movefocus, u"
-          "$mod, l, movefocus, r"
+          "$mod, h, scroller:movefocus, l"
+          "$mod, j, scroller:movefocus, d"
+          "$mod, k, scroller:movefocus, u"
+          "$mod, l, scroller:movefocus, r"
 
-          "$mod SHIFT, h, movewindow, l"
-          "$mod SHIFT, j, movewindow, d"
-          "$mod SHIFT, k, movewindow, u"
-          "$mod SHIFT, l, movewindow, r"
+          "$mod SHIFT, h, scroller:movewindow, l"
+          "$mod SHIFT, j, scroller:movewindow, d"
+          "$mod SHIFT, k, scroller:movewindow, u"
+          "$mod SHIFT, l, scroller:movewindow, r"
 
           "$mod CTRL, h, movecurrentworkspacetomonitor, l"
           "$mod CTRL, j, movecurrentworkspacetomonitor, d"
