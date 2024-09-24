@@ -3,7 +3,11 @@ let
   greetd-session = pkgs.writeShellScriptBin "greetd-session" ''
     source /etc/profile
     source /etc/profiles/per-user/$(whoami)/etc/profile.d/hm-session-vars.sh
-    exec systemd-cat --identifier=Hyprland Hyprland
+
+    # Import the login manager environment.
+    systemctl --user import-environment
+
+    exec systemctl --user --wait start niri.service
   '';
 in
 {

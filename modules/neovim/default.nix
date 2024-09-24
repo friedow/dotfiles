@@ -79,7 +79,6 @@ in
                 },
               }
             }
-          }
           vim.cmd.colorscheme("catppuccin-latte")
 
           lspconfig.tsserver.setup {

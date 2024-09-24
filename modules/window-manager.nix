@@ -1,4 +1,10 @@
-{ pkgs, pkgs-unstable, ... }:
+{
+  pkgs,
+  pkgs-unstable,
+  lib,
+  inputs,
+  ...
+}:
 let
   sed-brightnessctl = "sed -En 's/.*\\(([0-9]+)%\\).*/\\1/p'";
   brightness-notification-id = "1";
@@ -53,13 +59,46 @@ let
   create-screenshot = pkgs.writeShellScript "create-screenshot" ''
     ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.swappy}/bin/swappy -f -
   '';
+
+  niri = inputs.niri.packages.x86_64-linux.default;
 in
 {
   services.ddccontrol.enable = true;
   hardware.opengl.enable = true;
-  programs.hyprland.enable = true;
-  programs.hyprland.portalPackage = pkgs-unstable.xdg-desktop-portal-hyprland;
+
+  systemd.user.extraConfig = ''
+    DefaultEnvironment="PATH=$PATH:/run/current-system/sw/bin:/etc/profiles/per-user/%u/bin:/run/wrappers/bin"
+  '';
+
+  systemd.user.services.niri = {
+    description = "A scrollable-tiling Wayland compositor";
+    bindsTo = [ "graphical-session.target" ];
+    before = [
+      "xdg-desktop-autostart.target"
+      "graphical-session.target"
+    ];
+    wants = [
+      "xdg-desktop-autostart.target"
+      "graphical-session-pre.target"
+    ];
+    after = [ "graphical-session-pre.target" ];
+    environment = lib.mkForce { };
+    serviceConfig = {
+      Slice = "session.slice";
+      Type = "notify";
+      ExecStart = "${niri}/bin/niri --session";
+    };
+  };
+
   home-manager.users.christian = {
+
+    xdg = {
+      portal = {
+        enable = true;
+        config.niri.default = "gnome;";
+        extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+      };
+    };
 
     # Configure most applications to use the wayland interface 
     # natively instead of using the xwayland interface
@@ -86,102 +125,160 @@ in
       _JAVA_AWT_WM_NONREPARENTING = "1";
     };
 
-    wayland.windowManager.hyprland = {
-      enable = true;
-      package = pkgs-unstable.hyprland;
-      plugins = [ pkgs-unstable.hyprlandPlugins.hyprscroller ];
-      extraConfig = ''
-        exec-once = lock
-        exec-once = ${pkgs.swayidle}/bin/swayidle -w lock 'lock' before-sleep 'lock' timeout 300 'lock'
-        exec-once = ${pkgs.swaybg}/bin/swaybg --image ${./theme/wallpaper.png}
+    home.packages = [ niri ];
 
-        animation=global,1,2,default
-        animation=windowsIn,0
+    home.file.".config/niri/config.kdl".text = ''
+      spawn-at-startup "lock"
+      spawn-at-startup "${pkgs.swayidle}/bin/swayidle -w lock 'lock' before-sleep 'lock' timeout 300 'lock'"
+      spawn-at-startup "${pkgs.swaybg}/bin/swaybg --image ${./theme/wallpaper.png}"
 
-        general:border_size=0
-        general:gaps_in=3
-        general:gaps_out=3
+      input {
+          warp-mouse-to-focus
+          //focus-follows-mouse max-scroll-amount="0%"
+          workspace-auto-back-and-forth
 
-        general:layout=scroller
-        plugin:scroller:column_widths = onefourth onethird onehalf one
+          keyboard {
+              repeat-rate 35
+              repeat-delay 350
 
-        decoration:rounding=5
-        decoration:dim_inactive=true
-        decoration:dim_strength=0.2
-        decoration:blur:enabled=false
-        decoration:drop_shadow=false
+              xkb {
+                  layout "us"
+                  options "ctrl:nocaps,compose:ralt"
+              }
+          }
+          touchpad {
+              click-method "clickfinger"
+          }
+          mouse {
+            // TODO: speed
+          }
+      }
 
-        misc:force_default_wallpaper=0
+      output "AU Optronics 0x202B" {
+          scale 2
+      }
 
-        # avalanche display
-        monitor=desc:AU Optronics 0x202B,preferred,auto,2
-        monitor=,preferred,auto,1
+      prefer-no-csd
 
-        # trigger when the switch is turning off
-        # TODO: replace with a script that counts monitors
-        # bindl = , switch:off:Lid Switch,exec,hyprctl keyword monitor "eDP-1,preferred, auto, 1"
-        # trigger when the switch is turning on
-        # bindl = , switch:on:Lid Switch,exec,hyprctl keyword monitor "eDP-1, disable"
-      '';
-      settings = {
-        "$mod" = "SUPER";
-        bind = [
-          ", XF86MonBrightnessDown, exec, ${brightness-decrease}"
-          ", XF86MonBrightnessUp, exec, ${brightness-increase}"
-          "$mod, XF86MonBrightnessDown, exec, ${external-brightness-decrease}"
-          "$mod, XF86MonBrightnessUp, exec, ${external-brightness-increase}"
-          ", XF86AudioRaiseVolume, exec, ${volume-increase}"
-          ", XF86AudioLowerVolume, exec, ${volume-decrease}"
-          ", XF86AudioMute, exec, ${volume-toggle}"
+      screenshot-path "~/tmp/screenshot-%Y%m%d%H%M%S.png"
 
-          "$mod, Return, exec, kitty"
-          "$mod, Space, exec, centerpiece"
-          "$mod, s, exec, ${create-screenshot}"
+      hotkey-overlay {
+        skip-at-startup
+      }
 
-          "$mod, q, killactive"
-          "$mod, f, scroller:fitsize, active"
-          "$mod, left, scroller:cyclesize, previous"
-          "$mod, right, scroller:cyclesize, next"
-          "$mod, o, scroller:toggleoverview"
 
-          "$mod, 1, workspace, 1"
-          "$mod, 2, workspace, 2"
-          "$mod, 3, workspace, 3"
-          "$mod, 4, workspace, 4"
-          "$mod, 5, workspace, 5"
-          "$mod, 6, workspace, 6"
-          "$mod, 7, workspace, 7"
-          "$mod, 8, workspace, 8"
-          "$mod, 9, workspace, 9"
-          "$mod, 0, workspace, 10"
+      layout {
+          gaps 10
 
-          "$mod SHIFT, 1, movetoworkspace, 1"
-          "$mod SHIFT, 2, movetoworkspace, 2"
-          "$mod SHIFT, 3, movetoworkspace, 3"
-          "$mod SHIFT, 4, movetoworkspace, 4"
-          "$mod SHIFT, 5, movetoworkspace, 5"
-          "$mod SHIFT, 6, movetoworkspace, 6"
-          "$mod SHIFT, 7, movetoworkspace, 7"
-          "$mod SHIFT, 8, movetoworkspace, 8"
-          "$mod SHIFT, 9, movetoworkspace, 9"
-          "$mod SHIFT, 0, movetoworkspace, 10"
+          center-focused-column "always"
 
-          "$mod, h, scroller:movefocus, l"
-          "$mod, j, scroller:movefocus, d"
-          "$mod, k, scroller:movefocus, u"
-          "$mod, l, scroller:movefocus, r"
+          default-column-width { 
+            //proportion 0.75
+            //proportion 0.50
+            fixed 800
+          }
 
-          "$mod SHIFT, h, scroller:movewindow, l"
-          "$mod SHIFT, j, scroller:movewindow, d"
-          "$mod SHIFT, k, scroller:movewindow, u"
-          "$mod SHIFT, l, scroller:movewindow, r"
+          preset-column-widths {
+              fixed 800
+              fixed 1100
+              fixed 1400
+              //proportion 0.30
+              //proportion 0.45
+              //proportion 0.60
+          }
 
-          "$mod CTRL, h, movecurrentworkspacetomonitor, l"
-          "$mod CTRL, j, movecurrentworkspacetomonitor, d"
-          "$mod CTRL, k, movecurrentworkspacetomonitor, u"
-          "$mod CTRL, l, movecurrentworkspacetomonitor, r"
-        ];
-      };
-    };
+          focus-ring {
+              off
+          }
+
+          border {
+              off
+          }
+
+          struts {
+          }
+      }
+
+      animations {
+      }
+
+      window-rule {
+          geometry-corner-radius 5
+          clip-to-geometry true
+      }
+
+      binds {
+          Mod+Shift+Slash { show-hotkey-overlay; }
+          Mod+Return { spawn "${pkgs.kitty}/bin/kitty"; }
+          Mod+Space { spawn "centerpiece"; }
+          Mod+Q { close-window; }
+
+          XF86AudioRaiseVolume  allow-when-locked=true { spawn "${volume-increase}"; }
+          XF86AudioLowerVolume  allow-when-locked=true { spawn "${volume-decrease}"; }
+          XF86AudioMute         allow-when-locked=true { spawn "${volume-toggle}"; }
+          XF86MonBrightnessDown allow-when-locked=true { spawn "${brightness-decrease}"; }
+          XF86MonBrightnessUp   allow-when-locked=true { spawn "${brightness-increase}"; }
+          Mod+XF86MonBrightnessDown allow-when-locked=true { spawn "${external-brightness-decrease}"; }
+          Mod+XF86MonBrightnessUp   allow-when-locked=true { spawn "${external-brightness-increase}"; }
+
+          Mod+H     { focus-column-or-monitor-left; }
+          Mod+J  { focus-window-or-workspace-down; }
+          Mod+K  { focus-window-or-workspace-up; }
+          Mod+L     { focus-column-or-monitor-right; }
+
+          Mod+Shift+H     { move-column-left-or-to-monitor-left; }
+          Mod+Shift+J  { move-window-down-or-to-workspace-down; }
+          Mod+Shift+K  { move-window-up-or-to-workspace-up; }
+          Mod+Shift+L     { move-column-right-or-to-monitor-right; }
+
+          Mod+Ctrl+H { focus-monitor-left; }
+          Mod+Ctrl+J { focus-monitor-down; }
+          Mod+Ctrl+K { focus-monitor-up; }
+          Mod+Ctrl+L { focus-monitor-right; }
+
+          Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
+          Mod+Shift+Ctrl+J     { move-column-to-workspace-down; }
+          Mod+Shift+Ctrl+K     { move-column-to-workspace-up; }
+          Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
+
+          Mod+Shift+Alt+Ctrl+H     { move-workspace-to-monitor-left; }
+          Mod+Shift+Alt+Ctrl+J     { move-workspace-down; }
+          Mod+Shift+Alt+Ctrl+K     { move-workspace-up; }
+          Mod+Shift+Alt+Ctrl+L     { move-workspace-to-monitor-right; }
+
+          Mod+1 { focus-workspace 1; }
+          Mod+2 { focus-workspace 2; }
+          Mod+3 { focus-workspace 3; }
+          Mod+4 { focus-workspace 4; }
+          Mod+5 { focus-workspace 5; }
+          Mod+6 { focus-workspace 6; }
+          Mod+7 { focus-workspace 7; }
+          Mod+8 { focus-workspace 8; }
+          Mod+9 { focus-workspace 9; }
+          Mod+0 { focus-workspace 10; }
+
+          Mod+Shift+1 { move-window-to-workspace "1"; }
+          Mod+Shift+2 { move-window-to-workspace "2"; }
+          Mod+Shift+3 { move-window-to-workspace "3"; }
+          Mod+Shift+4 { move-window-to-workspace "4"; }
+          Mod+Shift+5 { move-window-to-workspace "5"; }
+          Mod+Shift+6 { move-window-to-workspace "6"; }
+          Mod+Shift+7 { move-window-to-workspace "7"; }
+          Mod+Shift+8 { move-window-to-workspace "8"; }
+          Mod+Shift+9 { move-window-to-workspace "9"; }
+          Mod+Shift+0 { move-window-to-workspace "0"; }
+
+          Mod+Comma  { consume-window-into-column; }
+          Mod+Period { expel-window-from-column; }
+          Mod+R { switch-preset-column-width; }
+          Mod+F { maximize-column; }
+          Mod+C { center-column; }
+          Mod+Minus { set-column-width "-10%"; }
+          Mod+Equal { set-column-width "+10%"; }
+          Print { screenshot; }
+          Ctrl+Print { screenshot-screen; }
+          Alt+Print { screenshot-window; }
+      }
+    '';
   };
 }
