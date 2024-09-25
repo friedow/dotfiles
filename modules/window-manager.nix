@@ -90,15 +90,15 @@ in
     };
   };
 
-  home-manager.users.christian = {
-
-    xdg = {
-      portal = {
-        enable = true;
-        config.niri.default = "gnome;";
-        extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
-      };
+  xdg = {
+    portal = {
+      enable = true;
+      config.niri.default = "gnome;";
+      extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
     };
+  };
+
+  home-manager.users.christian = {
 
     # Configure most applications to use the wayland interface 
     # natively instead of using the xwayland interface
