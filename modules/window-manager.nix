@@ -173,18 +173,18 @@ in
           center-focused-column "always"
 
           default-column-width { 
-            //proportion 0.75
+            proportion 0.30
             //proportion 0.50
-            fixed 800
+            //fixed 800
           }
 
           preset-column-widths {
-              fixed 800
-              fixed 1100
-              fixed 1400
-              //proportion 0.30
-              //proportion 0.45
-              //proportion 0.60
+              //fixed 800
+              //fixed 1100
+              //fixed 1400
+              proportion 0.30
+              proportion 0.45
+              proportion 0.60
           }
 
           focus-ring {
