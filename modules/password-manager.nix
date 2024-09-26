@@ -8,4 +8,10 @@
   };
 
   home-manager.users.christian.programs.ssh.enable = true;
+  home-manager.users.christian.xdg.desktopEntries."1password" = {
+    name = "1Password";
+    genericName = "Password Manager";
+    exec = "1password --ozone-platform-hint=auto";
+    terminal = false;
+  };
 }
