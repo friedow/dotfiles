@@ -8,6 +8,7 @@
       eza
       bat
       libwebp
+      fzf
     ];
 
     programs = {
@@ -28,6 +29,8 @@
         cat = "bat --theme OneHalfLight --paging never --style plain";
         record-screen = ''mkdir -p $HOME/Videos/recordings && ${pkgs.wf-recorder}/bin/wf-recorder -a -g "$(${pkgs.slurp}/bin/slurp)" -f "$HOME/Videos/recordings/$(date).mp4"'';
         yubikey-unlock = "${pkgs.yubikey-manager}/bin/ykman fido fingerprints list";
+        gpu = "git push";
+        gco = "git commit -m ";
       };
 
       functions = {
@@ -49,6 +52,10 @@
         {
           name = "z";
           src = pkgs.fishPlugins.z.src;
+        }
+        {
+          name = "forgit";
+          src = pkgs.fishPlugins.forgit.src;
         }
       ];
     };
