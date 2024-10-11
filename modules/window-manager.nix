@@ -129,8 +129,8 @@ in
 
     home.file.".config/niri/config.kdl".text = ''
       spawn-at-startup "lock"
-      spawn-at-startup "${pkgs.swayidle}/bin/swayidle -w lock 'lock' before-sleep 'lock' timeout 300 'lock'"
-      spawn-at-startup "${pkgs.swaybg}/bin/swaybg --image ${./theme/wallpaper.png}"
+      spawn-at-startup "${pkgs.swayidle}/bin/swayidle" "-w" "lock" "'lock'" "before-sleep" "'lock'" "timeout" "300" "'lock'"
+      spawn-at-startup "${pkgs.swaybg}/bin/swaybg" "--image" "${./theme/wallpaper.png}"
 
       input {
           warp-mouse-to-focus
