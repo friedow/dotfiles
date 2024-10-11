@@ -2,7 +2,7 @@
 {
   home-manager.users.christian.programs.git = {
     enable = true;
-    difftastic.enable = true;
+    diff-so-fancy.enable = true;
     includes = [ { path = "~/.config/git/user"; } ];
     extraConfig = {
       gpg.format = "ssh";

@@ -30,7 +30,7 @@
         record-screen = ''mkdir -p $HOME/Videos/recordings && ${pkgs.wf-recorder}/bin/wf-recorder -a -g "$(${pkgs.slurp}/bin/slurp)" -f "$HOME/Videos/recordings/$(date).mp4"'';
         yubikey-unlock = "${pkgs.yubikey-manager}/bin/ykman fido fingerprints list";
         gpu = "git push";
-        gco = "git commit -m ";
+        gc = "git commit -m ";
       };
 
       functions = {
