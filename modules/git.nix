@@ -6,6 +6,7 @@
     includes = [ { path = "~/.config/git/user"; } ];
     extraConfig = {
       gpg.format = "ssh";
+      push.autoSetupRemote = true;
     };
     signing = {
       key = "~/.ssh/id_ed25519_sk.pub";
