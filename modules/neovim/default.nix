@@ -81,7 +81,7 @@ in
             }
           vim.cmd.colorscheme("catppuccin-latte")
 
-          lspconfig.tsserver.setup {
+          lspconfig.ts_ls.setup {
             capabilities = capabilities,
             init_options = {
               plugins = {
