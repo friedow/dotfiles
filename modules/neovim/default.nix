@@ -25,6 +25,7 @@ in
       vscode-langservers-extracted
       marksman
       lua-language-server
+      yaml-language-server
 
       # formatter dependencies
       prettierd

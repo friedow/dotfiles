@@ -141,6 +141,17 @@ lspconfig.eslint.setup({
 	capabilities = capabilities,
 })
 
+lspconfig.yamlls.setup({
+	capabilities = capabilities,
+	settings = {
+		yaml = {
+			schemas = {
+				["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = "/.gitlab-ci",
+			},
+		},
+	},
+})
+
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd("LspAttach", {
