@@ -12,7 +12,7 @@ in
       confirm_os_window_close = 0;
       cursor_blink_interval = 0;
       cursor_shape = "beam";
-      window_padding_width = 10;
+      window_padding_width = 5;
 
       "map ctrl+c" = "copy_or_interrupt";
 
