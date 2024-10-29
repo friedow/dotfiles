@@ -16,6 +16,19 @@ in
 
       "map ctrl+c" = "copy_or_interrupt";
 
+      "map ctrl+t" = "new_tab_with_cwd";
+      "map ctrl+w" = "close_tab";
+      "map ctrl+1" = "goto_tab 1";
+      "map ctrl+2" = "goto_tab 2";
+      "map ctrl+3" = "goto_tab 3";
+      "map ctrl+4" = "goto_tab 4";
+      "map ctrl+5" = "goto_tab 5";
+      "map ctrl+6" = "goto_tab 6";
+      "map ctrl+7" = "goto_tab 7";
+      "map ctrl+8" = "goto_tab 8";
+      "map ctrl+9" = "goto_tab 9";
+      "map ctrl+0" = "goto_tab 10";
+
       # kitty scrollback
       # TODO: continue
       allow_remote_control = "socket-only";
