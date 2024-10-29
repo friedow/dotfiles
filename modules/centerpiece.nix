@@ -10,11 +10,6 @@
         gitmoji.enable = true;
         git_repositories.commands = [
           [
-            "kitty"
-            "--directory"
-            "$GIT_DIRECTORY"
-          ]
-          [
             "sublime_merge"
             "--new-window"
             "$GIT_DIRECTORY"
