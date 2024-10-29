@@ -172,8 +172,6 @@ vim.api.nvim_create_autocmd({ "FocusLost", "BufLeave" }, {
 	command = "silent! wa",
 })
 
-require("autoclose").setup()
-
 local format_on_save = require("format-on-save")
 local formatters = require("format-on-save.formatters")
 format_on_save.setup({
@@ -208,13 +206,6 @@ harpoon:setup()
 require("gitsigns").setup()
 
 require("hlslens").setup()
-
-require("neogit").setup({
-	graph_style = "unicode",
-	integrations = {
-		telescope = true,
-	},
-})
 
 vim.keymap.set("n", "<C-i>", "<C-I>")
 
@@ -272,20 +263,6 @@ vim.keymap.set("n", "<Leader>e", ":Neotree position=current reveal<CR>")
 vim.keymap.set("n", "<Leader>f", ":Telescope find_files find_command=rg,--files,--hidden,-g,!.git<CR>")
 vim.keymap.set("n", "<Leader>/", ":Telescope live_grep<CR>")
 vim.keymap.set("n", "<leader>ca", require("actions-preview").code_actions)
-
-vim.keymap.set("n", "<leader>rg", require("spectre").open_visual, {
-	desc = "Toggle Spectre",
-})
-vim.keymap.set("v", "<leader>rg", require("spectre").open_visual, {
-	desc = "Search current word",
-})
-vim.keymap.set("n", "<leader>rf", require("spectre").open_file_search, {
-	desc = "Search on current file",
-})
-
-vim.keymap.set("v", "<leader>rf", require("spectre").open_file_search, {
-	desc = "Search on current file",
-})
 
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 vim.keymap.set("n", "<leader>t", ":terminal<CR>")
