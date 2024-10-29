@@ -285,3 +285,6 @@ vim.keymap.set("n", "<leader>rf", require("spectre").open_file_search, {
 vim.keymap.set("v", "<leader>rf", require("spectre").open_file_search, {
 	desc = "Search on current file",
 })
+
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
+vim.keymap.set("n", "<leader>t", ":terminal<CR>")
