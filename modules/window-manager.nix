@@ -57,7 +57,7 @@ let
   '';
 
   create-screenshot = pkgs.writeShellScript "create-screenshot" ''
-    ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.swappy}/bin/swappy -f -
+    ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.satty}/bin/satty -f -
   '';
 
   niri = inputs.niri.packages.x86_64-linux.default;
@@ -212,6 +212,7 @@ in
           Mod+Return { spawn "${pkgs.kitty}/bin/kitty"; }
           Mod+Space { spawn "centerpiece"; }
           Mod+Q { close-window; }
+          Mod+S { spawn "${create-screenshot}"; }
 
           XF86AudioRaiseVolume  allow-when-locked=true { spawn "${volume-increase}"; }
           XF86AudioLowerVolume  allow-when-locked=true { spawn "${volume-decrease}"; }
