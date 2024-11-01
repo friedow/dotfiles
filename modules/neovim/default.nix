@@ -125,6 +125,7 @@ in
         ]))
 
         nvim-lspconfig
+        SchemaStore-nvim
 
         # cmp
         nvim-cmp
