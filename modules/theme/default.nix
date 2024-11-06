@@ -1,11 +1,11 @@
 { inputs, pkgs, ... }:
-let
-  customFont = pkgs.callPackage ./custom-font/custom-font.nix { };
-in
 {
   imports = [ inputs.stylix.nixosModules.stylix ];
 
-  fonts.packages = with pkgs; [ customFont ];
+  fonts.packages = with pkgs; [
+    fira-code
+    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+  ];
 
   stylix = {
     enable = true;
