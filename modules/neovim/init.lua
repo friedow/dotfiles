@@ -7,6 +7,7 @@ vim.opt.relativenumber = true
 vim.opt.scrolloff = 8
 vim.opt.cmdheight = 0
 vim.opt.cursorline = true
+vim.opt.laststatus = 0
 vim.o.statusline = table.concat({
 	"%F ",
 	"%h",
