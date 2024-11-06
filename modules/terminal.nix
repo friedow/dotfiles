@@ -1,10 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 let
   custom-nvim-plugins = import ./neovim/custom-plugins.nix pkgs;
 in
 {
   home-manager.users.christian.programs.kitty = {
     enable = true;
+    package = pkgs-unstable.kitty;
 
     shellIntegration.enableFishIntegration = true;
 

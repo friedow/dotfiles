@@ -209,7 +209,7 @@ in
 
       binds {
           Mod+Shift+Slash { show-hotkey-overlay; }
-          Mod+Return { spawn "${pkgs.kitty}/bin/kitty"; }
+          Mod+Return { spawn "${pkgs-unstable.kitty}/bin/kitty"; }
           Mod+Space { spawn "centerpiece"; }
           Mod+Q { close-window; }
           Mod+S { spawn "${create-screenshot}"; }
