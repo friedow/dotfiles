@@ -29,4 +29,14 @@
       hash = "sha256-7hfxW7Ntgi2UqefFygdEFA7LKnR88mdtaJr3OLg/tDs=";
     };
   };
+
+  incline-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "incline-nvim";
+    src = pkgs.fetchFromGitHub {
+      owner = "b0o";
+      repo = "incline.nvim";
+      rev = "16fc9c073e3ea4175b66ad94375df6d73fc114c0";
+      hash = "sha256-5DoIvIdAZV7ZgmQO2XmbM3G+nNn4tAumsShoN3rDGrs=";
+    };
+  };
 }

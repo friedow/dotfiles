@@ -148,6 +148,8 @@ in
 
         custom-plugins.kitty-scrollback-nvim
 
+        custom-plugins.incline-nvim
+
         harpoon2
 
         actions-preview-nvim
