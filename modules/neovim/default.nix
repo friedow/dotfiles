@@ -1,7 +1,6 @@
 {
   pkgs,
   pkgs-unstable,
-  inputs,
   ...
 }:
 let
@@ -157,6 +156,8 @@ in
         gitsigns-nvim
 
         nvim-hlslens
+        vim-fugitive
+        vim-flog
 
         toggleterm-nvim
       ];
