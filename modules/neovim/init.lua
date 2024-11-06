@@ -241,6 +241,16 @@ require("incline").setup({
 	end,
 })
 
+require("toggleterm").setup({
+	float_opts = {
+		width = function()
+			return vim.api.nvim_win_get_width(0)
+		end,
+		height = function()
+			return vim.api.nvim_win_get_height(0)
+		end,
+	},
+})
 vim.keymap.set("n", "<C-i>", "<C-I>")
 
 vim.keymap.set("n", "<leader>gc", function()
@@ -300,3 +310,18 @@ vim.keymap.set("n", "<leader>ca", require("actions-preview").code_actions)
 
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 vim.keymap.set("n", "<leader>t", ":terminal<CR>")
+
+local Terminal = require("toggleterm.terminal").Terminal
+local terminal6 = Terminal:new({
+	hidden = true,
+	direction = "float",
+})
+local terminal7 = Terminal:new({ hidden = true, direction = "float" })
+
+vim.keymap.set({ "n", "t", "v", "i" }, "<C-6>", function()
+	terminal6:toggle()
+end)
+
+vim.keymap.set({ "n", "t", "v", "i" }, "<C-7>", function()
+	terminal7:toggle()
+end)

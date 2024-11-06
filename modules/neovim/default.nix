@@ -157,6 +157,8 @@ in
         gitsigns-nvim
 
         nvim-hlslens
+
+        toggleterm-nvim
       ];
     };
   };
