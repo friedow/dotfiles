@@ -213,8 +213,6 @@ format_on_save.setup({
 
 -- Lua
 
-require("kitty-scrollback").setup()
-
 local harpoon = require("harpoon")
 harpoon:setup()
 

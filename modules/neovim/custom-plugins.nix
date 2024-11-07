@@ -20,16 +20,6 @@
     };
   };
 
-  kitty-scrollback-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "kitty-scrollback-nvim";
-    src = pkgs.fetchFromGitHub {
-      owner = "mikesmithgh";
-      repo = "kitty-scrollback.nvim";
-      rev = "340485737cb73476cfbd269923ab5af492faef87";
-      hash = "sha256-7hfxW7Ntgi2UqefFygdEFA7LKnR88mdtaJr3OLg/tDs=";
-    };
-  };
-
   incline-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "incline-nvim";
     src = pkgs.fetchFromGitHub {
