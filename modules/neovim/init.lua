@@ -240,18 +240,6 @@ require("incline").setup({
 		}
 	end,
 })
-
-require("toggleterm").setup({
-	float_opts = {
-		width = function()
-			return vim.api.nvim_win_get_width(0)
-		end,
-		height = function()
-			return vim.api.nvim_win_get_height(0)
-		end,
-	},
-})
-
 vim.g.flog_enable_extended_chars = true
 
 vim.keymap.set("n", "<C-i>", "<C-I>")
@@ -315,17 +303,78 @@ vim.keymap.set("n", "<leader>ca", require("actions-preview").code_actions)
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 vim.keymap.set("n", "<leader>t", ":terminal<CR>")
 
-local Terminal = require("toggleterm.terminal").Terminal
-local terminal6 = Terminal:new({
-	hidden = true,
-	direction = "float",
-})
-local terminal7 = Terminal:new({ hidden = true, direction = "float" })
+--- Creates a new terminal buffer with the given name
+---
+--- @param name string Buffer name
+function create_terminal_buffer(name)
+	vim.cmd.terminal()
+	vim.api.nvim_buf_set_name(0, name)
+	vim.cmd("startinsert")
+end
+
+--- Find a buffer given its name
+---
+--- @param name string buffer name to look for
+--- @return integer|nil
+function find_buffer_by_name(name)
+	local buffers = vim.api.nvim_list_bufs()
+	for _, buffer in ipairs(buffers) do
+		if vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buffer), ":t") == name then
+			return buffer
+		end
+	end
+
+	return nil
+end
+
+local last_non_terminal_buffer = 0
+
+--- Toggles the given terminal buffer
+---
+--- @param name string terminal buffer name to toggle
+function toggle_terminal_buffer(name)
+	local current_buffer = vim.api.nvim_get_current_buf()
+
+	-- If we are not in a terminal buffer we save the current
+	-- buffer to the last visited non-terminal buffer variable
+	if vim.api.nvim_get_option_value("buftype", { buf = current_buffer }) ~= "terminal" then
+		last_non_terminal_buffer = vim.api.nvim_get_current_buf()
+	end
+
+	local terminal_buffer = find_buffer_by_name(name)
+
+	if terminal_buffer == nil then
+		create_terminal_buffer(name)
+		return
+	end
+
+	-- If we are in the selected terminal buffer we switch
+	-- back to the last visited non-terminal buffer
+	if current_buffer == terminal_buffer then
+		vim.api.nvim_set_current_buf(last_non_terminal_buffer)
+		return
+	end
+
+	vim.api.nvim_set_current_buf(terminal_buffer)
+	vim.cmd("startinsert")
+end
 
 vim.keymap.set({ "n", "t", "v", "i" }, "<C-6>", function()
-	terminal6:toggle()
+	toggle_terminal_buffer("Terminal 6")
 end)
 
 vim.keymap.set({ "n", "t", "v", "i" }, "<C-7>", function()
-	terminal7:toggle()
+	toggle_terminal_buffer("Terminal 7")
+end)
+
+vim.keymap.set({ "n", "t", "v", "i" }, "<C-8>", function()
+	toggle_terminal_buffer("Terminal 8")
+end)
+
+vim.keymap.set({ "n", "t", "v", "i" }, "<C-9>", function()
+	toggle_terminal_buffer("Terminal 9")
+end)
+
+vim.keymap.set({ "n", "t", "v", "i" }, "<C-0>", function()
+	toggle_terminal_buffer("Terminal 0")
 end)

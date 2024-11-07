@@ -158,8 +158,6 @@ in
         nvim-hlslens
         vim-fugitive
         vim-flog
-
-        toggleterm-nvim
       ];
     };
   };
