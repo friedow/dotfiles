@@ -145,8 +145,6 @@ in
 
         custom-plugins.format-on-save-nvim
 
-        custom-plugins.kitty-scrollback-nvim
-
         custom-plugins.incline-nvim
 
         harpoon2
