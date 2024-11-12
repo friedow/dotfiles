@@ -156,6 +156,8 @@ in
         nvim-hlslens
         vim-fugitive
         vim-flog
+
+        vim-startuptime
       ];
     };
   };
