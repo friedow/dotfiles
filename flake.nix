@@ -102,6 +102,7 @@
 
       work-modules = [
         ./modules/clamav.nix
+        ./modules/dns.nix
         ./modules/gcloud.nix
         ./modules/glab.nix
         ./modules/git-config-work.nix
