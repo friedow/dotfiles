@@ -147,6 +147,8 @@ in
 
         custom-plugins.incline-nvim
 
+        custom-plugins.buggler-nvim
+
         harpoon2
 
         actions-preview-nvim

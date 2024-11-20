@@ -29,4 +29,14 @@
       hash = "sha256-5DoIvIdAZV7ZgmQO2XmbM3G+nNn4tAumsShoN3rDGrs=";
     };
   };
+
+  buggler-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "buggler-nvim";
+    src = pkgs.fetchFromGitHub {
+      owner = "friedow";
+      repo = "buggler.nvim";
+      rev = "31292742d9676b7ae2fa776403563f7b74fbf20d";
+      hash = "sha256-XlWVLIkqmnW4hPZ8dbHDr0oPSv5ZSx6CmUmSuKHrCnM=";
+    };
+  };
 }
