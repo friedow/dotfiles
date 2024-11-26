@@ -7,6 +7,7 @@ in
 
   imports = [
     ./colorscheme.nix
+    ./file-explorer.nix
   ];
   home-manager.users.christian = {
     imports = [
@@ -66,8 +67,6 @@ in
         '';
 
       extraPlugins = with pkgs-unstable.vimPlugins; [
-        neo-tree-nvim
-
         telescope-nvim
         telescope-fzf-native-nvim
         nvim-web-devicons
