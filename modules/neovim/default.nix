@@ -8,6 +8,7 @@ in
   imports = [
     ./colorscheme.nix
     ./file-explorer.nix
+    ./syntax-parser.nix
   ];
   home-manager.users.christian = {
     imports = [
@@ -70,22 +71,6 @@ in
         telescope-nvim
         telescope-fzf-native-nvim
         nvim-web-devicons
-
-        (nvim-treesitter.withPlugins (p: [
-          p.nix
-          p.typescript
-          p.rust
-          p.javascript
-          p.python
-          p.markdown
-          p.html
-          p.vue
-          p.css
-          p.scss
-          p.yaml
-          p.toml
-          p.json
-        ]))
 
         nvim-lspconfig
         SchemaStore-nvim

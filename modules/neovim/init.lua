@@ -25,40 +25,6 @@ vim.opt.expandtab = true
 -- keybindings
 vim.g.mapleader = " "
 
--- setup neo-tree
--- vim.g.loaded_netrw = 1
--- vim.g.loaded_netrwPlugin = 1
-
--- require("neo-tree").setup({
--- 	filesystem = {
--- 		hijack_netrw_behavior = "open_current",
--- 	},
--- 	buffers = {
--- 		follow_current_file = {
--- 			enabled = true,
--- 			leave_dirs_open = true,
--- 		},
--- 		group_empty_dirs = true,
--- 	},
--- 	event_handlers = {
--- 		{
--- 			event = "neo_tree_buffer_enter",
--- 			handler = function(arg)
--- 				-- set neo-tree bg color to white
--- 				vim.cmd.highlight({ "NeoTreeNormal", "guibg=white" })
--- 				vim.cmd([[
---           setlocal relativenumber
---         ]])
--- 			end,
--- 		},
--- 	},
--- })
-
-require("nvim-treesitter.configs").setup({
-	highlight = { enable = true },
-	indent = { enable = true },
-})
-
 -- fuzzy finder
 require("telescope").setup()
 
