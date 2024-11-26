@@ -1,14 +1,11 @@
-{
-  pkgs,
-  pkgs-unstable,
-  ...
-}:
+{ inputs, pkgs-unstable, ... }:
 let
   color = import ../../config/colors.nix;
-  custom-plugins = import ./custom-plugins.nix pkgs;
+  custom-plugins = import ./custom-plugins.nix pkgs-unstable;
 in
 {
   home-manager.users.christian = {
+    imports = [ inputs.nixvim.homeManagerModules.nixvim ];
 
     home.packages = with pkgs-unstable; [
       # telescope dependencies
@@ -33,54 +30,79 @@ in
       stylua
     ];
 
-    programs.neovim = {
+    programs.nixvim = {
       enable = true;
-      package = pkgs-unstable.neovim-unwrapped;
+
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
-      extraLuaConfig =
+
+      colorschemes.catppuccin = {
+        enable = true;
+        settings = {
+          color_overrides = {
+            latte = {
+              rosewater = "#dc8a78";
+              flamingo = "#dd7878";
+              pink = "#ea76cb";
+              mauve = "#8839ef";
+              red = "#d20f39";
+              maroon = "#e64553";
+              peach = "#fe640b";
+              yellow = "#df8e1d";
+              green = "#40a02b";
+              teal = "#179299";
+              sky = "#04a5e5";
+              sapphire = "#209fb5";
+              blue = "#1e66f5";
+              lavender = "#7287fd";
+
+              text = "#565976";
+              subtext1 = "#666a85";
+              subtext0 = "#787b91";
+
+              overlay2 = "#898c9f";
+              overlay1 = "#9a9dac";
+              overlay0 = "#aaadbb";
+
+              surface2 = "#babec9";
+              surface1 = "#cbced8";
+              surface0 = "#dcdee5";
+
+              crust = "#eceff3";
+              mantle = "#f6f7f9";
+              base = "#ffffff";
+            };
+          };
+          # disable_underline = true;
+          flavour = "latte";
+          # integrations = {
+          #   cmp = true;
+          #   gitsigns = true;
+          #   mini = {
+          #     enabled = true;
+          #     indentscope_color = "";
+          #   };
+          #   notify = false;
+          #   nvimtree = true;
+          #   treesitter = true;
+          # };
+          # styles = {
+          #   booleans = [
+          #     "bold"
+          #     "italic"
+          #   ];
+          #   conditionals = [
+          #     "bold"
+          #   ];
+          # };
+          # term_colors = true;
+        };
+      };
+
+      extraConfigLua =
         (builtins.readFile ./init.lua)
         + ''
-
-            require("catppuccin").setup {
-              color_overrides = {
-                latte = {
-                  rosewater = "${color.rosewater}",
-                  flamingo = "${color.flamingo}",
-                  pink = "${color.pink}",
-                  mauve = "${color.mauve}",
-                  red = "${color.red}",
-                  maroon = "${color.maroon}",
-                  peach = "${color.peach}",
-                  yellow = "${color.yellow}",
-                  green = "${color.green}",
-                  teal = "${color.teal}",
-                  sky = "${color.sky}",
-                  sapphire = "${color.sapphire}",
-                  blue = "${color.blue}",
-                  lavender = "${color.lavender}",
-
-                  text = "${color.text}",
-                  subtext1 = "${color.subtext1}",
-                  subtext0 = "${color.subtext0}",
-
-                  overlay2 = "${color.overlay2}",
-                  overlay1 = "${color.overlay1}",
-                  overlay0 = "${color.overlay0}",
-
-                  surface2 = "${color.surface2}",
-                  surface1 = "${color.surface1}",
-                  surface0 = "${color.surface0}",
-
-                  crust = "${color.crust}",
-                  mantle = "${color.mantle}",
-                  base = "${color.base}",
-                },
-              }
-            }
-          vim.cmd.colorscheme("catppuccin-latte")
-
           lspconfig.ts_ls.setup {
             capabilities = capabilities,
             init_options = {
@@ -100,7 +122,7 @@ in
           }
         '';
 
-      plugins = with pkgs-unstable.vimPlugins; [
+      extraPlugins = with pkgs-unstable.vimPlugins; [
         neo-tree-nvim
 
         telescope-nvim
@@ -138,8 +160,6 @@ in
 
         vim-surround
         autoclose-nvim
-
-        catppuccin-nvim
 
         custom-plugins.improvedft
 
