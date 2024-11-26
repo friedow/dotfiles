@@ -1,30 +1,3 @@
--- general
-vim.opt.clipboard = "unnamedplus"
-vim.opt.fillchars = "eob: "
-vim.opt.mouse = nil
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.scrolloff = 8
-vim.opt.cmdheight = 0
-vim.opt.cursorline = true
-vim.opt.laststatus = 0
-vim.o.statusline = table.concat({
-	"%F ",
-	"%h",
-	"%m",
-	"%r",
-	"%=",
-	"%P ",
-})
--- vim.opt.cmdheight = 0
-
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 0 -- uses tabstop if 0
-vim.opt.expandtab = true
-
--- keybindings
-vim.g.mapleader = " "
-
 -- fuzzy finder
 require("telescope").setup()
 
@@ -257,7 +230,6 @@ vim.api.nvim_set_keymap("n", "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]]
 vim.api.nvim_set_keymap("n", "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
 vim.api.nvim_set_keymap("n", "<Leader>l", "<Cmd>noh<CR>", kopts)
 
-vim.keymap.set("n", "<Leader>e", ":Neotree position=current reveal<CR>")
 vim.keymap.set("n", "<Leader>g", ":Flog -format=%s%d -all<CR>")
 
 vim.keymap.set("n", "<Leader>f", ":Telescope find_files find_command=rg,--files,--hidden,-g,!.git<CR>")

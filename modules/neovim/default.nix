@@ -45,6 +45,25 @@ in
       viAlias = true;
       vimAlias = true;
 
+      globals = {
+        mapleader = " ";
+      };
+
+      opts = {
+        clipboard = "unnamedplus";
+        fillchars = "eob: ";
+        mouse = null;
+        number = true;
+        relativenumber = true;
+        scrolloff = 8;
+        cmdheight = 0;
+        cursorline = true;
+        laststatus = 0;
+        tabstop = 2;
+        shiftwidth = 0;
+        expandtab = true;
+      };
+
       extraConfigLua =
         (builtins.readFile ./init.lua)
         + ''
