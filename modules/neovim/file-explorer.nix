@@ -1,10 +1,21 @@
 { ... }:
 {
   home-manager.users.christian.programs.nixvim = {
-    extraConfigLua = ''
-      vim.g.loaded_netrw = 1
-      vim.g.loaded_netrwPlugin = 1
-    '';
+    globals = {
+      loaded_netrw = 1;
+      loaded_netrwPlugin = 1;
+    };
+
+    keymaps = [
+      {
+        action = "<cmd>Neotree position=current reveal<CR>";
+        key = "<Leader>e";
+        mode = "n";
+        options = {
+          silent = true;
+        };
+      }
+    ];
 
     plugins.web-devicons.enable = true;
 
