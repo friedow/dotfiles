@@ -11,9 +11,7 @@
         action = "<cmd>Neotree position=current reveal<CR>";
         key = "<Leader>e";
         mode = "n";
-        options = {
-          silent = true;
-        };
+        options.silent = true;
       }
     ];
 

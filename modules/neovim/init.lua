@@ -236,25 +236,3 @@ vim.keymap.set("n", "<Leader>f", ":Telescope find_files find_command=rg,--files,
 vim.keymap.set("n", "<Leader>/", ":Telescope live_grep<CR>")
 vim.keymap.set("n", "<leader>ca", require("actions-preview").code_actions)
 
-vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
-vim.keymap.set("n", "<leader>t", ":terminal<CR>")
-
-vim.keymap.set({ "n", "t", "v", "i" }, "<C-6>", function()
-	require("buggler").toggle_terminal_buffer("Terminal 6")
-end)
-
-vim.keymap.set({ "n", "t", "v", "i" }, "<C-7>", function()
-	require("buggler").toggle_terminal_buffer("Terminal 7")
-end)
-
-vim.keymap.set({ "n", "t", "v", "i" }, "<C-8>", function()
-	require("buggler").toggle_terminal_buffer("Terminal 8")
-end)
-
-vim.keymap.set({ "n", "t", "v", "i" }, "<C-9>", function()
-	require("buggler").toggle_terminal_buffer("Terminal 9")
-end)
-
-vim.keymap.set({ "n", "t", "v", "i" }, "<C-0>", function()
-	require("buggler").toggle_terminal_buffer("Terminal 0")
-end)

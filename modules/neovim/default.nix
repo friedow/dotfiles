@@ -1,6 +1,5 @@
 { inputs, pkgs-unstable, ... }:
 let
-  color = import ../../config/colors.nix;
   custom-plugins = import ./custom-plugins.nix pkgs-unstable;
 in
 {
@@ -9,6 +8,7 @@ in
     ./colorscheme.nix
     ./file-explorer.nix
     ./syntax-parser.nix
+    ./terminal-manager.nix
   ];
   home-manager.users.christian = {
     imports = [
@@ -112,8 +112,6 @@ in
         custom-plugins.format-on-save-nvim
 
         custom-plugins.incline-nvim
-
-        custom-plugins.buggler-nvim
 
         harpoon2
 
