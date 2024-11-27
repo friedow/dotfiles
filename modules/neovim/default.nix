@@ -6,6 +6,7 @@ in
 
   imports = [
     ./colorscheme.nix
+    ./completion-menu.nix
     ./file-explorer.nix
     ./fuzzy-finder.nix
     ./syntax-parser.nix
@@ -86,13 +87,6 @@ in
       extraPlugins = with pkgs-unstable.vimPlugins; [
         nvim-lspconfig
         SchemaStore-nvim
-
-        # cmp
-        nvim-cmp
-        cmp-treesitter
-        cmp-rg
-        cmp-nvim-lsp
-        cmp-nvim-lsp-signature-help
 
         vim-surround
         autoclose-nvim

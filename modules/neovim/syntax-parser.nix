@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   home-manager.users.christian.programs.nixvim.plugins.treesitter = {
     enable = true;
