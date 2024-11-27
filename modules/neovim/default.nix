@@ -8,6 +8,7 @@ in
     ./colorscheme.nix
     ./completion-menu.nix
     ./file-explorer.nix
+    ./file-switcher.nix
     ./fuzzy-finder.nix
     ./syntax-parser.nix
     ./terminal-manager.nix
@@ -96,8 +97,6 @@ in
         custom-plugins.format-on-save-nvim
 
         custom-plugins.incline-nvim
-
-        harpoon2
 
         actions-preview-nvim
 

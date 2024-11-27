@@ -118,9 +118,6 @@ format_on_save.setup({
 
 -- Lua
 
-local harpoon = require("harpoon")
-harpoon:setup()
-
 require("gitsigns").setup()
 
 local devicons = require("nvim-web-devicons")
@@ -151,28 +148,6 @@ vim.keymap.set("n", "<C-i>", "<C-I>")
 vim.keymap.set("n", "<leader>gc", function()
 	local commit_message = vim.fn.input("Commit Message: ")
 	os.execute(string.format('git commit -m "%s"', commit_message))
-end)
-
-vim.keymap.set({ "n", "t", "v", "i" }, "<C-1>", function()
-	harpoon:list():select(1)
-end)
-vim.keymap.set({ "n", "t", "v", "i" }, "<C-2>", function()
-	harpoon:list():select(2)
-end)
-vim.keymap.set({ "n", "t", "v", "i" }, "<C-3>", function()
-	harpoon:list():select(3)
-end)
-vim.keymap.set({ "n", "t", "v", "i" }, "<C-4>", function()
-	harpoon:list():select(4)
-end)
-vim.keymap.set({ "n", "t", "v", "i" }, "<C-5>", function()
-	harpoon:list():select(5)
-end)
-vim.keymap.set("n", "<leader>ha", function()
-	harpoon:list():add()
-end)
-vim.keymap.set("n", "<leader>hh", function()
-	harpoon.ui:toggle_quick_menu(harpoon:list())
 end)
 
 vim.keymap.set("n", "gpd", vim.diagnostic.goto_prev)
