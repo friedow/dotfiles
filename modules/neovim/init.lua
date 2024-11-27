@@ -117,9 +117,6 @@ format_on_save.setup({
 })
 
 -- Lua
-
-require("gitsigns").setup()
-
 local devicons = require("nvim-web-devicons")
 require("incline").setup({
 	window = {

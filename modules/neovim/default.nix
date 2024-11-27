@@ -10,6 +10,7 @@ in
     ./file-explorer.nix
     ./file-switcher.nix
     ./fuzzy-finder.nix
+    ./source-control.nix
     ./syntax-parser.nix
     ./terminal-manager.nix
   ];
@@ -99,8 +100,6 @@ in
         custom-plugins.incline-nvim
 
         actions-preview-nvim
-
-        gitsigns-nvim
 
         nvim-hlslens
         vim-fugitive
