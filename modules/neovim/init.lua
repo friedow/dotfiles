@@ -178,6 +178,7 @@ require("incline").setup({
 	end,
 })
 vim.g.flog_enable_extended_chars = true
+vim.g.flog_enable_dynamic_commit_hl = true
 
 vim.keymap.set("n", "<C-i>", "<C-I>")
 
