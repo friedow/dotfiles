@@ -1,16 +1,8 @@
 -- fuzzy finder
 require("telescope").setup()
 
--- completion menu
-require("luasnip.loaders.from_vscode").lazy_load()
-
 local cmp = require("cmp")
 cmp.setup({
-	snippet = {
-		expand = function(args)
-			require("luasnip").lsp_expand(args.body)
-		end,
-	},
 	window = {
 		-- completion = cmp.config.window.bordered(),
 		-- documentation = cmp.config.window.bordered(),
@@ -24,7 +16,6 @@ cmp.setup({
 		["<Tab>"] = cmp.mapping.confirm({ select = true }),
 	}),
 	sources = cmp.config.sources({ { name = "nvim_lsp_signature_help" } }, {
-		{ name = "luasnip" },
 		{ name = "nvim_lsp" },
 	}, { { name = "rg" } }),
 	completion = {

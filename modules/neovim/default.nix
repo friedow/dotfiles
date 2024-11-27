@@ -99,9 +99,6 @@ in
         cmp-treesitter
         cmp-rg
         cmp-nvim-lsp
-        luasnip
-        cmp_luasnip
-        friendly-snippets
         cmp-nvim-lsp-signature-help
 
         vim-surround
