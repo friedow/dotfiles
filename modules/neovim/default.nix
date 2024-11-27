@@ -7,6 +7,7 @@ in
   imports = [
     ./colorscheme.nix
     ./file-explorer.nix
+    ./fuzzy-finder.nix
     ./syntax-parser.nix
     ./terminal-manager.nix
   ];
@@ -16,10 +17,6 @@ in
     ];
 
     home.packages = with pkgs-unstable; [
-      # telescope dependencies
-      ripgrep
-      fd
-
       # lsp dependencies
       nil
       pyright
@@ -87,10 +84,6 @@ in
         '';
 
       extraPlugins = with pkgs-unstable.vimPlugins; [
-        telescope-nvim
-        telescope-fzf-native-nvim
-        nvim-web-devicons
-
         nvim-lspconfig
         SchemaStore-nvim
 

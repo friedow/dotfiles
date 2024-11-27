@@ -1,6 +1,3 @@
--- fuzzy finder
-require("telescope").setup()
-
 local cmp = require("cmp")
 cmp.setup({
 	window = {
@@ -227,4 +224,3 @@ vim.keymap.set("n", "<Leader>g", ":Flog -format=%s%d -all -order=date -open-cmd=
 vim.keymap.set("n", "<Leader>f", ":Telescope find_files find_command=rg,--files,--hidden,-g,!.git<CR>")
 vim.keymap.set("n", "<Leader>/", ":Telescope live_grep<CR>")
 vim.keymap.set("n", "<leader>ca", require("actions-preview").code_actions)
-
