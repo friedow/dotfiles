@@ -222,7 +222,7 @@ vim.api.nvim_set_keymap("n", "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]]
 vim.api.nvim_set_keymap("n", "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
 vim.api.nvim_set_keymap("n", "<Leader>l", "<Cmd>noh<CR>", kopts)
 
-vim.keymap.set("n", "<Leader>g", ":Flog -format=%s%d -all -open-cmd=edit<CR>")
+vim.keymap.set("n", "<Leader>g", ":Flog -format=%s%d -all -order=date -open-cmd=edit<CR>")
 
 vim.keymap.set("n", "<Leader>f", ":Telescope find_files find_command=rg,--files,--hidden,-g,!.git<CR>")
 vim.keymap.set("n", "<Leader>/", ":Telescope live_grep<CR>")
