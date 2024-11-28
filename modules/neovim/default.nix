@@ -102,8 +102,6 @@ in
         actions-preview-nvim
 
         nvim-hlslens
-        vim-fugitive
-        vim-flog
 
         vim-startuptime
       ];

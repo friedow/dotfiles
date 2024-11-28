@@ -137,15 +137,9 @@ require("incline").setup({
 		}
 	end,
 })
-vim.g.flog_enable_extended_chars = true
-vim.g.flog_enable_dynamic_commit_hl = true
 
 vim.keymap.set("n", "<C-i>", "<C-I>")
 
-vim.keymap.set("n", "<leader>gc", function()
-	local commit_message = vim.fn.input("Commit Message: ")
-	os.execute(string.format('git commit -m "%s"', commit_message))
-end)
 
 vim.keymap.set("n", "gpd", vim.diagnostic.goto_prev)
 vim.keymap.set("n", "gnd", vim.diagnostic.goto_next)
@@ -169,6 +163,5 @@ vim.api.nvim_set_keymap("n", "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]]
 vim.api.nvim_set_keymap("n", "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
 vim.api.nvim_set_keymap("n", "<Leader>l", "<Cmd>noh<CR>", kopts)
 
-vim.keymap.set("n", "<Leader>g", ":Flog -format=%s%d -all -order=date -open-cmd=edit<CR>")
 
 vim.keymap.set("n", "<leader>ca", require("actions-preview").code_actions)
