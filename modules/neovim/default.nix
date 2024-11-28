@@ -10,6 +10,7 @@ in
     ./file-explorer.nix
     ./file-switcher.nix
     ./fuzzy-finder.nix
+    ./search-highlighter.nix
     ./source-control.nix
     ./syntax-parser.nix
     ./terminal-manager.nix
@@ -100,8 +101,6 @@ in
         custom-plugins.incline-nvim
 
         actions-preview-nvim
-
-        nvim-hlslens
 
         vim-startuptime
       ];
