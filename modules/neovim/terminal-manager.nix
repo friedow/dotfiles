@@ -1,11 +1,19 @@
 { pkgs-unstable, ... }:
 let
-  custom-plugins = import ./custom-plugins.nix pkgs-unstable;
+  buggler-nvim = pkgs-unstable.vimUtils.buildVimPlugin {
+    name = "buggler-nvim";
+    src = pkgs-unstable.fetchFromGitHub {
+      owner = "friedow";
+      repo = "buggler.nvim";
+      rev = "31292742d9676b7ae2fa776403563f7b74fbf20d";
+      hash = "sha256-XlWVLIkqmnW4hPZ8dbHDr0oPSv5ZSx6CmUmSuKHrCnM=";
+    };
+  };
 in
 {
   home-manager.users.christian.programs.nixvim = {
     extraPlugins = [
-      custom-plugins.buggler-nvim
+      buggler-nvim
     ];
 
     keymaps = [

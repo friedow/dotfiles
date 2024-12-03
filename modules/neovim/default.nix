@@ -1,6 +1,14 @@
 { inputs, pkgs-unstable, ... }:
 let
-  custom-plugins = import ./custom-plugins.nix pkgs-unstable;
+  improvedft = pkgs-unstable.vimUtils.buildVimPlugin {
+    name = "improvedft";
+    src = pkgs-unstable.fetchFromGitHub {
+      owner = "chrisbra";
+      repo = "improvedft";
+      rev = "1f0b78b55ba5fca70db0f584d8b5e56a35fd26f6";
+      hash = "sha256-Db1NkRdNNjZoKHpKErNFYI8BBfdX2wCmfohV2uAwVtA=";
+    };
+  };
 in
 {
   imports = [
@@ -79,18 +87,13 @@ in
         }
       ];
 
-      extraConfigLua = (builtins.readFile ./init.lua);
+      extraPlugins = [ improvedft ];
 
-      extraPlugins = with pkgs-unstable.vimPlugins; [
-        vim-surround
-        autoclose-nvim
-        custom-plugins.improvedft
-        custom-plugins.incline-nvim
-        actions-preview-nvim
-        vim-startuptime
-      ];
-
-      plugins.auto-save.enable = true;
+      plugins = {
+        auto-save.enable = true;
+        autoclose.enable = true;
+        vim-surround.enable = true;
+      };
     };
   };
 }
