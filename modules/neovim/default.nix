@@ -3,12 +3,12 @@ let
   custom-plugins = import ./custom-plugins.nix pkgs-unstable;
 in
 {
-
   imports = [
     ./colorscheme.nix
     ./completion-menu.nix
     ./file-explorer.nix
     ./file-switcher.nix
+    ./formatter.nix
     ./fuzzy-finder.nix
     ./language-server.nix
     ./search-highlighter.nix
@@ -16,21 +16,15 @@ in
     ./syntax-parser.nix
     ./terminal-manager.nix
   ];
+
   home-manager.users.christian = {
     imports = [
       inputs.nixvim.homeManagerModules.nixvim
     ];
 
-    home.packages = with pkgs-unstable; [
-      # formatter dependencies
-      prettierd
-      black
-      nixfmt-rfc-style
-      stylua
-    ];
-
     programs.nixvim = {
       enable = true;
+      package = pkgs-unstable.neovim-unwrapped;
 
       defaultEditor = true;
       viAlias = true;
@@ -61,11 +55,12 @@ in
         vim-surround
         autoclose-nvim
         custom-plugins.improvedft
-        custom-plugins.format-on-save-nvim
         custom-plugins.incline-nvim
         actions-preview-nvim
         vim-startuptime
       ];
+
+      plugins.auto-save.enable = true;
     };
   };
 }
