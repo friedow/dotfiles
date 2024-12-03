@@ -10,25 +10,6 @@
     };
   };
 
-  format-on-save-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "format-on-save-nvim";
-    src = pkgs.fetchFromGitHub {
-      owner = "elentok";
-      repo = "format-on-save.nvim";
-      rev = "b7ea8d72391281d14ea1fa10324606c1684180da";
-      hash = "sha256-y5zAZRuRIQEh6pEj/Aq5+ah2Qd+iNzbZgC5Z5tN1MXw=";
-    };
-  };
-
-  incline-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "incline-nvim";
-    src = pkgs.fetchFromGitHub {
-      owner = "b0o";
-      repo = "incline.nvim";
-      rev = "16fc9c073e3ea4175b66ad94375df6d73fc114c0";
-      hash = "sha256-5DoIvIdAZV7ZgmQO2XmbM3G+nNn4tAumsShoN3rDGrs=";
-    };
-  };
 
   buggler-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "buggler-nvim";

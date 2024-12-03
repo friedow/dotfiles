@@ -13,6 +13,7 @@ in
     ./language-server.nix
     ./search-highlighter.nix
     ./source-control.nix
+    ./statusline.nix
     ./syntax-parser.nix
     ./terminal-manager.nix
   ];
