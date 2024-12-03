@@ -10,6 +10,7 @@ in
     ./file-explorer.nix
     ./file-switcher.nix
     ./fuzzy-finder.nix
+    ./language-server.nix
     ./search-highlighter.nix
     ./source-control.nix
     ./syntax-parser.nix
@@ -21,17 +22,6 @@ in
     ];
 
     home.packages = with pkgs-unstable; [
-      # lsp dependencies
-      nil
-      pyright
-      rust-analyzer
-      nodePackages.typescript-language-server
-      vue-language-server
-      vscode-langservers-extracted
-      marksman
-      lua-language-server
-      yaml-language-server
-
       # formatter dependencies
       prettierd
       black
@@ -65,43 +55,15 @@ in
         expandtab = true;
       };
 
-      extraConfigLua =
-        (builtins.readFile ./init.lua)
-        + ''
-          lspconfig.ts_ls.setup {
-            capabilities = capabilities,
-            init_options = {
-              plugins = {
-                {
-                  name = '@vue/typescript-plugin',
-                  location = '${pkgs-unstable.vue-language-server}/lib/node_modules/@vue/language-server',
-                  languages = { 'vue' },
-                },
-              },
-            },
-            filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-          }
-
-          lspconfig.volar.setup {
-            capabilities = capabilities,
-          }
-        '';
+      extraConfigLua = (builtins.readFile ./init.lua);
 
       extraPlugins = with pkgs-unstable.vimPlugins; [
-        nvim-lspconfig
-        SchemaStore-nvim
-
         vim-surround
         autoclose-nvim
-
         custom-plugins.improvedft
-
         custom-plugins.format-on-save-nvim
-
         custom-plugins.incline-nvim
-
         actions-preview-nvim
-
         vim-startuptime
       ];
     };
