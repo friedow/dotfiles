@@ -15,6 +15,11 @@
       }
     ];
 
+    # vim.keymap.set("n", "<C-i>", "<C-I>")
+    #
+    # vim.keymap.set("n", "gpd", vim.diagnostic.goto_prev)
+    # vim.keymap.set("n", "gnd", vim.diagnostic.goto_next)
+
     plugins.web-devicons.enable = true;
 
     plugins.neo-tree = {

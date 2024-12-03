@@ -49,6 +49,35 @@ in
         expandtab = true;
       };
 
+      keymaps = [
+        {
+          key = "<C-i>";
+          action = "<C-I>";
+          mode = "n";
+          options.silent = true;
+        }
+        {
+          key = "<gnd>";
+          action.__raw = ''
+            function()
+              vim.diagnostic.goto_next()
+            end
+          '';
+          mode = "n";
+          options.silent = true;
+        }
+        {
+          key = "<gpd>";
+          action.__raw = ''
+            function()
+              vim.diagnostic.goto_prev()
+            end
+          '';
+          mode = "n";
+          options.silent = true;
+        }
+      ];
+
       extraConfigLua = (builtins.readFile ./init.lua);
 
       extraPlugins = with pkgs-unstable.vimPlugins; [
