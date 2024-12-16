@@ -170,21 +170,21 @@ in
       layout {
           gaps 10
 
+          empty-workspace-above-first
+
           center-focused-column "always"
 
           default-column-width { 
-            proportion 0.30
-            //proportion 0.50
+            //proportion 0.30
+            proportion 0.50
             //fixed 800
           }
 
           preset-column-widths {
-              //fixed 800
-              //fixed 1100
-              //fixed 1400
-              proportion 0.30
-              proportion 0.45
-              proportion 0.60
+              proportion 0.25
+              proportion 0.50
+              proportion 0.75
+              proportion 1.00
           }
 
           focus-ring {
@@ -196,6 +196,8 @@ in
           }
 
           struts {
+            left 30
+            right 30
           }
       }
 
@@ -274,8 +276,8 @@ in
           Mod+R { switch-preset-column-width; }
           Mod+F { maximize-column; }
           Mod+C { center-column; }
-          Mod+Minus { set-column-width "-10%"; }
-          Mod+Equal { set-column-width "+10%"; }
+          Mod+Minus { set-column-width "-25%"; }
+          Mod+Equal { set-column-width "+25%"; }
           Print { screenshot; }
           Ctrl+Print { screenshot-screen; }
           Alt+Print { screenshot-window; }
