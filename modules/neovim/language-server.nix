@@ -28,6 +28,7 @@
           lspBuf = {
             "<tab>" = "hover";
             "<leader>rn" = "rename";
+            "<leader>ca" = "code_action";
           };
         };
 
