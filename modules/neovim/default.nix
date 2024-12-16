@@ -66,7 +66,7 @@ in
           options.silent = true;
         }
         {
-          key = "<gnd>";
+          key = "gnd";
           action.__raw = ''
             function()
               vim.diagnostic.goto_next()
@@ -76,7 +76,7 @@ in
           options.silent = true;
         }
         {
-          key = "<gpd>";
+          key = "gpd";
           action.__raw = ''
             function()
               vim.diagnostic.goto_prev()
