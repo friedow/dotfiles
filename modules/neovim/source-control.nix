@@ -1,7 +1,14 @@
 { pkgs-unstable, ... }:
 {
+
   home-manager.users.christian.programs.nixvim = {
     keymaps = [
+      {
+        action = "<cmd>Flog -format=%s%d -all -order=date -open-cmd=edit<CR>";
+        key = "<C-->";
+        mode = "n";
+        options.silent = true;
+      }
       {
         action.__raw = ''
           function()
@@ -11,15 +18,16 @@
         '';
         key = "<leader>gc";
         mode = "n";
-        options.silent = true;
-      }
-      {
-        action = "<cmd>Flog -format=%s%d -all -order=date -open-cmd=edit<CR>";
-        key = "<leader>gg";
-        mode = "n";
-        options.silent = true;
       }
     ];
+
+    plugins.telescope = {
+      keymaps = {
+        "<leader>gb" = {
+          action = "git_branches";
+        };
+      };
+    };
 
     globals = {
       flog_enable_extended_chars = true;

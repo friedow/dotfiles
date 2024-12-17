@@ -9,7 +9,7 @@
     keymaps = [
       {
         action = "<cmd>Neotree position=current reveal<CR>";
-        key = "<Leader>e";
+        key = "<C-`>";
         mode = "n";
         options.silent = true;
       }
