@@ -11,7 +11,14 @@
     };
   };
 
-  programs.nm-applet.enable = true;
+  systemd.user.services.network-manager-applet = {
+    enable = true;
+    after = [ "network.target" ];
+    wantedBy = [ "default.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.networkmanagerapplet}/bin/nm-applet";
+    };
+  };
 
   # see https://github.com/NixOS/nixpkgs/issues/180175
   systemd.services.NetworkManager-wait-online = {
