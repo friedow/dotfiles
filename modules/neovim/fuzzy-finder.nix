@@ -26,6 +26,18 @@
             action = "live_grep";
           };
         };
+
+        settings = {
+          defaults = {
+            layout_strategy = "vertical";
+            layout_config = {
+              width = 0.5;
+              prompt_position = "top";
+              mirror = true;
+            };
+            sorting_strategy = "ascending";
+          };
+        };
       };
     };
   };
