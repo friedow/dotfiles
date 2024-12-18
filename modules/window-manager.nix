@@ -170,8 +170,6 @@ in
       layout {
           gaps 10
 
-          empty-workspace-above-first
-
           center-focused-column "always"
 
           default-column-width { 
