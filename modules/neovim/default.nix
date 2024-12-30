@@ -87,22 +87,19 @@ in
         }
       ];
 
+      autoCmd = [
+        {
+          event = [
+            "FocusLost"
+            "BufLeave"
+          ];
+          command = "selent! wa";
+        }
+      ];
+
       extraPlugins = [ improvedft ];
 
       plugins = {
-        auto-save = {
-          enable = true;
-          settings = {
-            trigger_events.__raw = ''
-              {
-                immediate_save = { "BufLeave", "FocusLost" },
-                defer_save = { },
-                cancel_deferred_save = { },
-              }
-            '';
-            write_all_buffers = true;
-          };
-        };
         autoclose.enable = true;
         vim-surround.enable = true;
       };
