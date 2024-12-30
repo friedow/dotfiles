@@ -15,6 +15,7 @@
       telescope.keymaps = {
         "gd".action = "lsp_definitions";
         "gi".action = "lsp_implementations";
+        "gr".action = "lsp_references";
       };
 
       schemastore = {
