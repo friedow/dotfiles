@@ -93,7 +93,7 @@ in
             "FocusLost"
             "BufLeave"
           ];
-          command = "selent! wa";
+          command = "silent! wa";
         }
       ];
 
