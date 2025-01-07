@@ -11,7 +11,7 @@
       {
         action.__raw = ''
           function()
-            require("telescope._extensions.marks")()
+            require("harpoon").ui:toggle_quick_menu(require("harpoon"):list())
           end
         '';
         key = "<leader>hh";
