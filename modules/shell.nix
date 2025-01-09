@@ -31,9 +31,9 @@
         yubikey-unlock = "${pkgs.yubikey-manager}/bin/ykman fido fingerprints list";
         gpu = "git push";
         gc = "git commit -m ";
-        python39env.__raw = ''docker run --rm -it -v "$PWD:/data" -v "$HOME/.config/gcloud:/root/.config/gcloud" python:3.9-bookworm bash -c "pip install --force-reinstall poetry==1.8.5 && poetry config virtualenvs.in-project true && poetry self add keyrings.google-artifactregistry-auth && cd /data && bash"'';
-        python310env.__raw = ''docker run --rm -it -v "$PWD:/data" -v "$HOME/.config/gcloud:/root/.config/gcloud" python:3.10-bookworm bash -c "pip install --force-reinstall poetry==1.8.5 && poetry config virtualenvs.in-project true && poetry self add keyrings.google-artifactregistry-auth && cd /data && bash"'';
-        python311env.__raw = ''docker run --rm -it -v "$PWD:/data" -v "$HOME/.config/gcloud:/root/.config/gcloud" python:3.11-bookworm bash -c "pip install --force-reinstall poetry==1.8.5 && poetry config virtualenvs.in-project true && poetry self add keyrings.google-artifactregistry-auth && cd /data && bash"'';
+        python39env = ''docker run --rm -it -v "$PWD:/data" -v "$HOME/.config/gcloud:/root/.config/gcloud" python:3.9-bookworm bash -c "pip install --force-reinstall poetry==1.8.5 && poetry config virtualenvs.in-project true && poetry self add keyrings.google-artifactregistry-auth && cd /data && bash"'';
+        python310env = ''docker run --rm -it -v "$PWD:/data" -v "$HOME/.config/gcloud:/root/.config/gcloud" python:3.10-bookworm bash -c "pip install --force-reinstall poetry==1.8.5 && poetry config virtualenvs.in-project true && poetry self add keyrings.google-artifactregistry-auth && cd /data && bash"'';
+        python311env = ''docker run --rm -it -v "$PWD:/data" -v "$HOME/.config/gcloud:/root/.config/gcloud" python:3.11-bookworm bash -c "pip install --force-reinstall poetry==1.8.5 && poetry config virtualenvs.in-project true && poetry self add keyrings.google-artifactregistry-auth && cd /data && bash"'';
       };
 
       functions = {
