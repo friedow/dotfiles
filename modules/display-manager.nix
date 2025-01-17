@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
   home-manager.users.christian = {
-    home.packages = with pkgs; [ wdisplays ];
+    home.packages = with pkgs; [
+      wdisplays
+      obs-studio
+    ];
   };
 }
