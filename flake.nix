@@ -37,7 +37,7 @@
 
     niri = {
       url = "github:YaLTeR/niri";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     nixvim = {
