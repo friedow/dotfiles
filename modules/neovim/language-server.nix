@@ -59,7 +59,15 @@
           };
           marksman.enable = true;
           nil_ls.enable = true;
-          pyright.enable = true;
+          bashls.enable = true;
+          pylsp = {
+            enable = true;
+            settings.plugins = {
+              pylsp_mypy.enabled = true;
+              ruff.enabled = true;
+              black.enabled = true;
+            };
+          };
           rust_analyzer = {
             enable = true;
             installRustc = false;
