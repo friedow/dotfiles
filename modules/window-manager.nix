@@ -100,7 +100,7 @@ in
 
   home-manager.users.christian = {
 
-    # Configure most applications to use the wayland interface 
+    # Configure most applications to use the wayland interface
     # natively instead of using the xwayland interface
     home.sessionVariables = {
       XDG_CACHE_HOME = "\${HOME}/.cache";
@@ -134,8 +134,8 @@ in
 
       input {
           warp-mouse-to-focus
-          //focus-follows-mouse max-scroll-amount="0%"
-          workspace-auto-back-and-forth
+          // focus-follows-mouse max-scroll-amount="0%"
+          // workspace-auto-back-and-forth
 
           keyboard {
               repeat-rate 35
