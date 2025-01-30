@@ -22,7 +22,7 @@
       flake-registry = /etc/nix/registry-empty.json
     '';
 
-    package = pkgs.nixFlakes;
+    #package = pkgs.nixFlakes;
 
     registry = {
       self.flake = inputs.self;
