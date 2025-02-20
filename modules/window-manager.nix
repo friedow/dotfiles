@@ -59,12 +59,10 @@ let
   create-screenshot = pkgs.writeShellScript "create-screenshot" ''
     ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.satty}/bin/satty -f -
   '';
-
-  niri = inputs.niri.packages.x86_64-linux.default;
 in
 {
   services.ddccontrol.enable = true;
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
 
   systemd.user.extraConfig = ''
     DefaultEnvironment="PATH=$PATH:/run/current-system/sw/bin:/etc/profiles/per-user/%u/bin:/run/wrappers/bin"
@@ -86,7 +84,7 @@ in
     serviceConfig = {
       Slice = "session.slice";
       Type = "notify";
-      ExecStart = "${niri}/bin/niri --session";
+      ExecStart = "${pkgs.niri}/bin/niri --session";
     };
   };
 
@@ -125,7 +123,7 @@ in
       _JAVA_AWT_WM_NONREPARENTING = "1";
     };
 
-    home.packages = [ niri ];
+    home.packages = [ pkgs.niri ];
 
     home.file.".config/niri/config.kdl".text = ''
       spawn-at-startup "lock"
