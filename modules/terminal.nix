@@ -1,18 +1,19 @@
-{ pkgs-unstable, ... }:
+{ ... }:
 {
-  home-manager.users.christian.programs.kitty = {
+  home-manager.users.christian.programs.wezterm = {
     enable = true;
-    package = pkgs-unstable.kitty;
-
-    shellIntegration.enableFishIntegration = true;
-
-    settings = {
-      confirm_os_window_close = 0;
-      cursor_blink_interval = 0;
-      cursor_shape = "beam";
-      window_padding_width = 10;
-
-      "map ctrl+c" = "copy_or_interrupt";
-    };
+    extraConfig = ''
+      return {
+        disable_default_key_bindings = true,
+        window_close_confirmation = "NeverPrompt",
+        enable_tab_bar = false,
+        window_padding = {
+          left = "2cell",
+          right = "2cell",
+          top = "1cell",
+          bottom = "1cell",
+        },
+      }
+    '';
   };
 }

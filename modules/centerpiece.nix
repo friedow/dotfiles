@@ -15,10 +15,10 @@
             "$GIT_DIRECTORY"
           ]
           [
-            "kitty"
-            "--directory"
+            "wezterm"
+            "start"
+            "--cwd"
             "$GIT_DIRECTORY"
-            "--execute"
             "direnv"
             "exec"
             "."

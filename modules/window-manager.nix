@@ -1,8 +1,6 @@
 {
   pkgs,
-  pkgs-unstable,
   lib,
-  inputs,
   ...
 }:
 let
@@ -207,7 +205,7 @@ in
 
       binds {
           Mod+Shift+Slash { show-hotkey-overlay; }
-          Mod+Return { spawn "${pkgs-unstable.kitty}/bin/kitty"; }
+          Mod+Return { spawn "${pkgs.wezterm}/bin/wezterm"; }
           Mod+Space { spawn "centerpiece"; }
           Mod+Q { close-window; }
           Mod+S { spawn "${create-screenshot}"; }
