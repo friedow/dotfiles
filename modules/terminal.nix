@@ -4,7 +4,6 @@
     enable = true;
     extraConfig = ''
       return {
-        disable_default_key_bindings = true,
         window_close_confirmation = "NeverPrompt",
         enable_tab_bar = false,
         window_padding = {
