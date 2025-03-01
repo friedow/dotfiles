@@ -22,11 +22,12 @@
 
     home = {
       file.".xonshrc".text = ''
+        $COMPLETIONS_CONFIRM = False
+        $COMPLETIONS_DISPLAY = 'single'
         $PROMPT = '{BOLD_BLACK}>{RESET} '
         $RIGHT_PROMPT = '{BOLD_BLACK}{cwd}{RESET}'
-        $XONSH_PROMPT_CURSOR_SHAPE = 'beam'
         $UPDATE_COMPLETIONS_ON_KEYPRESS = True
-        $COMPLETIONS_DISPLAY = 'single'
+        $XONSH_PROMPT_CURSOR_SHAPE = 'beam'
 
         aliases['bearer-inspect'] = 'echo $argv[1] | cut -d. -f2  | base64 --decode --ignore-garbage';
         aliases['cat'] = 'bat --theme OneHalfLight --paging never --style plain'
