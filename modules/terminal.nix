@@ -1,7 +1,8 @@
-{ ... }:
+{ pkgs-unstable, ... }:
 {
   home-manager.users.christian.programs.wezterm = {
     enable = true;
+    package = pkgs-unstable.wezterm;
     extraConfig = ''
       return {
         window_close_confirmation = "NeverPrompt",
