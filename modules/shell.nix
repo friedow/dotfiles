@@ -9,6 +9,7 @@
       bat
       libwebp
       fzf
+      zoxide
     ];
 
     programs = {
@@ -42,6 +43,8 @@
         aliases['python39env'] = 'docker run --rm -it -v "$PWD:/data" -v "$HOME/.config/gcloud:/root/.config/gcloud" python:3.9-bookworm bash -c "pip install --force-reinstall poetry==1.8.5 && poetry config virtualenvs.in-project true && poetry self add keyrings.google-artifactregistry-auth && cd /data && bash"'
         aliases['record-screen'] = 'mkdir -p $HOME/Videos/recordings && ${pkgs.wf-recorder}/bin/wf-recorder -a -g "$(${pkgs.slurp}/bin/slurp)" -f "$HOME/Videos/recordings/$(date).mp4"'
         aliases['yubikey-unlock'] = '${pkgs.yubikey-manager}/bin/ykman fido fingerprints list'
+
+        execx($(zoxide init xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
       '';
 
       file.".config/xonsh/rc.xsh".text = ''
