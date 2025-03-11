@@ -145,6 +145,7 @@ in
           }
           touchpad {
               click-method "clickfinger"
+              natural-scroll
           }
           mouse {
             // TODO: speed
