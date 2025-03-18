@@ -13,9 +13,11 @@
 
   systemd.user.services.network-manager-applet = {
     enable = true;
+    wants = [
+      "niri.service"
+    ];
     after = [
-      "network.target"
-      "graphical.target"
+      "niri.service"
     ];
     wantedBy = [ "default.target" ];
     serviceConfig = {
