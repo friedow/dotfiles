@@ -40,6 +40,8 @@
       size = 32;
     };
 
+    # TODO: fix that 
+    # maybe add this: https://wiki.nixos.org/w/index.php?title=Plymouth&mobileaction=toggle_view_desktop
     targets.plymouth = {
       logo = ./logo.png;
       logoAnimated = false;
