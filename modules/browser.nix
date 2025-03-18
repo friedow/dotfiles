@@ -10,4 +10,11 @@
       { id = "nhdogjmejiglipccpnnnanhbledajbpd"; } # vue.js devtools
     ];
   };
+
+  home-manager.users.christian.xdg.desktopEntries."brave" = {
+    name = "Brave";
+    genericName = "Browser";
+    exec = "brave --enable-features=UseOzonePlatform --ozone-platform=wayland";
+    terminal = false;
+  };
 }
