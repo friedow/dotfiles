@@ -70,6 +70,7 @@
         ./modules/centerpiece.nix
         ./modules/clipboard.nix
         ./modules/cursor.nix
+        ./modules/disable-services.nix
         ./modules/display-manager.nix
         ./modules/docker.nix
         ./modules/file-manager.nix
