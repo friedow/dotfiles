@@ -13,7 +13,10 @@
 
   systemd.user.services.network-manager-applet = {
     enable = true;
-    after = [ "network.target" ];
+    after = [
+      "network.target"
+      "graphical.target"
+    ];
     wantedBy = [ "default.target" ];
     serviceConfig = {
       ExecStart = "${pkgs.networkmanagerapplet}/bin/nm-applet";
