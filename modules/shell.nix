@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
-  users.users.christian.shell = pkgs.fish;
-  programs.fish.enable = true;
+  users.users.christian.shell = pkgs.zsh;
+  programs.zsh.enable = true;
 
   home-manager.users.christian = {
     home.packages = with pkgs; [
@@ -9,18 +9,25 @@
       bat
       libwebp
       fzf
-      zoxide
     ];
+
+    #home.shell.enableZshIntegration = true;
 
     programs = {
       direnv = {
         enable = true;
         nix-direnv.enable = true;
+        enableZshIntegration = true;
       };
 
       carapace = {
         enable = true;
-        enableFishIntegration = true;
+        enableZshIntegration = true;
+      };
+
+      zoxide = {
+        enable = true;
+        enableZshIntegration = true;
       };
 
       zsh = {
@@ -28,50 +35,53 @@
         enableCompletion = true;
         autosuggestion.enable = true;
         syntaxHighlighting.enable = true;
+
+        initExtra = ''
+          PS1='%F{blue}%B>%b%f '
+
+          # fzf-tab Configuration
+          # disable sort when completing `git checkout`
+          zstyle ':completion:*:git-checkout:*' sort false
+          # set descriptions format to enable group support
+          # NOTE: don't use escape sequences (like '%F{red}%d%f') here, fzf-tab will ignore them
+          zstyle ':completion:*:descriptions' format '[%d]'
+          # set list-colors to enable filename colorizing
+          zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
+          # force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+          zstyle ':completion:*' menu no
+          # preview directory's content with eza when completing cd
+          zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+          # custom fzf flags
+          # NOTE: fzf-tab does not follow FZF_DEFAULT_OPTS by default
+          zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=tab:accept
+          # To make fzf-tab follow FZF_DEFAULT_OPTS.
+          # NOTE: This may lead to unexpected behavior since some flags break this plugin. See Aloxaf/fzf-tab#455.
+          zstyle ':fzf-tab:*' use-fzf-default-opts yes
+          # switch group using `<` and `>`
+          zstyle ':fzf-tab:*' switch-group '<' '>'
+          # enable tmux popup
+          zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+        '';
+
         plugins = [
           {
             name = "fzf-tab";
             src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
           }
         ];
-      };
 
-      fish = {
-        enable = true;
         shellAliases = {
-          l = "eza -l";
-          ls = "eza -l";
-          ll = "eza -l";
+          cat = "bat --theme OneHalfLight --paging never --style plain";
+          l = "eza --oneline --all --sort=type";
+          ll = "l";
           nd = "nix develop -c $SHELL";
           nrs = "sudo nixos-rebuild switch";
-          cat = "bat --theme OneHalfLight --paging never --style plain";
           record-screen = ''mkdir -p $HOME/Videos/recordings && ${pkgs.wf-recorder}/bin/wf-recorder -a -g "$(${pkgs.slurp}/bin/slurp)" -f "$HOME/Videos/recordings/$(date).mp4"'';
           yubikey-unlock = "${pkgs.yubikey-manager}/bin/ykman fido fingerprints list";
-          gpu = "git push";
-          gc = "git commit -m ";
+          n = ''() { package=$1; shift; nix run nixpkgs-unstable#$package -- $@ }'';
+          ns = ''() { packages=(); for arg in $@; do packages+="nixpkgs-unstable#$arg"; done; nix shell $packages }'';
+          bearer-inspect = ''() { echo $1 | cut -d. -f2  | base64 --decode --ignore-garbage }'';
         };
-
-        functions = {
-          n.body = "nix run nixpkgs#$argv[1] -- $argv[2..]";
-          nu.body = "nix run nixpkgs-unstable#$argv[1] -- $argv[2..]";
-          ns.body = "nix shell nixpkgs#$argv[1]";
-          bearer-inspect.body = "echo $argv[1] | cut -d. -f2  | base64 --decode --ignore-garbage";
-        };
-
-        interactiveShellInit = ''
-          set fish_greeting # Disable greeting
-
-          function fish_prompt -d "Write out the prompt"
-            printf '> '
-          end
-        '';
-
-        plugins = [
-          {
-            name = "z";
-            src = pkgs.fishPlugins.z.src;
-          }
-        ];
       };
     };
   };
