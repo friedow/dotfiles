@@ -5,8 +5,8 @@ let
     src = pkgs-unstable.fetchFromGitHub {
       owner = "b0o";
       repo = "incline.nvim";
-      rev = "16fc9c073e3ea4175b66ad94375df6d73fc114c0";
-      hash = "sha256-5DoIvIdAZV7ZgmQO2XmbM3G+nNn4tAumsShoN3rDGrs=";
+      rev = "27040695b3bbfcd3257669037bd008d1a892831d";
+      hash = "sha256-5chrEfjk1Q+lvGqtoUfS/cYbxCUp1gij6SMoB1QRNbs=";
     };
   };
 in
