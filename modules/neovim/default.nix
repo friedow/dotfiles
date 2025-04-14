@@ -86,6 +86,61 @@ in
           mode = "n";
           options.silent = true;
         }
+        {
+          key = "<C-h>";
+          action = "<C-w>h";
+          mode = [
+            "n"
+            "t"
+            "v"
+            "i"
+          ];
+          options.silent = true;
+        }
+        {
+          key = "<C-j>";
+          action = "<C-w>j";
+          mode = [
+            "n"
+            "t"
+            "v"
+            "i"
+          ];
+          options.silent = true;
+        }
+        {
+          key = "<C-k>";
+          action = "<C-w>k";
+          mode = [
+            "n"
+            "t"
+            "v"
+            "i"
+          ];
+          options.silent = true;
+        }
+        {
+          key = "<C-l>";
+          action = "<C-w>l";
+          mode = [
+            "n"
+            "t"
+            "v"
+            "i"
+          ];
+          options.silent = true;
+        }
+        {
+          key = "<C-q>";
+          action = "<C-w>q";
+          mode = [
+            "n"
+            "t"
+            "v"
+            "i"
+          ];
+          options.silent = true;
+        }
       ];
 
       autoCmd = [
@@ -101,7 +156,6 @@ in
       extraPlugins = [ improvedft ];
 
       plugins = {
-        autoclose.enable = true;
         vim-surround.enable = true;
       };
     };
