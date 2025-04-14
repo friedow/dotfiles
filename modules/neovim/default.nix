@@ -14,6 +14,7 @@ in
   imports = [
     ./colorscheme.nix
     ./completion-menu.nix
+    ./commandline.nix
     ./file-explorer.nix
     ./file-switcher.nix
     ./formatter.nix
