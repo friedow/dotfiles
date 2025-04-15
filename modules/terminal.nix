@@ -15,6 +15,17 @@
         -- '\n' this will execute you shell command
       end)
 
+
+      function ensure_five_tabs(win)
+        local mux_window = win:mux_window()
+        local tabs = mux_window:tabs()
+        if #tabs < 5 then
+          for i=#tabs,4 do
+            mux_window:spawn_tab({})
+          end
+        end
+      end
+
       return {
         window_close_confirmation = "NeverPrompt",
         enable_tab_bar = false,
@@ -28,27 +39,42 @@
           {
             key = '6',
             mods = 'CTRL',
-            action = wezterm.action.ActivateTab(0),
+            action = wezterm.action_callback(function(win, pane)
+              ensure_five_tabs(win)
+              win:mux_window():tabs()[1]:activate()
+            end),
           },
           {
             key = '7',
             mods = 'CTRL',
-            action = wezterm.action.ActivateTab(1),
+            action = wezterm.action_callback(function(win, pane)
+              ensure_five_tabs(win)
+              win:mux_window():tabs()[2]:activate()
+            end),
           },
           {
             key = '8',
             mods = 'CTRL',
-            action = wezterm.action.ActivateTab(2),
+            action = wezterm.action_callback(function(win, pane)
+              ensure_five_tabs(win)
+              win:mux_window():tabs()[3]:activate()
+            end),
           },
           {
             key = '9',
             mods = 'CTRL',
-            action = wezterm.action.ActivateTab(3),
+            action = wezterm.action_callback(function(win, pane)
+              ensure_five_tabs(win)
+              win:mux_window():tabs()[4]:activate()
+            end),
           },
           {
             key = '0',
             mods = 'CTRL',
-            action = wezterm.action.ActivateTab(4),
+            action = wezterm.action_callback(function(win, pane)
+              ensure_five_tabs(win)
+              win:mux_window():tabs()[5]:activate()
+            end),
           },
         }
       }
