@@ -10,7 +10,12 @@
       {
         action = "<cmd>Neotree position=current reveal<CR>";
         key = "<C-`>";
-        mode = "n";
+        mode = [
+          "n"
+          "t"
+          "v"
+          "i"
+        ];
         options.silent = true;
       }
     ];
