@@ -8,6 +8,8 @@
       settings = {
         presets.command_palette = true;
         messages.view_history = "popup";
+        notify.view = "mini";
+        lsp.signature.auto_open.enabled = false;
       };
     };
   };
