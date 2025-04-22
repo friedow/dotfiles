@@ -1,16 +1,6 @@
 { pkgs-unstable, ... }:
 {
-
-  home-manager.users.christian = {
-    home.packages = with pkgs-unstable; [ nil ];
-  };
   home-manager.users.christian.programs.nixvim = {
-    extraPlugins = with pkgs-unstable.vimPlugins; [ neodev-nvim ];
-
-    extraConfigLuaPre = ''
-      require("neodev").setup()
-    '';
-
     plugins = {
       telescope.keymaps = {
         "gd".action = "lsp_definitions";
