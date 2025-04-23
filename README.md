@@ -51,7 +51,24 @@ mount /dev/sda1 /mnt/boot
 nixos-install --no-root-password
 ```
 
-## SSH Setup
+## Setting up a new yubikey
+
+Use yubikey-manager to change the yubikey pin
+
+```
+nix shell nixpkgs#yubikey-manager
+ykman fido access change-pin
+```
+
+### PAM Setup
+
+Generate pam keys
+
+```
+nix run nixpkgs#pam_u2f > /home/christian/.config/Yubico/u2f_keys
+```
+
+### SSH Setup
 
 Guide: https://developers.yubico.com/SSH/Securing_SSH_with_FIDO2.html
 
@@ -72,13 +89,4 @@ Manage credentials with the yubikey manager:
 ```
 nix run nixpkgs#yubikey-manager fido credentials list
 ```
-
-## Yubikey PAM setup
-
-Generate u2f_keys file using `pamu2fcfg` from yubikey
-
-```
-nix run nixpkgs#pam_u2f > /home/christian/.config/Yubico/u2f_keys
-```
-
 
