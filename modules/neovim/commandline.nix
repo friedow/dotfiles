@@ -1,14 +1,14 @@
 { ... }:
 {
   home-manager.users.christian.programs.nixvim.plugins = {
-    nui.enable = true;
-    notify.enable = true;
+    nui.enable = false;
+    notify.enable = false;
     noice = {
-      enable = true;
+      enable = false;
       settings = {
         presets.command_palette = true;
         messages.view_history = "popup";
-        notify.view = "mini";
+        # notify.view = "mini";
         lsp.signature.auto_open.enabled = false;
       };
     };
