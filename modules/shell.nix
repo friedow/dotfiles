@@ -40,7 +40,7 @@
         enableCompletion = true;
         syntaxHighlighting.enable = true;
 
-        initExtra = ''
+        initContent = ''
           PS1='%F{blue}%B>%b%f '
         '';
 
