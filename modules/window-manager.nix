@@ -131,8 +131,6 @@ in
 
       input {
           warp-mouse-to-focus
-          // focus-follows-mouse max-scroll-amount="0%"
-          // workspace-auto-back-and-forth
 
           keyboard {
               repeat-rate 35
@@ -147,9 +145,6 @@ in
               click-method "clickfinger"
               natural-scroll
           }
-          mouse {
-            // TODO: speed
-          }
       }
 
       output "AU Optronics 0x202B" {
@@ -157,8 +152,6 @@ in
       }
 
       prefer-no-csd
-
-      screenshot-path "~/tmp/screenshot-%Y%m%d%H%M%S.png"
 
       hotkey-overlay {
         skip-at-startup
@@ -168,12 +161,8 @@ in
       layout {
           gaps 10
 
-          center-focused-column "always"
-
           default-column-width { 
-            //proportion 0.30
             proportion 0.50
-            //fixed 800
           }
 
           preset-column-widths {
@@ -190,14 +179,10 @@ in
           border {
               off
           }
-
-          struts {
-            left 30
-            right 30
-          }
       }
 
       animations {
+        off
       }
 
       window-rule {
@@ -227,6 +212,9 @@ in
           Mod+Space { spawn "centerpiece"; }
           Mod+Q { close-window; }
           Mod+S { spawn "${create-screenshot}"; }
+          Mod+D { set-dynamic-cast-monitor; }
+          Mod+W { set-dynamic-cast-window; }
+          Mod+R { clear-dynamic-cast-target; }
 
           XF86AudioRaiseVolume  allow-when-locked=true { spawn "${volume-increase}"; }
           XF86AudioLowerVolume  allow-when-locked=true { spawn "${volume-decrease}"; }
@@ -235,6 +223,13 @@ in
           XF86MonBrightnessUp   allow-when-locked=true { spawn "${brightness-increase}"; }
           Mod+XF86MonBrightnessDown allow-when-locked=true { spawn "${external-brightness-decrease}"; }
           Mod+XF86MonBrightnessUp   allow-when-locked=true { spawn "${external-brightness-increase}"; }
+
+          Mod+Comma  { consume-window-into-column; }
+          Mod+Period { expel-window-from-column; }
+          Mod+F { maximize-column; }
+          Mod+C { center-column; }
+          Mod+Minus { set-column-width "-25%"; }
+          Mod+Equal { set-column-width "+25%"; }
 
           Mod+H     { focus-column-or-monitor-left; }
           Mod+J  { focus-window-or-workspace-down; }
@@ -282,17 +277,6 @@ in
           Mod+Shift+8 { move-window-to-workspace "8"; }
           Mod+Shift+9 { move-window-to-workspace "9"; }
           Mod+Shift+0 { move-window-to-workspace "0"; }
-
-          Mod+Comma  { consume-window-into-column; }
-          Mod+Period { expel-window-from-column; }
-          Mod+R { switch-preset-column-width; }
-          Mod+F { maximize-column; }
-          Mod+C { center-column; }
-          Mod+Minus { set-column-width "-25%"; }
-          Mod+Equal { set-column-width "+25%"; }
-          Print { screenshot; }
-          Ctrl+Print { screenshot-screen; }
-          Alt+Print { screenshot-window; }
       }
     '';
   };
