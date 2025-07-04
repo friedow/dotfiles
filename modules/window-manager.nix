@@ -205,6 +205,22 @@ in
           clip-to-geometry true
       }
 
+      window-rule {
+          match app-id=r#"^1Password$"#
+          block-out-from "screencast"
+      }
+
+      window-rule {
+          match is-window-cast-target=true
+
+          border {
+              on
+              width 3
+              active-color "#f38ba8"
+              inactive-color "#7d0d2d"
+          }
+      }
+
       binds {
           Mod+Shift+Slash { show-hotkey-overlay; }
           Mod+Return { spawn "${pkgs-unstable.wezterm}/bin/wezterm"; }
