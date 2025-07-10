@@ -5,35 +5,44 @@
 
   home-manager.users.christian = {
     home.packages = with pkgs; [
-      eza
-      bat
       libwebp
-      fzf
+      man-pages-posix
+      tldr
     ];
 
-    #home.shell.enableZshIntegration = true;
+    home = {
+      shell.enableZshIntegration = true;
+    };
+
+    services.tldr-update = {
+      enable = true;
+      package = pkgs.tealdeer;
+    };
 
     programs = {
-      atuin = {
+      atuin.enable = true;
+
+      bat = {
         enable = true;
-        enableZshIntegration = true;
+        extraPackages = with pkgs.bat-extras; [
+          batman
+        ];
       };
+
+      carapace.enable = true;
 
       direnv = {
         enable = true;
         nix-direnv.enable = true;
-        enableZshIntegration = true;
       };
 
-      carapace = {
-        enable = true;
-        enableZshIntegration = true;
-      };
+      eza.enable = true;
 
-      zoxide = {
-        enable = true;
-        enableZshIntegration = true;
-      };
+      fzf.enable = true;
+
+      jq.enable = true;
+
+      zoxide.enable = true;
 
       zsh = {
         enable = true;
@@ -45,9 +54,10 @@
         '';
 
         shellAliases = {
-          cat = "bat --theme OneHalfLight --paging never --style plain";
+          cat = "bat";
           l = "eza --oneline --all --sort=type";
           ll = "l";
+          man = "batman";
           nd = "nix develop -c $SHELL";
           nrs = "sudo nixos-rebuild switch";
           record-screen = ''mkdir -p $HOME/Videos/recordings && ${pkgs.wf-recorder}/bin/wf-recorder -a -g "$(${pkgs.slurp}/bin/slurp)" -f "$HOME/Videos/recordings/$(date).mp4"'';
