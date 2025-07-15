@@ -10,11 +10,6 @@
         gitmoji.enable = true;
         git_repositories.commands = [
           [
-            "sublime_merge"
-            "--new-window"
-            "$GIT_DIRECTORY"
-          ]
-          [
             "wezterm"
             "start"
             "--cwd"

@@ -1,6 +1,24 @@
 { ... }:
 {
   home-manager.users.christian.programs.nixvim = {
+    keymaps = [
+      {
+        action.__raw = ''
+          function()
+            require("neogit").open({ kind = 'replace' })
+          end
+        '';
+        key = "<C-g>";
+        mode = [
+          "n"
+          "t"
+          "v"
+          "i"
+        ];
+        options.silent = true;
+      }
+    ];
+
     plugins = {
       gitsigns.enable = true;
       diffview.enable = true;
