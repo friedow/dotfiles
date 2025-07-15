@@ -16,7 +16,7 @@
     };
 
     centerpiece = {
-      url = "github:friedow/centerpiece";
+      url = "github:friedow/centerpiece?ref=feat/egui";
       # inputs.nixpkgs.follows = "nixpkgs"; TODO: resolve rustc mismatch
     };
 
