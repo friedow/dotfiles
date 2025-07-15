@@ -196,6 +196,11 @@ in
       }
 
       window-rule {
+          match title=r#"^centerpiece$"#
+          open-floating true
+      }
+
+      window-rule {
           match is-window-cast-target=true
 
           border {
