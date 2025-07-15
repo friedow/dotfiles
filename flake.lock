@@ -98,15 +98,16 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1745697341,
-        "narHash": "sha256-KDYRly/9IKDBmH3D6Jv4BkVer3u/uwkQIXR0vhAuqro=",
+        "lastModified": 1752305797,
+        "narHash": "sha256-z8syQGxxbP2fp1fX54ZSE2CBAF4/t5vFIm0j0cL60zU=",
         "owner": "friedow",
         "repo": "centerpiece",
-        "rev": "2a610e8e0a6b65b733ea98f2ca602235f695b4f3",
+        "rev": "0575283b92d34c830a792ae6dcfaf628fc43596b",
         "type": "github"
       },
       "original": {
         "owner": "friedow",
+        "ref": "feat/egui",
         "repo": "centerpiece",
         "type": "github"
       }
