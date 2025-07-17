@@ -42,6 +42,11 @@
             diffview = true;
             telescope = true;
           };
+
+          # TODO: enable with next update
+          # sections = {
+          #   recent.folded = false;
+          # };
         };
       };
     };

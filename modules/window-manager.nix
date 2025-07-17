@@ -131,6 +131,7 @@ in
 
       input {
           warp-mouse-to-focus
+          focus-follows-mouse
 
           keyboard {
               repeat-rate 35
