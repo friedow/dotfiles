@@ -163,7 +163,7 @@ in
           gaps 10
 
           default-column-width { 
-            proportion 0.50
+            proportion 0.25
           }
 
           preset-column-widths {
@@ -178,6 +178,12 @@ in
           }
 
           border {
+              off
+          }
+      }
+
+      gestures {
+          hot-corners {
               off
           }
       }
