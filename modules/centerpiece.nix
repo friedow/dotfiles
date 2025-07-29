@@ -10,10 +10,10 @@
         gitmoji.enable = true;
         git_repositories.commands = [
           [
-            "wezterm"
-            "start"
-            "--cwd"
+            "kitty"
+            "--directory"
             "$GIT_DIRECTORY"
+            "--execute"
             "direnv"
             "exec"
             "."
