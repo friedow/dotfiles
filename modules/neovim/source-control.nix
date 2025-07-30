@@ -37,6 +37,7 @@
           tag_editor.kind = "replace";
 
           filewatcher.enable = true;
+          graph_style.__raw = "'kitty'";
 
           integrations = {
             diffview = true;
