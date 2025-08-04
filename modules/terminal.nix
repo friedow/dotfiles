@@ -12,6 +12,7 @@
       window_padding_width = 10;
 
       "map ctrl+c" = "copy_or_interrupt";
+      "map ctrl+v" = "paste_from_clipboard";
     };
   };
 }
