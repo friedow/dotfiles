@@ -47,10 +47,14 @@
       zsh = {
         enable = true;
         enableCompletion = true;
-        syntaxHighlighting.enable = true;
+        # syntaxHighlighting.enable = true;
 
         initContent = ''
           PS1='%F{blue}%B>%b%f '
+
+          # enable carapace completion
+          zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+          source <(carapace _carapace)
         '';
 
         shellAliases = {
