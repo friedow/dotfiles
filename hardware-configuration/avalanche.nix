@@ -32,8 +32,9 @@
       efi.canTouchEfiVariables = true;
       systemd-boot.enable = true;
     };
-    powerManagement.cpuFreqGovernor = "powersave";
   };
+
+  powerManagement.cpuFreqGovernor = "powersave";
 
   hardware = {
     bluetooth.enable = true;
