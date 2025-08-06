@@ -2,14 +2,22 @@
 
 This repository contains my personal NixOS and home-manager configuration.
 
-## Usage
+## Desktop setup
 
 ```
-# ensure home directory is set up
-mkdir -p /home/christian/Code
-mkdir -p /home/christian/.ssh
+# ON THE BOOTSTICK
+# identify the disk to install on
+lsblk
 
-# plug in yubikey & get ssh keys from yubikey
+# install nixos
+sudo nix run 'github:nix-community/disko/latest#disko-install' -- --write-efi-boot-entries --flake 'github:friedow/dotfiles#HOSTNAME' --disk main /dev/DEVNAME
+# reboot into the installed system
+
+# ON THE BOOTED SYSTEM
+# ensure home directory is set up
+mkdir -p /home/christian/{.ssh,Code}
+
+# plug in yubikey and fetch the ssh key
 ssh-keygen -K -f /home/christian/.ssh/id_ed25519_sk
 
 # clone dotfiles
@@ -51,6 +59,16 @@ mount /dev/sda1 /mnt/boot
 nixos-install --no-root-password
 ```
 
+## Bootstick setup
+
+```
+# identify the disk to install on
+lsblk
+
+# create the bootstick
+sudo nix run 'github:nix-community/disko/latest#disko-install' -- --flake 'github:friedow/dotfiles#bootstick' --disk main /dev/DEVNAME
+```
+
 ## Setting up a new yubikey
 
 Use yubikey-manager to change the yubikey pin
@@ -89,4 +107,3 @@ Manage credentials with the yubikey manager:
 ```
 nix run nixpkgs#yubikey-manager fido credentials list
 ```
-
