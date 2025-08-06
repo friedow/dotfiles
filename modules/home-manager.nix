@@ -8,6 +8,5 @@
     extraSpecialArgs = {
       inherit inputs;
     };
-    users.christian.home.stateVersion = "21.11";
   };
 }
