@@ -25,7 +25,8 @@
     fsType = "ext4";
   };
 
-  boot.initrd.luks.devices."luks-29667c9b-57b9-4fb8-8e4d-1c3624d0fcdb".device = "/dev/disk/by-uuid/29667c9b-57b9-4fb8-8e4d-1c3624d0fcdb";
+  boot.initrd.luks.devices."luks-29667c9b-57b9-4fb8-8e4d-1c3624d0fcdb".device =
+    "/dev/disk/by-uuid/29667c9b-57b9-4fb8-8e4d-1c3624d0fcdb";
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/3EE9-26C1";
@@ -56,8 +57,10 @@
   };
 
   # Enable swap on luks
-  boot.initrd.luks.devices."luks-a43f5aa4-dec1-4cf7-adbf-378175e8fe97".device = "/dev/disk/by-uuid/a43f5aa4-dec1-4cf7-adbf-378175e8fe97";
-  boot.initrd.luks.devices."luks-a43f5aa4-dec1-4cf7-adbf-378175e8fe97".keyFile = "/crypto_keyfile.bin";
+  boot.initrd.luks.devices."luks-a43f5aa4-dec1-4cf7-adbf-378175e8fe97".device =
+    "/dev/disk/by-uuid/a43f5aa4-dec1-4cf7-adbf-378175e8fe97";
+  boot.initrd.luks.devices."luks-a43f5aa4-dec1-4cf7-adbf-378175e8fe97".keyFile =
+    "/crypto_keyfile.bin";
 
   networking.hostName = "tsunami";
   system.stateVersion = "23.05";

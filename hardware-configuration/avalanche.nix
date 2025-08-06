@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   networking.hostName = "avalanche";
   # TODO: refresh when setting this deveice up again
