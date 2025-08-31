@@ -1,22 +1,10 @@
 { ... }:
 {
   networking.hostName = "avalanche";
-  # TODO: refresh when setting this deveice up again
-  system.stateVersion = "21.11";
-  home-manager.users.christian.home.stateVersion = "21.11";
+  system.stateVersion = "25.05";
+  home-manager.users.christian.home.stateVersion = "25.05";
 
-  # TODO: neu & setup this device again
-  # disko.devices.disk.main.device = "/dev/disk/by-id/nvme0n1";
-
-  # old
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/66913558-e999-4e53-b977-cc5c24e38754";
-    fsType = "ext4";
-  };
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-label/boot";
-    fsType = "vfat";
-  };
+  disko.devices.disk.main.device = "/dev/disk/by-id/nvme0n1";
 
   boot = {
     initrd.availableKernelModules = [
