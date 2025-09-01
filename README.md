@@ -6,11 +6,22 @@ This repository contains my personal NixOS and home-manager configuration.
 
 ```
 # ON THE BOOTSTICK
+# generate a nixos hardware config and add the new host upstream
+nixos-generate-config --show-hardware-config
+
+# enter root mode
+sudo -i
+
+# set up the yubikey
+ssh-keygen -K -f /root/.ssh/id_ed25519_sk
+eval "$(ssh-agent -s)"
+ssh-add /root/.ssh/id_ed25519_sk
+
 # identify the disk to install on
 lsblk
 
 # install nixos
-sudo nix run 'github:nix-community/disko/latest#disko-install' -- --write-efi-boot-entries --flake 'github:friedow/dotfiles#HOSTNAME' --disk main /dev/DEVNAME
+sudo nix --extra-experimental-features nix-command --extra-experimental-features flakes run 'github:nix-community/disko/latest#disko-install' -- --write-efi-boot-entries --flake 'github:friedow/dotfiles#HOSTNAME' --disk main /dev/DEVNAME
 # reboot into the installed system
 
 # ON THE BOOTED SYSTEM
