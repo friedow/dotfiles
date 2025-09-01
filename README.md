@@ -21,20 +21,24 @@ ssh-add /root/.ssh/id_ed25519_sk
 lsblk
 
 # install nixos
-sudo nix --extra-experimental-features nix-command --extra-experimental-features flakes run 'github:nix-community/disko/latest#disko-install' -- --write-efi-boot-entries --flake 'github:friedow/dotfiles#HOSTNAME' --disk main /dev/DEVNAME
+nix --extra-experimental-features nix-command --extra-experimental-features flakes run 'github:nix-community/disko/latest#disko-install' -- --write-efi-boot-entries --flake 'github:friedow/dotfiles#HOSTNAME' --disk main /dev/DEVNAME
 # reboot into the installed system
 
 # ON THE BOOTED SYSTEM
+# change password
+passwd
+
 # ensure home directory is set up
-mkdir -p /home/christian/{.ssh,Code}
+mkdir -p /home/christian/{.ssh,code}
 
 # plug in yubikey and fetch the ssh key
 ssh-keygen -K -f /home/christian/.ssh/id_ed25519_sk
+ssh-add /root/.ssh/id_ed25519_sk
 
 # clone dotfiles
 sudo mv /etc/nixos /etc/nixos.backup
-git clone https://github.com/friedow/dotfiles.git /home/christian/Code/friedow/dotfiles
-sudo ln -s /home/christian/Code/friedow/dotfiles /etc/nixos
+git clone git@github.com:friedow/dotfiles.git /home/christian/code/friedow/dotfiles
+sudo ln -s /home/christian/code/friedow/dotfiles /etc/nixos
 
 # rebuild system
 sudo nixos-rebuild switch
