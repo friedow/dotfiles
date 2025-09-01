@@ -1,12 +1,12 @@
 { pkgs, inputs, ... }:
 {
-  age.secrets.sublime-merge-license = {
-    file = "${inputs.dotfiles-secrets}/sublime-license.age";
-    path = "/home/christian/.config/sublime-merge/Local/License.sublime_license";
-    owner = "christian";
-    group = "users";
-    mode = "600";
-  };
+  # age.secrets.sublime-merge-license = {
+  #   file = "${inputs.dotfiles-secrets}/sublime-license.age";
+  #   path = "/home/christian/.config/sublime-merge/Local/License.sublime_license";
+  #   owner = "christian";
+  #   group = "users";
+  #   mode = "600";
+  # };
 
   home-manager.users.christian.home = {
     packages = with pkgs; [ sublime-merge ];
