@@ -105,12 +105,11 @@
         ./modules/window-manager.nix
       ];
 
-      personal-modules = [ ./modules/git-config-personal.nix ];
+      personal-modules = [ ];
 
       work-modules = [
         ./modules/devenv.nix
         ./modules/glab.nix
-        ./modules/git-config-work.nix
         ./modules/xdg-utils.nix
       ];
 
