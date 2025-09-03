@@ -108,13 +108,9 @@
       personal-modules = [ ./modules/git-config-personal.nix ];
 
       work-modules = [
-        ./modules/clamav.nix
-        ./modules/dns.nix
-        ./modules/gcloud.nix
+        ./modules/devenv.nix
         ./modules/glab.nix
         ./modules/git-config-work.nix
-        ./modules/mongodb-compass.nix
-        ./modules/user-bender.nix
         ./modules/xdg-utils.nix
       ];
 
