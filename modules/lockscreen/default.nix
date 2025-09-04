@@ -25,7 +25,7 @@ let
       --text-wrong-color=${transparent} \
       \
       --indicator-radius=125 \
-      --indicator-thickness=2 \
+      --indicator-thickness=5 \
       --ring-color=${colors.background.primary} \
       --separator-color=${colors.background.primary} \
       \
