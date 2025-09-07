@@ -3,8 +3,6 @@
   home-manager.users.christian.programs.kitty = {
     enable = true;
 
-    shellIntegration.enableZshIntegration = true;
-
     settings = {
       confirm_os_window_close = 0;
       cursor_blink_interval = 0;
