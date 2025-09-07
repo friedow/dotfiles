@@ -87,7 +87,6 @@
         ./modules/neovim
         ./modules/networking.nix
         ./modules/notifications.nix
-        ./modules/office.nix
         ./modules/resource-monitor.nix
         ./modules/shell
         ./modules/nix-cli.nix
