@@ -90,7 +90,7 @@
         ./modules/notifications.nix
         ./modules/office.nix
         ./modules/resource-monitor.nix
-        ./modules/shell.nix
+        ./modules/shell
         ./modules/nix-cli.nix
         ./modules/password-manager.nix
         ./modules/privilige-manager.nix
