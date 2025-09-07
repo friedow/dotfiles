@@ -78,7 +78,6 @@
         ./modules/disable-services.nix
         ./modules/disko.nix
         ./modules/display-manager.nix
-        ./modules/docker.nix
         ./modules/file-manager.nix
         ./modules/git.nix
         ./modules/gtk.nix
