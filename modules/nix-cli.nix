@@ -1,4 +1,10 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  config,
+  lib,
+  ...
+}:
 {
   # nix develop, nix shell, ... should use the package index
   # which was used to build the system. This config enforces that.
@@ -22,8 +28,6 @@
     extraOptions = ''
       flake-registry = /etc/nix/registry-empty.json
     '';
-
-    #package = pkgs.nixFlakes;
 
     registry = {
       self.flake = inputs.self;
@@ -52,6 +56,16 @@
       automatic = true;
       dates = [ "weekly" ];
     };
+  };
+
+  nixpkgs.config = {
+    allowUnfree = true;
+    permittedInsecurePackages = [ "openssl-1.1.1w" ];
+    showDerivationWarnings = [ "maintainerless" ];
+  };
+
+  _module.args.pkgs-unstable = import inputs.nixpkgs-unstable {
+    inherit (pkgs) system config;
   };
 
   home-manager.users.christian.home.packages = with pkgs; [ nix-index ];

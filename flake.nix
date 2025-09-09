@@ -10,19 +10,34 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     centerpiece = {
       url = "github:friedow/centerpiece?ref=feat/egui";
       # inputs.nixpkgs.follows = "nixpkgs"; TODO: resolve rustc mismatch
     };
 
+    disko = {
+      url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     dotfiles-secrets = {
       url = "git+ssh://git@github.com/friedow/dotfiles-secrets.git";
       flake = false;
+    };
+
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
+    home-manager = {
+      url = "github:nix-community/home-manager/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     stylix = {
@@ -35,36 +50,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim = {
-      url = "github:nix-community/nixvim/nixos-25.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    disko = {
-      url = "github:nix-community/disko/latest";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
-    { nixpkgs, treefmt-nix, ... }@inputs:
+    { ... }@inputs:
     let
-      pkgs-unstable = (import inputs.nixpkgs-unstable) {
-        system = "x86_64-linux";
-        config.allowUnfree = true;
-      };
       specialArgs = {
-        inherit inputs pkgs-unstable;
-      };
-
-      desktop-system = "x86_64-linux";
-      desktop-pkgs = (import nixpkgs) {
-        system = desktop-system;
-        config = {
-          allowUnfree = true;
-          permittedInsecurePackages = [ "openssl-1.1.1w" ];
-          showDerivationWarnings = [ "maintainerless" ];
-        };
+        inherit inputs;
       };
 
       desktop-modules = [
@@ -110,46 +102,50 @@
         ./modules/glab.nix
         ./modules/xdg-utils.nix
       ];
-
-      treefmtEval = treefmt-nix.lib.evalModule pkgs-unstable (pkgs: {
-        projectRootFile = "flake.nix";
-        programs = {
-          nixfmt.enable = true;
-          stylua.enable = true;
-        };
-      });
     in
-    {
-      nixosConfigurations = {
-        avalanche = nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
-          system = desktop-system;
-          pkgs = desktop-pkgs;
-          modules = desktop-modules ++ personal-modules ++ [ ./hardware-configuration/avalanche.nix ];
+    (inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        inputs.treefmt-nix.flakeModule
+      ];
+      flake = {
+        nixosConfigurations = {
+          avalanche = inputs.nixpkgs.lib.nixosSystem {
+            inherit specialArgs;
+            modules = desktop-modules ++ personal-modules ++ [ ./hardware-configuration/avalanche.nix ];
+          };
+
+          bootstick = inputs.nixpkgs.lib.nixosSystem {
+            inherit specialArgs;
+            modules = desktop-modules ++ personal-modules ++ [ ./hardware-configuration/bootstick.nix ];
+          };
+
+          hurricane = inputs.nixpkgs.lib.nixosSystem {
+            inherit specialArgs;
+            modules = desktop-modules ++ personal-modules ++ [ ./hardware-configuration/hurricane.nix ];
+          };
+
+          tsunami = inputs.nixpkgs.lib.nixosSystem {
+            inherit specialArgs;
+            modules = desktop-modules ++ work-modules ++ [ ./hardware-configuration/tsunami.nix ];
+          };
         };
 
-        bootstick = nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
-          system = desktop-system;
-          pkgs = desktop-pkgs;
-          modules = desktop-modules ++ personal-modules ++ [ ./hardware-configuration/bootstick.nix ];
-        };
-
-        hurricane = nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
-          system = desktop-system;
-          pkgs = desktop-pkgs;
-          modules = desktop-modules ++ personal-modules ++ [ ./hardware-configuration/hurricane.nix ];
-        };
-
-        tsunami = nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
-          system = desktop-system;
-          pkgs = desktop-pkgs;
-          modules = desktop-modules ++ work-modules ++ [ ./hardware-configuration/tsunami.nix ];
-        };
       };
-
-      formatter.${desktop-system} = treefmtEval.config.build.wrapper;
-    };
+      systems = [
+        # systems for which you want to build the `perSystem` attributes
+        "x86_64-linux"
+        # ...
+      ];
+      perSystem =
+        { config, pkgs, ... }:
+        {
+          treefmt = {
+            projectRootFile = "flake.nix";
+            programs = {
+              nixfmt.enable = true;
+              stylua.enable = true;
+            };
+          };
+        };
+    });
 }

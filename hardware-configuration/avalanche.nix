@@ -1,8 +1,9 @@
-{ ... }:
+{ lib, ... }:
 {
   networking.hostName = "avalanche";
   system.stateVersion = "25.05";
   home-manager.users.christian.home.stateVersion = "25.05";
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   disko.devices.disk.main.device = "/dev/disk/by-id/nvme0n1";
 
