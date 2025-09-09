@@ -5,6 +5,7 @@
 
   # disable the global flake registry,
   # we build our own based on the system flakes' inputs
+  # TODO: check if this is necessary
   environment.etc."nix/registry-empty.json".text = ''{ "flakes": [], "version": 2 }'';
 
   nix = {

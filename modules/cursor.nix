@@ -4,6 +4,7 @@ let
   cursor-size = 32;
 in
 {
+  # TODO: migrate to theme
   home-manager.users.christian = {
     home.packages = with pkgs; [ nordzy-cursor-theme ];
     home.sessionVariables = {

@@ -1,5 +1,6 @@
 { ... }:
 {
+  # TODO: evaluate whether this is still needed when plymouth is reenabled
   boot.initrd = {
     systemd.enable = true;
     verbose = false;

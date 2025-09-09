@@ -40,6 +40,7 @@
       size = 32;
     };
 
+    # TODO: fix plymouth logo
     targets.plymouth.enable = false;
 
     polarity = "light";

@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+  # TODO: move dbus enable here?
   security.polkit.enable = true;
 
   home-manager.users.christian.systemd.user.services.polkit-gnome-authentication-agent-1 = {

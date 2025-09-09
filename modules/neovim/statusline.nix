@@ -17,6 +17,7 @@ in
 
     extraConfigLua = ''
       local devicons = require("nvim-web-devicons")
+      -- TODO: investiate whether this conflics with the neogit log view
       require("incline").setup({
       	window = {
       		padding = 0,
