@@ -7,5 +7,10 @@
     # alsa.support32Bit = true;
     # pulse.enable = true;
   };
-  home-manager.users.christian.home.packages = with pkgs; [ pavucontrol ];
+
+  home-manager.sharedModules = [
+    {
+      home.packages = with pkgs; [ pavucontrol ];
+    }
+  ];
 }

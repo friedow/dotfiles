@@ -60,7 +60,6 @@
       };
 
       desktop-modules = [
-        ./modules/audio.nix
         ./modules/bootscreen.nix
         ./modules/blue-light-filter.nix
         ./modules/browser.nix
@@ -104,14 +103,31 @@
       ];
     in
     (inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      # access via nix repl debug.x
+      debug = true;
+
       imports = [
         inputs.treefmt-nix.flakeModule
       ];
+
       flake = {
+        modules = {
+          nixos.audio = ./modules/audio.nix;
+
+          nixos.desktop.imports = [
+            # config.flake.modules.nixos.audio
+            inputs.self.modules.nixos.audio
+          ];
+        };
+
         nixosConfigurations = {
           avalanche = inputs.nixpkgs.lib.nixosSystem {
             inherit specialArgs;
-            modules = desktop-modules ++ personal-modules ++ [ ./hardware-configuration/avalanche.nix ];
+            modules =
+              [ inputs.self.modules.nixos.desktop ]
+              ++ desktop-modules
+              ++ personal-modules
+              ++ [ ./hardware-configuration/avalanche.nix ];
           };
 
           bootstick = inputs.nixpkgs.lib.nixosSystem {
@@ -126,7 +142,11 @@
 
           tsunami = inputs.nixpkgs.lib.nixosSystem {
             inherit specialArgs;
-            modules = desktop-modules ++ work-modules ++ [ ./hardware-configuration/tsunami.nix ];
+            modules =
+              [ inputs.self.modules.nixos.desktop ]
+              ++ desktop-modules
+              ++ work-modules
+              ++ [ ./hardware-configuration/tsunami.nix ];
           };
         };
 
