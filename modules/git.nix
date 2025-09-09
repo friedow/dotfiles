@@ -19,6 +19,14 @@
         };
       }
       {
+        condition = "hasconfig:remote.*.url:gitea@git.clan.lol:*/**";
+        contents = {
+          user = {
+            email = "christian@friedow.com";
+          };
+        };
+      }
+      {
         condition = "hasconfig:remote.*.url:git@gitlab.com:*/**";
         contents = {
           user = {
