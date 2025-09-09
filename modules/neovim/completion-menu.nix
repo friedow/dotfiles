@@ -1,10 +1,10 @@
 { pkgs-unstable, ... }:
 {
 
-  home-manager.users.christian.programs.nixvim.extraConfigLuaPre = ''
-    vim.opt.runtimepath:prepend("/home/christian/Code/friedow/blink.cmp")
-    vim.opt.runtimepath:prepend("/home/christian/Code/friedow/blink-cmp-zsh")
-  '';
+  # home-manager.users.christian.programs.nixvim.extraConfigLuaPre = ''
+  #   vim.opt.runtimepath:prepend("/home/christian/Code/friedow/blink.cmp")
+  #   vim.opt.runtimepath:prepend("/home/christian/Code/friedow/blink-cmp-zsh")
+  # '';
 
   home-manager.users.christian.programs.nixvim.plugins = {
     blink-cmp = {
@@ -45,20 +45,20 @@
           ];
         };
 
-        sources.providers = {
-          zsh = {
-            enabled = true;
-            module = "blink-cmp-zsh";
-            name = "zsh";
-          };
-        };
+        # sources.providers = {
+        #   zsh = {
+        #     enabled = true;
+        #     module = "blink-cmp-zsh";
+        #     name = "zsh";
+        #   };
+        # };
 
         signature.enabled = true;
-        term = {
-          enabled = true;
-          keymap.preset = "inherit";
-          sources = [ "zsh" ];
-        };
+        # term = {
+        #   enabled = true;
+        #   keymap.preset = "inherit";
+        #   sources = [ "zsh" ];
+        # };
 
         cmdline = {
           enabled = true;
