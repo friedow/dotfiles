@@ -55,4 +55,13 @@
   };
 
   home-manager.users.christian.home.packages = with pkgs; [ nix-index ];
+
+  # use this pattern to customize the vm or iso variants
+  # uses extendModules under the hood
+  # virtualisation.vmVariant = {
+  #   users.users.christian = {
+  #     initialHashedPassword = lib.mkForce null;
+  #     password = "test";
+  #   };
+  # };
 }
