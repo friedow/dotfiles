@@ -37,6 +37,20 @@
             };
             sorting_strategy = "ascending";
           };
+
+          pickers = {
+            live_grep = {
+              additional_args.__raw = ''
+                function(opts)
+                  return {"--hidden"}
+                end
+              '';
+              file_ignore_patterns = [
+                "node_modules/**/*"
+                ".git/**/*"
+              ];
+            };
+          };
         };
       };
     };
