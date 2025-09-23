@@ -58,114 +58,117 @@
       specialArgs = {
         inherit inputs;
       };
-
-      desktop-modules = [
-        ./modules/bootscreen.nix
-        ./modules/blue-light-filter.nix
-        ./modules/browser.nix
-        ./modules/centerpiece.nix
-        ./modules/clipboard.nix
-        ./modules/cursor.nix
-        ./modules/disable-services.nix
-        ./modules/disko.nix
-        ./modules/display-manager.nix
-        ./modules/file-manager.nix
-        ./modules/git.nix
-        ./modules/gtk.nix
-        ./modules/home-manager.nix
-        ./modules/inkscape
-        ./modules/lockscreen
-        ./modules/neovim
-        ./modules/networking.nix
-        ./modules/notifications.nix
-        ./modules/resource-monitor.nix
-        ./modules/shell
-        ./modules/nix-cli.nix
-        ./modules/password-manager.nix
-        ./modules/privilige-manager.nix
-        ./modules/secret-management.nix
-        ./modules/session.nix
-        ./modules/sublime-merge.nix
-        ./modules/terminal.nix
-        ./modules/theme
-        ./modules/time.nix
-        ./modules/user-christian.nix
-        ./modules/yubikey.nix
-        ./modules/window-manager.nix
-      ];
-
-      personal-modules = [ ];
-
-      work-modules = [
-        ./modules/devenv.nix
-        ./modules/glab.nix
-        ./modules/xdg-utils.nix
-      ];
     in
-    (inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      # access via nix repl debug.x
-      debug = true;
+    (inputs.flake-parts.lib.mkFlake { inherit inputs; } (
+      { lib, ... }:
+      let
+        moduleDirectoryList = builtins.attrNames (builtins.readDir ./modules);
+        allModules = builtins.listToAttrs (
+          builtins.map (entry: {
+            name = lib.strings.removeSuffix ".nix" entry;
+            value = ./. + "/modules/${entry}";
+          }) moduleDirectoryList
+        );
+      in
+      {
+        # access via nix repl debug.x
+        debug = true;
 
-      imports = [
-        inputs.treefmt-nix.flakeModule
-      ];
+        imports = [
+          inputs.treefmt-nix.flakeModule
+        ];
 
-      flake = {
-        modules = {
-          nixos.audio = ./modules/audio.nix;
+        flake = {
+          modules.nixos = allModules // {
+            desktop-modules.imports = with inputs.self.modules.nixos; [
+              blue-light-filter
+              bootscreen
+              browser
+              centerpiece
+              clipboard
+              cursor
+              disable-services
+              disko
+              display-manager
+              file-manager
+              git
+              gtk
+              home-manager
+              inkscape
+              lockscreen
+              neovim
+              networking
+              nix-cli
+              notifications
+              password-manager
+              privilige-manager
+              resource-monitor
+              secret-management
+              session
+              shell
+              sublime-merge
+              terminal
+              theme
+              time
+              user-christian
+              window-manager
+              yubikey
+            ];
 
-          nixos.desktop.imports = [
-            # config.flake.modules.nixos.audio
-            inputs.self.modules.nixos.audio
-          ];
-        };
+            personal-modules.imports = [ ];
 
-        nixosConfigurations = {
-          avalanche = inputs.nixpkgs.lib.nixosSystem {
-            inherit specialArgs;
-            modules =
-              [ inputs.self.modules.nixos.desktop ]
-              ++ desktop-modules
-              ++ personal-modules
-              ++ [ ./hardware-configuration/avalanche.nix ];
+            work-modules.imports = with inputs.self.modules.nixos; [
+              devenv
+              glab
+              xdg-utils
+            ];
           };
 
-          bootstick = inputs.nixpkgs.lib.nixosSystem {
-            inherit specialArgs;
-            modules = desktop-modules ++ personal-modules ++ [ ./hardware-configuration/bootstick.nix ];
-          };
+          nixosConfigurations = {
+            avalanche = inputs.nixpkgs.lib.nixosSystem {
+              inherit specialArgs;
+              modules = [
+                inputs.self.modules.nixos.desktop-modules
+                inputs.self.modules.nixos.personal-modules
+              ] ++ [ ./hardware-configuration/avalanche.nix ];
+            };
 
-          hurricane = inputs.nixpkgs.lib.nixosSystem {
-            inherit specialArgs;
-            modules = desktop-modules ++ personal-modules ++ [ ./hardware-configuration/hurricane.nix ];
-          };
+            # bootstick = inputs.nixpkgs.lib.nixosSystem {
+            #   inherit specialArgs;
+            #   modules = desktop-modules ++ personal-modules ++ [ ./hardware-configuration/bootstick.nix ];
+            # };
 
-          tsunami = inputs.nixpkgs.lib.nixosSystem {
-            inherit specialArgs;
-            modules =
-              [ inputs.self.modules.nixos.desktop ]
-              ++ desktop-modules
-              ++ work-modules
-              ++ [ ./hardware-configuration/tsunami.nix ];
-          };
-        };
+            hurricane = inputs.nixpkgs.lib.nixosSystem {
+              inherit specialArgs;
+              modules = [
+                inputs.self.modules.nixos.desktop-modules
+                inputs.self.modules.nixos.personal-modules
+              ] ++ [ ./hardware-configuration/hurricane.nix ];
+            };
 
-      };
-      systems = [
-        # systems for which you want to build the `perSystem` attributes
-        "x86_64-linux"
-        # ...
-      ];
-      perSystem =
-        { config, pkgs, ... }:
-        {
-          treefmt = {
-            projectRootFile = "flake.nix";
-            programs = {
-              nixfmt.enable = true;
-              stylua.enable = true;
+            tsunami = inputs.nixpkgs.lib.nixosSystem {
+              inherit specialArgs;
+              modules = [
+                inputs.self.modules.nixos.desktop-modules
+                inputs.self.modules.nixos.work-modules
+              ] ++ [ ./hardware-configuration/tsunami.nix ];
             };
           };
         };
-    });
+
+        systems = [ "x86_64-linux" ];
+
+        perSystem =
+          { config, pkgs, ... }:
+          {
+            treefmt = {
+              projectRootFile = "flake.nix";
+              programs = {
+                nixfmt.enable = true;
+                stylua.enable = true;
+              };
+            };
+          };
+      }
+    ));
 }
