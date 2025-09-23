@@ -133,11 +133,6 @@
               ] ++ [ ./hardware-configuration/avalanche.nix ];
             };
 
-            # bootstick = inputs.nixpkgs.lib.nixosSystem {
-            #   inherit specialArgs;
-            #   modules = desktop-modules ++ personal-modules ++ [ ./hardware-configuration/bootstick.nix ];
-            # };
-
             hurricane = inputs.nixpkgs.lib.nixosSystem {
               inherit specialArgs;
               modules = [
