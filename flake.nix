@@ -7,12 +7,19 @@
 
     agenix = {
       url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
     };
 
     centerpiece = {
       url = "github:friedow/centerpiece?ref=feat/egui";
       # inputs.nixpkgs.follows = "nixpkgs"; TODO: resolve rustc mismatch
+      inputs = {
+        home-manager.follows = "home-manager";
+        treefmt-nix.follows = "treefmt-nix";
+      };
     };
 
     disko = {
@@ -37,12 +44,21 @@
 
     nixvim = {
       url = "github:nix-community/nixvim/nixos-25.05";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        nuschtosSearch.follows = "";
+      };
     };
 
     stylix = {
       url = "github:danth/stylix/release-25.05";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+        flake-parts.follows = "flake-parts";
+        nur.inputs.treefmt-nix.follows = "treefmt-nix";
+      };
     };
 
     treefmt-nix = {
