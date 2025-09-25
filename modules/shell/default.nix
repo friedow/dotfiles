@@ -18,6 +18,7 @@
       libwebp
       man-pages-posix
       tldr
+      websocat
     ];
 
     home = {
