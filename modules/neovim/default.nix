@@ -44,6 +44,10 @@ in
         mapleader = " ";
       };
 
+      extraConfigLua = ''
+        vim.opt.iskeyword:append("-")
+      '';
+
       opts = {
         clipboard = "unnamedplus";
         fillchars = "eob: ";
