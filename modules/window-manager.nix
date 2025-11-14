@@ -58,6 +58,14 @@ let
   create-screenshot = pkgs.writeShellScript "create-screenshot" ''
     ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.satty}/bin/satty -f -
   '';
+
+  rename-workspace = pkgs.writeShellScript "rename-workspace" ''
+    ${pkgs.kitty}/bin/kitty --app-id kitty-floating-input --execute nu -c 'input "Workspace name: " | niri msg action set-workspace-name $in'
+  '';
+
+  switch-workspace = pkgs.writeShellScript "switch-workspace" ''
+    ${pkgs.kitty}/bin/kitty --app-id kitty-floating-select --execute nu -c 'niri msg --json workspaces | from json | select idx name | sort-by idx | insert name_or_id {|$row| if $row.name != null {$row.name} else {$row.idx} } | get name_or_id | input list --fuzzy | niri msg action focus-workspace $in'
+  '';
 in
 {
   services.ddccontrol.enable = true;
@@ -131,7 +139,6 @@ in
 
       input {
           warp-mouse-to-focus
-          focus-follows-mouse
 
           keyboard {
               repeat-rate 35
@@ -160,10 +167,12 @@ in
 
 
       layout {
+          center-focused-column "always"
+
           gaps 10
 
           default-column-width { 
-            proportion 0.25
+            proportion 0.50
           }
 
           preset-column-widths {
@@ -189,7 +198,13 @@ in
       }
 
       animations {
-        off
+          window-movement {
+              spring damping-ratio=1.0 stiffness=10000 epsilon=0.0001
+          }
+
+          window-resize {
+              spring damping-ratio=1.0 stiffness=10000 epsilon=0.0001
+          }
       }
 
       window-rule {
@@ -205,6 +220,36 @@ in
       window-rule {
           match title=r#"^centerpiece$"#
           open-floating true
+      }
+
+      window-rule {
+          match app-id=r#"^kitty-floating-input$"#
+          open-floating true
+          border {
+            on
+            width 2
+            active-color "#7fc8ff"
+            inactive-color "#505050"
+          }
+          min-width 800
+          max-width 800
+          min-height 50
+          max-height 50
+      }
+
+      window-rule {
+          match app-id=r#"^kitty-floating-select$"#
+          open-floating true
+          border {
+            on
+            width 2
+            active-color "#7fc8ff"
+            inactive-color "#505050"
+          }
+          min-width 800
+          max-width 800
+          min-height 600
+          max-height 600
       }
 
       window-rule {
@@ -226,7 +271,8 @@ in
           Mod+S { spawn "${create-screenshot}"; }
           Mod+D { set-dynamic-cast-monitor; }
           Mod+W { set-dynamic-cast-window; }
-          Mod+R { clear-dynamic-cast-target; }
+          Mod+R { spawn "${rename-workspace}"; }
+          Mod+T { spawn "${switch-workspace}"; }
 
           XF86AudioRaiseVolume  allow-when-locked=true { spawn "${volume-increase}"; }
           XF86AudioLowerVolume  allow-when-locked=true { spawn "${volume-decrease}"; }
@@ -258,10 +304,10 @@ in
           Mod+Ctrl+K { focus-monitor-up; }
           Mod+Ctrl+L { focus-monitor-right; }
 
-          Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
-          Mod+Shift+Ctrl+J     { move-column-to-workspace-down; }
-          Mod+Shift+Ctrl+K     { move-column-to-workspace-up; }
-          Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
+          Mod+Shift+Ctrl+H     { move-workspace-to-monitor-left; }
+          Mod+Shift+Ctrl+J     { move-workspace-to-monitor-down; }
+          Mod+Shift+Ctrl+K     { move-workspace-to-monitor-up; }
+          Mod+Shift+Ctrl+L     { move-workspace-to-monitor-right; }
 
           Mod+Shift+Alt+Ctrl+H     { move-workspace-to-monitor-left; }
           Mod+Shift+Alt+Ctrl+J     { move-workspace-down; }
