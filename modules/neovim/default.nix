@@ -161,6 +161,7 @@ in
 
       plugins = {
         vim-surround.enable = true;
+        flash.enable = true;
       };
     };
   };
