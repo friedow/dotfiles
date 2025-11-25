@@ -167,8 +167,6 @@ in
 
 
       layout {
-          center-focused-column "always"
-
           gaps 10
 
           default-column-width { 
