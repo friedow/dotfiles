@@ -20,7 +20,7 @@
 
         keymaps = {
           "<leader>f" = {
-            action = "find_files find_command=rg,--files,--hidden,-g,!.git";
+            action = "find_files find_command=rg,--files,--hidden,--glob=!.git";
           };
           "<leader>/" = {
             action = "live_grep";
@@ -42,13 +42,9 @@
             live_grep = {
               additional_args.__raw = ''
                 function(opts)
-                  return {"--hidden"}
+                  return {"--hidden", "--glob=!.git"}
                 end
               '';
-              file_ignore_patterns = [
-                "node_modules/**/*"
-                ".git/**/*"
-              ];
             };
           };
         };

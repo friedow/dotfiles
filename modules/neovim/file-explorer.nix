@@ -35,6 +35,9 @@
 
       filesystem = {
         hijackNetrwBehavior = "open_current";
+        filteredItems = {
+          visible = true;
+        };
       };
 
       eventHandlers = {
