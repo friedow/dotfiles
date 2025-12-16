@@ -1,8 +1,8 @@
-{ pkgs-unstable, ... }:
+{ pkgs, ... }:
 let
-  incline-nvim = pkgs-unstable.vimUtils.buildVimPlugin {
+  incline-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "incline-nvim";
-    src = pkgs-unstable.fetchFromGitHub {
+    src = pkgs.fetchFromGitHub {
       owner = "b0o";
       repo = "incline.nvim";
       rev = "27040695b3bbfcd3257669037bd008d1a892831d";

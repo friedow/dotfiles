@@ -2,7 +2,7 @@
   description = "friedow system config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     agenix = {
@@ -15,8 +15,8 @@
 
     centerpiece = {
       url = "github:friedow/centerpiece?ref=feat/egui";
-      # inputs.nixpkgs.follows = "nixpkgs"; TODO: resolve rustc mismatch
       inputs = {
+        nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
         treefmt-nix.follows = "treefmt-nix";
       };
@@ -38,12 +38,12 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-25.05";
+      url = "github:nix-community/nixvim/nixos-25.11";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
@@ -52,12 +52,10 @@
     };
 
     stylix = {
-      url = "github:danth/stylix/release-25.05";
+      url = "github:danth/stylix/release-25.11";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        home-manager.follows = "home-manager";
         flake-parts.follows = "flake-parts";
-        nur.inputs.treefmt-nix.follows = "treefmt-nix";
       };
     };
 

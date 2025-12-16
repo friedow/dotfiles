@@ -25,31 +25,36 @@
     plugins.neo-tree = {
       enable = true;
 
-      buffers = {
-        followCurrentFile = {
-          enabled = true;
-          leaveDirsOpen = true;
+      settings = {
+        buffers = {
+          follow_current_file = {
+            enabled = true;
+            leave_dirs_open = true;
+          };
+          group_empty_dirs = true;
         };
-        groupEmptyDirs = true;
-      };
 
-      filesystem = {
-        hijackNetrwBehavior = "open_current";
-        filteredItems = {
-          visible = true;
+        filesystem = {
+          hijack_netrw_behavior = "open_current";
+          filtered_items = {
+            visible = true;
+          };
         };
-      };
 
-      eventHandlers = {
-        neo_tree_buffer_enter = ''
-          function(arg)
-            -- set neo-tree bg color to white
-            vim.cmd.highlight({ "NeoTreeNormal", "guibg=white" })
-            vim.cmd([[
-              setlocal relativenumber
-            ]])
-          end
-        '';
+        event_handlers = [
+          {
+            event = "neo_tree_buffer_enter";
+            handler.__raw = ''
+              function(arg)
+                -- set neo-tree bg color to white
+                vim.cmd.highlight({ "NeoTreeNormal", "guibg=white" })
+                vim.cmd([[
+                  setlocal relativenumber
+                ]])
+              end,
+            '';
+          }
+        ];
       };
     };
   };

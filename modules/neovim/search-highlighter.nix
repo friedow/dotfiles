@@ -1,7 +1,7 @@
-{ pkgs-unstable, ... }:
+{ pkgs, ... }:
 {
   home-manager.users.christian.programs.nixvim = {
-    extraPlugins = with pkgs-unstable.vimPlugins; [
+    extraPlugins = with pkgs.vimPlugins; [
       nvim-hlslens
     ];
 

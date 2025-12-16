@@ -1,7 +1,7 @@
-{ pkgs-unstable, ... }:
+{ pkgs, ... }:
 {
   home-manager.users.christian.programs.nixvim = {
-    extraPlugins = [ pkgs-unstable.vimPlugins.harpoon2 ];
+    extraPlugins = [ pkgs.vimPlugins.harpoon2 ];
 
     extraConfigLua = ''
       require("harpoon").setup()

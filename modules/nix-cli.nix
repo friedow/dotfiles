@@ -65,7 +65,8 @@
   };
 
   _module.args.pkgs-unstable = import inputs.nixpkgs-unstable {
-    inherit (pkgs) system config;
+    inherit (pkgs) config;
+    system = pkgs.stdenv.hostPlatform.system;
   };
 
   home-manager.users.christian.home.packages = with pkgs; [ nix-index ];

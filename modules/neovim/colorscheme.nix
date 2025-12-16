@@ -1,11 +1,11 @@
-{ pkgs-unstable, ... }:
+{ pkgs, ... }:
 {
   home-manager.users.christian = {
 
     stylix.targets.nixvim.enable = false;
 
     programs.nixvim = {
-      extraPlugins = [ pkgs-unstable.vimPlugins.catppuccin-nvim ];
+      extraPlugins = [ pkgs.vimPlugins.catppuccin-nvim ];
       extraConfigLuaPre = ''
         require("catppuccin").setup {
           color_overrides = {

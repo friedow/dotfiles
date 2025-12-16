@@ -1,8 +1,8 @@
-{ pkgs-unstable, ... }:
+{ pkgs, ... }:
 let
-  buggler-nvim = pkgs-unstable.vimUtils.buildVimPlugin {
+  buggler-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "buggler-nvim";
-    src = pkgs-unstable.fetchFromGitHub {
+    src = pkgs.fetchFromGitHub {
       owner = "friedow";
       repo = "buggler.nvim";
       rev = "31292742d9676b7ae2fa776403563f7b74fbf20d";

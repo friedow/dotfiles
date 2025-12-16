@@ -21,7 +21,7 @@ in
       };
       # by default, use agreety asking for a user password
       default_session = {
-        command = "${pkgs.greetd.greetd}/bin/agreety --cmd ${greetd-session}/bin/greetd-session";
+        command = "${pkgs.greetd}/bin/agreety --cmd ${greetd-session}/bin/greetd-session";
       };
     };
   };

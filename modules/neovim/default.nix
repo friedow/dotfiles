@@ -1,8 +1,8 @@
-{ inputs, pkgs-unstable, ... }:
+{ inputs, pkgs, ... }:
 let
-  improvedft = pkgs-unstable.vimUtils.buildVimPlugin {
+  improvedft = pkgs.vimUtils.buildVimPlugin {
     name = "improvedft";
-    src = pkgs-unstable.fetchFromGitHub {
+    src = pkgs.fetchFromGitHub {
       owner = "chrisbra";
       repo = "improvedft";
       rev = "1f0b78b55ba5fca70db0f584d8b5e56a35fd26f6";
@@ -29,12 +29,12 @@ in
 
   home-manager.users.christian = {
     imports = [
-      inputs.nixvim.homeManagerModules.nixvim
+      inputs.nixvim.homeModules.nixvim
     ];
 
     programs.nixvim = {
       enable = true;
-      package = pkgs-unstable.neovim-unwrapped;
+      package = pkgs.neovim-unwrapped;
 
       defaultEditor = true;
       viAlias = true;

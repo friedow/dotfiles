@@ -1,4 +1,4 @@
-{ pkgs-unstable, ... }:
+{ pkgs, ... }:
 {
   home-manager.users.christian.programs.nixvim = {
     plugins = {
@@ -16,7 +16,7 @@
       lsp = {
         enable = true;
 
-        package = pkgs-unstable.vimPlugins.nvim-lspconfig;
+        package = pkgs.vimPlugins.nvim-lspconfig;
 
         keymaps = {
           diagnostic."<leader><tab>" = "open_float";
@@ -65,12 +65,10 @@
           };
           ts_ls = {
             enable = true;
-            package = pkgs-unstable.typescript-language-server;
           };
-          volar = {
+          vue_ls = {
             enable = true;
             tslsIntegration = true;
-            package = pkgs-unstable.vue-language-server;
           };
           yamlls.enable = true;
         };

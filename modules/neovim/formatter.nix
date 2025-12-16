@@ -1,7 +1,7 @@
-{ pkgs-unstable, ... }:
+{ pkgs, ... }:
 {
   home-manager.users.christian = {
-    home.packages = with pkgs-unstable; [
+    home.packages = with pkgs; [
       prettierd
       nixfmt-rfc-style
       stylua

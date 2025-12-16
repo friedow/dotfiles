@@ -1,4 +1,4 @@
-{ pkgs-unstable, ... }:
+{ pkgs, ... }:
 {
 
   # home-manager.users.christian.programs.nixvim.extraConfigLuaPre = ''
@@ -9,7 +9,7 @@
   home-manager.users.christian.programs.nixvim.plugins = {
     blink-cmp = {
       enable = true;
-      package = pkgs-unstable.vimPlugins.blink-cmp;
+      package = pkgs.vimPlugins.blink-cmp;
       settings = {
         keymap = {
           preset = "none";
