@@ -11,11 +11,25 @@
       experimental-features = [
         "nix-command"
         "flakes"
+        # for container in builds support
+        "auto-allocate-uids"
+        "cgroups"
       ];
+      auto-allocate-uids = true;
 
       substituters = [ "https://friedow.cachix.org/" ];
       trusted-substituters = [ "https://friedow.cachix.org/" ];
       trusted-public-keys = [ "friedow.cachix.org-1:JDEaYMqNgGu+bVPOca7Zu4Cp8QDMkvQpArKuwPKa29A=" ];
+
+      system-features = [
+        # default values
+        "benchmark"
+        "big-parallel"
+        "kvm"
+        "nixos-test"
+        # added this to run clan container tests
+        "uid-range"
+      ];
     };
 
     registry = {
@@ -47,7 +61,7 @@
   nixpkgs.config = {
     allowUnfree = true;
     permittedInsecurePackages = [ "openssl-1.1.1w" ];
-    showDerivationWarnings = [ "maintainerless" ];
+    # showDerivationWarnings = [ "maintainerless" ];
   };
 
   _module.args.pkgs-unstable = import inputs.nixpkgs-unstable {
