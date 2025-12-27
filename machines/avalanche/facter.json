@@ -1190,7 +1190,7 @@
         "fpu_exception": false,
         "cpuid_level": 27,
         "write_protect": false,
-        "tlb_size": 32765,
+        "tlb_size": 32767,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
@@ -2299,7 +2299,7 @@
           "hex": "cda3",
           "value": 52643
         },
-        "sysfs_id": "/devices/pci0000:00/0000:00:15.1/i2c_designware.1/i2c-2/i2c-CUST0001:00/0018:06CB:CDA3.0005/input/input16",
+        "sysfs_id": "/devices/pci0000:00/0000:00:15.1/i2c_designware.1/i2c-1/i2c-CUST0001:00/0018:06CB:CDA3.0005/input/input16",
         "unix_device_names": [
           "/dev/input/event11",
           "/dev/input/ + handler"
