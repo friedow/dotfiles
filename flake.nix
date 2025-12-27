@@ -22,6 +22,14 @@
       };
     };
 
+    clan = {
+      url = "git+https://git.clan.lol/clan/clan-core?shallow=1";
+      inputs.treefmt-nix.follows = "treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.disko.follows = "disko";
+    };
+
     disko = {
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -90,6 +98,7 @@
 
         imports = [
           inputs.treefmt-nix.flakeModule
+          ./clan.nix
         ];
 
         flake = {
@@ -102,7 +111,7 @@
               clipboard
               cursor
               disable-services
-              disko
+              # disko
               display-manager
               file-manager
               git
@@ -139,20 +148,22 @@
           };
 
           nixosConfigurations = {
-            avalanche = inputs.nixpkgs.lib.nixosSystem {
-              inherit specialArgs;
-              modules = [
-                inputs.self.modules.nixos.desktop-modules
-                inputs.self.modules.nixos.personal-modules
-              ] ++ [ ./hardware-configuration/avalanche.nix ];
-            };
+            # avalanche = inputs.nixpkgs.lib.nixosSystem {
+            #   inherit specialArgs;
+            #   modules = [
+            #     inputs.self.modules.nixos.desktop-modules
+            #     inputs.self.modules.nixos.personal-modules
+            #   ]
+            #   ++ [ ./hardware-configuration/avalanche.nix ];
+            # };
 
             hurricane = inputs.nixpkgs.lib.nixosSystem {
               inherit specialArgs;
               modules = [
                 inputs.self.modules.nixos.desktop-modules
                 inputs.self.modules.nixos.personal-modules
-              ] ++ [ ./hardware-configuration/hurricane.nix ];
+              ]
+              ++ [ ./hardware-configuration/hurricane.nix ];
             };
 
             tsunami = inputs.nixpkgs.lib.nixosSystem {
@@ -160,7 +171,8 @@
               modules = [
                 inputs.self.modules.nixos.desktop-modules
                 inputs.self.modules.nixos.work-modules
-              ] ++ [ ./hardware-configuration/tsunami.nix ];
+              ]
+              ++ [ ./hardware-configuration/tsunami.nix ];
             };
           };
         };

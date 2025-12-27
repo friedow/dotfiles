@@ -1,22 +1,31 @@
+# ---
+# schema = "single-disk"
+# [placeholders]
+# mainDisk = "/dev/disk/by-id/nvme-LITEON_CA3-8D512_0029394000SW"
+# ---
+# This file was automatically generated!
+# CHANGING this configuration requires wiping and reinstalling the machine
 {
-  inputs,
-  pkgs,
   config,
+  pkgs,
   ...
 }:
 {
-  imports = [ inputs.disko.nixosModules.disko ];
+  # clan.core.vars.generators.luks = {
+  #   files.key.neededFor = "partitioning";
+  #   runtimeInputs = [
+  #     pkgs.coreutils
+  #     pkgs.xxd
+  #   ];
+  #   script = ''
+  #     dd if=/dev/urandom bs=32 count=1 | xxd -c32 -p > $out/key
+  #   '';
+  # };
 
-  clan.core.vars.generators.luks = {
-    files.key.neededFor = "partitioning";
-    runtimeInputs = [
-      pkgs.coreutils
-      pkgs.xxd
-    ];
-    script = ''
-      dd if=/dev/urandom bs=32 count=1 | xxd -c32 -p > $out/key
-    '';
-  };
+  boot.loader.grub.devices = [ "nodev" ];
+
+  boot.loader.grub.efiSupport = true;
+  boot.loader.grub.efiInstallAsRemovable = true;
 
   disko.devices.disk.main = {
     type = "disk";
@@ -40,9 +49,10 @@
           content = {
             type = "luks";
             name = "crypted";
-            keyFile = "file://${config.clan.core.vars.generators.luks.files.key.path}";
+            passwordFile = "/tmp/secret.key"; # Interactive
             settings = {
               allowDiscards = true;
+              # keyFile = "file://${config.clan.core.vars.generators.luks.files.key.path}";
             };
             content = {
               type = "filesystem";

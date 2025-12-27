@@ -1,4 +1,8 @@
-{ inputs, ... }:
+{
+  inputs,
+  config,
+  ...
+}:
 {
   imports = [ inputs.home-manager.nixosModules.home-manager ];
 
@@ -9,4 +13,9 @@
       inherit inputs;
     };
   };
+
+  home-manager.users.christian = {
+    home.stateVersion = config.system.stateVersion;
+  };
+
 }
