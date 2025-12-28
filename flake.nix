@@ -5,14 +5,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        home-manager.follows = "home-manager";
-      };
-    };
-
     centerpiece = {
       url = "github:friedow/centerpiece?ref=feat/egui";
       inputs = {
@@ -29,11 +21,6 @@
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
       };
-    };
-
-    dotfiles-secrets = {
-      url = "git+ssh://git@github.com/friedow/dotfiles-secrets.git";
-      flake = false;
     };
 
     flake-parts = {
