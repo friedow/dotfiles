@@ -1,13 +1,6 @@
-# ---
-# schema = "single-disk"
-# [placeholders]
-# mainDisk = "/dev/disk/by-id/nvme-LITEON_CA3-8D512_0029394000SW"
-# ---
-# This file was automatically generated!
-# CHANGING this configuration requires wiping and reinstalling the machine
 {
-  config,
-  pkgs,
+  # config,
+  # pkgs,
   ...
 }:
 {

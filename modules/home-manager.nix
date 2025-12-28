@@ -9,13 +9,10 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
+    users.christian.home.stateVersion = config.system.stateVersion;
     extraSpecialArgs = {
       inherit inputs;
     };
-  };
-
-  home-manager.users.christian = {
-    home.stateVersion = config.system.stateVersion;
   };
 
 }

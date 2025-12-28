@@ -24,10 +24,12 @@
 
     clan = {
       url = "git+https://git.clan.lol/clan/clan-core?shallow=1";
-      inputs.treefmt-nix.follows = "treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
-      inputs.disko.follows = "disko";
+      inputs = {
+        treefmt-nix.follows = "treefmt-nix";
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        disko.follows = "disko";
+      };
     };
 
     disko = {
