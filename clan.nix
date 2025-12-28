@@ -12,7 +12,19 @@
       };
 
     secrets.age.plugins = [
-      "age-plugin-yubikey"
+      "age-plugin-fido2-hmac"
     ];
+
+    inventory.instances = {
+      sshd = {
+        module = {
+          name = "sshd";
+          input = "clan";
+        };
+        roles.client.tags.all = { };
+        roles.server.tags.all = { };
+      };
+    };
   };
+
 }
