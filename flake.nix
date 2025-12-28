@@ -65,15 +65,6 @@
     in
     (inputs.flake-parts.lib.mkFlake { inherit inputs; } (
       { lib, ... }:
-      let
-        moduleDirectoryList = builtins.attrNames (builtins.readDir ./modules);
-        allModules = builtins.listToAttrs (
-          builtins.map (entry: {
-            name = lib.strings.removeSuffix ".nix" entry;
-            value = ./. + "/modules/${entry}";
-          }) moduleDirectoryList
-        );
-      in
       {
         # access via nix repl debug.x
         debug = true;
@@ -81,54 +72,10 @@
         imports = [
           inputs.treefmt-nix.flakeModule
           ./clan.nix
+          ./modules
         ];
 
         flake = {
-          modules.nixos = allModules // {
-            desktop-modules.imports = with inputs.self.modules.nixos; [
-              blue-light-filter
-              bootscreen
-              browser
-              centerpiece
-              clipboard
-              cursor
-              disable-services
-              # disko
-              display-manager
-              file-manager
-              git
-              gtk
-              home-manager
-              inkscape
-              lockscreen
-              neovim
-              networking
-              nix-cli
-              notifications
-              password-manager
-              privilige-manager
-              resource-monitor
-              secret-management
-              session
-              shell
-              sublime-merge
-              terminal
-              theme
-              time
-              user-christian
-              window-manager
-              yubikey
-            ];
-
-            personal-modules.imports = [ ];
-
-            work-modules.imports = with inputs.self.modules.nixos; [
-              devenv
-              glab
-              xdg-utils
-            ];
-          };
-
           nixosConfigurations = {
             # avalanche = inputs.nixpkgs.lib.nixosSystem {
             #   inherit specialArgs;
