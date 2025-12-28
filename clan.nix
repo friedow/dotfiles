@@ -21,8 +21,10 @@
           name = "sshd";
           input = "clan";
         };
-        roles.client.tags.all = { };
-        roles.server.tags.all = { };
+        roles = {
+          client.tags = [ "all" ];
+          server.tags = [ "all" ];
+        };
       };
     };
   };

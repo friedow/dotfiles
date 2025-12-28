@@ -40,6 +40,7 @@ in
       session
       shell
       sublime-merge
+      ssh
       terminal
       theme
       time
