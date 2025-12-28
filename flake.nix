@@ -28,13 +28,7 @@
         treefmt-nix.follows = "treefmt-nix";
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
-        disko.follows = "disko";
       };
-    };
-
-    disko = {
-      url = "github:nix-community/disko/latest";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     dotfiles-secrets = {
@@ -73,7 +67,6 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
   };
 
   outputs =
@@ -182,8 +175,17 @@
         systems = [ "x86_64-linux" ];
 
         perSystem =
-          { config, pkgs, ... }:
           {
+            config,
+            pkgs,
+            inputs',
+            ...
+          }:
+          {
+            devShells.default = pkgs.mkShell {
+              packages = [ inputs'.clan.packages.clan-cli ];
+            };
+
             treefmt = {
               projectRootFile = "flake.nix";
               programs = {

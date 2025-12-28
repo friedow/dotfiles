@@ -124,9 +124,7 @@
     "clan": {
       "inputs": {
         "data-mesher": "data-mesher",
-        "disko": [
-          "disko"
-        ],
+        "disko": "disko",
         "flake-parts": [
           "flake-parts"
         ],
@@ -224,20 +222,20 @@
     "disko": {
       "inputs": {
         "nixpkgs": [
+          "clan",
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1746728054,
-        "narHash": "sha256-eDoSOhxGEm2PykZFa/x9QG5eTH0MJdiJ9aR00VAofXE=",
+        "lastModified": 1766150702,
+        "narHash": "sha256-P0kM+5o+DKnB6raXgFEk3azw8Wqg5FL6wyl9jD+G5a4=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "ff442f5d1425feb86344c028298548024f21256d",
+        "rev": "916506443ecd0d0b4a0f4cf9d40a3c22ce39b378",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
-        "ref": "latest",
         "repo": "disko",
         "type": "github"
       }
@@ -486,7 +484,6 @@
         "agenix": "agenix",
         "centerpiece": "centerpiece",
         "clan": "clan",
-        "disko": "disko",
         "dotfiles-secrets": "dotfiles-secrets",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
@@ -703,11 +700,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1749194973,
-        "narHash": "sha256-eEy8cuS0mZ2j/r/FE0/LYBSBcIs/MKOIVakwHVuqTfk=",
+        "lastModified": 1766000401,
+        "narHash": "sha256-+cqN4PJz9y0JQXfAK5J1drd0U05D5fcAGhzhfVrDlsI=",
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "rev": "a05be418a1af1198ca0f63facb13c985db4cb3c5",
+        "rev": "42d96e75aa56a3f70cab7e7dc4a32868db28e8fd",
         "type": "github"
       },
       "original": {
