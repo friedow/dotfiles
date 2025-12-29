@@ -16,13 +16,13 @@ in
   flake.modules.nixos = allModules // {
     desktop-modules.imports = with self.modules.nixos; [
       blue-light-filter
+      bluetooth
       bootscreen
       browser
       centerpiece
       clipboard
       cursor
       disable-services
-      # disko
       display-manager
       file-manager
       git
@@ -44,6 +44,7 @@ in
       terminal
       theme
       time
+      usb-wakeup
       user-christian
       window-manager
       yubikey

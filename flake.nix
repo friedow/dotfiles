@@ -75,37 +75,6 @@
           ./modules
         ];
 
-        flake = {
-          nixosConfigurations = {
-            # avalanche = inputs.nixpkgs.lib.nixosSystem {
-            #   inherit specialArgs;
-            #   modules = [
-            #     inputs.self.modules.nixos.desktop-modules
-            #     inputs.self.modules.nixos.personal-modules
-            #   ]
-            #   ++ [ ./hardware-configuration/avalanche.nix ];
-            # };
-
-            hurricane = inputs.nixpkgs.lib.nixosSystem {
-              inherit specialArgs;
-              modules = [
-                inputs.self.modules.nixos.desktop-modules
-                inputs.self.modules.nixos.personal-modules
-              ]
-              ++ [ ./hardware-configuration/hurricane.nix ];
-            };
-
-            tsunami = inputs.nixpkgs.lib.nixosSystem {
-              inherit specialArgs;
-              modules = [
-                inputs.self.modules.nixos.desktop-modules
-                inputs.self.modules.nixos.work-modules
-              ]
-              ++ [ ./hardware-configuration/tsunami.nix ];
-            };
-          };
-        };
-
         systems = [ "x86_64-linux" ];
 
         perSystem =
