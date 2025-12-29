@@ -15,6 +15,7 @@ in
 {
   flake.modules.nixos = allModules // {
     desktop-modules.imports = with self.modules.nixos; [
+      beeper
       blue-light-filter
       bluetooth
       bootscreen
