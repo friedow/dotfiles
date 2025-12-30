@@ -58,12 +58,7 @@
 
   outputs =
     { ... }@inputs:
-    let
-      specialArgs = {
-        inherit inputs;
-      };
-    in
-    (inputs.flake-parts.lib.mkFlake { inherit inputs; } (
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } (
       { lib, ... }:
       {
         # access via nix repl debug.x
@@ -79,12 +74,7 @@
         systems = [ "x86_64-linux" ];
 
         perSystem =
-          {
-            config,
-            pkgs,
-            inputs',
-            ...
-          }:
+          { pkgs, inputs', ... }:
           {
             devShells.default = pkgs.mkShell {
               packages = [ inputs'.clan.packages.clan-cli ];
@@ -99,5 +89,5 @@
             };
           };
       }
-    ));
+    );
 }
