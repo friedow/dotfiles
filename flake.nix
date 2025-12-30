@@ -73,6 +73,7 @@
           inputs.treefmt-nix.flakeModule
           ./clan.nix
           ./modules
+          ./templates
         ];
 
         systems = [ "x86_64-linux" ];
