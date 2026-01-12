@@ -7,6 +7,8 @@
       extensions = [
         { id = "aeblfdkhhhdcdjpifhhbdiojplfjncoa"; } # 1password
         { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # vimium
+        { id = "iaiomicjabeggjcfkbimgmglanimpnae"; } # Tab Session Manager
+        { id = "aghdiknflpelpkepifoplhodcnfildao"; } # Save Tab Groups for Tab Session Manager
       ];
     };
 
