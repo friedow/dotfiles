@@ -8,9 +8,5 @@
     # pulse.enable = true;
   };
 
-  home-manager.sharedModules = [
-    {
-      home.packages = with pkgs; [ pavucontrol ];
-    }
-  ];
+  home-manager.users.christian.home.packages = with pkgs; [ pavucontrol ];
 }
