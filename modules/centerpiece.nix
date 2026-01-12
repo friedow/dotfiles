@@ -1,5 +1,7 @@
-{ inputs, ... }:
+{ pkgs, inputs, ... }:
 {
+  home-manager.users.christian.home.packages = with pkgs; [ cosmic-settings ];
+
   home-manager.users.christian = {
     imports = [ inputs.centerpiece.hmModules."x86_64-linux".default ];
     programs.centerpiece = {
