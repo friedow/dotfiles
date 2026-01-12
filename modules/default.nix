@@ -34,6 +34,7 @@ in
       neovim
       networking
       nix-cli
+      notes
       notifications
       password-manager
       privilige-manager
