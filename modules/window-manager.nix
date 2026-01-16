@@ -158,6 +158,10 @@ in
           scale 2
       }
 
+      output "LG Electronics LG FHD 502AXFL19123 " {
+          mode custom=true "1920x1080@59.998"
+      }
+
       prefer-no-csd
 
       hotkey-overlay {
