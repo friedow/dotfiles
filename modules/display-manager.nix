@@ -1,8 +1,4 @@
 { pkgs, ... }:
 {
-  home-manager.users.christian = {
-    home.packages = with pkgs; [
-      wdisplays
-    ];
-  };
+  home-manager.users.christian.home.packages = [ pkgs.wdisplays ];
 }

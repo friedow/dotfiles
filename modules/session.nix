@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 let
   greetd-session = pkgs.writeShellScriptBin "greetd-session" ''
     source /etc/profile

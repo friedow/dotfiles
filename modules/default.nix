@@ -17,7 +17,6 @@ in
     desktop-modules.imports = with self.modules.nixos; [
       beeper
       blue-light-filter
-      bluetooth
       bootscreen
       browser
       centerpiece
@@ -27,9 +26,7 @@ in
       display-manager
       file-manager
       git
-      gtk
       home-manager
-      inkscape
       lockscreen
       neovim
       networking
@@ -41,7 +38,6 @@ in
       resource-monitor
       session
       shell
-      sublime-merge
       ssh
       terminal
       theme

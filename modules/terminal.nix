@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 {
   home-manager.users.christian.programs = {
     kitty = {

@@ -1,4 +1,4 @@
 { pkgs, ... }:
 {
-  home-manager.users.christian.home.packages = with pkgs; [ wl-clipboard ];
+  home-manager.users.christian.home.packages = [ pkgs.wl-clipboard ];
 }

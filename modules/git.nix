@@ -1,4 +1,3 @@
-{ ... }:
 {
   home-manager.users.christian.programs = {
     delta = {

@@ -1,6 +1,5 @@
 { pkgs, lib, ... }:
 {
-
   users.users.christian.extraGroups = [ "networkmanager" ];
 
   networking = {

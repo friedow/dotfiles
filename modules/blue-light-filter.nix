@@ -1,4 +1,3 @@
-{ ... }:
 {
   home-manager.users.christian.services.wlsunset = {
     enable = true;

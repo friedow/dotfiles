@@ -1,4 +1,3 @@
-{ ... }:
 {
   services = {
     logrotate.enable = false;
