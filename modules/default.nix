@@ -31,6 +31,7 @@ in
       neovim
       networking
       nix-cli
+      nix-tooling
       notes
       notifications
       password-manager
