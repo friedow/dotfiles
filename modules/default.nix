@@ -53,6 +53,7 @@ in
 
     work-modules.imports = with self.modules.nixos; [
       devenv
+      codex
       glab
       xdg-utils
     ];
