@@ -46,6 +46,7 @@ in
       time
       usb-wakeup
       user-christian
+      virtualisation
       window-manager
       yubikey
     ];
