@@ -1,9 +1,7 @@
-{ inputs, ... }:
 {
-  boot.loader.grub = {
-    devices = [ "nodev" ];
-    efiSupport = true;
-    efiInstallAsRemovable = true;
+  boot.loader = {
+    efi.canTouchEfiVariables = true;
+    systemd-boot.enable = true;
   };
 
   disko.devices.disk.main = {
