@@ -35,6 +35,7 @@ in
       notes
       notifications
       password-manager
+      printing
       privilige-manager
       resource-monitor
       session
