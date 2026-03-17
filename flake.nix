@@ -6,7 +6,7 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     centerpiece = {
-      url = "github:friedow/centerpiece?ref=feat/egui";
+      url = "github:friedow/centerpiece";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
