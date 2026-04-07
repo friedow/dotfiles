@@ -11,12 +11,5 @@
         { id = "aghdiknflpelpkepifoplhodcnfildao"; } # Save Tab Groups for Tab Session Manager
       ];
     };
-
-    xdg.desktopEntries."brave" = {
-      name = "Brave";
-      genericName = "Browser";
-      exec = "brave --enable-features=UseOzonePlatform --ozone-platform=wayland";
-      terminal = false;
-    };
   };
 }
