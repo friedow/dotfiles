@@ -21,6 +21,7 @@ in
       browser
       centerpiece
       clipboard
+      codex
       cursor
       disable-services
       display-manager
@@ -55,7 +56,6 @@ in
 
     work-modules.imports = with self.modules.nixos; [
       devenv
-      codex
       glab
       xdg-utils
     ];
