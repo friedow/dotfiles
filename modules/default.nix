@@ -45,18 +45,20 @@ in
       terminal
       theme
       time
+      tmux
       usb-wakeup
       user-christian
       virtualisation
       window-manager
+      workspace-management
       yubikey
+      glab
     ];
 
     personal-modules.imports = [ ];
 
     work-modules.imports = with self.modules.nixos; [
       devenv
-      glab
       xdg-utils
     ];
   };

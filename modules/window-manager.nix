@@ -65,6 +65,14 @@ let
   switch-workspace = pkgs.writeShellScript "switch-workspace" ''
     ${pkgs.kitty}/bin/kitty --app-id kitty-floating-select --execute nu -c 'niri msg --json workspaces | from json | select idx name | sort-by idx | insert name_or_id {|$row| if $row.name != null {$row.name} else {$row.idx} } | get name_or_id | input list --fuzzy | niri msg action focus-workspace $in'
   '';
+
+  new-issue = pkgs.writeShellScript "new-issue" ''
+    ${pkgs.kitty}/bin/kitty --app-id kitty-floating-select --execute new-issue
+  '';
+
+  new-review = pkgs.writeShellScript "new-review" ''
+    ${pkgs.kitty}/bin/kitty --app-id kitty-floating-select --execute new-review
+  '';
 in
 {
   services.ddccontrol.enable = true;
@@ -272,8 +280,10 @@ in
           Mod+S { spawn "${create-screenshot}"; }
           Mod+D { set-dynamic-cast-monitor; }
           Mod+W { set-dynamic-cast-window; }
-          Mod+R { spawn "${rename-workspace}"; }
+          Mod+Shift+R { spawn "${rename-workspace}"; }
           Mod+T { spawn "${switch-workspace}"; }
+          Mod+N { spawn "${new-issue}"; }
+          Mod+R { spawn "${new-review}"; }
 
           XF86AudioRaiseVolume  allow-when-locked=true { spawn "${volume-increase}"; }
           XF86AudioLowerVolume  allow-when-locked=true { spawn "${volume-decrease}"; }

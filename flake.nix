@@ -80,6 +80,8 @@
               packages = [ inputs'.clan.packages.clan-cli ];
             };
 
+            packages.workspace-management = import ./packages/workspace-management { inherit inputs pkgs; };
+
             treefmt = {
               projectRootFile = "flake.nix";
               programs = {
