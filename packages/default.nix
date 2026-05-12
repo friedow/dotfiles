@@ -1,0 +1,7 @@
+{ self, ... }:
+{
+  imports = [
+    ./agents.nix
+  ];
+
+}

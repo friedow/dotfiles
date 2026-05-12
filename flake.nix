@@ -33,6 +33,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    jail-nix.url = "sourcehut:~alexdavid/jail.nix";
+
     nixvim = {
       url = "github:nix-community/nixvim/nixos-25.11";
       inputs = {
@@ -68,14 +70,27 @@
           inputs.treefmt-nix.flakeModule
           ./clan.nix
           ./modules
+          ./packages
           ./templates
         ];
 
         systems = [ "x86_64-linux" ];
 
         perSystem =
-          { pkgs, inputs', ... }:
           {
+            pkgs,
+            inputs',
+            system,
+            ...
+          }:
+          {
+            _module.args.pkgs-unstable = import inputs.nixpkgs-unstable {
+              inherit system;
+              config = {
+                allowUnfree = true;
+              };
+            };
+
             devShells.default = pkgs.mkShell {
               packages = [ inputs'.clan.packages.clan-cli ];
             };

@@ -14,14 +14,23 @@ let
 in
 {
   flake.modules.nixos = allModules // {
+    agents =
+      { ... }:
+      {
+        home-manager.users.christian.home.packages = [
+          self.packages.x86_64-linux.claude-code
+          self.packages.x86_64-linux.codex
+        ];
+      };
+
     desktop-modules.imports = with self.modules.nixos; [
+      agents
       beeper
       blue-light-filter
       bootscreen
       browser
       centerpiece
       clipboard
-      codex
       cursor
       disable-services
       display-manager
