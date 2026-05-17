@@ -21,11 +21,13 @@
         unzip
         gnutar
         diffutils
+        nix
       ];
       commonCombinators = with combinators; [
         network
         mount-cwd
         no-new-session
+        (try-readonly (noescape "/etc/nix/nix.conf"))
         (try-fwd-env "NO_COLOR")
         (try-fwd-env "TERM")
         (add-pkg-deps commonPkgs)

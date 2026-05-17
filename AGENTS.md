@@ -1,0 +1,4 @@
+- use the dendritic pattern
+- run the formmater using `nix fmt`
+- ensure packages build with `nix build .#<package> --print-out-paths --no-link`
+- ensure machines build with `nix build .#nixosConfigurations.<machine>.config.system.build.toplevel --print-out-paths --no-link`
