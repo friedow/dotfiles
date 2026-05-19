@@ -426,7 +426,8 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim": "nixvim",
         "stylix": "stylix",
-        "treefmt-nix": "treefmt-nix"
+        "treefmt-nix": "treefmt-nix",
+        "zmk-nix": "zmk-nix"
       }
     },
     "sops-nix": {
@@ -630,6 +631,27 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "zmk-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1778980631,
+        "narHash": "sha256-6zCBOmLsIWAH6BOZJMuJCOAv9j8chUnHSwxJu7rs1DU=",
+        "owner": "lilyinstarlight",
+        "repo": "zmk-nix",
+        "rev": "5f1e3174860e84b60839be393645318a137e89db",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lilyinstarlight",
+        "repo": "zmk-nix",
+        "rev": "5f1e3174860e84b60839be393645318a137e89db",
         "type": "github"
       }
     }

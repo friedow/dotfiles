@@ -2,6 +2,7 @@
 {
   imports = [
     ./agents.nix
+    ./corne
   ];
 
 }

@@ -56,6 +56,11 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    zmk-nix = {
+      url = "github:lilyinstarlight/zmk-nix/5f1e3174860e84b60839be393645318a137e89db";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs =
