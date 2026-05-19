@@ -27,6 +27,7 @@ in
       agents
       beeper
       blue-light-filter
+      bluetooth
       bootscreen
       browser
       centerpiece
