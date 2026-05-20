@@ -17,10 +17,22 @@ in
     agents =
       { ... }:
       {
-        home-manager.users.christian.home.packages = [
-          self.packages.x86_64-linux.claude-code
-          self.packages.x86_64-linux.codex
-        ];
+        home-manager.users.christian = {
+          programs.claude-code = {
+            enable = true;
+            package = self.packages.x86_64-linux.claude-code;
+            settings = {
+              skipAutoPermissionPrompt = true;
+              permissions = {
+                defaultMode = "auto";
+              };
+            };
+          };
+          home.packages = [
+            self.packages.x86_64-linux.codex
+          ];
+        };
+
       };
 
     desktop-modules.imports = with self.modules.nixos; [

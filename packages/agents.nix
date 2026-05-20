@@ -28,6 +28,7 @@
         mount-cwd
         no-new-session
         (try-readonly (noescape "/etc/nix/nix.conf"))
+        (try-readonly (noescape "/nix/store"))
         (try-fwd-env "NO_COLOR")
         (try-fwd-env "TERM")
         (add-pkg-deps commonPkgs)
