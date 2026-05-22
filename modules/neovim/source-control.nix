@@ -1,6 +1,14 @@
-{ ... }:
+{ pkgs-unstable, ... }:
 {
   home-manager.users.christian.programs.nixvim = {
+    # TODO: Use the enable option for this with the next nixvim upgrade
+    extraPlugins = [ pkgs-unstable.vimPlugins.codediff-nvim ];
+    extraConfigLua = ''
+      require("codediff").setup({
+        diff = { layout = "inline" },
+      })
+    '';
+
     keymaps = [
       {
         action.__raw = ''
@@ -21,9 +29,9 @@
 
     plugins = {
       gitsigns.enable = true;
-      diffview.enable = true;
       neogit = {
         enable = true;
+        package = pkgs-unstable.vimPlugins.neogit;
 
         settings = {
           commit_editor.kind = "replace";
@@ -39,15 +47,16 @@
           filewatcher.enable = true;
           graph_style.__raw = "'kitty'";
 
+          diff_viewer = "codediff";
+
           integrations = {
-            diffview = true;
+            codediff = true;
             telescope = true;
           };
 
-          # TODO: enable with next update
-          # sections = {
-          #   recent.folded = false;
-          # };
+          sections = {
+            recent.folded = false;
+          };
         };
       };
     };
