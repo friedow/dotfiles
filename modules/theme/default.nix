@@ -2,10 +2,34 @@
 {
   imports = [ inputs.stylix.nixosModules.stylix ];
 
-  fonts.packages = with pkgs; [
-    fira-code
-    nerd-fonts.symbols-only
-  ];
+  fonts.fontconfig.localConf = ''
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+    <fontconfig>
+      <!-- DejaVu Sans outscores Noto Color Emoji for emoji codepoints in fontconfig's sort; reject it entirely (runtime, no cache dependency). -->
+      <selectfont>
+        <rejectfont>
+          <pattern>
+            <patelt name="family"><string>DejaVu Sans</string></patelt>
+          </pattern>
+        </rejectfont>
+      </selectfont>
+      <!-- Strip Misc Symbols (U+2600–U+27BF) from text fonts so per-glyph fallback reaches Noto Color Emoji. -->
+      <match target="scan">
+        <test name="family" compare="not_eq">
+          <string>Noto Color Emoji</string>
+        </test>
+        <edit name="charset" mode="assign">
+          <minus>
+            <name>charset</name>
+            <charset>
+              <range><int>0x2600</int><int>0x27BF</int></range>
+            </charset>
+          </minus>
+        </edit>
+      </match>
+    </fontconfig>
+  '';
 
   stylix = {
     enable = true;
@@ -15,12 +39,12 @@
     fonts = {
       serif = {
         package = pkgs.source-serif;
-        name = "Source Serif";
+        name = "Source Serif 4";
       };
 
       sansSerif = {
         package = pkgs.source-sans;
-        name = "Source Sans";
+        name = "Source Sans 3";
       };
 
       monospace = {
