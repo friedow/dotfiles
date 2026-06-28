@@ -24,7 +24,6 @@ in
     ./source-control.nix
     ./statusline.nix
     ./syntax-parser.nix
-    ./terminal-manager.nix
   ];
 
   home-manager.users.christian = {

@@ -72,7 +72,7 @@
             set_color normal
           '';
 
-          fish_right_prompt.body= "echo $PWD";
+          fish_right_prompt.body = "echo $PWD";
 
           l.body = "ls -lah --group-directories-first $argv";
 
