@@ -8,7 +8,10 @@
   };
 
   # TODO: move somewhere else probably git config
-  home-manager.users.christian.programs.ssh.enable = true;
+  home-manager.users.christian.programs.ssh = {
+    enable = true;
+    enableDefaultConfig = false;
+  };
   home-manager.users.christian.xdg.desktopEntries."1password" = {
     name = "1Password";
     genericName = "Password Manager";

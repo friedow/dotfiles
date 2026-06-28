@@ -3,7 +3,7 @@
   home-manager.users.christian = {
     home.packages = with pkgs; [
       prettierd
-      nixfmt-rfc-style
+      nixfmt
       stylua
       ruff
     ];
