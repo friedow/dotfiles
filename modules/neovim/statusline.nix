@@ -17,8 +17,14 @@ in
 
     extraConfigLua = ''
       local devicons = require("nvim-web-devicons")
-      -- TODO: investiate whether this conflics with the neogit log view
       require("incline").setup({
+        ignore = {
+          buftypes = {},
+          filetypes = {},
+          floating_wins = true,
+          unlisted_buffers = false,
+          wintypes = {}
+        },
       	window = {
       		padding = 0,
       		margin = { horizontal = 0 },
@@ -30,7 +36,7 @@ in
       		end
       		local ft_icon = devicons.get_icon(filename)
       		return {
-      			ft_icon and { " ", ft_icon, " " } or "",
+      			ft_icon and { " ", ft_icon, " " } or "",
       			" ",
       			{ filename, gui = "bold" },
       			" ",
