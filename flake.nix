@@ -15,7 +15,7 @@
     };
 
     clan = {
-      url = "git+https://git.clan.lol/clan/clan-core?shallow=1";
+      url = "git+https://git.clan.lol/clan/clan-core?ref=26.05";
       inputs = {
         treefmt-nix.follows = "treefmt-nix";
         nixpkgs.follows = "nixpkgs";
