@@ -26,6 +26,8 @@ in
               permissions = {
                 defaultMode = "auto";
               };
+              tui = "fullscreen";
+              editorMode = "vim";
             };
           };
           home.packages = [
