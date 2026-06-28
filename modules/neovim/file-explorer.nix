@@ -46,8 +46,6 @@
             event = "neo_tree_buffer_enter";
             handler.__raw = ''
               function(arg)
-                -- set neo-tree bg color to white
-                vim.cmd.highlight({ "NeoTreeNormal", "guibg=white" })
                 vim.cmd([[
                   setlocal relativenumber
                 ]])

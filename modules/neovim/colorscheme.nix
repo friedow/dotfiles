@@ -6,8 +6,29 @@
 
     programs.nixvim = {
       extraPlugins = [ pkgs.vimPlugins.catppuccin-nvim ];
-      extraConfigLuaPre = ''
+      extraConfigLua = ''
         require("catppuccin").setup {
+          integrations = {
+            blink_cmp = true,
+            flash = true,
+            neogit = true,
+            noice = true,
+            snacks = true,
+          },
+          custom_highlights = function(colors)
+            return {
+              InclineNormal   = { bg = colors.surface0, fg = colors.text },
+              InclineNormalNC = { bg = colors.crust,    fg = colors.subtext0 },
+              NeoTreeNormal           = { bg = colors.base },
+              NeoTreeNormalNC         = { bg = colors.base },
+              SnacksPicker            = { bg = colors.base },
+              SnacksPickerBorder      = { bg = colors.base },
+              SnacksPickerBox         = { bg = colors.base },
+              SnacksPickerBoxBorder   = { bg = colors.base },
+              SnacksPickerInput       = { bg = colors.base },
+              SnacksPickerInputBorder = { bg = colors.base },
+            }
+          end,
           color_overrides = {
             latte = {
               rosewater = "#dc8a78",
