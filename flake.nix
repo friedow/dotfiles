@@ -20,6 +20,7 @@
         treefmt-nix.follows = "treefmt-nix";
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
+        systems.follows = "systems";
       };
     };
 
@@ -45,6 +46,7 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
+        systems.follows = "systems";
       };
     };
 
@@ -53,6 +55,7 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
+        systems.follows = "systems";
       };
     };
 
@@ -64,6 +67,11 @@
     zmk-nix = {
       url = "github:lilyinstarlight/zmk-nix/5f1e3174860e84b60839be393645318a137e89db";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    # Dependencies for input deduplication
+    systems = {
+      url = "github:nix-systems/default/future-26.11";
     };
   };
 
