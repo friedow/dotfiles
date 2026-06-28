@@ -1,6 +1,11 @@
 {
+  pkgs,
+  ...
+}:
+{
   users.users.christian = {
     isNormalUser = true;
+    shell = pkgs.fish;
     extraGroups = [ "wheel" ];
     # TODO: convert to clan var
     initialHashedPassword = "$y$j9T$jxFtoPcujt8cWL6iktgZa/$nWFuloO3gkhkEUXVMMY3c9KjxR8zRKt5o4LbTGX7.z1";
