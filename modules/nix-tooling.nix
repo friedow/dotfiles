@@ -4,6 +4,7 @@
     pkgs.gh
     pkgs.nixpkgs-review
     pkgs.nix-output-monitor
+    pkgs.nix-tree
     pkgs-unstable.flake-edit
   ];
 }
