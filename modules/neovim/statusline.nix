@@ -1,13 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 let
   incline-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "incline-nvim";
-    src = pkgs.fetchFromGitHub {
-      owner = "b0o";
-      repo = "incline.nvim";
-      rev = "27040695b3bbfcd3257669037bd008d1a892831d";
-      hash = "sha256-5chrEfjk1Q+lvGqtoUfS/cYbxCUp1gij6SMoB1QRNbs=";
-    };
+    src = inputs.incline-nvim;
   };
 in
 {

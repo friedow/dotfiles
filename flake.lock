@@ -281,6 +281,22 @@
         "type": "github"
       }
     },
+    "incline-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1778159739,
+        "narHash": "sha256-UIlrWiym/wO7olXX3W3HQBAuISzzKS4qp2/gprXnb0g=",
+        "owner": "b0o",
+        "repo": "incline.nvim",
+        "rev": "debd628e9395f7a9da57bdc31ce75ca6b40a880b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "b0o",
+        "repo": "incline.nvim",
+        "type": "github"
+      }
+    },
     "jail-nix": {
       "locked": {
         "lastModified": 1776230864,
@@ -418,6 +434,7 @@
         "clan": "clan",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
+        "incline-nvim": "incline-nvim",
         "jail-nix": "jail-nix",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",

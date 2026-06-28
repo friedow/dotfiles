@@ -33,6 +33,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    incline-nvim = {
+      url = "github:b0o/incline.nvim";
+      flake = false;
+    };
+
     jail-nix.url = "sourcehut:~alexdavid/jail.nix";
 
     nixvim = {
