@@ -1,15 +1,4 @@
 { inputs, pkgs, ... }:
-let
-  improvedft = pkgs.vimUtils.buildVimPlugin {
-    name = "improvedft";
-    src = pkgs.fetchFromGitHub {
-      owner = "chrisbra";
-      repo = "improvedft";
-      rev = "1f0b78b55ba5fca70db0f584d8b5e56a35fd26f6";
-      hash = "sha256-Db1NkRdNNjZoKHpKErNFYI8BBfdX2wCmfohV2uAwVtA=";
-    };
-  };
-in
 {
   imports = [
     ./colorscheme.nix
@@ -178,8 +167,6 @@ in
           command = "silent! wa";
         }
       ];
-
-      extraPlugins = [ improvedft ];
 
       plugins = {
         vim-surround.enable = true;
