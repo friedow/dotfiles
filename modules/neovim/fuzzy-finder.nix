@@ -7,9 +7,12 @@
     ];
 
     programs.nixvim = {
-      plugins.snacks.settings.picker = {
-        enabled = true;
-        layout.preset = "vertical";
+      plugins.snacks = {
+        enable = true;
+        settings.picker = {
+          enabled = true;
+          layout.preset = "vertical";
+        };
       };
 
       keymaps = [

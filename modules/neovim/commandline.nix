@@ -11,9 +11,5 @@
         lsp.signature.auto_open.enabled = false;
       };
     };
-    snacks = {
-      enable = true;
-      settings.notifier.enabled = true;
-    };
   };
 }
