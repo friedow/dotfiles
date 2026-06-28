@@ -158,8 +158,8 @@ in
           scale 2
       }
 
-      output "LG Electronics LG FHD 502AXFL19123 " {
-          mode custom=true "1920x1080@59.998"
+      output "LG Electronics LG ULTRAWIDE 304NTEP5P580" {
+          mode "5120x1440@85"
       }
 
       prefer-no-csd
