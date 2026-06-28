@@ -46,6 +46,13 @@ in
 
       extraConfigLua = ''
         vim.opt.iskeyword:append("-")
+
+        function CopyPathWithLineRange()
+          local path = vim.fn.expand("%:.")
+          local start_line = vim.fn.line("'<")
+          local end_line = vim.fn.line("'>")
+          vim.fn.setreg("+", path .. ":" .. start_line .. "-" .. end_line)
+        end
       '';
 
       opts = {
@@ -143,6 +150,22 @@ in
             "v"
             "i"
           ];
+          options.silent = true;
+        }
+        {
+          key = "<leader>yp";
+          action.__raw = ''
+            function()
+              vim.fn.setreg("+", vim.fn.expand("%:."))
+            end
+          '';
+          mode = "n";
+          options.silent = true;
+        }
+        {
+          key = "<leader>yp";
+          action = ":<C-u>lua CopyPathWithLineRange()<CR>";
+          mode = "v";
           options.silent = true;
         }
       ];
