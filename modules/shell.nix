@@ -12,6 +12,7 @@
       libwebp
       man-pages-posix
       websocat
+      httpie
     ];
 
     home = {
