@@ -26,7 +26,6 @@ in
               permissions = {
                 defaultMode = "auto";
               };
-              tui = "fullscreen";
               editorMode = "vim";
             };
           };
@@ -73,6 +72,7 @@ in
       virtualisation
       window-manager
       yubikey
+      zellij
     ];
 
     personal-modules.imports = [ ];

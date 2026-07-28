@@ -145,7 +145,7 @@ in
 
               xkb {
                   layout "us"
-                  options "ctrl:nocaps,compose:ralt"
+                  options "ctrl:nocaps"
               }
           }
           touchpad {
