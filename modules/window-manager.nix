@@ -162,6 +162,10 @@ in
           mode "5120x1440@85"
       }
 
+      output "LG Electronics LG FHD 501AXQY0M364 " {
+          mode custom=true "1920x1080@60"
+      }
+
       prefer-no-csd
 
       hotkey-overlay {
