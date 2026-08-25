@@ -8,15 +8,14 @@
         show_startup_tips = false;
       };
       extraConfig = ''
-        keybinds {
-          unbind "Ctrl g"
-          // keybinds are divided into modes
+        keybinds clear-defaults=true {
           normal {
             bind "Alt e" { Run "zellij" "action" "go-to-tab-name" "editor" { close_on_exit true; }; }
             bind "Alt a" { Run "zellij" "action" "go-to-tab-name" "agent" { close_on_exit true; }; }
             bind "Alt 1" { Run "zellij" "action" "go-to-tab-name" "terminal 1" { close_on_exit true; }; }
             bind "Alt 2" { Run "zellij" "action" "go-to-tab-name" "terminal 2" { close_on_exit true; }; }
             bind "Alt 3" { Run "zellij" "action" "go-to-tab-name" "terminal 3" { close_on_exit true; }; }
+            bind "Alt Esc" { Detach; }
           }
         }
       '';
@@ -41,7 +40,7 @@
           pane
         }
         tab name="terminal 2" {
-          pane 
+          pane
         }
         tab name="terminal 3" {
           pane
