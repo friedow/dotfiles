@@ -65,6 +65,46 @@ let
   switch-workspace = pkgs.writeShellScript "switch-workspace" ''
     ${pkgs.kitty}/bin/kitty --app-id kitty-floating-select --execute nu -c 'niri msg --json workspaces | from json | select idx name | sort-by idx | insert name_or_id {|$row| if $row.name != null {$row.name} else {$row.idx} } | get name_or_id | input list --fuzzy | niri msg action focus-workspace $in'
   '';
+
+  float-to-corner = pkgs.writeShellScript "float-to-corner" ''
+    FLOAT_W=600
+    FLOAT_H=375
+    MARGIN=10
+
+    FOCUSED=$(${pkgs.niri}/bin/niri msg --json focused-window)
+    FOCUSED_ID=$(echo "$FOCUSED" | ${pkgs.jq}/bin/jq -r '.id')
+    IS_FLOATING=$(echo "$FOCUSED" | ${pkgs.jq}/bin/jq -r '.is_floating')
+    WORKSPACE_ID=$(echo "$FOCUSED" | ${pkgs.jq}/bin/jq -r '.workspace_id')
+
+    if [ "$IS_FLOATING" = "true" ]; then
+      ${pkgs.niri}/bin/niri msg action toggle-window-floating
+      exit 0
+    fi
+
+    # Unfloat any existing floating windows without changing focus
+    ${pkgs.niri}/bin/niri msg --json windows \
+      | ${pkgs.jq}/bin/jq -r --argjson ws "$WORKSPACE_ID" \
+          '.[] | select(.workspace_id == $ws and .is_floating == true) | .id' \
+      | while read -r FLOAT_ID; do
+          ${pkgs.niri}/bin/niri msg action toggle-window-floating --id "$FLOAT_ID"
+        done
+
+    FOCUSED_OUTPUT=$(${pkgs.niri}/bin/niri msg --json workspaces \
+      | ${pkgs.jq}/bin/jq -r '.[] | select(.is_focused == true) | .output')
+    LOGICAL=$(${pkgs.niri}/bin/niri msg --json outputs \
+      | ${pkgs.jq}/bin/jq -r --arg o "$FOCUSED_OUTPUT" '.[$o].logical')
+
+    TARGET_X=$(( $(echo "$LOGICAL" | ${pkgs.jq}/bin/jq -r '.x') + $(echo "$LOGICAL" | ${pkgs.jq}/bin/jq -r '.width')  - FLOAT_W - MARGIN ))
+    TARGET_Y=$(( $(echo "$LOGICAL" | ${pkgs.jq}/bin/jq -r '.y') + $(echo "$LOGICAL" | ${pkgs.jq}/bin/jq -r '.height') - FLOAT_H - MARGIN ))
+
+    ${pkgs.niri}/bin/niri msg action toggle-window-floating
+    ${pkgs.niri}/bin/niri msg action set-column-width "$FLOAT_W"
+    ${pkgs.niri}/bin/niri msg action set-window-height "$FLOAT_H"
+    ${pkgs.niri}/bin/niri msg action move-floating-window --x "$TARGET_X" --y "$TARGET_Y"
+    ${pkgs.nirius}/bin/nirius toggle-follow-mode
+
+    ${pkgs.nirius}/bin/nirius focus --tiled --focused-workspace 2>/dev/null || true
+  '';
 in
 {
   services.ddccontrol.enable = true;
@@ -91,6 +131,17 @@ in
       Slice = "session.slice";
       Type = "notify";
       ExecStart = "${pkgs.niri}/bin/niri --session";
+    };
+  };
+
+  systemd.user.services.niriusd = {
+    description = "Nirius daemon for niri compositor";
+    bindsTo = [ "niri.service" ];
+    after = [ "niri.service" ];
+    wantedBy = [ "niri.service" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.nirius}/bin/niriusd";
+      Restart = "on-failure";
     };
   };
 
@@ -291,6 +342,7 @@ in
           Mod+Period { expel-window-from-column; }
           Mod+F { maximize-column; }
           Mod+C { center-column; }
+          Mod+V { spawn "${float-to-corner}"; }
           Mod+Minus { set-column-width "-25%"; }
           Mod+Equal { set-column-width "+25%"; }
 
