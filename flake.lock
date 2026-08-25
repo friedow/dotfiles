@@ -68,6 +68,22 @@
         "type": "github"
       }
     },
+    "buggler-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1732124454,
+        "narHash": "sha256-XlWVLIkqmnW4hPZ8dbHDr0oPSv5ZSx6CmUmSuKHrCnM=",
+        "owner": "friedow",
+        "repo": "buggler.nvim",
+        "rev": "31292742d9676b7ae2fa776403563f7b74fbf20d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "friedow",
+        "repo": "buggler.nvim",
+        "type": "github"
+      }
+    },
     "centerpiece": {
       "inputs": {
         "crane": "crane",
@@ -434,6 +450,7 @@
     },
     "root": {
       "inputs": {
+        "buggler-nvim": "buggler-nvim",
         "centerpiece": "centerpiece",
         "clan": "clan",
         "flake-parts": "flake-parts",

@@ -2,6 +2,7 @@
 {
   imports = [
     ./colorscheme.nix
+    ./terminal-manager.nix
     ./completion-menu.nix
     ./commandline.nix
     ./file-explorer.nix

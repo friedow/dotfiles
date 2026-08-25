@@ -34,6 +34,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    buggler-nvim = {
+      url = "github:friedow/buggler.nvim";
+      flake = false;
+    };
+
     incline-nvim = {
       url = "github:b0o/incline.nvim";
       flake = false;
