@@ -27,29 +27,37 @@
         network
         mount-cwd
         no-new-session
-        (try-readonly (noescape "/etc/nix/nix.conf"))
+
+        # Provides access to /nix/var/db and other metadata to access
+        # the nix store.
+        (try-readonly (noescape "/nix/var/nix"))
         (try-readonly (noescape "/nix/store"))
+
+        # Sets /nix/store as a read-only substituter to pull
+        # packages from.
+        (set-env "NIX_CONFIG" ''
+          extra-substituters = local?read-only=true&trusted=true
+          experimental-features = nix-command flakes
+          accept-flake-config = true
+        '')
+
         (try-fwd-env "NO_COLOR")
         (try-fwd-env "TERM")
+        (try-fwd-env "COLORTERM")
         (add-pkg-deps commonPkgs)
       ];
+
     in
     {
-      packages.claude-code = jail "claude" pkgs-unstable.claude-code (
+      packages.opencode = jail "opencode" pkgs-unstable.opencode (
         commonCombinators
         ++ (with combinators; [
-          (try-readwrite (noescape "~/.claude"))
-          (try-readwrite (noescape "~/.claude.json"))
+          (add-runtime ''
+            mkdir -p "$HOME/.config/opencode" "$HOME/.local/share/opencode"
+          '')
+          (try-readwrite (noescape "~/.config/opencode"))
+          (try-readwrite (noescape "~/.local/share/opencode"))
         ])
       );
-
-      packages.codex = jail "codex" pkgs-unstable.codex (
-        commonCombinators
-        ++ (with combinators; [
-          (try-readwrite (noescape "~/.codex"))
-        ])
-      );
-
     };
-
 }

@@ -18,22 +18,10 @@ in
       { ... }:
       {
         home-manager.users.christian = {
-          programs.claude-code = {
-            enable = true;
-            package = self.packages.x86_64-linux.claude-code;
-            settings = {
-              skipAutoPermissionPrompt = true;
-              permissions = {
-                defaultMode = "auto";
-              };
-              editorMode = "vim";
-            };
-          };
           home.packages = [
-            self.packages.x86_64-linux.codex
+            self.packages.x86_64-linux.opencode
           ];
         };
-
       };
 
     desktop-modules.imports = with self.modules.nixos; [
