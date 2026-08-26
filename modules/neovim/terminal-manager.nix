@@ -17,6 +17,21 @@
       {
         action.__raw = ''
           function()
+            require("buggler").toggle_terminal_buffer("opencode", "opencode")
+          end
+        '';
+        key = "<C-a>";
+        mode = [
+          "n"
+          "t"
+          "v"
+          "i"
+        ];
+        options.silent = true;
+      }
+      {
+        action.__raw = ''
+          function()
             require("buggler").toggle_terminal_buffer("Terminal 6")
           end
         '';

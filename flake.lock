@@ -71,11 +71,11 @@
     "buggler-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1732124454,
-        "narHash": "sha256-XlWVLIkqmnW4hPZ8dbHDr0oPSv5ZSx6CmUmSuKHrCnM=",
+        "lastModified": 1787666632,
+        "narHash": "sha256-mkU+DlbyhguiJUI+/Eg2X6wtplbLfusv74QtVqF9afc=",
         "owner": "friedow",
         "repo": "buggler.nvim",
-        "rev": "31292742d9676b7ae2fa776403563f7b74fbf20d",
+        "rev": "1f756924be8027c4932c666562c55958398a4a3c",
         "type": "github"
       },
       "original": {
