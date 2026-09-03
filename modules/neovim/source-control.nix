@@ -8,13 +8,8 @@
             require("neogit").open({ kind = 'replace' })
           end
         '';
-        key = "<C-g>";
-        mode = [
-          "n"
-          "t"
-          "v"
-          "i"
-        ];
+        key = "<leader>g";
+        mode = "n";
         options.silent = true;
       }
     ];

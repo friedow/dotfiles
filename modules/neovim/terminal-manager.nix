@@ -17,16 +17,11 @@
       {
         action.__raw = ''
           function()
-            require("buggler").toggle_terminal_buffer("opencode", "opencode")
+            require("buggler").toggle_terminal_buffer("opencode", "opencode --auto")
           end
         '';
-        key = "<C-a>";
-        mode = [
-          "n"
-          "t"
-          "v"
-          "i"
-        ];
+        key = "<leader>a";
+        mode = "n";
         options.silent = true;
       }
       {
@@ -35,13 +30,8 @@
             require("buggler").toggle_terminal_buffer("Terminal 6")
           end
         '';
-        key = "<C-6>";
-        mode = [
-          "n"
-          "t"
-          "v"
-          "i"
-        ];
+        key = "<leader>y";
+        mode = "n";
         options.silent = true;
       }
       {
@@ -50,13 +40,8 @@
             require("buggler").toggle_terminal_buffer("Terminal 7")
           end
         '';
-        key = "<C-7>";
-        mode = [
-          "n"
-          "t"
-          "v"
-          "i"
-        ];
+        key = "<leader>u";
+        mode = "n";
         options.silent = true;
       }
       {
@@ -65,13 +50,8 @@
             require("buggler").toggle_terminal_buffer("Terminal 8")
           end
         '';
-        key = "<C-8>";
-        mode = [
-          "n"
-          "t"
-          "v"
-          "i"
-        ];
+        key = "<leader>i";
+        mode = "n";
         options.silent = true;
       }
       {
@@ -80,13 +60,8 @@
             require("buggler").toggle_terminal_buffer("Terminal 9")
           end
         '';
-        key = "<C-9>";
-        mode = [
-          "n"
-          "t"
-          "v"
-          "i"
-        ];
+        key = "<leader>o";
+        mode = "n";
         options.silent = true;
       }
       {
@@ -95,13 +70,8 @@
             require("buggler").toggle_terminal_buffer("Terminal 10")
           end
         '';
-        key = "<C-0>";
-        mode = [
-          "n"
-          "t"
-          "v"
-          "i"
-        ];
+        key = "<leader>p";
+        mode = "n";
         options.silent = true;
       }
     ];

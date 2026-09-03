@@ -34,13 +34,8 @@
             require("harpoon"):list():select(1)
           end
         '';
-        key = "<C-1>";
-        mode = [
-          "n"
-          "t"
-          "v"
-          "i"
-        ];
+        key = "<leader>q";
+        mode = "n";
         options.silent = true;
       }
       {
@@ -49,13 +44,8 @@
             require("harpoon"):list():select(2)
           end
         '';
-        key = "<C-2>";
-        mode = [
-          "n"
-          "t"
-          "v"
-          "i"
-        ];
+        key = "<leader>w";
+        mode = "n";
         options.silent = true;
       }
       {
@@ -64,13 +54,8 @@
             require("harpoon"):list():select(3)
           end
         '';
-        key = "<C-3>";
-        mode = [
-          "n"
-          "t"
-          "v"
-          "i"
-        ];
+        key = "<leader>e";
+        mode = "n";
         options.silent = true;
       }
       {
@@ -79,13 +64,8 @@
             require("harpoon"):list():select(4)
           end
         '';
-        key = "<C-4>";
-        mode = [
-          "n"
-          "t"
-          "v"
-          "i"
-        ];
+        key = "<leader>r";
+        mode = "n";
         options.silent = true;
       }
       {
@@ -94,13 +74,8 @@
             require("harpoon"):list():select(5)
           end
         '';
-        key = "<C-5>";
-        mode = [
-          "n"
-          "t"
-          "v"
-          "i"
-        ];
+        key = "<leader>t";
+        mode = "n";
         options.silent = true;
       }
     ];
