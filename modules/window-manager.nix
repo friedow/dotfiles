@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-unstable,
   lib,
   ...
 }:
@@ -64,6 +65,55 @@ let
 
   switch-workspace = pkgs.writeShellScript "switch-workspace" ''
     ${pkgs.kitty}/bin/kitty --app-id kitty-floating-select --execute nu -c 'niri msg --json workspaces | from json | select idx name | sort-by idx | insert name_or_id {|$row| if $row.name != null {$row.name} else {$row.idx} } | get name_or_id | input list --fuzzy | niri msg action focus-workspace $in'
+  '';
+
+  ensure-brave-app = pkgs.writeShellScript "ensure-brave-app" ''
+    app_id="$1"
+    app_url="$2"
+
+    if ! ${pkgs.niri}/bin/niri msg --json windows \
+      | ${pkgs.jq}/bin/jq -e --arg app_id "$app_id" 'any(.[]; .app_id | test($app_id))' >/dev/null; then
+      ${pkgs.brave}/bin/brave \
+        --app="$app_url" \
+        >/dev/null 2>&1 &
+    fi
+  '';
+
+  ensure-app = pkgs.writeShellScript "ensure-app" ''
+    app_id="$1"
+    shift
+
+    if ! ${pkgs.niri}/bin/niri msg --json windows \
+      | ${pkgs.jq}/bin/jq -e --arg app_id "$app_id" 'any(.[]; .app_id | test($app_id))' >/dev/null; then
+      "$@" >/dev/null 2>&1 &
+    fi
+  '';
+
+  launch-chat = pkgs.writeShellScript "launch-chat" ''
+    ${pkgs.niri}/bin/niri msg action focus-workspace "chat"
+    ${ensure-brave-app} '^brave-mattermost\.apm-ecampus\.de__-Default$' "https://mattermost.apm-ecampus.de"
+    ${ensure-brave-app} '^brave-teams\.microsoft\.com__v2_-Default$' "https://teams.microsoft.com/v2/"
+    ${ensure-app} Beeper ${lib.getExe pkgs.beeper}
+  '';
+
+  launch-mail = pkgs.writeShellScript "launch-mail" ''
+    ${pkgs.niri}/bin/niri msg action focus-workspace "mail"
+    ${ensure-brave-app} '^brave-mail\.proton\.me__u_12_inbox-Default$' "https://mail.proton.me/u/12/inbox"
+    ${ensure-brave-app} '^brave-outlook\.cloud\.microsoft__mail_-Default$' "https://outlook.cloud.microsoft/mail/"
+    ${ensure-brave-app} '^brave-outlook\.cloud\.microsoft__mail_.*-Default$' "https://outlook.cloud.microsoft/mail/dev@a-ue.de/"
+  '';
+
+  launch-event = pkgs.writeShellScript "launch-event" ''
+    ${pkgs.niri}/bin/niri msg action focus-workspace "event"
+    ${ensure-brave-app} '^brave-calendar\.proton\.me__u_12_-Default$' "https://calendar.proton.me/u/12/"
+    ${ensure-brave-app} '^brave-outlook\.cloud\.microsoft__calendar_view_month-Default$' "https://outlook.cloud.microsoft/calendar/view/month"
+  '';
+
+  launch-utils = pkgs.writeShellScript "launch-utils" ''
+    ${pkgs.niri}/bin/niri msg action focus-workspace "utils"
+    ${ensure-app} 1password ${lib.getExe pkgs-unstable._1password-gui} --ozone-platform-hint=auto
+    ${ensure-brave-app} '^brave-open\.spotify\.com__-Default$' "https://open.spotify.com/"
+    ${ensure-brave-app} '^brave-apm-pflegehelden\.app\.personio\.com__-Default$' "https://apm-pflegehelden.app.personio.com/"
   '';
 
   float-to-corner = pkgs.writeShellScript "float-to-corner" ''
@@ -269,8 +319,70 @@ in
       }
 
       window-rule {
-          match app-id=r#"^1Password$"#
+          match app-id=r#"^1password$"#
+          open-on-workspace "utils"
+          open-focused false
           block-out-from "screencast"
+      }
+
+      window-rule {
+          match app-id=r#"^brave-mattermost\.apm-ecampus\.de__-Default$"#
+          open-on-workspace "chat"
+          open-focused false
+      }
+
+      window-rule {
+          match app-id=r#"^brave-teams\.microsoft\.com__v2_-Default$"#
+          open-on-workspace "chat"
+          open-focused false
+      }
+
+      window-rule {
+          match app-id=r#"^brave-mail\.proton\.me__u_12_inbox-Default$"#
+          open-on-workspace "mail"
+          open-focused false
+      }
+
+      window-rule {
+          match app-id=r#"^brave-outlook\.cloud\.microsoft__mail_-Default$"#
+          open-on-workspace "mail"
+          open-focused false
+      }
+
+      window-rule {
+          match app-id=r#"^brave-outlook\.cloud\.microsoft__mail_.*-Default$"#
+          open-on-workspace "mail"
+          open-focused false
+      }
+
+      window-rule {
+          match app-id=r#"^brave-calendar\.proton\.me__u_12_-Default$"#
+          open-on-workspace "event"
+          open-focused false
+      }
+
+      window-rule {
+          match app-id=r#"^brave-outlook\.cloud\.microsoft__calendar_view_month-Default$"#
+          open-on-workspace "event"
+          open-focused false
+      }
+
+      window-rule {
+          match app-id=r#"^brave-open\.spotify\.com__-Default$"#
+          open-on-workspace "utils"
+          open-focused false
+      }
+
+      window-rule {
+          match app-id=r#"^brave-apm-pflegehelden\.app\.personio\.com__-Default$"#
+          open-on-workspace "utils"
+          open-focused false
+      }
+
+      window-rule {
+          match app-id=r#"^Beeper$"#
+          open-on-workspace "chat"
+          open-focused false
       }
 
       window-rule {
@@ -318,6 +430,11 @@ in
               inactive-color "#7d0d2d"
           }
       }
+
+      workspace "chat"
+      workspace "mail"
+      workspace "event"
+      workspace "utils"
 
       binds {
           Mod+Shift+Slash { show-hotkey-overlay; }
@@ -381,6 +498,11 @@ in
           Mod+8 { focus-workspace 8; }
           Mod+9 { focus-workspace 9; }
           Mod+0 { focus-workspace 10; }
+
+          Super+U { spawn "${launch-chat}"; }
+          Super+I { spawn "${launch-mail}"; }
+          Super+O { spawn "${launch-event}"; }
+          Super+P { spawn "${launch-utils}"; }
 
           Mod+Shift+1 { move-window-to-workspace "1"; }
           Mod+Shift+2 { move-window-to-workspace "2"; }
