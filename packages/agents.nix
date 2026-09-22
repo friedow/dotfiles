@@ -59,5 +59,16 @@
           (try-readwrite (noescape "~/.local/share/opencode"))
         ])
       );
+
+      packages.claude-code = jail "claude-code" pkgs-unstable.claude-code (
+        commonCombinators
+        ++ (with combinators; [
+          (add-runtime ''
+            mkdir -p "$HOME/.claude"
+          '')
+          (try-readwrite (noescape "~/.claude"))
+          (try-readwrite (noescape "~/.claude.json"))
+        ])
+      );
     };
 }
