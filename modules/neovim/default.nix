@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs-unstable, ... }:
 {
   imports = [
     ./colorscheme.nix
@@ -23,7 +23,7 @@
 
     programs.nixvim = {
       enable = true;
-      package = pkgs.neovim-unwrapped;
+      package = pkgs-unstable.neovim-unwrapped;
 
       defaultEditor = true;
       viAlias = true;
