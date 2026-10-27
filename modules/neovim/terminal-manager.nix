@@ -19,7 +19,8 @@
         {
           action.__raw = ''
             function()
-              require("buggler").toggle_terminal_buffer("opencode", "opencode --auto")
+              local cmd = vim.fn.executable("opencode") == 1 and "opencode --auto --standalone" or "claude-code"
+              require("buggler").toggle_terminal_buffer("agent", cmd)
             end
           '';
           key = "<leader>a";

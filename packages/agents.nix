@@ -49,17 +49,6 @@
 
     in
     {
-      packages.opencode = jail "opencode" pkgs-unstable.opencode (
-        commonCombinators
-        ++ (with combinators; [
-          (add-runtime ''
-            mkdir -p "$HOME/.config/opencode" "$HOME/.local/share/opencode"
-          '')
-          (try-readwrite (noescape "~/.config/opencode"))
-          (try-readwrite (noescape "~/.local/share/opencode"))
-        ])
-      );
-
       packages.claude-code = jail "claude-code" pkgs-unstable.claude-code (
         commonCombinators
         ++ (with combinators; [
