@@ -45,7 +45,6 @@
 
         shellInit = ''
           set -g fish_greeting ""
-          fish_vi_key_bindings
         '';
 
         interactiveShellInit = ''
@@ -61,6 +60,11 @@
         '';
 
         functions = {
+          fish_user_key_bindings.body = ''
+            fish_vi_key_bindings
+            bind -M insert ctrl-backspace backward-kill-word
+          '';
+
           fish_mode_prompt.body = "";
 
           fish_prompt.body = ''
