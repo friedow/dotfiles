@@ -1,12 +1,15 @@
-{ ... }:
 {
-  home-manager.users.christian.programs.nixvim.plugins.treesitter = {
-    enable = true;
+  flake.modules.nixos.neovim =
+    { ... }:
+    {
+      home-manager.users.christian.programs.nixvim.plugins.treesitter = {
+        enable = true;
 
-    settings = {
-      highlight.enable = true;
-      indent.enable = true;
-      parser_install_dir = null;
+        settings = {
+          highlight.enable = true;
+          indent.enable = true;
+          parser_install_dir = null;
+        };
+      };
     };
-  };
 }

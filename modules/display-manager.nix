@@ -1,4 +1,7 @@
-{ pkgs, ... }:
 {
-  home-manager.users.christian.home.packages = [ pkgs.wdisplays ];
+  flake.modules.nixos.display-manager =
+    { pkgs, ... }:
+    {
+      home-manager.users.christian.home.packages = [ pkgs.wdisplays ];
+    };
 }

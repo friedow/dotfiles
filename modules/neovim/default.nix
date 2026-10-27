@@ -1,178 +1,167 @@
-{ inputs, pkgs-unstable, ... }:
+{ inputs, ... }:
 {
-  imports = [
-    ./colorscheme.nix
-    ./terminal-manager.nix
-    ./completion-menu.nix
-    ./commandline.nix
-    ./file-explorer.nix
-    ./file-switcher.nix
-    ./formatter.nix
-    ./fuzzy-finder.nix
-    ./language-server.nix
-    ./search-highlighter.nix
-    ./source-control.nix
-    ./statusline.nix
-    ./syntax-parser.nix
-  ];
+  flake.modules.nixos.neovim =
+    { pkgs-unstable, ... }:
+    {
 
-  home-manager.users.christian = {
-    imports = [
-      inputs.nixvim.homeModules.nixvim
-    ];
+      home-manager.users.christian = {
+        imports = [
+          inputs.nixvim.homeModules.nixvim
+        ];
 
-    programs.nixvim = {
-      enable = true;
-      package = pkgs-unstable.neovim-unwrapped;
+        programs.nixvim = {
+          enable = true;
+          package = pkgs-unstable.neovim-unwrapped;
 
-      defaultEditor = true;
-      viAlias = true;
-      vimAlias = true;
+          defaultEditor = true;
+          viAlias = true;
+          vimAlias = true;
 
-      globals = {
-        mapleader = " ";
-      };
+          globals = {
+            mapleader = " ";
+          };
 
-      extraConfigLua = ''
-        vim.opt.iskeyword:append("-")
+          extraConfigLua = ''
+            vim.opt.iskeyword:append("-")
 
-        function CopyPathWithLineRange()
-          local path = vim.fn.expand("%:.")
-          local start_line = vim.fn.line("'<")
-          local end_line = vim.fn.line("'>")
-          vim.fn.setreg("+", path .. ":" .. start_line .. "-" .. end_line)
-        end
-      '';
-
-      opts = {
-        clipboard = "unnamedplus";
-        fillchars = "eob: ";
-        mouse = null;
-        number = true;
-        relativenumber = true;
-        scrolloff = 8;
-        cmdheight = 0;
-        cursorline = true;
-        laststatus = 0;
-        tabstop = 2;
-        shiftwidth = 0;
-        expandtab = true;
-      };
-
-      keymaps = [
-        {
-          key = "<C-i>";
-          action = "<C-I>";
-          mode = "n";
-          options.silent = true;
-        }
-        {
-          key = "gnd";
-          action.__raw = ''
-            function()
-              vim.diagnostic.goto_next()
+            function CopyPathWithLineRange()
+              local path = vim.fn.expand("%:.")
+              local start_line = vim.fn.line("'<")
+              local end_line = vim.fn.line("'>")
+              vim.fn.setreg("+", path .. ":" .. start_line .. "-" .. end_line)
             end
           '';
-          mode = "n";
-          options.silent = true;
-        }
-        {
-          key = "gpd";
-          action.__raw = ''
-            function()
-              vim.diagnostic.goto_prev()
-            end
-          '';
-          mode = "n";
-          options.silent = true;
-        }
-        {
-          key = "<C-h>";
-          action = "<C-w>h";
-          mode = [
-            "n"
-            "t"
-            "v"
-            "i"
-          ];
-          options.silent = true;
-        }
-        {
-          key = "<C-j>";
-          action = "<C-w>j";
-          mode = [
-            "n"
-            "t"
-            "v"
-            "i"
-          ];
-          options.silent = true;
-        }
-        {
-          key = "<C-k>";
-          action = "<C-w>k";
-          mode = [
-            "n"
-            "t"
-            "v"
-            "i"
-          ];
-          options.silent = true;
-        }
-        {
-          key = "<C-l>";
-          action = "<C-w>l";
-          mode = [
-            "n"
-            "t"
-            "v"
-            "i"
-          ];
-          options.silent = true;
-        }
-        {
-          key = "<C-q>";
-          action = "<C-w>q";
-          mode = [
-            "n"
-            "t"
-            "v"
-            "i"
-          ];
-          options.silent = true;
-        }
-        {
-          key = "<leader>yp";
-          action.__raw = ''
-            function()
-              vim.fn.setreg("+", vim.fn.expand("%:."))
-            end
-          '';
-          mode = "n";
-          options.silent = true;
-        }
-        {
-          key = "<leader>yp";
-          action = ":<C-u>lua CopyPathWithLineRange()<CR>";
-          mode = "v";
-          options.silent = true;
-        }
-      ];
 
-      autoCmd = [
-        {
-          event = [
-            "FocusLost"
-            "BufLeave"
-          ];
-          command = "silent! wa";
-        }
-      ];
+          opts = {
+            clipboard = "unnamedplus";
+            fillchars = "eob: ";
+            mouse = null;
+            number = true;
+            relativenumber = true;
+            scrolloff = 8;
+            cmdheight = 0;
+            cursorline = true;
+            laststatus = 0;
+            tabstop = 2;
+            shiftwidth = 0;
+            expandtab = true;
+          };
 
-      plugins = {
-        vim-surround.enable = true;
-        flash.enable = true;
+          keymaps = [
+            {
+              key = "<C-i>";
+              action = "<C-I>";
+              mode = "n";
+              options.silent = true;
+            }
+            {
+              key = "gnd";
+              action.__raw = ''
+                function()
+                  vim.diagnostic.goto_next()
+                end
+              '';
+              mode = "n";
+              options.silent = true;
+            }
+            {
+              key = "gpd";
+              action.__raw = ''
+                function()
+                  vim.diagnostic.goto_prev()
+                end
+              '';
+              mode = "n";
+              options.silent = true;
+            }
+            {
+              key = "<C-h>";
+              action = "<C-w>h";
+              mode = [
+                "n"
+                "t"
+                "v"
+                "i"
+              ];
+              options.silent = true;
+            }
+            {
+              key = "<C-j>";
+              action = "<C-w>j";
+              mode = [
+                "n"
+                "t"
+                "v"
+                "i"
+              ];
+              options.silent = true;
+            }
+            {
+              key = "<C-k>";
+              action = "<C-w>k";
+              mode = [
+                "n"
+                "t"
+                "v"
+                "i"
+              ];
+              options.silent = true;
+            }
+            {
+              key = "<C-l>";
+              action = "<C-w>l";
+              mode = [
+                "n"
+                "t"
+                "v"
+                "i"
+              ];
+              options.silent = true;
+            }
+            {
+              key = "<C-q>";
+              action = "<C-w>q";
+              mode = [
+                "n"
+                "t"
+                "v"
+                "i"
+              ];
+              options.silent = true;
+            }
+            {
+              key = "<leader>yp";
+              action.__raw = ''
+                function()
+                  vim.fn.setreg("+", vim.fn.expand("%:."))
+                end
+              '';
+              mode = "n";
+              options.silent = true;
+            }
+            {
+              key = "<leader>yp";
+              action = ":<C-u>lua CopyPathWithLineRange()<CR>";
+              mode = "v";
+              options.silent = true;
+            }
+          ];
+
+          autoCmd = [
+            {
+              event = [
+                "FocusLost"
+                "BufLeave"
+              ];
+              command = "silent! wa";
+            }
+          ];
+
+          plugins = {
+            vim-surround.enable = true;
+            flash.enable = true;
+          };
+        };
       };
     };
-  };
 }

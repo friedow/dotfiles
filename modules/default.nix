@@ -3,28 +3,12 @@
   lib,
   ...
 }:
-let
-  moduleDirectoryList = builtins.attrNames (builtins.readDir ./.);
-  allModules = builtins.listToAttrs (
-    builtins.map (entry: {
-      name = lib.strings.removeSuffix ".nix" entry;
-      value = ./. + "/${entry}";
-    }) moduleDirectoryList
-  );
-in
 {
-  flake.modules.nixos = allModules // {
-    agents =
-      { ... }:
-      {
-        home-manager.users.christian = {
-          home.packages = [
-            self.packages.x86_64-linux.opencode
-            self.packages.x86_64-linux.claude-code
-          ];
-        };
-      };
+  imports = builtins.filter (path: lib.hasSuffix ".nix" (toString path) && path != ./default.nix) (
+    lib.filesystem.listFilesRecursive ./.
+  );
 
+  flake.modules.nixos = {
     desktop-modules.imports = with self.modules.nixos; [
       agents
       beeper

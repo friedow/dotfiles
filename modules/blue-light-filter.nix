@@ -1,9 +1,11 @@
 {
-  home-manager.users.christian.services.wlsunset = {
-    enable = true;
+  flake.modules.nixos.blue-light-filter = {
+    home-manager.users.christian.services.wlsunset = {
+      enable = true;
 
-    # Berlin
-    latitude = "52.5";
-    longitude = "13.5";
+      # Berlin
+      latitude = "52.5";
+      longitude = "13.5";
+    };
   };
 }

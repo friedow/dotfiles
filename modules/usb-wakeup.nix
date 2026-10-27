@@ -1,5 +1,7 @@
 {
-  services.udev.extraRules = ''
-    ACTION=="add", SUBSYSTEM=="usb", TEST=="power/wakeup", ATTR{power/wakeup}="enabled"
-  '';
+  flake.modules.nixos.usb-wakeup = {
+    services.udev.extraRules = ''
+      ACTION=="add", SUBSYSTEM=="usb", TEST=="power/wakeup", ATTR{power/wakeup}="enabled"
+    '';
+  };
 }

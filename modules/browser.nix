@@ -1,15 +1,18 @@
-{ pkgs, ... }:
 {
-  home-manager.users.christian = {
-    programs.chromium = {
-      enable = true;
-      package = pkgs.brave;
-      extensions = [
-        { id = "aeblfdkhhhdcdjpifhhbdiojplfjncoa"; } # 1password
-        { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # vimium
-        { id = "iaiomicjabeggjcfkbimgmglanimpnae"; } # Tab Session Manager
-        { id = "aghdiknflpelpkepifoplhodcnfildao"; } # Save Tab Groups for Tab Session Manager
-      ];
+  flake.modules.nixos.browser =
+    { pkgs, ... }:
+    {
+      home-manager.users.christian = {
+        programs.chromium = {
+          enable = true;
+          package = pkgs.brave;
+          extensions = [
+            { id = "aeblfdkhhhdcdjpifhhbdiojplfjncoa"; } # 1password
+            { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # vimium
+            { id = "iaiomicjabeggjcfkbimgmglanimpnae"; } # Tab Session Manager
+            { id = "aghdiknflpelpkepifoplhodcnfildao"; } # Save Tab Groups for Tab Session Manager
+          ];
+        };
+      };
     };
-  };
 }
