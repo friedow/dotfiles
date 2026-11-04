@@ -1,0 +1,54 @@
+--- a/src/screencast.c	2026-11-04 09:23:54.105969298 +0100
++++ b/src/screencast.c	2026-11-04 09:24:02.620717426 +0100
+@@ -632,6 +632,41 @@
+ }
+ 
+ static gboolean
++select_niri_dynamic_cast_target (ScreenCastSession *screen_cast_session)
++{
++  g_autoptr(GPtrArray) streams = NULL;
++  g_autoptr(GError) error = NULL;
++  ScreenCastStreamInfo *info;
++  ShellWindow *window;
++
++  if (!screen_cast_session->select.source_types.window)
++    return FALSE;
++
++  window = find_best_window_by_app_id_and_title ("rs.bxt.niri.desktop",
++                                                 "niri Dynamic Cast Target");
++  if (!window)
++    return FALSE;
++
++  streams =
++    g_ptr_array_new_with_free_func ((GDestroyNotify) screen_cast_stream_info_free);
++
++  info = g_new0 (ScreenCastStreamInfo, 1);
++  info->type = SCREEN_CAST_SOURCE_TYPE_WINDOW;
++  info->data.window = shell_window_dup (window);
++  info->id = 0;
++  g_ptr_array_add (streams, info);
++
++  if (!start_session (screen_cast_session, streams, &error))
++    {
++      g_warning ("Failed to start niri dynamic cast session: %s",
++                 error ? error->message : "unknown error");
++      return FALSE;
++    }
++
++  return TRUE;
++}
++
++static gboolean
+ handle_start (XdpImplScreenCast     *object,
+               GDBusMethodInvocation *invocation,
+               const char            *arg_handle,
+@@ -666,7 +701,8 @@
+ 
+   screen_cast_session->start_invocation = invocation;
+ 
+-  if (!restore_stream_from_data (screen_cast_session))
++  if (!restore_stream_from_data (screen_cast_session) &&
++      !select_niri_dynamic_cast_target (screen_cast_session))
+     {
+       ScreenCastDialogHandle *dialog_handle;
+ 
