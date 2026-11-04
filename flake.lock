@@ -464,6 +464,7 @@
         "stylix": "stylix",
         "systems": "systems",
         "treefmt-nix": "treefmt-nix",
+        "zen-browser": "zen-browser",
         "zmk-nix": "zmk-nix"
       }
     },
@@ -623,6 +624,29 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "zen-browser": {
+      "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793781856,
+        "narHash": "sha256-5c93tSlnE1VVunrw3/Q75EayZLkMQmoUcNZv/1fXWKU=",
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
+        "rev": "3c9750e20fd25605fbd2f7a71253997cc45838c5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     },

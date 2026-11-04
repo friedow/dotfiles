@@ -8,6 +8,14 @@
         package = pkgs-unstable._1password-gui;
         polkitPolicyOwners = [ "christian" ];
       };
+      environment.etc."1password/custom_allowed_browsers" = {
+        text = ''
+          .zen-twilight-wrapped
+          zen
+          zen-bin
+        '';
+        mode = "0755";
+      };
 
       # TODO: move somewhere else probably git config
       home-manager.users.christian.programs.ssh = {
