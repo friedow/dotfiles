@@ -30,6 +30,7 @@
       nix-cli
       nix-tooling
       notifications
+      office
       password-manager
       printing
       privilige-manager
