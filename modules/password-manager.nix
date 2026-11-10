@@ -10,9 +10,7 @@
       };
       environment.etc."1password/custom_allowed_browsers" = {
         text = ''
-          .zen-twilight-wrapped
-          zen
-          zen-bin
+          .firefox-wrapped
         '';
         mode = "0755";
       };
