@@ -44,13 +44,19 @@
       flake = false;
     };
 
-    jail-nix.url = "sourcehut:~alexdavid/jail.nix";
-
     nixvim = {
       url = "github:nix-community/nixvim/nixos-26.05";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
+        systems.follows = "systems";
+      };
+    };
+
+    nixwrap = {
+      url = "github:rti/nixwrap";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
       };
     };

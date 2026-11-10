@@ -245,6 +245,27 @@
         "type": "github"
       }
     },
+    "flake-utils": {
+      "inputs": {
+        "systems": [
+          "nixwrap",
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "fromYaml": {
       "flake": false,
       "locked": {
@@ -313,21 +334,6 @@
         "owner": "b0o",
         "repo": "incline.nvim",
         "type": "github"
-      }
-    },
-    "jail-nix": {
-      "locked": {
-        "lastModified": 1788928033,
-        "narHash": "sha256-UQRytK4SsshV1CeX6aKF+P855Sbcqg9aA731eYTakNg=",
-        "owner": "~alexdavid",
-        "repo": "jail.nix",
-        "rev": "7cd53acef3ad51b9c775be759f5643f8d3bcf6eb",
-        "type": "sourcehut"
-      },
-      "original": {
-        "owner": "~alexdavid",
-        "repo": "jail.nix",
-        "type": "sourcehut"
       }
     },
     "nix-darwin": {
@@ -424,6 +430,30 @@
         "type": "github"
       }
     },
+    "nixwrap": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "systems": [
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794319599,
+        "narHash": "sha256-vAn+taHmud/ypkLRM+JmEXMtuMS4l2Bn0eLIcCVzIH8=",
+        "owner": "rti",
+        "repo": "nixwrap",
+        "rev": "31bc449c483e3d2430dc4be724bb13f8d159760e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rti",
+        "repo": "nixwrap",
+        "type": "github"
+      }
+    },
     "nur": {
       "inputs": {
         "flake-parts": [
@@ -457,10 +487,10 @@
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "incline-nvim": "incline-nvim",
-        "jail-nix": "jail-nix",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim": "nixvim",
+        "nixwrap": "nixwrap",
         "stylix": "stylix",
         "systems": "systems",
         "treefmt-nix": "treefmt-nix",
