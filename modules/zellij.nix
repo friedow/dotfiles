@@ -33,7 +33,7 @@
           }
           tab name="agent" {
             pane {
-              command "claude"
+              command "omp"
               start_suspended true
             }
           }
