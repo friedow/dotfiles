@@ -45,6 +45,7 @@
       user-christian
       virtualisation
       window-manager
+      workspace-apps
       yubikey
       zellij
     ];
