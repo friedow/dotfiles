@@ -15,26 +15,26 @@
           ];
         };
 
-        # xdg.mimeApps = {
-        #   enable = true;
-        #   defaultApplications = lib.genAttrs [
-        #     "application/json"
-        #     "application/x-extension-htm"
-        #     "application/x-extension-html"
-        #     "application/x-extension-shtml"
-        #     "application/x-extension-xht"
-        #     "application/x-extension-xhtml"
-        #     "application/xhtml+xml"
-        #     "text/html"
-        #     "text/plain"
-        #     "x-scheme-handler/about"
-        #     "x-scheme-handler/chrome"
-        #     "x-scheme-handler/http"
-        #     "x-scheme-handler/https"
-        #     "x-scheme-handler/mailto"
-        #     "x-scheme-handler/unknown"
-        #   ] (_: "firefox.desktop");
-        # };
+        xdg.mimeApps = {
+          enable = true;
+          defaultApplications = lib.genAttrs [
+            "application/json"
+            "application/x-extension-htm"
+            "application/x-extension-html"
+            "application/x-extension-shtml"
+            "application/x-extension-xht"
+            "application/x-extension-xhtml"
+            "application/xhtml+xml"
+            "text/html"
+            "text/plain"
+            "x-scheme-handler/about"
+            "x-scheme-handler/chrome"
+            "x-scheme-handler/http"
+            "x-scheme-handler/https"
+            "x-scheme-handler/mailto"
+            "x-scheme-handler/unknown"
+          ] (_: "firefox.desktop");
+        };
 
         stylix.targets.firefox.profileNames = [ "default" ];
 
