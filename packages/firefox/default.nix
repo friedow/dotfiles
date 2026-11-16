@@ -102,6 +102,39 @@
                           });
                         }'';
         }
+        {
+          # Screen sharing through the PipeWire portal skips Firefox's prompt:
+          # the portal picks the source. Camera and microphone still prompt.
+          file = "actors/WebRTCParent.sys.mjs";
+          anchor = "// Always prompt for screen sharing";
+          replacement = ''
+            // firefox-no-tabs: allow screen sharing via the PipeWire portal
+                const portal = aRequest.videoInputDevices.find(
+                  device => device.canRequestOsLevelPrompt
+                );
+                if (
+                  aRequest.sharingScreen &&
+                  portal &&
+                  !aRequest.audioInputDevices.length &&
+                  !aRequest.audioOutputDevices.length
+                ) {
+                  const { callID, windowID } = aRequest;
+                  Services.perms.addFromPrincipal(
+                    aPrincipal,
+                    "MediaManagerVideo",
+                    Services.perms.ALLOW_ACTION,
+                    Services.perms.EXPIRE_SESSION
+                  );
+                  this.activateDevicePerm(windowID, portal.mediaSource, portal.rawId);
+                  this.sendAsyncMessage("webrtc:Allow", {
+                    callID,
+                    windowID,
+                    devices: [portal.deviceIndex],
+                  });
+                  return true;
+                }
+                // Always prompt for screen sharing'';
+        }
       ];
 
       applyEdit =

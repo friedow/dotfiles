@@ -58,7 +58,6 @@
 
           profiles.default = {
             settings = {
-              "media.navigator.permission.disabled" = true;
               "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
 
               "browser.toolbars.bookmarks.visibility" = "never";
