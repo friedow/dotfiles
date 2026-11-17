@@ -19,7 +19,7 @@
         {
           action.__raw = ''
             function()
-              local cmd = vim.fn.executable("opencode") == 1 and "opencode --auto --standalone" or "omp"
+              local cmd = vim.fn.executable("opencode") == 1 and "opencode" or "omp"
               require("buggler").toggle_terminal_buffer("agent", cmd)
             end
           '';
