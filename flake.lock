@@ -98,15 +98,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1793174406,
-        "narHash": "sha256-wYzDorGUppk8ao4ZL43sTc5ShgyulZFAdFImvKzdXQA=",
+        "lastModified": 1794987393,
+        "narHash": "sha256-2qYNJrNKDcN3Yv/VMtyx7AsuQdErcJ23oqC2Yhr59+8=",
         "owner": "friedow",
         "repo": "centerpiece",
-        "rev": "5884a21fe3464df8bf7e3b2e6a9c58cbda152950",
+        "rev": "0dfeceb936cf2eada778b60d554a94be141d2e58",
         "type": "github"
       },
       "original": {
         "owner": "friedow",
+        "ref": "niri-workspaces",
         "repo": "centerpiece",
         "type": "github"
       }

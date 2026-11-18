@@ -19,6 +19,9 @@
           enable = true;
           services.index-git-repositories.enable = true;
           config.plugin = {
+            brave_bookmarks.enable = false;
+            brave_history.enable = false;
+            brave_progressive_web_apps.enable = false;
             sway_windows.enable = false;
             gitmoji.enable = true;
             git_repositories.commands = [

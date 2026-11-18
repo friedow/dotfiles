@@ -6,7 +6,7 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     centerpiece = {
-      url = "github:friedow/centerpiece";
+      url = "github:friedow/centerpiece/niri-workspaces";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
